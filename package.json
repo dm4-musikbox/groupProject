@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "eslint": "esw -w \"src/**/*.js\" \"server/**/*.js\" server.js",
+    "eslint-fix": "esw -w --fix \"src/**/*.js\" \"server/**/*.js\" server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +17,10 @@
     "express": "^4.14.0",
     "mongoose": "^4.6.5",
     "webpack": "^1.13.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.9.0",
+    "eslint-config-devmountain": "^1.2.2",
+    "eslint-watch": "^2.1.14"
   }
 }
