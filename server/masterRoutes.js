@@ -1,5 +1,5 @@
-const userRoutes = require( './user/userRoutes.js' );
-const channelRoutes = require( './channel/channelRoutes.js' );
+const userRoutes = require( './features/user/userRoutes.js' );
+const channelRoutes = require( './features/channel/channelRoutes.js' );
 
 module.exports = app => {
   userRoutes( app );
