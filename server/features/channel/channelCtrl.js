@@ -1,31 +1,58 @@
 const Channel = require( "./Channel.js" );
 
 module.exports = {
-	getChannels( req, res ) {
-		Channel.find( ( req.query ), ( err, channels ) => {
-			if ( err ) {
+	findOrCreateChannel( req, res ) {
+
+		let channel = req.body;
+
+		Channel.findOrCreate( { channel: channel.name }, channel, ( err, channel ) => {
+			if( err ){
 				return res.status( 400 ).send( err );
 			}
-			return res.status( 500 ).json( channels );
-		} );
+			if ( channel.channelRecordings !== [] || channel.channelMessages !== [] ) {
+					Channel
+							.findOne( { _id: channel._id } )
+							.populate( 'channelRecordings channelMessages' )
+							.exec( ( err, channel ) => {
+									if ( err ) {
+											return res.status( 500 ).json( err );
+									}
+									return res.status( 200 ).json( channel );
+							} );
+			}
+			else {
+					return res.status( 200 ).json( channel );
+			}
+		})
+	}
+	, getChannels( req, res ) {
+		Channel
+				.find()
+				.populate( 'channelRecordings channelMessages' )
+				.exec( ( err, channels ) => {
+						if ( err ) {
+								return res.status( 500 ).json( err );
+						}
+						return res.status( 200 ).json( channels );
+				} );
 	}
   , getChannelById( req, res ) {
 	Channel.findById( req.params.id, ( err, channel ) => {
 		if ( err ) {
 			return res.status( 400 ).send( err );
 		}
-		return res.status( 500 ).json( channel );
+		return res.status( 200 ).json( channel );
 	} );
 }
-  , getChannelsByGenre( req, res ) {
-
-}
+//   , getChannelsByGenre( req, res ) {
+//
+// }
   , updateChannel( req, res ) {
-	Channel.findByIdAndUpdate( req.params.id, req.body, ( err, reponse ) => {
+	Channel.findByIdAndUpdate( req.params.id, req.body, { new: true }, ( err, response ) => {
 		if ( err ) {
 			return res.status( 400 ).send( err );
 		}
-		return res.status( 500 ).json( response );
+		return res.status( 200 ).json( response );
 	} );
 }
   , deleteChannel( req, res ) {
@@ -33,7 +60,7 @@ module.exports = {
 		if ( err ) {
 			return res.status( 400 ).send( err );
 		}
-		return res.status( 500 ).json( response );
+		return res.status( 200 ).json( response );
 	} );
 }
 };

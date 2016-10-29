@@ -1,4 +1,5 @@
 const mongoose = require( "mongoose" );
+const findOrCreate = require( "mongoose-findorcreate");
 
 const User = new mongoose.Schema(
 	{
@@ -8,5 +9,7 @@ const User = new mongoose.Schema(
     , userChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
 	}
 );
+
+User.plugin(findOrCreate);
 
 module.exports = mongoose.model( "User", User );
