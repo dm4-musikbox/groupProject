@@ -1,9 +1,10 @@
-const mongoose = require( "Mongoose" );
+const mongoose = require( "mongoose" );
 
   const Message = new mongoose.Schema( {
-    content: { type: String, enum: [ 'message', 'recording' ], required: true, trim: true }
-    , timestamp: { type: Date, default: Date.now }
-    , recording: [ { type: mongoose.Schema.Types.ObjectId }, ref: "Recording" ]
+    type: { type: String, enum: [ "message", "recording" ], required: true }
+    , content: { type: String, trim: true }
+    , timestamp: { type: Date, default: Date.now() }
+    , recording: [ { type: mongoose.Schema.Types.ObjectId, ref: "Recording" } ]
     , user: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
   })
 

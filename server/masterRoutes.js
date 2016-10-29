@@ -7,5 +7,5 @@ module.exports = app => {
 	userRoutes( app );
 	channelRoutes( app );
 	recordingRoutes( app );
-	messageRoutes( app )
+	messageRoutes( app );
 };

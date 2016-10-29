@@ -2,14 +2,15 @@ const recordingCtrl = require( "./recordingCtrl" );
 
 module.exports = app => {
 	app.route( "/api/recordings" )
-        .get( recordingCtrl.getAllRecordings )
-        .post( recordingCtrl.addNewRecordingToChannel );
+        .get( recordingCtrl.getAllRecordings );
 
 	app.route( "/api/recordings/:recording_id" )
-        // .get( recordingCtrl.getRecordingById )
+        .put( recordingCtrl.updateRecording );
+
+	app.route( "/api/recordings/:recording_id/channels/:channel_id" )
         .delete( recordingCtrl.deleteRecordingFromChannel );
 
-	app.route( "/api/recordings/:channel_id" )
-        .get( recordingCtrl.getRecordingsByChannelId )
-        .delete( recordingCtrl.deleteAllRecordingsByChannelId );
+	app.route( "/api/recordings/channels/:channel_id" )
+				.post( recordingCtrl.addRecordingToChannel )
+        .delete( recordingCtrl.deleteAllRecordingsFromChannel );
 };

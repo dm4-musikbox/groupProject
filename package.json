@@ -21,6 +21,7 @@
   "devDependencies": {
     "eslint": "^3.9.0",
     "eslint-config-devmountain": "^1.2.2",
-    "eslint-watch": "^2.1.14"
+    "eslint-watch": "^2.1.14",
+    "mongoose-findorcreate": "^0.1.2"
   }
 }

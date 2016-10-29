@@ -1,12 +1,23 @@
 const User = require( "./User.js" );
 
 module.exports = {
-	getUsers( req, res ) {
+	findOrCreateUser( req, res ) {
+
+		let user = req.body;
+
+		User.findOrCreate( { name: user.name }, user, ( err, user ) => {
+			if( err ){
+				return res.status( 400 ).send( err );
+			}
+				return res.status( 200 ).json( user );
+		})
+	}
+	, getUsers( req, res ) {
 		User.find( ( req.query ), ( err, users ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
 			}
-			return res.status( 500 ).json( users );
+			return res.status( 200 ).json( users );
 		} );
 	}
   , getUserById( req, res ) {
@@ -14,26 +25,23 @@ module.exports = {
 		if ( err ) {
 			return res.status( 400 ).send( err );
 		}
-		return res.status( 500 ).json( user );
+		return res.status( 200 ).json( user );
 	} );
 }
   , updateUser( req, res ) {
-	User.findByIdAndUpdate( req.params.id, req.body, ( err, response ) => {
+	User.findByIdAndUpdate( req.params.id, req.body, { new: true }, ( err, response ) => {
 		if ( err ) {
 			return res.status( 400 ).send( err );
 		}
-		return res.status( 500 ).json( response );
+		return res.status( 200 ).json( response );
 	} );
 }
   , deleteUser( req, res ) {
-    // if( !req.params.id ){
-    //   return res.status( 400 ).send( "Navigate to User you want to delete" )
-    // }
 	User.findByIdAndRemove( req.params.id, req.body, ( err, response ) => {
 		if ( err ) {
 			return res.status( 400 ).send( err );
 		}
-		return res.status( 500 ).json( response );
+		return res.status( 200 ).json( response );
 	} );
 }
 };
