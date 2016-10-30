@@ -2,17 +2,16 @@ const User = require( "./User.js" );
 
 module.exports = {
 	findOrCreateUser( req, res ) {
-
-		let user = req.body;
+		const user = req.body;
 
 		User.findOrCreate( { name: user.name }, user, ( err, user ) => {
-			if( err ){
+			if ( err ) {
 				return res.status( 400 ).send( err );
 			}
-				return res.status( 200 ).json( user );
-		})
+			return res.status( 200 ).json( user );
+		} );
 	}
-	, getUsers( req, res ) {
+	  , getUsers( req, res ) {
 		User.find( ( req.query ), ( err, users ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
@@ -20,28 +19,28 @@ module.exports = {
 			return res.status( 200 ).json( users );
 		} );
 	}
-  , getUserById( req, res ) {
-	User.findById( req.params.id, ( err, user ) => {
-		if ( err ) {
-			return res.status( 400 ).send( err );
-		}
-		return res.status( 200 ).json( user );
-	} );
-}
-  , updateUser( req, res ) {
-	User.findByIdAndUpdate( req.params.id, req.body, { new: true }, ( err, response ) => {
-		if ( err ) {
-			return res.status( 400 ).send( err );
-		}
-		return res.status( 200 ).json( response );
-	} );
-}
-  , deleteUser( req, res ) {
-	User.findByIdAndRemove( req.params.id, req.body, ( err, response ) => {
-		if ( err ) {
-			return res.status( 400 ).send( err );
-		}
-		return res.status( 200 ).json( response );
-	} );
-}
+	 , getUserById( req, res ) {
+		User.findById( req.params.id, ( err, user ) => {
+			if ( err ) {
+				return res.status( 400 ).send( err );
+			}
+			return res.status( 200 ).json( user );
+		} );
+	}
+	 , updateUser( req, res ) {
+		User.findByIdAndUpdate( req.params.id, req.body, { new: true }, ( err, response ) => {
+			if ( err ) {
+				return res.status( 400 ).send( err );
+			}
+			return res.status( 200 ).json( response );
+		} );
+	}
+	 , deleteUser( req, res ) {
+		User.findByIdAndRemove( req.params.id, req.body, ( err, response ) => {
+			if ( err ) {
+				return res.status( 400 ).send( err );
+			}
+			return res.status( 200 ).json( response );
+		} );
+	}
 };

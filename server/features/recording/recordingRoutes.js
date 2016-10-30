@@ -1,6 +1,6 @@
 const recordingCtrl = require( "./recordingCtrl" );
 
-module.exports = app => {
+module.exports = ( app ) => {
 	app.route( "/api/recordings" )
         .get( recordingCtrl.getAllRecordings );
 
