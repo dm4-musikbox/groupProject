@@ -85702,7 +85702,7 @@
 	    value: true
 	});
 	function accountSettingsCtrl() {
-	    var channel = this;
+	    var accountSettings = this;
 	
 	    accountSettings.test = "This is a test...";
 	}

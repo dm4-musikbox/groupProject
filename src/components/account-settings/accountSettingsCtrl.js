@@ -1,5 +1,5 @@
 function accountSettingsCtrl() {
-    const channel = this;
+    const accountSettings = this;
 
     accountSettings.test = "This is a test...";
 
