@@ -1,4 +1,5 @@
 import authService from './../../services/authService';
+import landingPageViewHtml from './landing-page-view-tmpl.html';
 
 function landingPageCtrl( authService ) {
 
@@ -8,4 +9,9 @@ function landingPageCtrl( authService ) {
 
 }
 
-export default landingPageCtrl;
+const landingPageComponent = {
+  template: landingPageViewHtml
+  , controller: landingPageCtrl
+};
+
+export default landingPageComponent;

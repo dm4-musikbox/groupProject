@@ -1,8 +1,12 @@
-function accountSettingsCtrl() {
-    const accountSettings = this;
+import accountSettingsHtml from './account-settings-view-tmpl.html';
 
-    accountSettings.test = "This is a test...";
+const accountSettingsComponent = {
+    template: accountSettingsHtml
+    , controller: function() {
+          this.test = "Testing Account components";
+    }
+  };
 
-}
 
-export default accountSettingsCtrl;
+
+export default accountSettingsComponent;

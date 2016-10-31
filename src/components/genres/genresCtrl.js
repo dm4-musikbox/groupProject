@@ -1,8 +1,15 @@
+import genresViewHtml from './genres-view-tmpl.html';
+
 function genresCtrl() {
     const genres = this;
 
-    genres.test = "This is a test...";
+    genres.test = "This is a test for Genresss Components!!";
 
 }
 
-export default genresCtrl;
+const genresComponent = {
+  template: genresViewHtml
+  , controller: genresCtrl
+}
+
+export default genresComponent;
