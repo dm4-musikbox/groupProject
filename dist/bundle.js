@@ -184,9 +184,9 @@
 	  $urlRouterProvider.otherwise("/");
 	
 	  $stateProvider.state("landing-page", {
-	    url: "/"
-	    // , component: 'socketTestComponent'
-	    , component: 'landingPageComponent'
+	    url: "/",
+	    component: 'socketTestComponent'
+	    // , component: 'landingPageComponent'
 	  }).state("main-view", {
 	    url: "/main",
 	    component: 'mainComponent'
@@ -89535,15 +89535,46 @@
 	
 	    this.users = [];
 	    this.recordings = [];
+	    this.channel_id = '5818046d2643fcff7ad9aea1';
+	    this.channel;
 	
-	    this.saveRecordings = function (recording) {
+	    this.saveRecording = function (recording) {
 	        if (recording) {
-	            socket.emit('save recording', recording);
+	            var data = {
+	                recording: recording,
+	                channel_id: _this.channel_id
+	            };
+	            socket.emit('save recording', data);
 	        }
 	    };
 	
-	    socket.on('new recording', function (data) {
+	    this.deleteRecording = function (recordingId) {
+	        if (recordingId) {
+	            var data = {
+	                recording_id: recordingId,
+	                channel_id: _this.channel_id
+	            };
+	            socket.emit('delete recording', data);
+	        }
+	    };
+	
+	    this.updateRecording = function (recording) {
+	        if (recording) {
+	            var data = {
+	                recording: recording,
+	                channel_id: _this.channel_id
+	            };
+	            socket.emit('update recording', data);
+	        }
+	    };
+	
+	    socket.on('get recording', function (data) {
 	        _this.recordings.push(data);
+	        $scope.$apply();
+	    });
+	
+	    socket.on('get channel', function (data) {
+	        _this.channel = data;
 	        $scope.$apply();
 	    });
 	}
@@ -89562,7 +89593,7 @@
   \***************************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<h1>Save recording</h1>\n\n<textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording\"></textarea>\n\n<input type=\"submit\" value=\"Send\" ng-click=\"$ctrl.saveRecording( recording )\">\n\n<div>{{ $ctrl.recordings }}</div>\n";
+	module.exports = "<h1>Recording functions</h1>\n\n<h3>Cloud Url</h3>\n<input type=\"text\" ng-model=\"recording.cloudUrl\">\n<h3>Description</h3>\n<textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\"></textarea>\n<input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n\n<hr />\n\n<h3>Recording ID</h3>\n<input type=\"text\" ng-model=\"recording._id\" placeholder=\"recording id\">\n<input type=\"text\" ng-model=\"recording.description\" placeholder=\"recording description\">\n\n<input type=\"submit\" value=\"Update Recording\" ng-click=\"$ctrl.updateRecording( { _id: recording._id, description: recording.description } )\">\n<input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording._id )\">\n\n<div>{{ $ctrl.recordings }}</div>\n<div ng-repeat=\"( key, value ) in $ctrl.channel\">\n    {{ key }} : {{ value }}\n</div>\n";
 
 /***/ },
 /* 342 */

@@ -1,7 +1,21 @@
-<h1>Save recording</h1>
+<h1>Recording functions</h1>
 
-<textarea name="name" rows="8" cols="40" ng-model="recording"></textarea>
+<h3>Cloud Url</h3>
+<input type="text" ng-model="recording.cloudUrl">
+<h3>Description</h3>
+<textarea name="name" rows="8" cols="40" ng-model="recording.description"></textarea>
+<input type="submit" value="Save recording" ng-click="$ctrl.saveRecording( recording )">
 
-<input type="submit" value="Send" ng-click="$ctrl.saveRecording( recording )">
+<hr />
+
+<h3>Recording ID</h3>
+<input type="text" ng-model="recording._id" placeholder="recording id">
+<input type="text" ng-model="recording.description" placeholder="recording description">
+
+<input type="submit" value="Update Recording" ng-click="$ctrl.updateRecording( { _id: recording._id, description: recording.description } )">
+<input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( recording._id )">
 
 <div>{{ $ctrl.recordings }}</div>
+<div ng-repeat="( key, value ) in $ctrl.channel">
+    {{ key }} : {{ value }}
+</div>
