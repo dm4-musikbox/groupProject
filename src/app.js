@@ -5,28 +5,28 @@ import "angular-lock";
 import "angular-jwt";
 
 import landingPageViewHtml from './components/landing-page/landing-page-view-tmpl.html';
-import landingPageComponent from './components/landing-page/landingPageCtrl.js';
+import landingPageComponent from './components/landing-page/landingPageComponent.js';
 
 import mainViewHtml from './components/main/main-view-tmpl.html';
-import mainComponent from './components/main/mainCtrl.js';
+import mainComponent from './components/main/mainComponent.js';
 
 import channelViewHtml from './components/channel/channel-view-tmpl.html';
-import channelComponent from './components/channel/channelCtrl.js';
+import channelComponent from './components/channel/channelComponent.js';
 
 import genreViewHtml from './components/genre/genre-view-tmpl.html';
-import genreComponent from './components/genre/genreCtrl.js';
+import genreComponent from './components/genre/genreComponent.js';
 
 import accountSettingsViewHtml from './components/account-settings/account-settings-view-tmpl.html';
-import accountSettingsComponent from './components/account-settings/accountSettingsCtrl.js';
+import accountSettingsComponent from './components/account-settings/accountSettingsComponent.js';
 
 import browseViewHtml from './components/browse/browse-view-tmpl.html';
-import browseComponent from './components/browse/browseCtrl.js';
+import browseComponent from './components/browse/browseComponent.js';
 
 import genresViewHtml from './components/genres/genres-view-tmpl.html';
-import genresComponent from './components/genres/genresCtrl.js';
+import genresComponent from './components/genres/genresComponent.js';
 
 import artistsViewHtml from './components/artists/artists-view-tmpl.html';
-import artistsComponent from './components/artists/artistsCtrl.js';
+import artistsComponent from './components/artists/artistsComponent.js';
 
 import authService from "./services/authService";
 
