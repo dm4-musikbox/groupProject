@@ -45,7 +45,7 @@ module.exports = ( app, io ) => {
 						if ( err ) {
 								throw err;
 						}
-						Channel.findByIdAndUpdate( data.channel_id, { $addToSet: { channelRecordings: recording._id } }, { new: true } )
+						Channel.findById( data.channel_id )
 								.populate( 'channelRecordings' )
 								.exec( ( err, channel ) => {
 									if ( err ) {
