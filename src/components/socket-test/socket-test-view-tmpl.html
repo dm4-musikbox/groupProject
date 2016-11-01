@@ -1,7 +1,7 @@
-<h1>Send message</h1>
+<h1>Save recording</h1>
 
-<textarea name="name" rows="8" cols="40" ng-model="message"></textarea>
+<textarea name="name" rows="8" cols="40" ng-model="recording"></textarea>
 
-<input type="submit" value="Send" ng-click="$ctrl.sendMessage( message )">
+<input type="submit" value="Send" ng-click="$ctrl.saveRecording( recording )">
 
-<div>{{ $ctrl.messages }}</div>
+<div>{{ $ctrl.recordings }}</div>

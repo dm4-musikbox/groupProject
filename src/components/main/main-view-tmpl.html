@@ -1,8 +1,8 @@
-<div ng-if="!isAuthenticated">
+<div ng-if="!$ctrl.isAuthenticated">
     <p>You are not yet authenticated. <a ui-sref="landing-page">Log in.</a></p>
 </div>
 
-<div ng-if="isAuthenticated">
+<div ng-if="$ctrl.isAuthenticated">
     <p>Thank you for logging in!</p>
 
     <ui-view></ui-view>

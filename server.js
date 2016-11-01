@@ -23,7 +23,7 @@ mongoose.connection.once( "open", () => {
 	console.log( `Connected to mongo db at ${ mongoUri }` );
 } );
 
-masterRoutes( app );
+masterRoutes( app, io );
 socketBase( io );
 
 server.listen( port, () => console.log( `Listening on port ${ port }.` ) );

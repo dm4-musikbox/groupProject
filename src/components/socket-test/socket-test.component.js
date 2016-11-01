@@ -4,16 +4,16 @@ function socketTestCtrl( $scope ) {
     const socket = io.connect();
 
     this.users = [];
-    this.messages = [];
+    this.recordings = [];
 
-    this.sendMessage = message => {
-        if ( message ) {
-            socket.emit( 'send message', message )
+    this.saveRecordings = recording => {
+        if ( recording ) {
+            socket.emit( 'save recording', recording )
         }
     };
 
-    socket.on( 'get message', data => {
-        this.messages.push( data );
+    socket.on( 'new recording', data => {
+        this.recordings.push( data );
         $scope.$apply();
     } )
 }

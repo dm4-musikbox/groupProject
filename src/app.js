@@ -93,8 +93,8 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
       	$stateProvider
                   .state( "landing-page", {
                   	url: "/"
-                    , component: 'socketTestComponent'
-                  	// , component: 'landingPageComponent'
+                    // , component: 'socketTestComponent'
+                  	, component: 'landingPageComponent'
                   } )
                   .state( "main-view", {
                   	url: "/main"

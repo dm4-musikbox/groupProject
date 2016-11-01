@@ -184,9 +184,9 @@
 	  $urlRouterProvider.otherwise("/");
 	
 	  $stateProvider.state("landing-page", {
-	    url: "/",
-	    component: 'socketTestComponent'
-	    // , component: 'landingPageComponent'
+	    url: "/"
+	    // , component: 'socketTestComponent'
+	    , component: 'landingPageComponent'
 	  }).state("main-view", {
 	    url: "/main",
 	    component: 'mainComponent'
@@ -89323,7 +89323,6 @@
 	        if (error) {
 	          console.log(error);
 	        }
-	
 	        localStorage.setItem('profile', JSON.stringify(profile));
 	        $rootScope.$broadcast('userProfileSet', profile);
 	
@@ -89351,7 +89350,7 @@
   \*************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-if=\"!isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"isAuthenticated\">\n    <p>Thank you for logging in!</p>\n\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
+	module.exports = "<div ng-if=\"!$ctrl.isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"$ctrl.isAuthenticated\">\n    <p>Thank you for logging in!</p>\n\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
 
 /***/ },
 /* 333 */
@@ -89376,11 +89375,12 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function mainCtrl(authService) {
+	function mainCtrl($rootScope, authService) {
 	
 	  var main = this;
 	
 	  main.authService = authService;
+	  main.isAuthenticated = $rootScope.isAuthenticated;
 	}
 	
 	var mainComponent = {
@@ -89534,16 +89534,16 @@
 	    var socket = io.connect();
 	
 	    this.users = [];
-	    this.messages = [];
+	    this.recordings = [];
 	
-	    this.sendMessage = function (message) {
-	        if (message) {
-	            socket.emit('send message', message);
+	    this.saveRecordings = function (recording) {
+	        if (recording) {
+	            socket.emit('save recording', recording);
 	        }
 	    };
 	
-	    socket.on('get message', function (data) {
-	        _this.messages.push(data);
+	    socket.on('new recording', function (data) {
+	        _this.recordings.push(data);
 	        $scope.$apply();
 	    });
 	}
@@ -89562,7 +89562,7 @@
   \***************************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<h1>Send message</h1>\n\n<textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"message\"></textarea>\n\n<input type=\"submit\" value=\"Send\" ng-click=\"$ctrl.sendMessage( message )\">\n\n<div>{{ $ctrl.messages }}</div>\n";
+	module.exports = "<h1>Save recording</h1>\n\n<textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording\"></textarea>\n\n<input type=\"submit\" value=\"Send\" ng-click=\"$ctrl.saveRecording( recording )\">\n\n<div>{{ $ctrl.recordings }}</div>\n";
 
 /***/ },
 /* 342 */
