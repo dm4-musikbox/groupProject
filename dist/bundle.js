@@ -67,65 +67,65 @@
 	
 	var _landingPageViewTmpl2 = _interopRequireDefault(_landingPageViewTmpl);
 	
-	var _landingPageCtrl = __webpack_require__(/*! ./components/landing-page/landingPageCtrl.js */ 330);
+	var _landingPageComponent = __webpack_require__(/*! ./components/landing-page/landingPageComponent.js */ 330);
 	
-	var _landingPageCtrl2 = _interopRequireDefault(_landingPageCtrl);
+	var _landingPageComponent2 = _interopRequireDefault(_landingPageComponent);
 	
 	var _mainViewTmpl = __webpack_require__(/*! ./components/main/main-view-tmpl.html */ 332);
 	
 	var _mainViewTmpl2 = _interopRequireDefault(_mainViewTmpl);
 	
-	var _mainCtrl = __webpack_require__(/*! ./components/main/mainCtrl.js */ 333);
+	var _mainComponent = __webpack_require__(/*! ./components/main/mainComponent.js */ 333);
 	
-	var _mainCtrl2 = _interopRequireDefault(_mainCtrl);
+	var _mainComponent2 = _interopRequireDefault(_mainComponent);
 	
 	var _channelViewTmpl = __webpack_require__(/*! ./components/channel/channel-view-tmpl.html */ 334);
 	
 	var _channelViewTmpl2 = _interopRequireDefault(_channelViewTmpl);
 	
-	var _channelCtrl = __webpack_require__(/*! ./components/channel/channelCtrl.js */ 335);
+	var _channelComponent = __webpack_require__(/*! ./components/channel/channelComponent.js */ 335);
 	
-	var _channelCtrl2 = _interopRequireDefault(_channelCtrl);
+	var _channelComponent2 = _interopRequireDefault(_channelComponent);
 	
 	var _genreViewTmpl = __webpack_require__(/*! ./components/genre/genre-view-tmpl.html */ 336);
 	
 	var _genreViewTmpl2 = _interopRequireDefault(_genreViewTmpl);
 	
-	var _genreCtrl = __webpack_require__(/*! ./components/genre/genreCtrl.js */ 337);
+	var _genreComponent = __webpack_require__(/*! ./components/genre/genreComponent.js */ 337);
 	
-	var _genreCtrl2 = _interopRequireDefault(_genreCtrl);
+	var _genreComponent2 = _interopRequireDefault(_genreComponent);
 	
 	var _accountSettingsViewTmpl = __webpack_require__(/*! ./components/account-settings/account-settings-view-tmpl.html */ 338);
 	
 	var _accountSettingsViewTmpl2 = _interopRequireDefault(_accountSettingsViewTmpl);
 	
-	var _accountSettingsCtrl = __webpack_require__(/*! ./components/account-settings/accountSettingsCtrl.js */ 339);
+	var _accountSettingsComponent = __webpack_require__(/*! ./components/account-settings/accountSettingsComponent.js */ 339);
 	
-	var _accountSettingsCtrl2 = _interopRequireDefault(_accountSettingsCtrl);
+	var _accountSettingsComponent2 = _interopRequireDefault(_accountSettingsComponent);
 	
 	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 340);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
-	var _browseCtrl = __webpack_require__(/*! ./components/browse/browseCtrl.js */ 341);
+	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 341);
 	
-	var _browseCtrl2 = _interopRequireDefault(_browseCtrl);
+	var _browseComponent2 = _interopRequireDefault(_browseComponent);
 	
 	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 342);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
-	var _genresCtrl = __webpack_require__(/*! ./components/genres/genresCtrl.js */ 343);
+	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 343);
 	
-	var _genresCtrl2 = _interopRequireDefault(_genresCtrl);
+	var _genresComponent2 = _interopRequireDefault(_genresComponent);
 	
 	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 344);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	
-	var _artistsCtrl = __webpack_require__(/*! ./components/artists/artistsCtrl.js */ 345);
+	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 345);
 	
-	var _artistsCtrl2 = _interopRequireDefault(_artistsCtrl);
+	var _artistsComponent2 = _interopRequireDefault(_artistsComponent);
 	
 	var _authService = __webpack_require__(/*! ./services/authService */ 331);
 	
@@ -133,13 +133,6 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// import artistsCtrl from './components/artists/artistsCtrl.js';
-	
-	// import browseCtrl from './components/browse/browseCtrl.js';
-	
-	// import accountSettingsCtrl from './components/account-settings/accountSettingsCtrl.js';
-	
-	// import channelCtrl from './components/channel/channelCtrl.js';
 	_angular2.default.module("musikboxApp", ["auth0.lock", "angular-jwt", _angularUiRouter2.default]).run(function ($rootScope, $state, $timeout, authService, authManager, jwtHelper, lock) {
 	  lock.interceptHash();
 	  $rootScope.authService = authService;
@@ -157,7 +150,7 @@
 	      }
 	    }
 	  });
-	}).service("authService", _authService2.default).component("landingPageComponent", _landingPageCtrl2.default).controller("mainCtrl", _mainCtrl2.default).component("channelComponent", _channelCtrl2.default).component("genreComponent", _genreCtrl2.default).component("browseComponent", _browseCtrl2.default).component("genresComponent", _genresCtrl2.default).component("artistsComponent", _artistsCtrl2.default).component("accountSettingsComponent", _accountSettingsCtrl2.default).config(function ($httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider) {
+	}).service("authService", _authService2.default).component("landingPageComponent", _landingPageComponent2.default).component("mainComponent", _mainComponent2.default).component("channelComponent", _channelComponent2.default).component("genreComponent", _genreComponent2.default).component("browseComponent", _browseComponent2.default).component("genresComponent", _genresComponent2.default).component("artistsComponent", _artistsComponent2.default).component("accountSettingsComponent", _accountSettingsComponent2.default).config(function ($httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider) {
 	  lockProvider.init({
 	    clientID: "dxHLsmsTwuygusXFm9bs1e2bqbF91EK3",
 	    domain: "musikbox.auth0.com",
@@ -191,12 +184,7 @@
 	    component: 'landingPageComponent'
 	  }).state("main-view", {
 	    url: "/main",
-	    template: _mainViewTmpl2.default,
-	    controller: _mainCtrl2.default,
-	    controllerAs: 'main',
-	    params: {
-	      profile: null
-	    }
+	    component: 'mainComponent'
 	  }).state("channel-view", {
 	    url: "/channel",
 	    parent: 'main-view',
@@ -89254,9 +89242,9 @@
 
 /***/ },
 /* 330 */
-/*!********************************************************!*\
-  !*** ./src/components/landing-page/landingPageCtrl.js ***!
-  \********************************************************/
+/*!*************************************************************!*\
+  !*** ./src/components/landing-page/landingPageComponent.js ***!
+  \*************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89362,9 +89350,9 @@
 
 /***/ },
 /* 333 */
-/*!*****************************************!*\
-  !*** ./src/components/main/mainCtrl.js ***!
-  \*****************************************/
+/*!**********************************************!*\
+  !*** ./src/components/main/mainComponent.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89408,9 +89396,9 @@
 
 /***/ },
 /* 335 */
-/*!***********************************************!*\
-  !*** ./src/components/channel/channelCtrl.js ***!
-  \***********************************************/
+/*!****************************************************!*\
+  !*** ./src/components/channel/channelComponent.js ***!
+  \****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -89449,9 +89437,9 @@
 
 /***/ },
 /* 337 */
-/*!*******************************************!*\
-  !*** ./src/components/genre/genreCtrl.js ***!
-  \*******************************************/
+/*!************************************************!*\
+  !*** ./src/components/genre/genreComponent.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -89490,9 +89478,9 @@
 
 /***/ },
 /* 339 */
-/*!****************************************************************!*\
-  !*** ./src/components/account-settings/accountSettingsCtrl.js ***!
-  \****************************************************************/
+/*!*********************************************************************!*\
+  !*** ./src/components/account-settings/accountSettingsComponent.js ***!
+  \*********************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -89527,9 +89515,9 @@
 
 /***/ },
 /* 341 */
-/*!*********************************************!*\
-  !*** ./src/components/browse/browseCtrl.js ***!
-  \*********************************************/
+/*!**************************************************!*\
+  !*** ./src/components/browse/browseComponent.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -89568,9 +89556,9 @@
 
 /***/ },
 /* 343 */
-/*!*********************************************!*\
-  !*** ./src/components/genres/genresCtrl.js ***!
-  \*********************************************/
+/*!**************************************************!*\
+  !*** ./src/components/genres/genresComponent.js ***!
+  \**************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -89609,9 +89597,9 @@
 
 /***/ },
 /* 345 */
-/*!***********************************************!*\
-  !*** ./src/components/artists/artistsCtrl.js ***!
-  \***********************************************/
+/*!****************************************************!*\
+  !*** ./src/components/artists/artistsComponent.js ***!
+  \****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

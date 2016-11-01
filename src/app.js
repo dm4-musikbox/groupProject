@@ -95,7 +95,6 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
                   .state( "main-view", {
                   	url: "/main"
                   	, component: 'mainComponent'
-                    }
                   } )
                   .state( "channel-view", {
                     url: "/channel"
