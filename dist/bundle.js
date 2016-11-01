@@ -67,69 +67,69 @@
 	
 	var _landingPageViewTmpl2 = _interopRequireDefault(_landingPageViewTmpl);
 	
-	var _landingPageCtrl = __webpack_require__(/*! ./components/landing-page/landingPageCtrl.js */ 330);
+	var _landingPageComponent = __webpack_require__(/*! ./components/landing-page/landingPageComponent.js */ 330);
 	
-	var _landingPageCtrl2 = _interopRequireDefault(_landingPageCtrl);
+	var _landingPageComponent2 = _interopRequireDefault(_landingPageComponent);
 	
 	var _mainViewTmpl = __webpack_require__(/*! ./components/main/main-view-tmpl.html */ 332);
 	
 	var _mainViewTmpl2 = _interopRequireDefault(_mainViewTmpl);
 	
-	var _mainCtrl = __webpack_require__(/*! ./components/main/mainCtrl.js */ 333);
+	var _mainComponent = __webpack_require__(/*! ./components/main/mainComponent.js */ 333);
 	
-	var _mainCtrl2 = _interopRequireDefault(_mainCtrl);
+	var _mainComponent2 = _interopRequireDefault(_mainComponent);
 	
 	var _channelViewTmpl = __webpack_require__(/*! ./components/channel/channel-view-tmpl.html */ 334);
 	
 	var _channelViewTmpl2 = _interopRequireDefault(_channelViewTmpl);
 	
-	var _channelCtrl = __webpack_require__(/*! ./components/channel/channelCtrl.js */ 335);
+	var _channelComponent = __webpack_require__(/*! ./components/channel/channelComponent.js */ 335);
 	
-	var _channelCtrl2 = _interopRequireDefault(_channelCtrl);
+	var _channelComponent2 = _interopRequireDefault(_channelComponent);
 	
 	var _genreViewTmpl = __webpack_require__(/*! ./components/genre/genre-view-tmpl.html */ 336);
 	
 	var _genreViewTmpl2 = _interopRequireDefault(_genreViewTmpl);
 	
-	var _genreCtrl = __webpack_require__(/*! ./components/genre/genreCtrl.js */ 337);
+	var _genreComponent = __webpack_require__(/*! ./components/genre/genreComponent.js */ 337);
 	
-	var _genreCtrl2 = _interopRequireDefault(_genreCtrl);
+	var _genreComponent2 = _interopRequireDefault(_genreComponent);
 	
 	var _accountSettingsViewTmpl = __webpack_require__(/*! ./components/account-settings/account-settings-view-tmpl.html */ 338);
 	
 	var _accountSettingsViewTmpl2 = _interopRequireDefault(_accountSettingsViewTmpl);
 	
-	var _accountSettingsCtrl = __webpack_require__(/*! ./components/account-settings/accountSettingsCtrl.js */ 339);
+	var _accountSettingsComponent = __webpack_require__(/*! ./components/account-settings/accountSettingsComponent.js */ 339);
 	
-	var _accountSettingsCtrl2 = _interopRequireDefault(_accountSettingsCtrl);
+	var _accountSettingsComponent2 = _interopRequireDefault(_accountSettingsComponent);
 	
-	var _socketTestComponent = __webpack_require__(/*! ./components/socket-test/socket-test.component.js */ 348);
+	var _socketTestComponent = __webpack_require__(/*! ./components/socket-test/socket-test.component.js */ 340);
 	
 	var _socketTestComponent2 = _interopRequireDefault(_socketTestComponent);
 	
-	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 340);
+	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 342);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
-	var _browseCtrl = __webpack_require__(/*! ./components/browse/browseCtrl.js */ 341);
+	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 343);
 	
-	var _browseCtrl2 = _interopRequireDefault(_browseCtrl);
+	var _browseComponent2 = _interopRequireDefault(_browseComponent);
 	
-	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 342);
+	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 344);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
-	var _genresCtrl = __webpack_require__(/*! ./components/genres/genresCtrl.js */ 343);
+	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 345);
 	
-	var _genresCtrl2 = _interopRequireDefault(_genresCtrl);
+	var _genresComponent2 = _interopRequireDefault(_genresComponent);
 	
-	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 344);
+	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 346);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	
-	var _artistsCtrl = __webpack_require__(/*! ./components/artists/artistsCtrl.js */ 345);
+	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 347);
 	
-	var _artistsCtrl2 = _interopRequireDefault(_artistsCtrl);
+	var _artistsComponent2 = _interopRequireDefault(_artistsComponent);
 	
 	var _authService = __webpack_require__(/*! ./services/authService */ 331);
 	
@@ -154,7 +154,7 @@
 	      }
 	    }
 	  });
-	}).service("authService", _authService2.default).controller("landingPageCtrl", _landingPageCtrl2.default).controller("mainCtrl", _mainCtrl2.default).controller("channelCtrl", _channelCtrl2.default).controller("genreCtrl", _genreCtrl2.default).controller("accountSettingsCtrl", _accountSettingsCtrl2.default).controller("browseCtrl", _browseCtrl2.default).controller("genresCtrl", _genresCtrl2.default).controller("artistsCtrl", _artistsCtrl2.default).component('socketTestComponent', _socketTestComponent2.default).config(function ($httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider) {
+	}).service("authService", _authService2.default).component('socketTestComponent', _socketTestComponent2.default).component("landingPageComponent", _landingPageComponent2.default).component("mainComponent", _mainComponent2.default).component("channelComponent", _channelComponent2.default).component("genreComponent", _genreComponent2.default).component("browseComponent", _browseComponent2.default).component("genresComponent", _genresComponent2.default).component("artistsComponent", _artistsComponent2.default).component("accountSettingsComponent", _accountSettingsComponent2.default).config(function ($httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider) {
 	  lockProvider.init({
 	    clientID: "dxHLsmsTwuygusXFm9bs1e2bqbF91EK3",
 	    domain: "musikbox.auth0.com",
@@ -183,60 +183,37 @@
 	
 	  $urlRouterProvider.otherwise("/");
 	
-	  $stateProvider
-	  // .state( "landing-page", {
-	  // 	url: "/"
-	  // 	, template: landingPageViewHtml
-	  //   , controller: landingPageCtrl
-	  //   , controllerAs: 'landingPage'
-	  // } )
-	  .state("landing-page", {
+	  $stateProvider.state("landing-page", {
 	    url: "/",
 	    component: 'socketTestComponent'
+	    // , component: 'landingPageComponent'
 	  }).state("main-view", {
 	    url: "/main",
-	    template: _mainViewTmpl2.default,
-	    controller: _mainCtrl2.default,
-	    controllerAs: 'main',
-	    params: {
-	      profile: null
-	    }
+	    component: 'mainComponent'
 	  }).state("channel-view", {
 	    url: "/channel",
 	    parent: 'main-view',
-	    template: _channelViewTmpl2.default,
-	    controller: _channelCtrl2.default,
-	    controllerAs: 'channel'
+	    component: 'channelComponent'
 	  }).state("account-settings-view", {
 	    url: "/account-settings",
 	    parent: 'main-view',
-	    template: _accountSettingsViewTmpl2.default,
-	    controller: _accountSettingsCtrl2.default,
-	    controllerAs: 'accountSettings'
+	    component: "accountSettingsComponent"
 	  }).state("genre-view", {
 	    url: "/genre",
 	    parent: 'main-view',
-	    template: _genreViewTmpl2.default,
-	    controller: _genreCtrl2.default,
-	    controllerAs: 'genre'
+	    component: 'genreComponent'
 	  }).state("browse-view", {
 	    url: "/browse",
 	    parent: 'main-view',
-	    template: _browseViewTmpl2.default,
-	    controller: _browseCtrl2.default,
-	    controllerAs: 'browse'
+	    component: "browseComponent"
 	  }).state("genres-view", {
 	    url: "/genres",
 	    parent: 'browse-view',
-	    template: _genresViewTmpl2.default,
-	    controller: _genresCtrl2.default,
-	    controllerAs: 'genres'
+	    component: "genresComponent"
 	  }).state("artists-view", {
 	    url: "/artists",
 	    parent: 'browse-view',
-	    template: _artistsViewTmpl2.default,
-	    controller: _artistsCtrl2.default,
-	    controllerAs: 'artists'
+	    component: "artistsComponent"
 	  });
 	});
 
@@ -89266,35 +89243,44 @@
   \*****************************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n    <h1>Musikbox</h1>\n    <button class=\"btn btn-primary\" ng-click=\"landingPage.authService.login()\">Log In</button>\n</div>\n";
+	module.exports = "<div>\n    <h1>Musikbox</h1>\n    <button class=\"btn btn-primary\" ng-click=\"$ctrl.authService.login()\">Log In</button>\n</div>\n";
 
 /***/ },
 /* 330 */
-/*!********************************************************!*\
-  !*** ./src/components/landing-page/landingPageCtrl.js ***!
-  \********************************************************/
+/*!*************************************************************!*\
+  !*** ./src/components/landing-page/landingPageComponent.js ***!
+  \*************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _authService = __webpack_require__(/*! ./../../services/authService */ 331);
 	
 	var _authService2 = _interopRequireDefault(_authService);
 	
+	var _landingPageViewTmpl = __webpack_require__(/*! ./landing-page-view-tmpl.html */ 329);
+	
+	var _landingPageViewTmpl2 = _interopRequireDefault(_landingPageViewTmpl);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function landingPageCtrl(authService) {
 	
-	    var landingPage = this;
+	  var landingPage = this;
 	
-	    landingPage.authService = authService;
+	  landingPage.authService = authService;
 	}
 	
-	exports.default = landingPageCtrl;
+	var landingPageComponent = {
+	  template: _landingPageViewTmpl2.default,
+	  controller: landingPageCtrl
+	};
+	
+	exports.default = landingPageComponent;
 
 /***/ },
 /* 331 */
@@ -89365,35 +89351,44 @@
   \*************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-if=\"!isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"isAuthenticated\">\n    <p>Thank you for logging in!</p>\n\n    <ui-view></ui-view>\n\n    <button ng-click=\"main.authService.logout()\">Log Out</button>\n</div>\n";
+	module.exports = "<div ng-if=\"!isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"isAuthenticated\">\n    <p>Thank you for logging in!</p>\n\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
 
 /***/ },
 /* 333 */
-/*!*****************************************!*\
-  !*** ./src/components/main/mainCtrl.js ***!
-  \*****************************************/
+/*!**********************************************!*\
+  !*** ./src/components/main/mainComponent.js ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _authService = __webpack_require__(/*! ./../../services/authService */ 331);
 	
 	var _authService2 = _interopRequireDefault(_authService);
 	
+	var _mainViewTmpl = __webpack_require__(/*! ./main-view-tmpl.html */ 332);
+	
+	var _mainViewTmpl2 = _interopRequireDefault(_mainViewTmpl);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function mainCtrl(authService) {
 	
-	    var main = this;
+	  var main = this;
 	
-	    main.authService = authService;
+	  main.authService = authService;
 	}
 	
-	exports.default = mainCtrl;
+	var mainComponent = {
+	  template: _mainViewTmpl2.default,
+	  controller: mainCtrl
+	};
+	
+	exports.default = mainComponent;
 
 /***/ },
 /* 334 */
@@ -89402,27 +89397,39 @@
   \*******************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n    <h1>Channel view</h1>\n    {{ channel.test }}\n</div>\n";
+	module.exports = "<div>\n    <h1>Channel view</h1>\n    {{ $ctrl.test }}\n</div>\n";
 
 /***/ },
 /* 335 */
-/*!***********************************************!*\
-  !*** ./src/components/channel/channelCtrl.js ***!
-  \***********************************************/
-/***/ function(module, exports) {
+/*!****************************************************!*\
+  !*** ./src/components/channel/channelComponent.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	function channelCtrl() {
-	    var channel = this;
 	
-	    channel.test = "This is a test...";
+	var _channelViewTmpl = __webpack_require__(/*! ./channel-view-tmpl.html */ 334);
+	
+	var _channelViewTmpl2 = _interopRequireDefault(_channelViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function channelCtrl() {
+	  var channel = this;
+	
+	  channel.test = "This is a test for channel Components!!!";
 	}
 	
-	exports.default = channelCtrl;
+	var channelComponent = {
+	  template: _channelViewTmpl2.default,
+	  controller: channelCtrl
+	};
+	
+	exports.default = channelComponent;
 
 /***/ },
 /* 336 */
@@ -89431,27 +89438,39 @@
   \***************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n    <h1>Genre (Pop)</h1>\n    {{ genre.test }}\n</div>\n";
+	module.exports = "<div>\n    <h1>Genre (Pop)</h1>\n    {{ $ctrl.test }}\n</div>\n";
 
 /***/ },
 /* 337 */
-/*!*******************************************!*\
-  !*** ./src/components/genre/genreCtrl.js ***!
-  \*******************************************/
-/***/ function(module, exports) {
+/*!************************************************!*\
+  !*** ./src/components/genre/genreComponent.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	function genreCtrl() {
-	    var genre = this;
 	
-	    genre.test = "This is a test...";
+	var _genreViewTmpl = __webpack_require__(/*! ./genre-view-tmpl.html */ 336);
+	
+	var _genreViewTmpl2 = _interopRequireDefault(_genreViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function genreCtrl() {
+	  var genre = this;
+	
+	  genre.test = "This is a test for genre pop Components!!";
 	}
 	
-	exports.default = genreCtrl;
+	var genreComponent = {
+	  template: _genreViewTmpl2.default,
+	  controller: genreCtrl
+	};
+	
+	exports.default = genreComponent;
 
 /***/ },
 /* 338 */
@@ -89460,119 +89479,38 @@
   \*************************************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n    <h1>Account settings view</h1>\n    {{ accountSettings.test }}\n</div>\n";
+	module.exports = "<div>\n    <h1> account settings</h1>\n    {{$ctrl.test}}\n</div>\n";
 
 /***/ },
 /* 339 */
-/*!****************************************************************!*\
-  !*** ./src/components/account-settings/accountSettingsCtrl.js ***!
-  \****************************************************************/
-/***/ function(module, exports) {
+/*!*********************************************************************!*\
+  !*** ./src/components/account-settings/accountSettingsComponent.js ***!
+  \*********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	      value: true
 	});
-	function accountSettingsCtrl() {
-	    var accountSettings = this;
 	
-	    accountSettings.test = "This is a test...";
-	}
+	var _accountSettingsViewTmpl = __webpack_require__(/*! ./account-settings-view-tmpl.html */ 338);
 	
-	exports.default = accountSettingsCtrl;
+	var _accountSettingsViewTmpl2 = _interopRequireDefault(_accountSettingsViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var accountSettingsComponent = {
+	      template: _accountSettingsViewTmpl2.default,
+	      controller: function controller() {
+	            this.test = "Testing Account components";
+	      }
+	};
+	
+	exports.default = accountSettingsComponent;
 
 /***/ },
 /* 340 */
-/*!*****************************************************!*\
-  !*** ./src/components/browse/browse-view-tmpl.html ***!
-  \*****************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n    <h1>Browse channels</h1>\n    {{ browse.test }}\n    \n    <ui-view></ui-view>\n</div>\n";
-
-/***/ },
-/* 341 */
-/*!*********************************************!*\
-  !*** ./src/components/browse/browseCtrl.js ***!
-  \*********************************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	function browseCtrl() {
-	    var browse = this;
-	
-	    browse.test = "This is a test...";
-	}
-	
-	exports.default = browseCtrl;
-
-/***/ },
-/* 342 */
-/*!*****************************************************!*\
-  !*** ./src/components/genres/genres-view-tmpl.html ***!
-  \*****************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n    <h1>Genres</h1>\n    {{ genres.test }}\n    \n</div>\n";
-
-/***/ },
-/* 343 */
-/*!*********************************************!*\
-  !*** ./src/components/genres/genresCtrl.js ***!
-  \*********************************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	function genresCtrl() {
-	    var genres = this;
-	
-	    genres.test = "This is a test...";
-	}
-	
-	exports.default = genresCtrl;
-
-/***/ },
-/* 344 */
-/*!*******************************************************!*\
-  !*** ./src/components/artists/artists-view-tmpl.html ***!
-  \*******************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n    <h1>Artists</h1>\n    {{ artists.test }}\n\n</div>\n";
-
-/***/ },
-/* 345 */
-/*!***********************************************!*\
-  !*** ./src/components/artists/artistsCtrl.js ***!
-  \***********************************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	function artistsCtrl() {
-	    var artists = this;
-	
-	    artists.test = "This is a test...";
-	}
-	
-	exports.default = artistsCtrl;
-
-/***/ },
-/* 346 */,
-/* 347 */,
-/* 348 */
 /*!*************************************************************!*\
   !*** ./src/components/socket-test/socket-test.component.js ***!
   \*************************************************************/
@@ -89584,7 +89522,7 @@
 	    value: true
 	});
 	
-	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 349);
+	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 341);
 	
 	var _socketTestViewTmpl2 = _interopRequireDefault(_socketTestViewTmpl);
 	
@@ -89618,13 +89556,136 @@
 	exports.default = socketTestComponent;
 
 /***/ },
-/* 349 */
+/* 341 */
 /*!***************************************************************!*\
   !*** ./src/components/socket-test/socket-test-view-tmpl.html ***!
   \***************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "<h1>Send message</h1>\n\n<textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"message\"></textarea>\n\n<input type=\"submit\" value=\"Send\" ng-click=\"$ctrl.sendMessage( message )\">\n\n<div>{{ $ctrl.messages }}</div>\n";
+
+/***/ },
+/* 342 */
+/*!*****************************************************!*\
+  !*** ./src/components/browse/browse-view-tmpl.html ***!
+  \*****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <h1>Browse channels</h1>\n    {{ $ctrl.test }}\n\n    <ui-view></ui-view>\n</div>\n";
+
+/***/ },
+/* 343 */
+/*!**************************************************!*\
+  !*** ./src/components/browse/browseComponent.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 342);
+	
+	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function browseCtrl() {
+	  var browse = this;
+	
+	  browse.test = "This is a test for browse components!!!";
+	}
+	
+	var browseComponent = {
+	  template: _browseViewTmpl2.default,
+	  controller: browseCtrl
+	};
+	
+	exports.default = browseComponent;
+
+/***/ },
+/* 344 */
+/*!*****************************************************!*\
+  !*** ./src/components/genres/genres-view-tmpl.html ***!
+  \*****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <h1>Genres</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
+
+/***/ },
+/* 345 */
+/*!**************************************************!*\
+  !*** ./src/components/genres/genresComponent.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 344);
+	
+	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function genresCtrl() {
+	  var genres = this;
+	
+	  genres.test = "This is a test for Genresss Components!!";
+	}
+	
+	var genresComponent = {
+	  template: _genresViewTmpl2.default,
+	  controller: genresCtrl
+	};
+	
+	exports.default = genresComponent;
+
+/***/ },
+/* 346 */
+/*!*******************************************************!*\
+  !*** ./src/components/artists/artists-view-tmpl.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <h1>Artists</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
+
+/***/ },
+/* 347 */
+/*!****************************************************!*\
+  !*** ./src/components/artists/artistsComponent.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 346);
+	
+	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function artistsCtrl() {
+	  var artists = this;
+	
+	  artists.test = "This is test for artists components!!!";
+	}
+	
+	var artistsComponent = {
+	  template: _artistsViewTmpl2.default,
+	  controller: artistsCtrl
+	};
+	
+	exports.default = artistsComponent;
 
 /***/ }
 /******/ ]);
