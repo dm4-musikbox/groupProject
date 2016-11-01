@@ -1,0 +1,7 @@
+<h1>Send message</h1>
+
+<textarea name="name" rows="8" cols="40" ng-model="message"></textarea>
+
+<input type="submit" value="Send" ng-click="$ctrl.sendMessage( message )">
+
+<div>{{ $ctrl.messages }}</div>

@@ -2,11 +2,16 @@ const express = require( "express" );
 const { json } = require( "body-parser" );
 const mongoose = require( "mongoose" );
 const session = require( "express-session" );
+const http = require( 'http' );
 // const sessionConfig = require( "./server/config/config.js" );
 const masterRoutes = require( "./server/masterRoutes.js" );
+const socketBase = require( './server/features/socket/socketBase.js');
 
 const app = express();
+const server = http.createServer( app );
+const io = require( 'socket.io' ).listen( server );
 const port = 5000;
+
 const mongoUri = "mongodb://localhost:27017/groupProject";
 
 app.use( json() );
@@ -19,5 +24,6 @@ mongoose.connection.once( "open", () => {
 } );
 
 masterRoutes( app );
+socketBase( io );
 
-app.listen( port, () => console.log( `Listening on port ${ port }.` ) );
+server.listen( port, () => console.log( `Listening on port ${ port }.` ) );

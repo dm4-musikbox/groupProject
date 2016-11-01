@@ -19,6 +19,8 @@ import genreCtrl from './components/genre/genreCtrl.js';
 import accountSettingsViewHtml from './components/account-settings/account-settings-view-tmpl.html';
 import accountSettingsCtrl from './components/account-settings/accountSettingsCtrl.js';
 
+import socketTestComponent from './components/socket-test/socket-test.component.js';
+
 import browseViewHtml from './components/browse/browse-view-tmpl.html';
 import browseCtrl from './components/browse/browseCtrl.js';
 
@@ -58,6 +60,7 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
     .controller( "browseCtrl", browseCtrl )
     .controller( "genresCtrl", genresCtrl )
     .controller( "artistsCtrl", artistsCtrl )
+    .component( 'socketTestComponent', socketTestComponent )
     .config( function( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider ) {
       	lockProvider.init( {
       		clientID: "dxHLsmsTwuygusXFm9bs1e2bqbF91EK3"
@@ -88,11 +91,15 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
       	$urlRouterProvider.otherwise( "/" );
 
       	$stateProvider
+                  // .state( "landing-page", {
+                  // 	url: "/"
+                  // 	, template: landingPageViewHtml
+                  //   , controller: landingPageCtrl
+                  //   , controllerAs: 'landingPage'
+                  // } )
                   .state( "landing-page", {
                   	url: "/"
-                  	, template: landingPageViewHtml
-                    , controller: landingPageCtrl
-                    , controllerAs: 'landingPage'
+                    , component: 'socketTestComponent'
                   } )
                   .state( "main-view", {
                   	url: "/main"
