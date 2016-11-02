@@ -1,7 +1,54 @@
-<h1>Save recording</h1>
+<h1 style="text-align: center">Musikbox socket functions</h1>
 
-<textarea name="name" rows="8" cols="40" ng-model="recording"></textarea>
+<main style="display: flex; justify-content: space-around">
+    <div>
+        <h2>Channel data</h2>
+        <div ng-repeat="( key, value ) in $ctrl.channel">
+            {{ key }} : {{ value }}
+        </div>
 
-<input type="submit" value="Send" ng-click="$ctrl.saveRecording( recording )">
+        <h2>Channel status</h2>
+        <div>{{ $ctrl.channelStatus }}</div>
+    </div>
 
-<div>{{ $ctrl.recordings }}</div>
+    <div>
+        <h3>Channel functions</h3>
+        <input type="text" placeholder="channel id" ng-model="channel._id">
+        <br />
+        <input type="text" placeholder="user id" ng-model="user._id">
+        <br />
+        <input type="submit" ng-click="$ctrl.enterChannel( channel._id, user._id )" value="Enter">
+        <input type="submit" ng-click="$ctrl.leaveChannel( channel._id, user._id )" value="Leave">
+        <input type="submit" ng-click="$ctrl.subscribeToChannel( channel._id, user._id )" value="Subscribe">
+        <input type="submit" ng-click="$ctrl.unsubscribeFromChannel( channel._id, user._id )" value="Unsubscribe">
+
+
+        <hr />
+
+        <h3>Recording functions</h3>
+        <input type="text" ng-model="recording_id" placeholder="recording id">
+        <br />
+        <input type="text" ng-model="recording.cloudUrl" placeholder="cloud URL">
+        <br />
+        <textarea name="name" rows="8" cols="40" ng-model="recording.description" placeholder="recording description"></textarea>
+        <br />
+        <input type="submit" value="Save recording" ng-click="$ctrl.saveRecording( recording )">
+        <input type="submit" value="Update recording" ng-click="$ctrl.updateRecording( { _id: recording_id, description: recording.description } )">
+        <input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( recording_id )">
+
+        <hr />
+
+        <h3>Message functions</h3>
+        <input type="text" ng-model="message_id" placeholder="message id">
+        <br />
+        <input type="text" ng-model="message.type" placeholder="message type">
+        <br/>
+        <input type="text" ng-model="message.content" placeholder="message content">
+        <br />
+        <input type="submit" ng-click="$ctrl.sendAndSaveMessage( message )" value="Send and save message">
+        <input type="submit" ng-click="$ctrl.updateMessage( message_id, { content: message.content } )" value="Update message">
+        <input type="submit" ng-click="$ctrl.deleteMessage( message_id )" value="Delete message">
+
+        <hr />
+    </div>
+</main>
