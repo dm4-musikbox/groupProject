@@ -5,7 +5,6 @@ const session = require( "express-session" );
 const http = require( 'http' );
 // const sessionConfig = require( "./server/config/config.js" );
 const masterRoutes = require( "./server/masterRoutes.js" );
-const socketBase = require( './server/features/socket/socketBase.js');
 
 const app = express();
 const server = http.createServer( app );
@@ -24,6 +23,5 @@ mongoose.connection.once( "open", () => {
 } );
 
 masterRoutes( app, io );
-socketBase( io );
 
 server.listen( port, () => console.log( `Listening on port ${ port }.` ) );
