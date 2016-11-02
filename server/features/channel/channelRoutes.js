@@ -2,11 +2,18 @@ const channelCtrl = require( "./channelCtrl.js" );
 const channelSocketCtrl = require( "./channelSocketCtrl.js" );
 
 module.exports = ( app, io ) => {
-		app.get( "/api/channels", channelCtrl.getChannels );
-		app.get( "/api/channels/:id", channelCtrl.getChannelById );
-		app.put( "/api/channels", channelCtrl.findOrCreateChannel );
-		app.put( "/api/channels/:id", channelCtrl.updateChannel );
-		app.delete( "/api/channels/:id", channelCtrl.deleteChannel );
+		app.route( "/api/channels" )
+				.get( channelCtrl.getChannels )
+				.put( channelCtrl.findOrCreateChannel );
+
+		app.route( "/api/channels/:channel_id" )
+				.get( channelCtrl.getChannelById )
+				.put( channelCtrl.updateChannel )
+				.delete( channelCtrl.deleteChannel );
+
+		app.route( '/api/channels/:channel_id/genres/:genre_id' )
+				.put( genreCtrl.addGenreToChannel )
+				.delete( genreCtrl.deleteGenreFromChannel );
 
 		io.on( 'connection', socket => {
 				socket.on( 'create channel', ( data) => {

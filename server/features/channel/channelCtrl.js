@@ -1,4 +1,5 @@
 const Channel = require( "./Channel.js" );
+const Genre = require( "./../genre/Genre.js" );
 
 module.exports = {
 	findOrCreateChannel( req, res ) {
@@ -7,6 +8,16 @@ module.exports = {
 		Channel.findOrCreate( { channel: channel.name }, channel, ( err, channel ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
+			}
+			if ( channel.type === 'public' ) {
+					for ( let i = 0; i < channel.genres.length; i++ ) {
+							Genre.findOneAndUpdate( { name: channel.genres[ i ] }, { $addToSet: { channels: channel._id } }, { new: true }, ( err, genre ) => {
+									if ( err ) {
+											return res.status( 500 ).json( err );
+									}
+									console.log( 'Channel added to genre ', genre );
+							} );
+					}
 			}
 			if ( channel.channelRecordings !== [] || channel.channelMessages !== [] ) {
 				Channel
@@ -18,47 +29,62 @@ module.exports = {
 								}
 								return res.status( 200 ).json( channel );
 							} );
-			}			else {
-				return res.status( 200 ).json( channel );
+			}
+			else {
+					return res.status( 200 ).json( channel );
 			}
 		} );
 	}
 	  , getChannels( req, res ) {
-		Channel
-				.find()
-				.populate( "channelRecordings channelMessages" )
-				.exec( ( err, channels ) => {
-					if ( err ) {
-						return res.status( 500 ).json( err );
-					}
-					return res.status( 200 ).json( channels );
-				} );
+			Channel
+					.find()
+					.populate( "channelRecordings channelMessages" )
+					.exec( ( err, channels ) => {
+						if ( err ) {
+							return res.status( 500 ).json( err );
+						}
+						return res.status( 200 ).json( channels );
+					} );
 	}
 	 , getChannelById( req, res ) {
-		Channel.findById( req.params.id, ( err, channel ) => {
-			if ( err ) {
-				return res.status( 400 ).send( err );
-			}
-			return res.status( 200 ).json( channel );
-		} );
+			Channel.findById( req.params.id, ( err, channel ) => {
+				if ( err ) {
+					return res.status( 400 ).send( err );
+				}
+				return res.status( 200 ).json( channel );
+			} );
 	}
-//   , getChannelsByGenre( req, res ) {
-//
-// }
 	 , updateChannel( req, res ) {
-		Channel.findByIdAndUpdate( req.params.id, req.body, { new: true }, ( err, response ) => {
-			if ( err ) {
-				return res.status( 400 ).send( err );
-			}
-			return res.status( 200 ).json( response );
-		} );
+			Channel.findByIdAndUpdate( req.params.id, req.body, { new: true }, ( err, response ) => {
+				if ( err ) {
+					return res.status( 400 ).send( err );
+				}
+				return res.status( 200 ).json( response );
+			} );
 	}
 	 , deleteChannel( req, res ) {
-		Channel.findByIdAndRemove( req.params.id, req.body, ( err, response ) => {
-			if ( err ) {
-				return res.status( 400 ).send( err );
-			}
-			return res.status( 200 ).json( response );
-		} );
+			Channel.findByIdAndRemove( req.params.id, req.body, ( err, response ) => {
+				if ( err ) {
+					return res.status( 400 ).send( err );
+				}
+				return res.status( 200 ).json( response );
+			} );
+	}
+
+	, addChannelToGenre ( req, res ) {
+			Genre.findByIdAndUpdate( req.params.genre_id, { $addToSet: { channels: req.params.channel_id } }, { new: true }, ( err, genre ) => {
+					if ( err ) {
+							return res.status( 500 ).json( err );
+					}
+					return res.status( 200 ).json( genre );
+			} );
+	}
+	, deleteChannelFromGenre ( req, res ) {
+			Genre.findByIdAndUpdate( req.params.genre_id, { $pull: { channels: req.params.channel_id } }, { new: true }, ( err, genre ) => {
+					if ( err ) {
+							return res.status( 500 ).json( err );
+					}
+					return res.status( 200 ).json( genre );
+			} );
 	}
 };

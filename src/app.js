@@ -130,4 +130,4 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
                     , parent: 'browse-view'
                     , component: "artistsComponent"
                   } )
-    } )
+    } );
