@@ -2,4 +2,3 @@ node_modules
 server/config
 dist/bundle.js
 dist/bundle.js.map
-s
