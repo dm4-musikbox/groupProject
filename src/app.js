@@ -56,6 +56,7 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
       	} );
       } )
     .service( "authService", authService )
+    .factory( "socketFactory", socketFactory )
     .component( 'socketTestComponent', socketTestComponent )
     .component( "landingPageComponent", landingPageComponent )
     .component( "mainComponent", mainComponent )

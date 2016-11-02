@@ -32,5 +32,4 @@ function socketFactory() {
     };
 }
 
-export default angular.module( 'musikboxApp' )
-                      .factory( 'socketFactory', socketFactory );
+export default socketFactory;
