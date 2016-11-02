@@ -26,6 +26,7 @@ module.exports = {
     }
 
     , updateMessage( data, io ) {
+        const channel_id = data.channel_id;
         const message_id = data.message_id;
         const messageUpdate = data.message_update;
 
@@ -34,6 +35,15 @@ module.exports = {
                 throw err;
             }
             console.log( 'Updated message is ', message );
+            Channel
+                .findById( channel_id )
+                .populate( "channelRecordings channelMessages" )
+                .exec( ( err, channel ) => {
+                    if ( err ) {
+                        throw err;
+                    }
+                    getUpdatedChannel( channel_id, io, channel );
+                } );
         } );
     }
 
