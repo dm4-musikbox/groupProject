@@ -7,7 +7,6 @@ module.exports = {
         console.log( 'saveRecording firing' );
         const recording = data.recording;
         const channel_id = data.channel_id;
-        // const channelUpdate = { $push: { channelRecordings: recording._id } };
 
         new Recording( data.recording ).save( ( err, recording ) => {
             if ( err ) {

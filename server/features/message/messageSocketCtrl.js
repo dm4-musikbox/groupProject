@@ -59,17 +59,6 @@ module.exports = {
     }
 };
 
-// function updateChannel( channel_id, io, update ) {
-//     Channel
-//         .findByIdAndUpdate( channel_id, update, { new: true } )
-//         .populate( "channelRecordings channelMessages" )
-//         .exec( ( err, channel ) => {
-//             if ( err ) {
-//                 throw err;
-//             }
-//             getUpdatedChannel( channel_id, io, channel );
-//         } );
-// }
 function getUpdatedChannel( channel_id, io, channel ) {
     // io.to( channel_id ).emit( 'get channel', channel );
     io.sockets.emit( 'get channel', channel );

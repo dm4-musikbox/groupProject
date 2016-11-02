@@ -16,15 +16,15 @@ module.exports = ( app, io ) => {
 	        .delete( recordingCtrl.deleteAllRecordingsFromChannel );
 
 		io.on( 'connection', socket => {
-				socket.on( 'save recording', ( data ) => {
+				socket.on( 'save recording', data => {
 						recordingSocketCtrl.saveRecording( data, io );
 				} );
 
-				socket.on( 'update recording', ( data ) => {
+				socket.on( 'update recording', data => {
 						recordingSocketCtrl.updateRecording( data, io );
 				} );
 
-				socket.on( 'delete recording', ( data ) => {
+				socket.on( 'delete recording', data => {
 						recordingSocketCtrl.deleteRecording( data, io );
 				} );
 

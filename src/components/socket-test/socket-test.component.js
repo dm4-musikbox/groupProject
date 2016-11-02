@@ -5,8 +5,10 @@ function socketTestCtrl( $scope ) {
 
     this.users = [];
     this.recordings = [];
+    this.user_id = '58196bc83a5bd823fca47594';
     this.channel_id = '5818046d2643fcff7ad9aea1';
     this.channel;
+    this.channelStatus;
 
     this.saveRecording = recording => {
         if ( recording ) {
@@ -77,8 +79,55 @@ function socketTestCtrl( $scope ) {
         }
     };
 
+    /**************************************************/
+
+    this.enterChannel = ( channel_id, user_id ) => {
+      // if ( channel_id && user_id ) {
+          let data = {
+              user_id: this.user_id
+              , channel_id: this.channel_id
+          };
+          socket.emit( 'enter channel', data );
+      // }
+    };
+
+    this.leaveChannel = ( channel_id, user_id ) => {
+      // if ( channel_id && user_id ) {
+          let data = {
+              user_id: this.user_id
+              , channel_id: this.channel_id
+          };
+          socket.emit( 'leave channel', data );
+      // }
+    };
+
+    this.subscribeToChannel = ( channel_id, user_id ) => {
+      // if ( channel_id && user_id ) {
+          let data = {
+              user_id: this.user_id
+              , channel_id: this.channel_id
+          };
+          socket.emit( 'subscribe to channel', data );
+      // }
+    };
+
+    this.unsubscribeFromChannel = ( channel_id, user_id ) => {
+      // if ( channel_id && user_id ) {
+          let data = {
+              user_id: this.user_id
+              , channel_id: this.channel_id
+          };
+          socket.emit( 'unsubscribe from channel', data );
+      // }
+    };
+
     socket.on( 'get channel', data => {
         this.channel = data;
+        $scope.$apply();
+    } );
+
+    socket.on( 'get status of channel', data => {
+        this.channelStatus = data;
         $scope.$apply();
     } );
 }

@@ -107,27 +107,27 @@
 	
 	var _socketTestComponent2 = _interopRequireDefault(_socketTestComponent);
 	
-	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 342);
+	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 341);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
-	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 343);
+	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 342);
 	
 	var _browseComponent2 = _interopRequireDefault(_browseComponent);
 	
-	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 344);
+	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 343);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
-	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 345);
+	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 344);
 	
 	var _genresComponent2 = _interopRequireDefault(_genresComponent);
 	
-	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 346);
+	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 345);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	
-	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 347);
+	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 346);
 	
 	var _artistsComponent2 = _interopRequireDefault(_artistsComponent);
 	
@@ -89522,7 +89522,7 @@
 	    value: true
 	});
 	
-	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 341);
+	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 347);
 	
 	var _socketTestViewTmpl2 = _interopRequireDefault(_socketTestViewTmpl);
 	
@@ -89535,8 +89535,10 @@
 	
 	    this.users = [];
 	    this.recordings = [];
+	    this.user_id = '58196bc83a5bd823fca47594';
 	    this.channel_id = '5818046d2643fcff7ad9aea1';
 	    this.channel;
+	    this.channelStatus;
 	
 	    this.saveRecording = function (recording) {
 	        if (recording) {
@@ -89607,8 +89609,55 @@
 	        }
 	    };
 	
+	    /**************************************************/
+	
+	    this.enterChannel = function (channel_id, user_id) {
+	        // if ( channel_id && user_id ) {
+	        var data = {
+	            user_id: _this.user_id,
+	            channel_id: _this.channel_id
+	        };
+	        socket.emit('enter channel', data);
+	        // }
+	    };
+	
+	    this.leaveChannel = function (channel_id, user_id) {
+	        // if ( channel_id && user_id ) {
+	        var data = {
+	            user_id: _this.user_id,
+	            channel_id: _this.channel_id
+	        };
+	        socket.emit('leave channel', data);
+	        // }
+	    };
+	
+	    this.subscribeToChannel = function (channel_id, user_id) {
+	        // if ( channel_id && user_id ) {
+	        var data = {
+	            user_id: _this.user_id,
+	            channel_id: _this.channel_id
+	        };
+	        socket.emit('subscribe to channel', data);
+	        // }
+	    };
+	
+	    this.unsubscribeFromChannel = function (channel_id, user_id) {
+	        // if ( channel_id && user_id ) {
+	        var data = {
+	            user_id: _this.user_id,
+	            channel_id: _this.channel_id
+	        };
+	        socket.emit('unsubscribe from channel', data);
+	        // }
+	    };
+	
 	    socket.on('get channel', function (data) {
 	        _this.channel = data;
+	        $scope.$apply();
+	    });
+	
+	    socket.on('get status of channel', function (data) {
+	        _this.channelStatus = data;
 	        $scope.$apply();
 	    });
 	}
@@ -89622,15 +89671,6 @@
 
 /***/ },
 /* 341 */
-/*!***************************************************************!*\
-  !*** ./src/components/socket-test/socket-test-view-tmpl.html ***!
-  \***************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<h1>Socket functions</h1>\n\n<h2>Channel data</h2>\n<div ng-repeat=\"( key, value ) in $ctrl.channel\">\n    {{ key }} : {{ value }}\n</div>\n\n<h3>Save new recording</h3>\n<input type=\"text\" ng-model=\"recording.cloudUrl\" placeholder=\"cloud URL\">\n<br />\n<textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\" placeholder=\"recording description\"></textarea>\n<br />\n<input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n\n<hr />\n\n<h3>Update/delete recording</h3>\n<input type=\"text\" ng-model=\"recording._id\" placeholder=\"recording id\">\n<br />\n<input type=\"text\" ng-model=\"recording.description2\" placeholder=\"recording description\">\n<br />\n<input type=\"submit\" value=\"Update recording\" ng-click=\"$ctrl.updateRecording( { _id: recording._id, description: recording.description2 } )\">\n<br />\n<input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording._id )\">\n\n<hr />\n\n<h3>Send and save message</h3>\n<input type=\"text\" ng-model=\"message.type\" placeholder=\"message type\">\n<br/>\n<input type=\"text\" ng-model=\"message.content\" placeholder=\"message content\">\n<br />\n<input type=\"submit\" ng-click=\"$ctrl.sendAndSaveMessage( message )\">\n\n<h3>Update message</h3>\n<input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n<br />\n<input type=\"text\" ng-model=\"message_update\">\n<br />\n<input type=\"submit\" ng-click=\"$ctrl.updateMessage( message_id, { content: message_update } )\">\n\n<h3>Delete message</h3>\n<input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n<br />\n<input type=\"submit\" ng-click=\"$ctrl.deleteMessage( message_id )\">\n";
-
-/***/ },
-/* 342 */
 /*!*****************************************************!*\
   !*** ./src/components/browse/browse-view-tmpl.html ***!
   \*****************************************************/
@@ -89639,7 +89679,7 @@
 	module.exports = "<div>\n    <h1>Browse channels</h1>\n    {{ $ctrl.test }}\n\n    <ui-view></ui-view>\n</div>\n";
 
 /***/ },
-/* 343 */
+/* 342 */
 /*!**************************************************!*\
   !*** ./src/components/browse/browseComponent.js ***!
   \**************************************************/
@@ -89651,7 +89691,7 @@
 	  value: true
 	});
 	
-	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 342);
+	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 341);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
@@ -89671,7 +89711,7 @@
 	exports.default = browseComponent;
 
 /***/ },
-/* 344 */
+/* 343 */
 /*!*****************************************************!*\
   !*** ./src/components/genres/genres-view-tmpl.html ***!
   \*****************************************************/
@@ -89680,7 +89720,7 @@
 	module.exports = "<div>\n    <h1>Genres</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
 
 /***/ },
-/* 345 */
+/* 344 */
 /*!**************************************************!*\
   !*** ./src/components/genres/genresComponent.js ***!
   \**************************************************/
@@ -89692,7 +89732,7 @@
 	  value: true
 	});
 	
-	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 344);
+	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 343);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
@@ -89712,7 +89752,7 @@
 	exports.default = genresComponent;
 
 /***/ },
-/* 346 */
+/* 345 */
 /*!*******************************************************!*\
   !*** ./src/components/artists/artists-view-tmpl.html ***!
   \*******************************************************/
@@ -89721,7 +89761,7 @@
 	module.exports = "<div>\n    <h1>Artists</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
 
 /***/ },
-/* 347 */
+/* 346 */
 /*!****************************************************!*\
   !*** ./src/components/artists/artistsComponent.js ***!
   \****************************************************/
@@ -89733,7 +89773,7 @@
 	  value: true
 	});
 	
-	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 346);
+	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 345);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	
@@ -89751,6 +89791,15 @@
 	};
 	
 	exports.default = artistsComponent;
+
+/***/ },
+/* 347 */
+/*!***************************************************************!*\
+  !*** ./src/components/socket-test/socket-test-view-tmpl.html ***!
+  \***************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<h1 style=\"text-align: center\">Musikbox socket functions</h1>\n\n<main style=\"display: flex; justify-content: space-around\">\n    <div>\n        <h2>Channel data</h2>\n        <div ng-repeat=\"( key, value ) in $ctrl.channel\">\n            {{ key }} : {{ value }}\n        </div>\n\n        <h2>Channel status</h2>\n        <div>{{ $ctrl.channelStatus }}</div>\n    </div>\n\n    <div>\n        <h3>Channel functions</h3>\n        <input type=\"text\" placeholder=\"channel id\" ng-model=\"channel._id\">\n        <br />\n        <input type=\"text\" placeholder=\"user id\" ng-model=\"user._id\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.enterChannel( channel._id, user._id )\" value=\"Enter\">\n        <input type=\"submit\" ng-click=\"$ctrl.leaveChannel( channel._id, user._id )\" value=\"Leave\">\n        <input type=\"submit\" ng-click=\"$ctrl.subscribeToChannel( channel._id, user._id )\" value=\"Subscribe\">\n        <input type=\"submit\" ng-click=\"$ctrl.unsubscribeFromChannel( channel._id, user._id )\" value=\"Unsubscribe\">\n\n\n        <hr />\n\n        <h3>Recording functions</h3>\n        <input type=\"text\" ng-model=\"recording_id\" placeholder=\"recording id\">\n        <br />\n        <input type=\"text\" ng-model=\"recording.cloudUrl\" placeholder=\"cloud URL\">\n        <br />\n        <textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\" placeholder=\"recording description\"></textarea>\n        <br />\n        <input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n        <input type=\"submit\" value=\"Update recording\" ng-click=\"$ctrl.updateRecording( { _id: recording_id, description: recording.description } )\">\n        <input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording_id )\">\n\n        <hr />\n\n        <h3>Message functions</h3>\n        <input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n        <br />\n        <input type=\"text\" ng-model=\"message.type\" placeholder=\"message type\">\n        <br/>\n        <input type=\"text\" ng-model=\"message.content\" placeholder=\"message content\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.sendAndSaveMessage( message )\" value=\"Send and save message\">\n        <input type=\"submit\" ng-click=\"$ctrl.updateMessage( message_id, { content: message.content } )\" value=\"Update message\">\n        <input type=\"submit\" ng-click=\"$ctrl.deleteMessage( message_id )\" value=\"Delete message\">\n\n        <hr />\n    </div>\n</main>\n";
 
 /***/ }
 /******/ ]);
