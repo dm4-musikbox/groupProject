@@ -115,6 +115,7 @@
 	
 	var _browseComponent2 = _interopRequireDefault(_browseComponent);
 	
+<<<<<<< HEAD
 	var _navbar = __webpack_require__(/*! ./components/browse/navbar/navbar.html */ 348);
 	
 	var _navbar2 = _interopRequireDefault(_navbar);
@@ -131,6 +132,8 @@
 	
 	var _gridComponent2 = _interopRequireDefault(_gridComponent);
 	
+=======
+>>>>>>> master
 	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 344);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
@@ -89817,6 +89820,7 @@
 	
 	exports.default = artistsComponent;
 
+<<<<<<< HEAD
 /***/ },
 /* 348 */
 /*!**************************************************!*\
@@ -89899,6 +89903,8 @@
 	
 	exports.default = browseGridComponent;
 
+=======
+>>>>>>> master
 /***/ }
 /******/ ]);
 //# sourceMappingURL=bundle.js.map
