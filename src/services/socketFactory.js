@@ -1,6 +1,4 @@
-import angular from 'angular';
-
-function socketFactory() {
+function socketFactory( $rootScope ) {
     const socket = io.connect();
     return {
         on: function (eventName, callback) {

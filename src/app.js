@@ -5,6 +5,9 @@ import "auth0-lock";
 import "angular-lock";
 import "angular-jwt";
 
+import './services/services';
+import './components/components';
+
 import leftPanelHtml from './directives/leftPanel/left-panel.html'
 import leftPanelDir from './directives/leftPanel/left-panel-dir.js'
 
@@ -23,8 +26,6 @@ import genreComponent from './components/genre/genreComponent.js';
 import accountSettingsViewHtml from './components/account-settings/account-settings-view-tmpl.html';
 import accountSettingsComponent from './components/account-settings/accountSettingsComponent.js';
 
-import socketTestComponent from './components/socket-test/socket-test.component.js';
-
 import browseViewHtml from './components/browse/browse-view-tmpl.html';
 import browseComponent from './components/browse/browseComponent.js';
 
@@ -40,12 +41,7 @@ import genresComponent from './components/genres/genresComponent.js';
 import artistsViewHtml from './components/artists/artists-view-tmpl.html';
 import artistsComponent from './components/artists/artistsComponent.js';
 
-
-
-import authService from "./services/authService";
-import socketFactory from "./services/socketFactory";
-
-angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter] )
+angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", "components", "services", uiRouter ] )
     .run( function( $rootScope, $state, $timeout, authService, authManager, jwtHelper, lock ) {
       	lock.interceptHash();
       	$rootScope.authService = authService;
@@ -64,9 +60,6 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter] )
       		}
       	} );
       } )
-    .service( "authService", authService )
-    .factory( "socketFactory", socketFactory )
-    .component( 'socketTestComponent', socketTestComponent )
     .component( "landingPageComponent", landingPageComponent )
     .component( "mainComponent", mainComponent )
     .component( "channelComponent", channelComponent )
@@ -110,8 +103,9 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter] )
       	$stateProvider
                   .state( "landing-page", {
                   	url: "/"
+                    // , component: 'landingPageComponent'
                     // , component: 'socketTestComponent'
-                  	, component: 'landingPageComponent'
+                    , component: 'recorderComponent'
                   } )
                   .state( "main-view", {
                   	url: "/main"

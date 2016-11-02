@@ -16,6 +16,11 @@ module.exports = ( app, io ) => {
 	        .delete( recordingCtrl.deleteAllRecordingsFromChannel );
 
 		io.on( 'connection', socket => {
+				socket.on( 'stream recording', data => {
+						console.log( data );
+						// recordingSocketCtrl.saveRecording( data, io );
+				} );
+
 				socket.on( 'save recording', data => {
 						recordingSocketCtrl.saveRecording( data, io );
 				} );
@@ -26,11 +31,6 @@ module.exports = ( app, io ) => {
 
 				socket.on( 'delete recording', data => {
 						recordingSocketCtrl.deleteRecording( data, io );
-				} );
-
-				// on posting recording, copy recording object and broadcast only to target channel
-				socket.on( 'post recording', ( recording ) => {
-						console.log( 'Recording-to-post received ', recording );
 				} );
 		} );
 
