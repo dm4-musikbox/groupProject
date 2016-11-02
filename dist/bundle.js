@@ -63,75 +63,83 @@
 	
 	__webpack_require__(/*! angular-jwt */ 327);
 	
-	var _landingPageViewTmpl = __webpack_require__(/*! ./components/landing-page/landing-page-view-tmpl.html */ 329);
+	var _leftPanel = __webpack_require__(/*! ./directives/leftPanel/left-panel.html */ 329);
+	
+	var _leftPanel2 = _interopRequireDefault(_leftPanel);
+	
+	var _leftPanelDir = __webpack_require__(/*! ./directives/leftPanel/left-panel-dir.js */ 330);
+	
+	var _leftPanelDir2 = _interopRequireDefault(_leftPanelDir);
+	
+	var _landingPageViewTmpl = __webpack_require__(/*! ./components/landing-page/landing-page-view-tmpl.html */ 331);
 	
 	var _landingPageViewTmpl2 = _interopRequireDefault(_landingPageViewTmpl);
 	
-	var _landingPageComponent = __webpack_require__(/*! ./components/landing-page/landingPageComponent.js */ 330);
+	var _landingPageComponent = __webpack_require__(/*! ./components/landing-page/landingPageComponent.js */ 332);
 	
 	var _landingPageComponent2 = _interopRequireDefault(_landingPageComponent);
 	
-	var _mainViewTmpl = __webpack_require__(/*! ./components/main/main-view-tmpl.html */ 332);
+	var _mainViewTmpl = __webpack_require__(/*! ./components/main/main-view-tmpl.html */ 334);
 	
 	var _mainViewTmpl2 = _interopRequireDefault(_mainViewTmpl);
 	
-	var _mainComponent = __webpack_require__(/*! ./components/main/mainComponent.js */ 333);
+	var _mainComponent = __webpack_require__(/*! ./components/main/mainComponent.js */ 335);
 	
 	var _mainComponent2 = _interopRequireDefault(_mainComponent);
 	
-	var _channelViewTmpl = __webpack_require__(/*! ./components/channel/channel-view-tmpl.html */ 334);
+	var _channelViewTmpl = __webpack_require__(/*! ./components/channel/channel-view-tmpl.html */ 336);
 	
 	var _channelViewTmpl2 = _interopRequireDefault(_channelViewTmpl);
 	
-	var _channelComponent = __webpack_require__(/*! ./components/channel/channelComponent.js */ 335);
+	var _channelComponent = __webpack_require__(/*! ./components/channel/channelComponent.js */ 337);
 	
 	var _channelComponent2 = _interopRequireDefault(_channelComponent);
 	
-	var _genreViewTmpl = __webpack_require__(/*! ./components/genre/genre-view-tmpl.html */ 336);
+	var _genreViewTmpl = __webpack_require__(/*! ./components/genre/genre-view-tmpl.html */ 338);
 	
 	var _genreViewTmpl2 = _interopRequireDefault(_genreViewTmpl);
 	
-	var _genreComponent = __webpack_require__(/*! ./components/genre/genreComponent.js */ 337);
+	var _genreComponent = __webpack_require__(/*! ./components/genre/genreComponent.js */ 339);
 	
 	var _genreComponent2 = _interopRequireDefault(_genreComponent);
 	
-	var _accountSettingsViewTmpl = __webpack_require__(/*! ./components/account-settings/account-settings-view-tmpl.html */ 338);
+	var _accountSettingsViewTmpl = __webpack_require__(/*! ./components/account-settings/account-settings-view-tmpl.html */ 340);
 	
 	var _accountSettingsViewTmpl2 = _interopRequireDefault(_accountSettingsViewTmpl);
 	
-	var _accountSettingsComponent = __webpack_require__(/*! ./components/account-settings/accountSettingsComponent.js */ 339);
+	var _accountSettingsComponent = __webpack_require__(/*! ./components/account-settings/accountSettingsComponent.js */ 341);
 	
 	var _accountSettingsComponent2 = _interopRequireDefault(_accountSettingsComponent);
 	
-	var _socketTestComponent = __webpack_require__(/*! ./components/socket-test/socket-test.component.js */ 340);
+	var _socketTestComponent = __webpack_require__(/*! ./components/socket-test/socket-test.component.js */ 342);
 	
 	var _socketTestComponent2 = _interopRequireDefault(_socketTestComponent);
 	
-	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 341);
+	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 344);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
-	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 342);
+	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 345);
 	
 	var _browseComponent2 = _interopRequireDefault(_browseComponent);
 	
-	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 343);
+	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 346);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
-	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 344);
+	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 347);
 	
 	var _genresComponent2 = _interopRequireDefault(_genresComponent);
 	
-	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 345);
+	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 348);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	
-	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 346);
+	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 349);
 	
 	var _artistsComponent2 = _interopRequireDefault(_artistsComponent);
 	
-	var _authService = __webpack_require__(/*! ./services/authService */ 331);
+	var _authService = __webpack_require__(/*! ./services/authService */ 333);
 	
 	var _authService2 = _interopRequireDefault(_authService);
 	
@@ -154,7 +162,7 @@
 	      }
 	    }
 	  });
-	}).service("authService", _authService2.default).component('socketTestComponent', _socketTestComponent2.default).component("landingPageComponent", _landingPageComponent2.default).component("mainComponent", _mainComponent2.default).component("channelComponent", _channelComponent2.default).component("genreComponent", _genreComponent2.default).component("browseComponent", _browseComponent2.default).component("genresComponent", _genresComponent2.default).component("artistsComponent", _artistsComponent2.default).component("accountSettingsComponent", _accountSettingsComponent2.default).config(function ($httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider) {
+	}).service("authService", _authService2.default).component('socketTestComponent', _socketTestComponent2.default).component("landingPageComponent", _landingPageComponent2.default).component("mainComponent", _mainComponent2.default).component("channelComponent", _channelComponent2.default).component("genreComponent", _genreComponent2.default).component("browseComponent", _browseComponent2.default).component("genresComponent", _genresComponent2.default).component("artistsComponent", _artistsComponent2.default).component("accountSettingsComponent", _accountSettingsComponent2.default).directive("leftPanelDir", _leftPanelDir2.default).config(function ($httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider) {
 	  lockProvider.init({
 	    clientID: "dxHLsmsTwuygusXFm9bs1e2bqbF91EK3",
 	    domain: "musikbox.auth0.com",
@@ -184,9 +192,9 @@
 	  $urlRouterProvider.otherwise("/");
 	
 	  $stateProvider.state("landing-page", {
-	    url: "/",
-	    component: 'socketTestComponent'
-	    // , component: 'landingPageComponent'
+	    url: "/"
+	    // , component: 'socketTestComponent'
+	    , component: 'landingPageComponent'
 	  }).state("main-view", {
 	    url: "/main",
 	    component: 'mainComponent'
@@ -42569,9 +42577,9 @@
 
 /***/ },
 /* 7 */
-/*!****************************!*\
-  !*** ./~/Base64/base64.js ***!
-  \****************************/
+/*!***************************************!*\
+  !*** ./~/auth0-js/~/Base64/base64.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	;(function () {
@@ -42781,9 +42789,9 @@
 
 /***/ },
 /* 11 */
-/*!***************************!*\
-  !*** ./~/qs/lib/index.js ***!
-  \***************************/
+/*!**************************************!*\
+  !*** ./~/auth0-js/~/qs/lib/index.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42801,9 +42809,9 @@
 
 /***/ },
 /* 12 */
-/*!*******************************!*\
-  !*** ./~/qs/lib/stringify.js ***!
-  \*******************************/
+/*!******************************************!*\
+  !*** ./~/auth0-js/~/qs/lib/stringify.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42997,9 +43005,9 @@
 
 /***/ },
 /* 13 */
-/*!***************************!*\
-  !*** ./~/qs/lib/utils.js ***!
-  \***************************/
+/*!**************************************!*\
+  !*** ./~/auth0-js/~/qs/lib/utils.js ***!
+  \**************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43186,9 +43194,9 @@
 
 /***/ },
 /* 14 */
-/*!*****************************!*\
-  !*** ./~/qs/lib/formats.js ***!
-  \*****************************/
+/*!****************************************!*\
+  !*** ./~/auth0-js/~/qs/lib/formats.js ***!
+  \****************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43213,9 +43221,9 @@
 
 /***/ },
 /* 15 */
-/*!***************************!*\
-  !*** ./~/qs/lib/parse.js ***!
-  \***************************/
+/*!**************************************!*\
+  !*** ./~/auth0-js/~/qs/lib/parse.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89238,6 +89246,50 @@
 
 /***/ },
 /* 329 */
+/*!**************************************************!*\
+  !*** ./src/directives/leftPanel/left-panel.html ***!
+  \**************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "\n\n\n    <section class=\"left-panel\">\n      <div class=\"lp-title-sect\">\n          <div id=\"lp-title\"> muzikbox </div>\n        <div class=\"lp-user\">\n          <div class=\"status-circle\">\n            <img src=\"{{ circle }}\">\n          </div>\n          <div id=\"lp-user-name\"> Theo Beck </div>\n        </div>\n      </div>\n    </section>\n";
+
+/***/ },
+/* 330 */
+/*!****************************************************!*\
+  !*** ./src/directives/leftPanel/left-panel-dir.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = leftPanelDir;
+	
+	var _leftPanel = __webpack_require__(/*! ./left-panel.html */ 329);
+	
+	var _leftPanel2 = _interopRequireDefault(_leftPanel);
+	
+	__webpack_require__(/*! ./styles/sass/left-panel.scss */ 350);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function leftPanelDir() {
+	  return {
+	    template: _leftPanel2.default,
+	    restrict: 'EA',
+	    scope: {},
+	    controller: function controller($scope) {
+	      var image = document.createElement('img');
+	      image.src = __webpack_require__(/*! ./styles/imgs/circle-shape-outline.svg */ 354);
+	      $scope.circle = image.src;
+	    }
+	  };
+	}
+
+/***/ },
+/* 331 */
 /*!*****************************************************************!*\
   !*** ./src/components/landing-page/landing-page-view-tmpl.html ***!
   \*****************************************************************/
@@ -89246,7 +89298,7 @@
 	module.exports = "<div>\n    <h1>Musikbox</h1>\n    <button class=\"btn btn-primary\" ng-click=\"$ctrl.authService.login()\">Log In</button>\n</div>\n";
 
 /***/ },
-/* 330 */
+/* 332 */
 /*!*************************************************************!*\
   !*** ./src/components/landing-page/landingPageComponent.js ***!
   \*************************************************************/
@@ -89258,11 +89310,11 @@
 	  value: true
 	});
 	
-	var _authService = __webpack_require__(/*! ./../../services/authService */ 331);
+	var _authService = __webpack_require__(/*! ./../../services/authService */ 333);
 	
 	var _authService2 = _interopRequireDefault(_authService);
 	
-	var _landingPageViewTmpl = __webpack_require__(/*! ./landing-page-view-tmpl.html */ 329);
+	var _landingPageViewTmpl = __webpack_require__(/*! ./landing-page-view-tmpl.html */ 331);
 	
 	var _landingPageViewTmpl2 = _interopRequireDefault(_landingPageViewTmpl);
 	
@@ -89283,7 +89335,7 @@
 	exports.default = landingPageComponent;
 
 /***/ },
-/* 331 */
+/* 333 */
 /*!*************************************!*\
   !*** ./src/services/authService.js ***!
   \*************************************/
@@ -89344,16 +89396,16 @@
 	exports.default = authService;
 
 /***/ },
-/* 332 */
+/* 334 */
 /*!*************************************************!*\
   !*** ./src/components/main/main-view-tmpl.html ***!
   \*************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-if=\"!$ctrl.isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"$ctrl.isAuthenticated\">\n    <p>Thank you for logging in!</p>\n\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
+	module.exports = "<div ng-if=\"!$ctrl.isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"$ctrl.isAuthenticated\">\n    <left-panel-dir></left-panel-dir>\n    <p>Thank you for logging in!</p>\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
 
 /***/ },
-/* 333 */
+/* 335 */
 /*!**********************************************!*\
   !*** ./src/components/main/mainComponent.js ***!
   \**********************************************/
@@ -89365,11 +89417,11 @@
 	  value: true
 	});
 	
-	var _authService = __webpack_require__(/*! ./../../services/authService */ 331);
+	var _authService = __webpack_require__(/*! ./../../services/authService */ 333);
 	
 	var _authService2 = _interopRequireDefault(_authService);
 	
-	var _mainViewTmpl = __webpack_require__(/*! ./main-view-tmpl.html */ 332);
+	var _mainViewTmpl = __webpack_require__(/*! ./main-view-tmpl.html */ 334);
 	
 	var _mainViewTmpl2 = _interopRequireDefault(_mainViewTmpl);
 	
@@ -89391,7 +89443,7 @@
 	exports.default = mainComponent;
 
 /***/ },
-/* 334 */
+/* 336 */
 /*!*******************************************************!*\
   !*** ./src/components/channel/channel-view-tmpl.html ***!
   \*******************************************************/
@@ -89400,7 +89452,7 @@
 	module.exports = "<div>\n    <h1>Channel view</h1>\n    {{ $ctrl.test }}\n</div>\n";
 
 /***/ },
-/* 335 */
+/* 337 */
 /*!****************************************************!*\
   !*** ./src/components/channel/channelComponent.js ***!
   \****************************************************/
@@ -89412,7 +89464,7 @@
 	  value: true
 	});
 	
-	var _channelViewTmpl = __webpack_require__(/*! ./channel-view-tmpl.html */ 334);
+	var _channelViewTmpl = __webpack_require__(/*! ./channel-view-tmpl.html */ 336);
 	
 	var _channelViewTmpl2 = _interopRequireDefault(_channelViewTmpl);
 	
@@ -89432,7 +89484,7 @@
 	exports.default = channelComponent;
 
 /***/ },
-/* 336 */
+/* 338 */
 /*!***************************************************!*\
   !*** ./src/components/genre/genre-view-tmpl.html ***!
   \***************************************************/
@@ -89441,7 +89493,7 @@
 	module.exports = "<div>\n    <h1>Genre (Pop)</h1>\n    {{ $ctrl.test }}\n</div>\n";
 
 /***/ },
-/* 337 */
+/* 339 */
 /*!************************************************!*\
   !*** ./src/components/genre/genreComponent.js ***!
   \************************************************/
@@ -89453,7 +89505,7 @@
 	  value: true
 	});
 	
-	var _genreViewTmpl = __webpack_require__(/*! ./genre-view-tmpl.html */ 336);
+	var _genreViewTmpl = __webpack_require__(/*! ./genre-view-tmpl.html */ 338);
 	
 	var _genreViewTmpl2 = _interopRequireDefault(_genreViewTmpl);
 	
@@ -89473,7 +89525,7 @@
 	exports.default = genreComponent;
 
 /***/ },
-/* 338 */
+/* 340 */
 /*!*************************************************************************!*\
   !*** ./src/components/account-settings/account-settings-view-tmpl.html ***!
   \*************************************************************************/
@@ -89482,7 +89534,7 @@
 	module.exports = "<div>\n    <h1> account settings</h1>\n    {{$ctrl.test}}\n</div>\n";
 
 /***/ },
-/* 339 */
+/* 341 */
 /*!*********************************************************************!*\
   !*** ./src/components/account-settings/accountSettingsComponent.js ***!
   \*********************************************************************/
@@ -89494,7 +89546,7 @@
 	      value: true
 	});
 	
-	var _accountSettingsViewTmpl = __webpack_require__(/*! ./account-settings-view-tmpl.html */ 338);
+	var _accountSettingsViewTmpl = __webpack_require__(/*! ./account-settings-view-tmpl.html */ 340);
 	
 	var _accountSettingsViewTmpl2 = _interopRequireDefault(_accountSettingsViewTmpl);
 	
@@ -89510,7 +89562,7 @@
 	exports.default = accountSettingsComponent;
 
 /***/ },
-/* 340 */
+/* 342 */
 /*!*************************************************************!*\
   !*** ./src/components/socket-test/socket-test.component.js ***!
   \*************************************************************/
@@ -89522,7 +89574,7 @@
 	    value: true
 	});
 	
-	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 347);
+	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 343);
 	
 	var _socketTestViewTmpl2 = _interopRequireDefault(_socketTestViewTmpl);
 	
@@ -89670,7 +89722,16 @@
 	exports.default = socketTestComponent;
 
 /***/ },
-/* 341 */
+/* 343 */
+/*!***************************************************************!*\
+  !*** ./src/components/socket-test/socket-test-view-tmpl.html ***!
+  \***************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<h1 style=\"text-align: center\">Musikbox socket functions</h1>\n\n<main style=\"display: flex; justify-content: space-around\">\n    <div>\n        <h2>Channel data</h2>\n        <div ng-repeat=\"( key, value ) in $ctrl.channel\">\n            {{ key }} : {{ value }}\n        </div>\n\n        <h2>Channel status</h2>\n        <div>{{ $ctrl.channelStatus }}</div>\n    </div>\n\n    <div>\n        <h3>Channel functions</h3>\n        <input type=\"text\" placeholder=\"channel id\" ng-model=\"channel._id\">\n        <br />\n        <input type=\"text\" placeholder=\"user id\" ng-model=\"user._id\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.enterChannel( channel._id, user._id )\" value=\"Enter\">\n        <input type=\"submit\" ng-click=\"$ctrl.leaveChannel( channel._id, user._id )\" value=\"Leave\">\n        <input type=\"submit\" ng-click=\"$ctrl.subscribeToChannel( channel._id, user._id )\" value=\"Subscribe\">\n        <input type=\"submit\" ng-click=\"$ctrl.unsubscribeFromChannel( channel._id, user._id )\" value=\"Unsubscribe\">\n\n\n        <hr />\n\n        <h3>Recording functions</h3>\n        <input type=\"text\" ng-model=\"recording_id\" placeholder=\"recording id\">\n        <br />\n        <input type=\"text\" ng-model=\"recording.cloudUrl\" placeholder=\"cloud URL\">\n        <br />\n        <textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\" placeholder=\"recording description\"></textarea>\n        <br />\n        <input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n        <input type=\"submit\" value=\"Update recording\" ng-click=\"$ctrl.updateRecording( { _id: recording_id, description: recording.description } )\">\n        <input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording_id )\">\n\n        <hr />\n\n        <h3>Message functions</h3>\n        <input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n        <br />\n        <input type=\"text\" ng-model=\"message.type\" placeholder=\"message type\">\n        <br/>\n        <input type=\"text\" ng-model=\"message.content\" placeholder=\"message content\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.sendAndSaveMessage( message )\" value=\"Send and save message\">\n        <input type=\"submit\" ng-click=\"$ctrl.updateMessage( message_id, { content: message.content } )\" value=\"Update message\">\n        <input type=\"submit\" ng-click=\"$ctrl.deleteMessage( message_id )\" value=\"Delete message\">\n\n        <hr />\n    </div>\n</main>\n";
+
+/***/ },
+/* 344 */
 /*!*****************************************************!*\
   !*** ./src/components/browse/browse-view-tmpl.html ***!
   \*****************************************************/
@@ -89679,7 +89740,7 @@
 	module.exports = "<div>\n    <h1>Browse channels</h1>\n    {{ $ctrl.test }}\n\n    <ui-view></ui-view>\n</div>\n";
 
 /***/ },
-/* 342 */
+/* 345 */
 /*!**************************************************!*\
   !*** ./src/components/browse/browseComponent.js ***!
   \**************************************************/
@@ -89691,7 +89752,7 @@
 	  value: true
 	});
 	
-	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 341);
+	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 344);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
@@ -89711,7 +89772,7 @@
 	exports.default = browseComponent;
 
 /***/ },
-/* 343 */
+/* 346 */
 /*!*****************************************************!*\
   !*** ./src/components/genres/genres-view-tmpl.html ***!
   \*****************************************************/
@@ -89720,7 +89781,7 @@
 	module.exports = "<div>\n    <h1>Genres</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
 
 /***/ },
-/* 344 */
+/* 347 */
 /*!**************************************************!*\
   !*** ./src/components/genres/genresComponent.js ***!
   \**************************************************/
@@ -89732,7 +89793,7 @@
 	  value: true
 	});
 	
-	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 343);
+	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 346);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
@@ -89752,7 +89813,7 @@
 	exports.default = genresComponent;
 
 /***/ },
-/* 345 */
+/* 348 */
 /*!*******************************************************!*\
   !*** ./src/components/artists/artists-view-tmpl.html ***!
   \*******************************************************/
@@ -89761,7 +89822,7 @@
 	module.exports = "<div>\n    <h1>Artists</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
 
 /***/ },
-/* 346 */
+/* 349 */
 /*!****************************************************!*\
   !*** ./src/components/artists/artistsComponent.js ***!
   \****************************************************/
@@ -89773,7 +89834,7 @@
 	  value: true
 	});
 	
-	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 345);
+	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 348);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	
@@ -89793,13 +89854,373 @@
 	exports.default = artistsComponent;
 
 /***/ },
-/* 347 */
-/*!***************************************************************!*\
-  !*** ./src/components/socket-test/socket-test-view-tmpl.html ***!
-  \***************************************************************/
+/* 350 */
+/*!**************************************************************!*\
+  !*** ./src/directives/leftPanel/styles/sass/left-panel.scss ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./left-panel.scss */ 351);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 353)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./left-panel.scss", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js!./../../../../../node_modules/sass-loader/index.js!./left-panel.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 351 */
+/*!*********************************************************************************************!*\
+  !*** ./~/css-loader!./~/sass-loader!./src/directives/leftPanel/styles/sass/left-panel.scss ***!
+  \*********************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 352)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "* {\n  margin-left: 0px;\n  margin-top: 0px;\n  box-sizing: border-box; }\n  * .left-panel {\n    float: left;\n    width: 220px;\n    background-color: #33312E;\n    height: 100vh;\n    position: relative; }\n    * .left-panel .lp-title-sect {\n      position: absolute;\n      left: 13px;\n      top: 5px;\n      width: auto; }\n      * .left-panel .lp-title-sect #lp-title {\n        font-size: 28px;\n        color: #ECEBE4;\n        font-family: \"Reem Kufi\";\n        letter-spacing: 1px; }\n      * .left-panel .lp-title-sect .lp-user {\n        width: auto; }\n        * .left-panel .lp-title-sect .lp-user .status-circle {\n          width: 12px;\n          height: 17px;\n          display: inline-block; }\n          * .left-panel .lp-title-sect .lp-user .status-circle img {\n            height: 10px;\n            width: 10px; }\n        * .left-panel .lp-title-sect .lp-user #lp-user-name {\n          display: inline-block;\n          color: #ECEBE4;\n          font-family: \"PT Sans Narrow\"; }\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 352 */
+/*!**************************************!*\
+  !*** ./~/css-loader/lib/css-base.js ***!
+  \**************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<h1 style=\"text-align: center\">Musikbox socket functions</h1>\n\n<main style=\"display: flex; justify-content: space-around\">\n    <div>\n        <h2>Channel data</h2>\n        <div ng-repeat=\"( key, value ) in $ctrl.channel\">\n            {{ key }} : {{ value }}\n        </div>\n\n        <h2>Channel status</h2>\n        <div>{{ $ctrl.channelStatus }}</div>\n    </div>\n\n    <div>\n        <h3>Channel functions</h3>\n        <input type=\"text\" placeholder=\"channel id\" ng-model=\"channel._id\">\n        <br />\n        <input type=\"text\" placeholder=\"user id\" ng-model=\"user._id\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.enterChannel( channel._id, user._id )\" value=\"Enter\">\n        <input type=\"submit\" ng-click=\"$ctrl.leaveChannel( channel._id, user._id )\" value=\"Leave\">\n        <input type=\"submit\" ng-click=\"$ctrl.subscribeToChannel( channel._id, user._id )\" value=\"Subscribe\">\n        <input type=\"submit\" ng-click=\"$ctrl.unsubscribeFromChannel( channel._id, user._id )\" value=\"Unsubscribe\">\n\n\n        <hr />\n\n        <h3>Recording functions</h3>\n        <input type=\"text\" ng-model=\"recording_id\" placeholder=\"recording id\">\n        <br />\n        <input type=\"text\" ng-model=\"recording.cloudUrl\" placeholder=\"cloud URL\">\n        <br />\n        <textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\" placeholder=\"recording description\"></textarea>\n        <br />\n        <input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n        <input type=\"submit\" value=\"Update recording\" ng-click=\"$ctrl.updateRecording( { _id: recording_id, description: recording.description } )\">\n        <input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording_id )\">\n\n        <hr />\n\n        <h3>Message functions</h3>\n        <input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n        <br />\n        <input type=\"text\" ng-model=\"message.type\" placeholder=\"message type\">\n        <br/>\n        <input type=\"text\" ng-model=\"message.content\" placeholder=\"message content\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.sendAndSaveMessage( message )\" value=\"Send and save message\">\n        <input type=\"submit\" ng-click=\"$ctrl.updateMessage( message_id, { content: message.content } )\" value=\"Update message\">\n        <input type=\"submit\" ng-click=\"$ctrl.deleteMessage( message_id )\" value=\"Delete message\">\n\n        <hr />\n    </div>\n</main>\n";
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+	
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+	
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 353 */
+/*!*************************************!*\
+  !*** ./~/style-loader/addStyles.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+	
+	module.exports = function(list, options) {
+		if(true) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+	
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+	
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+	
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+	
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+	
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+	
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+	
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+	
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+	
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+	
+	function createLinkElement(options) {
+		var linkElement = document.createElement("link");
+		linkElement.rel = "stylesheet";
+		insertStyleElement(options, linkElement);
+		return linkElement;
+	}
+	
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+	
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement(options);
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+	
+		update(obj);
+	
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+	
+	var replaceText = (function () {
+		var textStore = [];
+	
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+	
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+	
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+	
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+	
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+	
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+	
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var sourceMap = obj.sourceMap;
+	
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+	
+		var blob = new Blob([css], { type: "text/css" });
+	
+		var oldSrc = linkElement.href;
+	
+		linkElement.href = URL.createObjectURL(blob);
+	
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ },
+/* 354 */
+/*!***********************************************************************!*\
+  !*** ./src/directives/leftPanel/styles/imgs/circle-shape-outline.svg ***!
+  \***********************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNDM4LjUzMyA0MzguNTMzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MzguNTMzIDQzOC41MzM7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNNDA5LjEzMywxMDkuMjAzYy0xOS42MDgtMzMuNTkyLTQ2LjIwNS02MC4xODktNzkuNzk4LTc5Ljc5NkMyOTUuNzM2LDkuODAxLDI1OS4wNTgsMCwyMTkuMjczLDAgICBjLTM5Ljc4MSwwLTc2LjQ3LDkuODAxLTExMC4wNjMsMjkuNDA3Yy0zMy41OTUsMTkuNjA0LTYwLjE5Miw0Ni4yMDEtNzkuOCw3OS43OTZDOS44MDEsMTQyLjgsMCwxNzkuNDg5LDAsMjE5LjI2NyAgIGMwLDM5Ljc4LDkuODA0LDc2LjQ2MywyOS40MDcsMTEwLjA2MmMxOS42MDcsMzMuNTkyLDQ2LjIwNCw2MC4xODksNzkuNzk5LDc5Ljc5OGMzMy41OTcsMTkuNjA1LDcwLjI4MywyOS40MDcsMTEwLjA2MywyOS40MDcgICBzNzYuNDctOS44MDIsMTEwLjA2NS0yOS40MDdjMzMuNTkzLTE5LjYwMiw2MC4xODktNDYuMjA2LDc5Ljc5NS03OS43OThjMTkuNjAzLTMzLjU5NiwyOS40MDMtNzAuMjg0LDI5LjQwMy0xMTAuMDYyICAgQzQzOC41MzMsMTc5LjQ4NSw0MjguNzMyLDE0Mi43OTUsNDA5LjEzMywxMDkuMjAzeiBNMzUzLjc0MiwyOTcuMjA4Yy0xMy44OTQsMjMuNzkxLTMyLjczNiw0Mi42MzMtNTYuNTI3LDU2LjUzNCAgIGMtMjMuNzkxLDEzLjg5NC00OS43NzEsMjAuODM0LTc3Ljk0NSwyMC44MzRjLTI4LjE2NywwLTU0LjE0OS02Ljk0LTc3Ljk0My0yMC44MzRjLTIzLjc5MS0xMy45MDEtNDIuNjMzLTMyLjc0My01Ni41MjctNTYuNTM0ICAgYy0xMy44OTctMjMuNzkxLTIwLjg0My00OS43NzItMjAuODQzLTc3Ljk0MWMwLTI4LjE3MSw2Ljk0OS01NC4xNTIsMjAuODQzLTc3Ljk0M2MxMy44OTEtMjMuNzkxLDMyLjczOC00Mi42MzcsNTYuNTI3LTU2LjUzICAgYzIzLjc5MS0xMy44OTUsNDkuNzcyLTIwLjg0LDc3Ljk0My0yMC44NGMyOC4xNzMsMCw1NC4xNTQsNi45NDUsNzcuOTQ1LDIwLjg0YzIzLjc5MSwxMy44OTQsNDIuNjM0LDMyLjczOSw1Ni41MjcsNTYuNTMgICBjMTMuODk1LDIzLjc5MSwyMC44MzgsNDkuNzcyLDIwLjgzOCw3Ny45NDNDMzc0LjU4LDI0Ny40MzYsMzY3LjYzNywyNzMuNDE3LDM1My43NDIsMjk3LjIwOHoiIGZpbGw9IiNlY2ViZTQiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"
 
 /***/ }
 /******/ ]);

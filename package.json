@@ -34,6 +34,7 @@
     "image-webpack-loader": "^3.0.0",
     "mongoose": "^4.6.5",
     "node-sass": "^3.10.1",
+    "raw-loader": "^0.5.1",
     "sass-loader": "^4.0.2",
     "socket.io": "^1.5.1",
     "style-loader": "^0.13.1",
