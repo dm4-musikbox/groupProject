@@ -34,6 +34,7 @@ import artistsViewHtml from './components/artists/artists-view-tmpl.html';
 import artistsComponent from './components/artists/artistsComponent.js';
 
 import authService from "./services/authService";
+import socketFactory from "./services/socketFactory";
 
 angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
     .run( function( $rootScope, $state, $timeout, authService, authManager, jwtHelper, lock ) {
