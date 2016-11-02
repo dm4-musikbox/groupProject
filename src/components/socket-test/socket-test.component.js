@@ -43,6 +43,40 @@ function socketTestCtrl( $scope ) {
         $scope.$apply();
     } );
 
+    /*****************************************************/
+
+    this.sendAndSaveMessage = message => {
+        if ( message ) {
+            let data = {
+                message: message
+                , channel_id: this.channel_id
+            };
+            socket.emit( 'send and save message', data );
+        }
+    };
+
+    this.updateMessage = ( message_id, message_update ) => {
+        if ( message_id && message_update ) {
+            let data = {
+                message_update
+                , message_id
+                , channel_id: this.channel_id
+            };
+            console.log( data );
+            socket.emit( 'update message', data );
+        }
+    };
+
+    this.deleteMessage = messageId => {
+        if ( messageId ) {
+            let data = {
+                message_id: messageId
+                , channel_id: this.channel_id
+            };
+            socket.emit( 'delete message', data );
+        }
+    };
+
     socket.on( 'get channel', data => {
         this.channel = data;
         $scope.$apply();

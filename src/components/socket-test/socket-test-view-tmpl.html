@@ -1,21 +1,45 @@
-<h1>Recording functions</h1>
+<h1>Socket functions</h1>
 
-<h3>Cloud Url</h3>
-<input type="text" ng-model="recording.cloudUrl">
-<h3>Description</h3>
-<textarea name="name" rows="8" cols="40" ng-model="recording.description"></textarea>
+<h2>Channel data</h2>
+<div ng-repeat="( key, value ) in $ctrl.channel">
+    {{ key }} : {{ value }}
+</div>
+
+<h3>Save new recording</h3>
+<input type="text" ng-model="recording.cloudUrl" placeholder="cloud URL">
+<br />
+<textarea name="name" rows="8" cols="40" ng-model="recording.description" placeholder="recording description"></textarea>
+<br />
 <input type="submit" value="Save recording" ng-click="$ctrl.saveRecording( recording )">
 
 <hr />
 
-<h3>Recording ID</h3>
+<h3>Update/delete recording</h3>
 <input type="text" ng-model="recording._id" placeholder="recording id">
-<input type="text" ng-model="recording.description" placeholder="recording description">
-
-<input type="submit" value="Update Recording" ng-click="$ctrl.updateRecording( { _id: recording._id, description: recording.description } )">
+<br />
+<input type="text" ng-model="recording.description2" placeholder="recording description">
+<br />
+<input type="submit" value="Update recording" ng-click="$ctrl.updateRecording( { _id: recording._id, description: recording.description2 } )">
+<br />
 <input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( recording._id )">
 
-<div>{{ $ctrl.recordings }}</div>
-<div ng-repeat="( key, value ) in $ctrl.channel">
-    {{ key }} : {{ value }}
-</div>
+<hr />
+
+<h3>Send and save message</h3>
+<input type="text" ng-model="message.type" placeholder="message type">
+<br/>
+<input type="text" ng-model="message.content" placeholder="message content">
+<br />
+<input type="submit" ng-click="$ctrl.sendAndSaveMessage( message )">
+
+<h3>Update message</h3>
+<input type="text" ng-model="message_id" placeholder="message id">
+<br />
+<input type="text" ng-model="message_update">
+<br />
+<input type="submit" ng-click="$ctrl.updateMessage( message_id, { content: message_update } )">
+
+<h3>Delete message</h3>
+<input type="text" ng-model="message_id" placeholder="message id">
+<br />
+<input type="submit" ng-click="$ctrl.deleteMessage( message_id )">

@@ -4,8 +4,8 @@ const recordingRoutes = require( "./features/recording/recordingRoutes.js" );
 const messageRoutes = require( "./features/message/messageRoutes.js" );
 
 module.exports = ( app, io ) => {
-	userRoutes( app );
-	channelRoutes( app );
+	userRoutes( app, io );
+	channelRoutes( app, io );
+	messageRoutes( app, io );
 	recordingRoutes( app, io );
-	messageRoutes( app );
 };

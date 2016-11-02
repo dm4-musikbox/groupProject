@@ -89573,6 +89573,40 @@
 	        $scope.$apply();
 	    });
 	
+	    /*****************************************************/
+	
+	    this.sendAndSaveMessage = function (message) {
+	        if (message) {
+	            var data = {
+	                message: message,
+	                channel_id: _this.channel_id
+	            };
+	            socket.emit('send and save message', data);
+	        }
+	    };
+	
+	    this.updateMessage = function (message_id, message_update) {
+	        if (message_id && message_update) {
+	            var data = {
+	                message_update: message_update,
+	                message_id: message_id,
+	                channel_id: _this.channel_id
+	            };
+	            console.log(data);
+	            socket.emit('update message', data);
+	        }
+	    };
+	
+	    this.deleteMessage = function (messageId) {
+	        if (messageId) {
+	            var data = {
+	                message_id: messageId,
+	                channel_id: _this.channel_id
+	            };
+	            socket.emit('delete message', data);
+	        }
+	    };
+	
 	    socket.on('get channel', function (data) {
 	        _this.channel = data;
 	        $scope.$apply();
@@ -89593,7 +89627,7 @@
   \***************************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<h1>Recording functions</h1>\n\n<h3>Cloud Url</h3>\n<input type=\"text\" ng-model=\"recording.cloudUrl\">\n<h3>Description</h3>\n<textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\"></textarea>\n<input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n\n<hr />\n\n<h3>Recording ID</h3>\n<input type=\"text\" ng-model=\"recording._id\" placeholder=\"recording id\">\n<input type=\"text\" ng-model=\"recording.description\" placeholder=\"recording description\">\n\n<input type=\"submit\" value=\"Update Recording\" ng-click=\"$ctrl.updateRecording( { _id: recording._id, description: recording.description } )\">\n<input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording._id )\">\n\n<div>{{ $ctrl.recordings }}</div>\n<div ng-repeat=\"( key, value ) in $ctrl.channel\">\n    {{ key }} : {{ value }}\n</div>\n";
+	module.exports = "<h1>Socket functions</h1>\n\n<h2>Channel data</h2>\n<div ng-repeat=\"( key, value ) in $ctrl.channel\">\n    {{ key }} : {{ value }}\n</div>\n\n<h3>Save new recording</h3>\n<input type=\"text\" ng-model=\"recording.cloudUrl\" placeholder=\"cloud URL\">\n<br />\n<textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\" placeholder=\"recording description\"></textarea>\n<br />\n<input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n\n<hr />\n\n<h3>Update/delete recording</h3>\n<input type=\"text\" ng-model=\"recording._id\" placeholder=\"recording id\">\n<br />\n<input type=\"text\" ng-model=\"recording.description2\" placeholder=\"recording description\">\n<br />\n<input type=\"submit\" value=\"Update recording\" ng-click=\"$ctrl.updateRecording( { _id: recording._id, description: recording.description2 } )\">\n<br />\n<input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording._id )\">\n\n<hr />\n\n<h3>Send and save message</h3>\n<input type=\"text\" ng-model=\"message.type\" placeholder=\"message type\">\n<br/>\n<input type=\"text\" ng-model=\"message.content\" placeholder=\"message content\">\n<br />\n<input type=\"submit\" ng-click=\"$ctrl.sendAndSaveMessage( message )\">\n\n<h3>Update message</h3>\n<input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n<br />\n<input type=\"text\" ng-model=\"message_update\">\n<br />\n<input type=\"submit\" ng-click=\"$ctrl.updateMessage( message_id, { content: message_update } )\">\n\n<h3>Delete message</h3>\n<input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n<br />\n<input type=\"submit\" ng-click=\"$ctrl.deleteMessage( message_id )\">\n";
 
 /***/ },
 /* 342 */
