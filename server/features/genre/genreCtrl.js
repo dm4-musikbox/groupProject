@@ -50,21 +50,21 @@ module.exports = {
             return res.status( 200 ).json( response );
         } );
     }
-    , addGenreToChannel( req, res ) {
-       Channel.findByIdAndUpdate( req.params.channel_id, { $push: { genres: req.params.genre } }, { new: true }, ( err, response ) => {
-         if ( err ) {
-           return res.status( 400 ).send( err );
-         }
-         return res.status( 200 ).json( response );
-       } );
-   }
-    , deleteGenreFromChannel( req, res ) {
-       Channel.findByIdAndUpdate( req.params.channel_id, { $pull: { genres: req.params.genre } }, { new: true }, ( err, response ) => {
-         if ( err ) {
-           return res.status( 400 ).send( err );
-         }
-         return res.status( 200 ).json( response );
-       } );
-   }
+    , addChannelToGenre ( req, res ) {
+  			Genre.findByIdAndUpdate( req.params.genre_id, { $addToSet: { channels: req.params.channel_id } }, { new: true }, ( err, genre ) => {
+  					if ( err ) {
+  							return res.status( 500 ).json( err );
+  					}
+  					return res.status( 200 ).json( genre );
+  			} );
+  	}
+  	, deleteChannelFromGenre ( req, res ) {
+  			Genre.findByIdAndUpdate( req.params.genre_id, { $pull: { channels: req.params.channel_id } }, { new: true }, ( err, genre ) => {
+  					if ( err ) {
+  							return res.status( 500 ).json( err );
+  					}
+  					return res.status( 200 ).json( genre );
+  			} );
+  	}
 
 }

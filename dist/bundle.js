@@ -71,99 +71,75 @@
 	
 	var _leftPanelDir2 = _interopRequireDefault(_leftPanelDir);
 	
-	var _landingPageViewTmpl = __webpack_require__(/*! ./components/landing-page/landing-page-view-tmpl.html */ 331);
+	var _landingPageViewTmpl = __webpack_require__(/*! ./components/landing-page/landing-page-view-tmpl.html */ 336);
 	
 	var _landingPageViewTmpl2 = _interopRequireDefault(_landingPageViewTmpl);
 	
-	var _landingPageComponent = __webpack_require__(/*! ./components/landing-page/landingPageComponent.js */ 332);
+	var _landingPageComponent = __webpack_require__(/*! ./components/landing-page/landingPageComponent.js */ 337);
 	
 	var _landingPageComponent2 = _interopRequireDefault(_landingPageComponent);
 	
-	var _mainViewTmpl = __webpack_require__(/*! ./components/main/main-view-tmpl.html */ 334);
+	var _mainViewTmpl = __webpack_require__(/*! ./components/main/main-view-tmpl.html */ 339);
 	
 	var _mainViewTmpl2 = _interopRequireDefault(_mainViewTmpl);
 	
-	var _mainComponent = __webpack_require__(/*! ./components/main/mainComponent.js */ 335);
+	var _mainComponent = __webpack_require__(/*! ./components/main/mainComponent.js */ 340);
 	
 	var _mainComponent2 = _interopRequireDefault(_mainComponent);
 	
-	var _channelViewTmpl = __webpack_require__(/*! ./components/channel/channel-view-tmpl.html */ 336);
+	var _channelViewTmpl = __webpack_require__(/*! ./components/channel/channel-view-tmpl.html */ 341);
 	
 	var _channelViewTmpl2 = _interopRequireDefault(_channelViewTmpl);
 	
-	var _channelComponent = __webpack_require__(/*! ./components/channel/channelComponent.js */ 337);
+	var _channelComponent = __webpack_require__(/*! ./components/channel/channelComponent.js */ 342);
 	
 	var _channelComponent2 = _interopRequireDefault(_channelComponent);
 	
-	var _genreViewTmpl = __webpack_require__(/*! ./components/genre/genre-view-tmpl.html */ 338);
+	var _genreViewTmpl = __webpack_require__(/*! ./components/genre/genre-view-tmpl.html */ 343);
 	
 	var _genreViewTmpl2 = _interopRequireDefault(_genreViewTmpl);
 	
-	var _genreComponent = __webpack_require__(/*! ./components/genre/genreComponent.js */ 339);
+	var _genreComponent = __webpack_require__(/*! ./components/genre/genreComponent.js */ 344);
 	
 	var _genreComponent2 = _interopRequireDefault(_genreComponent);
 	
-	var _accountSettingsViewTmpl = __webpack_require__(/*! ./components/account-settings/account-settings-view-tmpl.html */ 340);
+	var _accountSettingsViewTmpl = __webpack_require__(/*! ./components/account-settings/account-settings-view-tmpl.html */ 345);
 	
 	var _accountSettingsViewTmpl2 = _interopRequireDefault(_accountSettingsViewTmpl);
 	
-	var _accountSettingsComponent = __webpack_require__(/*! ./components/account-settings/accountSettingsComponent.js */ 341);
+	var _accountSettingsComponent = __webpack_require__(/*! ./components/account-settings/accountSettingsComponent.js */ 346);
 	
 	var _accountSettingsComponent2 = _interopRequireDefault(_accountSettingsComponent);
 	
-	var _socketTestComponent = __webpack_require__(/*! ./components/socket-test/socket-test.component.js */ 342);
+	var _socketTestComponent = __webpack_require__(/*! ./components/socket-test/socket-test.component.js */ 347);
 	
 	var _socketTestComponent2 = _interopRequireDefault(_socketTestComponent);
 	
-<<<<<<< HEAD
-	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 342);
+	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 349);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
-	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 343);
+	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 350);
 	
 	var _browseComponent2 = _interopRequireDefault(_browseComponent);
 	
-	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 344);
+	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 351);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
-	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 345);
+	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 352);
 	
 	var _genresComponent2 = _interopRequireDefault(_genresComponent);
 	
-	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 346);
+	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 353);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	
-	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 347);
-=======
-	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 344);
-	
-	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
-	
-	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 345);
-	
-	var _browseComponent2 = _interopRequireDefault(_browseComponent);
-	
-	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 346);
-	
-	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
-	
-	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 347);
-	
-	var _genresComponent2 = _interopRequireDefault(_genresComponent);
-	
-	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 348);
-	
-	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
-	
-	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 349);
->>>>>>> master
+	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 354);
 	
 	var _artistsComponent2 = _interopRequireDefault(_artistsComponent);
 	
-	var _authService = __webpack_require__(/*! ./services/authService */ 333);
+	var _authService = __webpack_require__(/*! ./services/authService */ 338);
 	
 	var _authService2 = _interopRequireDefault(_authService);
 	
@@ -42813,9 +42789,9 @@
 
 /***/ },
 /* 11 */
-/*!**************************************!*\
-  !*** ./~/auth0-js/~/qs/lib/index.js ***!
-  \**************************************/
+/*!***************************!*\
+  !*** ./~/qs/lib/index.js ***!
+  \***************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42833,9 +42809,9 @@
 
 /***/ },
 /* 12 */
-/*!******************************************!*\
-  !*** ./~/auth0-js/~/qs/lib/stringify.js ***!
-  \******************************************/
+/*!*******************************!*\
+  !*** ./~/qs/lib/stringify.js ***!
+  \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43029,9 +43005,9 @@
 
 /***/ },
 /* 13 */
-/*!**************************************!*\
-  !*** ./~/auth0-js/~/qs/lib/utils.js ***!
-  \**************************************/
+/*!***************************!*\
+  !*** ./~/qs/lib/utils.js ***!
+  \***************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43218,9 +43194,9 @@
 
 /***/ },
 /* 14 */
-/*!****************************************!*\
-  !*** ./~/auth0-js/~/qs/lib/formats.js ***!
-  \****************************************/
+/*!*****************************!*\
+  !*** ./~/qs/lib/formats.js ***!
+  \*****************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43245,9 +43221,9 @@
 
 /***/ },
 /* 15 */
-/*!**************************************!*\
-  !*** ./~/auth0-js/~/qs/lib/parse.js ***!
-  \**************************************/
+/*!***************************!*\
+  !*** ./~/qs/lib/parse.js ***!
+  \***************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89295,7 +89271,7 @@
 	
 	var _leftPanel2 = _interopRequireDefault(_leftPanel);
 	
-	__webpack_require__(/*! ./styles/sass/left-panel.scss */ 350);
+	__webpack_require__(/*! ./styles/sass/left-panel.scss */ 331);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -89306,7 +89282,7 @@
 	    scope: {},
 	    controller: function controller($scope) {
 	      var image = document.createElement('img');
-	      image.src = __webpack_require__(/*! ./styles/imgs/circle-shape-outline.svg */ 354);
+	      image.src = __webpack_require__(/*! ./styles/imgs/circle-shape-outline.svg */ 335);
 	      $scope.circle = image.src;
 	    }
 	  };
@@ -89314,617 +89290,6 @@
 
 /***/ },
 /* 331 */
-/*!*****************************************************************!*\
-  !*** ./src/components/landing-page/landing-page-view-tmpl.html ***!
-  \*****************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n    <h1>Musikbox</h1>\n    <button class=\"btn btn-primary\" ng-click=\"$ctrl.authService.login()\">Log In</button>\n</div>\n";
-
-/***/ },
-/* 332 */
-/*!*************************************************************!*\
-  !*** ./src/components/landing-page/landingPageComponent.js ***!
-  \*************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _authService = __webpack_require__(/*! ./../../services/authService */ 333);
-	
-	var _authService2 = _interopRequireDefault(_authService);
-	
-	var _landingPageViewTmpl = __webpack_require__(/*! ./landing-page-view-tmpl.html */ 331);
-	
-	var _landingPageViewTmpl2 = _interopRequireDefault(_landingPageViewTmpl);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function landingPageCtrl(authService) {
-	
-	  var landingPage = this;
-	
-	  landingPage.authService = authService;
-	}
-	
-	var landingPageComponent = {
-	  template: _landingPageViewTmpl2.default,
-	  controller: landingPageCtrl
-	};
-	
-	exports.default = landingPageComponent;
-
-/***/ },
-/* 333 */
-/*!*************************************!*\
-  !*** ./src/services/authService.js ***!
-  \*************************************/
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	function authService($rootScope, $state, lock, authManager) {
-	
-	  var userProfile = JSON.parse(localStorage.getItem('profile')) || {};
-	
-	  function login() {
-	    lock.show();
-	  }
-	
-	  // Logging out just requires removing the user's
-	  // id_token and profile
-	  function logout() {
-	    localStorage.removeItem('id_token');
-	    localStorage.removeItem('profile');
-	    authManager.unauthenticate();
-	    userProfile = {};
-	    $state.go('landing-page');
-	  }
-	
-	  // Set up the logic for when a user authenticates
-	  // This method is called from app.run.js
-	  function registerAuthenticationListener() {
-	    lock.on('authenticated', function (authResult) {
-	      localStorage.setItem('id_token', authResult.idToken);
-	      authManager.authenticate();
-	
-	      lock.getProfile(authResult.idToken, function (error, profile) {
-	        if (error) {
-	          console.log(error);
-	        }
-	        localStorage.setItem('profile', JSON.stringify(profile));
-	        $rootScope.$broadcast('userProfileSet', profile);
-	
-	        console.log('Authenticated! token: ', authResult.idToken, 'profile: ', profile);
-	
-	        $state.go('genres-view', { profile: profile });
-	      });
-	    });
-	  }
-	
-	  return {
-	    userProfile: userProfile,
-	    login: login,
-	    logout: logout,
-	    registerAuthenticationListener: registerAuthenticationListener
-	  };
-	}
-	
-	exports.default = authService;
-
-/***/ },
-/* 334 */
-/*!*************************************************!*\
-  !*** ./src/components/main/main-view-tmpl.html ***!
-  \*************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div ng-if=\"!$ctrl.isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"$ctrl.isAuthenticated\">\n    <left-panel-dir></left-panel-dir>\n    <p>Thank you for logging in!</p>\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
-
-/***/ },
-/* 335 */
-/*!**********************************************!*\
-  !*** ./src/components/main/mainComponent.js ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _authService = __webpack_require__(/*! ./../../services/authService */ 333);
-	
-	var _authService2 = _interopRequireDefault(_authService);
-	
-	var _mainViewTmpl = __webpack_require__(/*! ./main-view-tmpl.html */ 334);
-	
-	var _mainViewTmpl2 = _interopRequireDefault(_mainViewTmpl);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function mainCtrl($rootScope, authService) {
-	
-	  var main = this;
-	
-	  main.authService = authService;
-	  main.isAuthenticated = $rootScope.isAuthenticated;
-	}
-	
-	var mainComponent = {
-	  template: _mainViewTmpl2.default,
-	  controller: mainCtrl
-	};
-	
-	exports.default = mainComponent;
-
-/***/ },
-/* 336 */
-/*!*******************************************************!*\
-  !*** ./src/components/channel/channel-view-tmpl.html ***!
-  \*******************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n    <h1>Channel view</h1>\n    {{ $ctrl.test }}\n</div>\n";
-
-/***/ },
-/* 337 */
-/*!****************************************************!*\
-  !*** ./src/components/channel/channelComponent.js ***!
-  \****************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _channelViewTmpl = __webpack_require__(/*! ./channel-view-tmpl.html */ 336);
-	
-	var _channelViewTmpl2 = _interopRequireDefault(_channelViewTmpl);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function channelCtrl() {
-	  var channel = this;
-	
-	  channel.test = "This is a test for channel Components!!!";
-	}
-	
-	var channelComponent = {
-	  template: _channelViewTmpl2.default,
-	  controller: channelCtrl
-	};
-	
-	exports.default = channelComponent;
-
-/***/ },
-/* 338 */
-/*!***************************************************!*\
-  !*** ./src/components/genre/genre-view-tmpl.html ***!
-  \***************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n    <h1>Genre (Pop)</h1>\n    {{ $ctrl.test }}\n</div>\n";
-
-/***/ },
-/* 339 */
-/*!************************************************!*\
-  !*** ./src/components/genre/genreComponent.js ***!
-  \************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _genreViewTmpl = __webpack_require__(/*! ./genre-view-tmpl.html */ 338);
-	
-	var _genreViewTmpl2 = _interopRequireDefault(_genreViewTmpl);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function genreCtrl() {
-	  var genre = this;
-	
-	  genre.test = "This is a test for genre pop Components!!";
-	}
-	
-	var genreComponent = {
-	  template: _genreViewTmpl2.default,
-	  controller: genreCtrl
-	};
-	
-	exports.default = genreComponent;
-
-/***/ },
-/* 340 */
-/*!*************************************************************************!*\
-  !*** ./src/components/account-settings/account-settings-view-tmpl.html ***!
-  \*************************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n    <h1> account settings</h1>\n    {{$ctrl.test}}\n</div>\n";
-
-/***/ },
-/* 341 */
-/*!*********************************************************************!*\
-  !*** ./src/components/account-settings/accountSettingsComponent.js ***!
-  \*********************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	      value: true
-	});
-	
-	var _accountSettingsViewTmpl = __webpack_require__(/*! ./account-settings-view-tmpl.html */ 340);
-	
-	var _accountSettingsViewTmpl2 = _interopRequireDefault(_accountSettingsViewTmpl);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var accountSettingsComponent = {
-	      template: _accountSettingsViewTmpl2.default,
-	      controller: function controller() {
-	            this.test = "Testing Account components";
-	      }
-	};
-	
-	exports.default = accountSettingsComponent;
-
-/***/ },
-/* 342 */
-/*!*************************************************************!*\
-  !*** ./src/components/socket-test/socket-test.component.js ***!
-  \*************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-<<<<<<< HEAD
-	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 341);
-=======
-	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 343);
->>>>>>> master
-	
-	var _socketTestViewTmpl2 = _interopRequireDefault(_socketTestViewTmpl);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function socketTestCtrl($scope) {
-	    var _this = this;
-	
-	    var socket = io.connect();
-	
-	    this.users = [];
-	    this.recordings = [];
-	    this.user_id = '58196bc83a5bd823fca47594';
-	    this.channel_id = '5818046d2643fcff7ad9aea1';
-	    this.channel;
-	    this.channelStatus;
-	
-	    this.saveRecording = function (recording) {
-	        if (recording) {
-	            var data = {
-	                recording: recording,
-	                channel_id: _this.channel_id
-	            };
-	            socket.emit('save recording', data);
-	        }
-	    };
-	
-	    this.deleteRecording = function (recordingId) {
-	        if (recordingId) {
-	            var data = {
-	                recording_id: recordingId,
-	                channel_id: _this.channel_id
-	            };
-	            socket.emit('delete recording', data);
-	        }
-	    };
-	
-	    this.updateRecording = function (recording) {
-	        if (recording) {
-	            var data = {
-	                recording: recording,
-	                channel_id: _this.channel_id
-	            };
-	            socket.emit('update recording', data);
-	        }
-	    };
-	
-	    socket.on('get recording', function (data) {
-	        _this.recordings.push(data);
-	        $scope.$apply();
-	    });
-	
-	    /*****************************************************/
-	
-	    this.sendAndSaveMessage = function (message) {
-	        if (message) {
-	            var data = {
-	                message: message,
-	                channel_id: _this.channel_id
-	            };
-	            socket.emit('send and save message', data);
-	        }
-	    };
-	
-	    this.updateMessage = function (message_id, message_update) {
-	        if (message_id && message_update) {
-	            var data = {
-	                message_update: message_update,
-	                message_id: message_id,
-	                channel_id: _this.channel_id
-	            };
-	            console.log(data);
-	            socket.emit('update message', data);
-	        }
-	    };
-	
-	    this.deleteMessage = function (messageId) {
-	        if (messageId) {
-	            var data = {
-	                message_id: messageId,
-	                channel_id: _this.channel_id
-	            };
-	            socket.emit('delete message', data);
-	        }
-	    };
-	
-	    /**************************************************/
-	
-	    this.enterChannel = function (channel_id, user_id) {
-	        // if ( channel_id && user_id ) {
-	        var data = {
-	            user_id: _this.user_id,
-	            channel_id: _this.channel_id
-	        };
-	        socket.emit('enter channel', data);
-	        // }
-	    };
-	
-	    this.leaveChannel = function (channel_id, user_id) {
-	        // if ( channel_id && user_id ) {
-	        var data = {
-	            user_id: _this.user_id,
-	            channel_id: _this.channel_id
-	        };
-	        socket.emit('leave channel', data);
-	        // }
-	    };
-	
-	    this.subscribeToChannel = function (channel_id, user_id) {
-	        // if ( channel_id && user_id ) {
-	        var data = {
-	            user_id: _this.user_id,
-	            channel_id: _this.channel_id
-	        };
-	        socket.emit('subscribe to channel', data);
-	        // }
-	    };
-	
-	    this.unsubscribeFromChannel = function (channel_id, user_id) {
-	        // if ( channel_id && user_id ) {
-	        var data = {
-	            user_id: _this.user_id,
-	            channel_id: _this.channel_id
-	        };
-	        socket.emit('unsubscribe from channel', data);
-	        // }
-	    };
-	
-	    socket.on('get channel', function (data) {
-	        _this.channel = data;
-	        $scope.$apply();
-	    });
-	
-	    socket.on('get status of channel', function (data) {
-	        _this.channelStatus = data;
-	        $scope.$apply();
-	    });
-	}
-	
-	var socketTestComponent = {
-	    template: _socketTestViewTmpl2.default,
-	    controller: socketTestCtrl
-	};
-	
-	exports.default = socketTestComponent;
-
-/***/ },
-<<<<<<< HEAD
-/* 341 */
-=======
-/* 343 */
->>>>>>> master
-/*!***************************************************************!*\
-  !*** ./src/components/socket-test/socket-test-view-tmpl.html ***!
-  \***************************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<h1 style=\"text-align: center\">Musikbox socket functions</h1>\n\n<main style=\"display: flex; justify-content: space-around\">\n    <div>\n        <h2>Channel data</h2>\n        <div ng-repeat=\"( key, value ) in $ctrl.channel\">\n            {{ key }} : {{ value }}\n        </div>\n\n        <h2>Channel status</h2>\n        <div>{{ $ctrl.channelStatus }}</div>\n    </div>\n\n    <div>\n        <h3>Channel functions</h3>\n        <input type=\"text\" placeholder=\"channel id\" ng-model=\"channel._id\">\n        <br />\n        <input type=\"text\" placeholder=\"user id\" ng-model=\"user._id\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.enterChannel( channel._id, user._id )\" value=\"Enter\">\n        <input type=\"submit\" ng-click=\"$ctrl.leaveChannel( channel._id, user._id )\" value=\"Leave\">\n        <input type=\"submit\" ng-click=\"$ctrl.subscribeToChannel( channel._id, user._id )\" value=\"Subscribe\">\n        <input type=\"submit\" ng-click=\"$ctrl.unsubscribeFromChannel( channel._id, user._id )\" value=\"Unsubscribe\">\n\n\n        <hr />\n\n        <h3>Recording functions</h3>\n        <input type=\"text\" ng-model=\"recording_id\" placeholder=\"recording id\">\n        <br />\n        <input type=\"text\" ng-model=\"recording.cloudUrl\" placeholder=\"cloud URL\">\n        <br />\n        <textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\" placeholder=\"recording description\"></textarea>\n        <br />\n        <input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n        <input type=\"submit\" value=\"Update recording\" ng-click=\"$ctrl.updateRecording( { _id: recording_id, description: recording.description } )\">\n        <input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording_id )\">\n\n        <hr />\n\n        <h3>Message functions</h3>\n        <input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n        <br />\n        <input type=\"text\" ng-model=\"message.type\" placeholder=\"message type\">\n        <br/>\n        <input type=\"text\" ng-model=\"message.content\" placeholder=\"message content\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.sendAndSaveMessage( message )\" value=\"Send and save message\">\n        <input type=\"submit\" ng-click=\"$ctrl.updateMessage( message_id, { content: message.content } )\" value=\"Update message\">\n        <input type=\"submit\" ng-click=\"$ctrl.deleteMessage( message_id )\" value=\"Delete message\">\n\n        <hr />\n    </div>\n</main>\n";
-
-/***/ },
-<<<<<<< HEAD
-/* 342 */
-=======
-/* 344 */
->>>>>>> master
-/*!*****************************************************!*\
-  !*** ./src/components/browse/browse-view-tmpl.html ***!
-  \*****************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n    <h1>Browse channels</h1>\n    {{ $ctrl.test }}\n\n    <ui-view></ui-view>\n</div>\n";
-
-/***/ },
-<<<<<<< HEAD
-/* 343 */
-=======
-/* 345 */
->>>>>>> master
-/*!**************************************************!*\
-  !*** ./src/components/browse/browseComponent.js ***!
-  \**************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-<<<<<<< HEAD
-	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 342);
-=======
-	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 344);
->>>>>>> master
-	
-	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function browseCtrl() {
-	  var browse = this;
-	
-	  browse.test = "This is a test for browse components!!!";
-	}
-	
-	var browseComponent = {
-	  template: _browseViewTmpl2.default,
-	  controller: browseCtrl
-	};
-	
-	exports.default = browseComponent;
-
-/***/ },
-<<<<<<< HEAD
-/* 344 */
-=======
-/* 346 */
->>>>>>> master
-/*!*****************************************************!*\
-  !*** ./src/components/genres/genres-view-tmpl.html ***!
-  \*****************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n    <h1>Genres</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
-
-/***/ },
-<<<<<<< HEAD
-/* 345 */
-=======
-/* 347 */
->>>>>>> master
-/*!**************************************************!*\
-  !*** ./src/components/genres/genresComponent.js ***!
-  \**************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-<<<<<<< HEAD
-	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 344);
-=======
-	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 346);
->>>>>>> master
-	
-	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function genresCtrl() {
-	  var genres = this;
-	
-	  genres.test = "This is a test for Genresss Components!!";
-	}
-	
-	var genresComponent = {
-	  template: _genresViewTmpl2.default,
-	  controller: genresCtrl
-	};
-	
-	exports.default = genresComponent;
-
-/***/ },
-<<<<<<< HEAD
-/* 346 */
-=======
-/* 348 */
->>>>>>> master
-/*!*******************************************************!*\
-  !*** ./src/components/artists/artists-view-tmpl.html ***!
-  \*******************************************************/
-/***/ function(module, exports) {
-
-	module.exports = "<div>\n    <h1>Artists</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
-
-/***/ },
-<<<<<<< HEAD
-/* 347 */
-=======
-/* 349 */
->>>>>>> master
-/*!****************************************************!*\
-  !*** ./src/components/artists/artistsComponent.js ***!
-  \****************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-<<<<<<< HEAD
-	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 346);
-=======
-	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 348);
->>>>>>> master
-	
-	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function artistsCtrl() {
-	  var artists = this;
-	
-	  artists.test = "This is test for artists components!!!";
-	}
-	
-	var artistsComponent = {
-	  template: _artistsViewTmpl2.default,
-	  controller: artistsCtrl
-	};
-	
-	exports.default = artistsComponent;
-
-<<<<<<< HEAD
-=======
-/***/ },
-/* 350 */
 /*!**************************************************************!*\
   !*** ./src/directives/leftPanel/styles/sass/left-panel.scss ***!
   \**************************************************************/
@@ -89933,10 +89298,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./left-panel.scss */ 351);
+	var content = __webpack_require__(/*! !./../../../../../~/css-loader!./../../../../../~/sass-loader!./left-panel.scss */ 332);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 353)(content, {});
+	var update = __webpack_require__(/*! ./../../../../../~/style-loader/addStyles.js */ 334)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -89953,13 +89318,13 @@
 	}
 
 /***/ },
-/* 351 */
+/* 332 */
 /*!*********************************************************************************************!*\
   !*** ./~/css-loader!./~/sass-loader!./src/directives/leftPanel/styles/sass/left-panel.scss ***!
   \*********************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 352)();
+	exports = module.exports = __webpack_require__(/*! ./../../../../../~/css-loader/lib/css-base.js */ 333)();
 	// imports
 	
 	
@@ -89970,7 +89335,7 @@
 
 
 /***/ },
-/* 352 */
+/* 333 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -90029,7 +89394,7 @@
 
 
 /***/ },
-/* 353 */
+/* 334 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -90284,7 +89649,7 @@
 
 
 /***/ },
-/* 354 */
+/* 335 */
 /*!***********************************************************************!*\
   !*** ./src/directives/leftPanel/styles/imgs/circle-shape-outline.svg ***!
   \***********************************************************************/
@@ -90292,7 +89657,571 @@
 
 	module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNDM4LjUzMyA0MzguNTMzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MzguNTMzIDQzOC41MzM7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNNDA5LjEzMywxMDkuMjAzYy0xOS42MDgtMzMuNTkyLTQ2LjIwNS02MC4xODktNzkuNzk4LTc5Ljc5NkMyOTUuNzM2LDkuODAxLDI1OS4wNTgsMCwyMTkuMjczLDAgICBjLTM5Ljc4MSwwLTc2LjQ3LDkuODAxLTExMC4wNjMsMjkuNDA3Yy0zMy41OTUsMTkuNjA0LTYwLjE5Miw0Ni4yMDEtNzkuOCw3OS43OTZDOS44MDEsMTQyLjgsMCwxNzkuNDg5LDAsMjE5LjI2NyAgIGMwLDM5Ljc4LDkuODA0LDc2LjQ2MywyOS40MDcsMTEwLjA2MmMxOS42MDcsMzMuNTkyLDQ2LjIwNCw2MC4xODksNzkuNzk5LDc5Ljc5OGMzMy41OTcsMTkuNjA1LDcwLjI4MywyOS40MDcsMTEwLjA2MywyOS40MDcgICBzNzYuNDctOS44MDIsMTEwLjA2NS0yOS40MDdjMzMuNTkzLTE5LjYwMiw2MC4xODktNDYuMjA2LDc5Ljc5NS03OS43OThjMTkuNjAzLTMzLjU5NiwyOS40MDMtNzAuMjg0LDI5LjQwMy0xMTAuMDYyICAgQzQzOC41MzMsMTc5LjQ4NSw0MjguNzMyLDE0Mi43OTUsNDA5LjEzMywxMDkuMjAzeiBNMzUzLjc0MiwyOTcuMjA4Yy0xMy44OTQsMjMuNzkxLTMyLjczNiw0Mi42MzMtNTYuNTI3LDU2LjUzNCAgIGMtMjMuNzkxLDEzLjg5NC00OS43NzEsMjAuODM0LTc3Ljk0NSwyMC44MzRjLTI4LjE2NywwLTU0LjE0OS02Ljk0LTc3Ljk0My0yMC44MzRjLTIzLjc5MS0xMy45MDEtNDIuNjMzLTMyLjc0My01Ni41MjctNTYuNTM0ICAgYy0xMy44OTctMjMuNzkxLTIwLjg0My00OS43NzItMjAuODQzLTc3Ljk0MWMwLTI4LjE3MSw2Ljk0OS01NC4xNTIsMjAuODQzLTc3Ljk0M2MxMy44OTEtMjMuNzkxLDMyLjczOC00Mi42MzcsNTYuNTI3LTU2LjUzICAgYzIzLjc5MS0xMy44OTUsNDkuNzcyLTIwLjg0LDc3Ljk0My0yMC44NGMyOC4xNzMsMCw1NC4xNTQsNi45NDUsNzcuOTQ1LDIwLjg0YzIzLjc5MSwxMy44OTQsNDIuNjM0LDMyLjczOSw1Ni41MjcsNTYuNTMgICBjMTMuODk1LDIzLjc5MSwyMC44MzgsNDkuNzcyLDIwLjgzOCw3Ny45NDNDMzc0LjU4LDI0Ny40MzYsMzY3LjYzNywyNzMuNDE3LDM1My43NDIsMjk3LjIwOHoiIGZpbGw9IiNlY2ViZTQiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"
 
->>>>>>> master
+/***/ },
+/* 336 */
+/*!*****************************************************************!*\
+  !*** ./src/components/landing-page/landing-page-view-tmpl.html ***!
+  \*****************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <h1>Musikbox</h1>\n    <button class=\"btn btn-primary\" ng-click=\"$ctrl.authService.login()\">Log In</button>\n</div>\n";
+
+/***/ },
+/* 337 */
+/*!*************************************************************!*\
+  !*** ./src/components/landing-page/landingPageComponent.js ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _authService = __webpack_require__(/*! ./../../services/authService */ 338);
+	
+	var _authService2 = _interopRequireDefault(_authService);
+	
+	var _landingPageViewTmpl = __webpack_require__(/*! ./landing-page-view-tmpl.html */ 336);
+	
+	var _landingPageViewTmpl2 = _interopRequireDefault(_landingPageViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function landingPageCtrl(authService) {
+	
+	  var landingPage = this;
+	
+	  landingPage.authService = authService;
+	}
+	
+	var landingPageComponent = {
+	  template: _landingPageViewTmpl2.default,
+	  controller: landingPageCtrl
+	};
+	
+	exports.default = landingPageComponent;
+
+/***/ },
+/* 338 */
+/*!*************************************!*\
+  !*** ./src/services/authService.js ***!
+  \*************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	function authService($rootScope, $state, lock, authManager) {
+	
+	  var userProfile = JSON.parse(localStorage.getItem('profile')) || {};
+	
+	  function login() {
+	    lock.show();
+	  }
+	
+	  // Logging out just requires removing the user's
+	  // id_token and profile
+	  function logout() {
+	    localStorage.removeItem('id_token');
+	    localStorage.removeItem('profile');
+	    authManager.unauthenticate();
+	    userProfile = {};
+	    $state.go('landing-page');
+	  }
+	
+	  // Set up the logic for when a user authenticates
+	  // This method is called from app.run.js
+	  function registerAuthenticationListener() {
+	    lock.on('authenticated', function (authResult) {
+	      localStorage.setItem('id_token', authResult.idToken);
+	      authManager.authenticate();
+	
+	      lock.getProfile(authResult.idToken, function (error, profile) {
+	        if (error) {
+	          console.log(error);
+	        }
+	        localStorage.setItem('profile', JSON.stringify(profile));
+	        $rootScope.$broadcast('userProfileSet', profile);
+	
+	        console.log('Authenticated! token: ', authResult.idToken, 'profile: ', profile);
+	
+	        $state.go('genres-view', { profile: profile });
+	      });
+	    });
+	  }
+	
+	  return {
+	    userProfile: userProfile,
+	    login: login,
+	    logout: logout,
+	    registerAuthenticationListener: registerAuthenticationListener
+	  };
+	}
+	
+	exports.default = authService;
+
+/***/ },
+/* 339 */
+/*!*************************************************!*\
+  !*** ./src/components/main/main-view-tmpl.html ***!
+  \*************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div ng-if=\"!$ctrl.isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"$ctrl.isAuthenticated\">\n    <left-panel-dir></left-panel-dir>\n    <p>Thank you for logging in!</p>\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
+
+/***/ },
+/* 340 */
+/*!**********************************************!*\
+  !*** ./src/components/main/mainComponent.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _authService = __webpack_require__(/*! ./../../services/authService */ 338);
+	
+	var _authService2 = _interopRequireDefault(_authService);
+	
+	var _mainViewTmpl = __webpack_require__(/*! ./main-view-tmpl.html */ 339);
+	
+	var _mainViewTmpl2 = _interopRequireDefault(_mainViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function mainCtrl($rootScope, authService) {
+	
+	  var main = this;
+	
+	  main.authService = authService;
+	  main.isAuthenticated = $rootScope.isAuthenticated;
+	}
+	
+	var mainComponent = {
+	  template: _mainViewTmpl2.default,
+	  controller: mainCtrl
+	};
+	
+	exports.default = mainComponent;
+
+/***/ },
+/* 341 */
+/*!*******************************************************!*\
+  !*** ./src/components/channel/channel-view-tmpl.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <h1>Channel view</h1>\n    {{ $ctrl.test }}\n</div>\n";
+
+/***/ },
+/* 342 */
+/*!****************************************************!*\
+  !*** ./src/components/channel/channelComponent.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _channelViewTmpl = __webpack_require__(/*! ./channel-view-tmpl.html */ 341);
+	
+	var _channelViewTmpl2 = _interopRequireDefault(_channelViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function channelCtrl() {
+	  var channel = this;
+	
+	  channel.test = "This is a test for channel Components!!!";
+	}
+	
+	var channelComponent = {
+	  template: _channelViewTmpl2.default,
+	  controller: channelCtrl
+	};
+	
+	exports.default = channelComponent;
+
+/***/ },
+/* 343 */
+/*!***************************************************!*\
+  !*** ./src/components/genre/genre-view-tmpl.html ***!
+  \***************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <h1>Genre (Pop)</h1>\n    {{ $ctrl.test }}\n</div>\n";
+
+/***/ },
+/* 344 */
+/*!************************************************!*\
+  !*** ./src/components/genre/genreComponent.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _genreViewTmpl = __webpack_require__(/*! ./genre-view-tmpl.html */ 343);
+	
+	var _genreViewTmpl2 = _interopRequireDefault(_genreViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function genreCtrl() {
+	  var genre = this;
+	
+	  genre.test = "This is a test for genre pop Components!!";
+	}
+	
+	var genreComponent = {
+	  template: _genreViewTmpl2.default,
+	  controller: genreCtrl
+	};
+	
+	exports.default = genreComponent;
+
+/***/ },
+/* 345 */
+/*!*************************************************************************!*\
+  !*** ./src/components/account-settings/account-settings-view-tmpl.html ***!
+  \*************************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <h1> account settings</h1>\n    {{$ctrl.test}}\n</div>\n";
+
+/***/ },
+/* 346 */
+/*!*********************************************************************!*\
+  !*** ./src/components/account-settings/accountSettingsComponent.js ***!
+  \*********************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	      value: true
+	});
+	
+	var _accountSettingsViewTmpl = __webpack_require__(/*! ./account-settings-view-tmpl.html */ 345);
+	
+	var _accountSettingsViewTmpl2 = _interopRequireDefault(_accountSettingsViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var accountSettingsComponent = {
+	      template: _accountSettingsViewTmpl2.default,
+	      controller: function controller() {
+	            this.test = "Testing Account components";
+	      }
+	};
+	
+	exports.default = accountSettingsComponent;
+
+/***/ },
+/* 347 */
+/*!*************************************************************!*\
+  !*** ./src/components/socket-test/socket-test.component.js ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 348);
+	
+	var _socketTestViewTmpl2 = _interopRequireDefault(_socketTestViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function socketTestCtrl($scope) {
+	    var _this = this;
+	
+	    var socket = io.connect();
+	
+	    this.users = [];
+	    this.recordings = [];
+	    this.user_id = '58196bc83a5bd823fca47594';
+	    this.channel_id = '5818046d2643fcff7ad9aea1';
+	    this.channel;
+	    this.channelStatus;
+	
+	    this.saveRecording = function (recording) {
+	        if (recording) {
+	            var data = {
+	                recording: recording,
+	                channel_id: _this.channel_id
+	            };
+	            socket.emit('save recording', data);
+	        }
+	    };
+	
+	    this.deleteRecording = function (recordingId) {
+	        if (recordingId) {
+	            var data = {
+	                recording_id: recordingId,
+	                channel_id: _this.channel_id
+	            };
+	            socket.emit('delete recording', data);
+	        }
+	    };
+	
+	    this.updateRecording = function (recording) {
+	        if (recording) {
+	            var data = {
+	                recording: recording,
+	                channel_id: _this.channel_id
+	            };
+	            socket.emit('update recording', data);
+	        }
+	    };
+	
+	    socket.on('get recording', function (data) {
+	        _this.recordings.push(data);
+	        $scope.$apply();
+	    });
+	
+	    /*****************************************************/
+	
+	    this.sendAndSaveMessage = function (message) {
+	        if (message) {
+	            var data = {
+	                message: message,
+	                channel_id: _this.channel_id
+	            };
+	            socket.emit('send and save message', data);
+	        }
+	    };
+	
+	    this.updateMessage = function (message_id, message_update) {
+	        if (message_id && message_update) {
+	            var data = {
+	                message_update: message_update,
+	                message_id: message_id,
+	                channel_id: _this.channel_id
+	            };
+	            console.log(data);
+	            socket.emit('update message', data);
+	        }
+	    };
+	
+	    this.deleteMessage = function (messageId) {
+	        if (messageId) {
+	            var data = {
+	                message_id: messageId,
+	                channel_id: _this.channel_id
+	            };
+	            socket.emit('delete message', data);
+	        }
+	    };
+	
+	    /**************************************************/
+	
+	    this.enterChannel = function (channel_id, user_id) {
+	        // if ( channel_id && user_id ) {
+	        var data = {
+	            user_id: _this.user_id,
+	            channel_id: _this.channel_id
+	        };
+	        socket.emit('enter channel', data);
+	        // }
+	    };
+	
+	    this.leaveChannel = function (channel_id, user_id) {
+	        // if ( channel_id && user_id ) {
+	        var data = {
+	            user_id: _this.user_id,
+	            channel_id: _this.channel_id
+	        };
+	        socket.emit('leave channel', data);
+	        // }
+	    };
+	
+	    this.subscribeToChannel = function (channel_id, user_id) {
+	        // if ( channel_id && user_id ) {
+	        var data = {
+	            user_id: _this.user_id,
+	            channel_id: _this.channel_id
+	        };
+	        socket.emit('subscribe to channel', data);
+	        // }
+	    };
+	
+	    this.unsubscribeFromChannel = function (channel_id, user_id) {
+	        // if ( channel_id && user_id ) {
+	        var data = {
+	            user_id: _this.user_id,
+	            channel_id: _this.channel_id
+	        };
+	        socket.emit('unsubscribe from channel', data);
+	        // }
+	    };
+	
+	    socket.on('get channel', function (data) {
+	        _this.channel = data;
+	        $scope.$apply();
+	    });
+	
+	    socket.on('get status of channel', function (data) {
+	        _this.channelStatus = data;
+	        $scope.$apply();
+	    });
+	}
+	
+	var socketTestComponent = {
+	    template: _socketTestViewTmpl2.default,
+	    controller: socketTestCtrl
+	};
+	
+	exports.default = socketTestComponent;
+
+/***/ },
+/* 348 */
+/*!***************************************************************!*\
+  !*** ./src/components/socket-test/socket-test-view-tmpl.html ***!
+  \***************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<h1 style=\"text-align: center\">Musikbox socket functions</h1>\n\n<main style=\"display: flex; justify-content: space-around\">\n    <div>\n        <h2>Channel data</h2>\n        <div ng-repeat=\"( key, value ) in $ctrl.channel\">\n            {{ key }} : {{ value }}\n        </div>\n\n        <h2>Channel status</h2>\n        <div>{{ $ctrl.channelStatus }}</div>\n    </div>\n\n    <div>\n        <h3>Channel functions</h3>\n        <input type=\"text\" placeholder=\"channel id\" ng-model=\"channel._id\">\n        <br />\n        <input type=\"text\" placeholder=\"user id\" ng-model=\"user._id\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.enterChannel( channel._id, user._id )\" value=\"Enter\">\n        <input type=\"submit\" ng-click=\"$ctrl.leaveChannel( channel._id, user._id )\" value=\"Leave\">\n        <input type=\"submit\" ng-click=\"$ctrl.subscribeToChannel( channel._id, user._id )\" value=\"Subscribe\">\n        <input type=\"submit\" ng-click=\"$ctrl.unsubscribeFromChannel( channel._id, user._id )\" value=\"Unsubscribe\">\n\n\n        <hr />\n\n        <h3>Recording functions</h3>\n        <input type=\"text\" ng-model=\"recording_id\" placeholder=\"recording id\">\n        <br />\n        <input type=\"text\" ng-model=\"recording.cloudUrl\" placeholder=\"cloud URL\">\n        <br />\n        <textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\" placeholder=\"recording description\"></textarea>\n        <br />\n        <input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n        <input type=\"submit\" value=\"Update recording\" ng-click=\"$ctrl.updateRecording( { _id: recording_id, description: recording.description } )\">\n        <input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording_id )\">\n\n        <hr />\n\n        <h3>Message functions</h3>\n        <input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n        <br />\n        <input type=\"text\" ng-model=\"message.type\" placeholder=\"message type\">\n        <br/>\n        <input type=\"text\" ng-model=\"message.content\" placeholder=\"message content\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.sendAndSaveMessage( message )\" value=\"Send and save message\">\n        <input type=\"submit\" ng-click=\"$ctrl.updateMessage( message_id, { content: message.content } )\" value=\"Update message\">\n        <input type=\"submit\" ng-click=\"$ctrl.deleteMessage( message_id )\" value=\"Delete message\">\n\n        <hr />\n    </div>\n</main>\n";
+
+/***/ },
+/* 349 */
+/*!*****************************************************!*\
+  !*** ./src/components/browse/browse-view-tmpl.html ***!
+  \*****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <h1>Browse channels</h1>\n    {{ $ctrl.test }}\n\n    <ui-view></ui-view>\n</div>\n";
+
+/***/ },
+/* 350 */
+/*!**************************************************!*\
+  !*** ./src/components/browse/browseComponent.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 349);
+	
+	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function browseCtrl() {
+	  var browse = this;
+	
+	  browse.test = "This is a test for browse components!!!";
+	}
+	
+	var browseComponent = {
+	  template: _browseViewTmpl2.default,
+	  controller: browseCtrl
+	};
+	
+	exports.default = browseComponent;
+
+/***/ },
+/* 351 */
+/*!*****************************************************!*\
+  !*** ./src/components/genres/genres-view-tmpl.html ***!
+  \*****************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <h1>Genres</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
+
+/***/ },
+/* 352 */
+/*!**************************************************!*\
+  !*** ./src/components/genres/genresComponent.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 351);
+	
+	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function genresCtrl() {
+	  var genres = this;
+	
+	  genres.test = "This is a test for Genresss Components!!";
+	}
+	
+	var genresComponent = {
+	  template: _genresViewTmpl2.default,
+	  controller: genresCtrl
+	};
+	
+	exports.default = genresComponent;
+
+/***/ },
+/* 353 */
+/*!*******************************************************!*\
+  !*** ./src/components/artists/artists-view-tmpl.html ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <h1>Artists</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
+
+/***/ },
+/* 354 */
+/*!****************************************************!*\
+  !*** ./src/components/artists/artistsComponent.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 353);
+	
+	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function artistsCtrl() {
+	  var artists = this;
+	
+	  artists.test = "This is test for artists components!!!";
+	}
+	
+	var artistsComponent = {
+	  template: _artistsViewTmpl2.default,
+	  controller: artistsCtrl
+	};
+	
+	exports.default = artistsComponent;
+
 /***/ }
 /******/ ]);
 //# sourceMappingURL=bundle.js.map
