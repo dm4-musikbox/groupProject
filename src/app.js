@@ -1,5 +1,6 @@
 import angular from "angular";
 import uiRouter from "angular-ui-router";
+
 import "auth0-lock";
 import "angular-lock";
 import "angular-jwt";
@@ -43,7 +44,7 @@ import artistsComponent from './components/artists/artistsComponent.js';
 
 import authService from "./services/authService";
 
-angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
+angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter] )
     .run( function( $rootScope, $state, $timeout, authService, authManager, jwtHelper, lock ) {
       	lock.interceptHash();
       	$rootScope.authService = authService;
