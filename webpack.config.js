@@ -38,6 +38,11 @@ module.exports = {
             }
         ]
     }
+    ,plugins: [
+    new webpack.ProvidePlugin({
+      'window.jQuery': 'jquery'
+    })
+  ],
     , resolve: {
         extensions: [ "", ".js", ".css" ]
     }
