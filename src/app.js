@@ -4,6 +4,9 @@ import "auth0-lock";
 import "angular-lock";
 import "angular-jwt";
 
+import leftPanelHtml from './directives/leftPanel/left-panel.html'
+import leftPanelDir from './directives/leftPanel/left-panel-dir.js'
+
 import landingPageViewHtml from './components/landing-page/landing-page-view-tmpl.html';
 import landingPageComponent from './components/landing-page/landingPageComponent.js';
 
@@ -71,6 +74,7 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
     .component( "genresComponent", genresComponent )
     .component( "artistsComponent", artistsComponent )
     .component( "accountSettingsComponent", accountSettingsComponent )
+    .directive( "leftPanelDir", leftPanelDir )
     .config( function( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider ) {
       	lockProvider.init( {
       		clientID: "dxHLsmsTwuygusXFm9bs1e2bqbF91EK3"
@@ -140,4 +144,4 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
                     , parent: 'browse-view'
                     , component: "artistsComponent"
                   } )
-    } )
+    } );

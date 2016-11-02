@@ -4,7 +4,7 @@
   box-sizing: border-box; }
   * .left-panel {
     width: 220px;
-    background-color: #342F32;
+    background   -color: #342F32;
     height: 100vh;
     position: relative; }
     * .left-panel .lp-title-sect {
