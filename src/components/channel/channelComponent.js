@@ -1,4 +1,5 @@
 import channelViewHtml from './channel-view-tmpl.html';
+import './styles/channel.scss'
 
 function channelCtrl() {
     const channel = this;

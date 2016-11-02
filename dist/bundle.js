@@ -89402,7 +89402,7 @@
   \*************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-if=\"!$ctrl.isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"$ctrl.isAuthenticated\">\n    <left-panel-dir></left-panel-dir>\n    <p>Thank you for logging in!</p>\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
+	module.exports = "<div ng-if=\"!$ctrl.isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"$ctrl.isAuthenticated\">\n    <left-panel-dir></left-panel-dir>\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
 
 /***/ },
 /* 335 */
@@ -89449,7 +89449,7 @@
   \*******************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n    <h1>Channel view</h1>\n    {{ $ctrl.test }}\n</div>\n";
+	module.exports = "<div>\n  <main class=\"channel-view\">\n    <p>Channel view</p>\n    {{ $ctrl.test }}\n  </main>\n</div>\n";
 
 /***/ },
 /* 337 */
@@ -89458,7 +89458,7 @@
   \****************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -89467,6 +89467,8 @@
 	var _channelViewTmpl = __webpack_require__(/*! ./channel-view-tmpl.html */ 336);
 	
 	var _channelViewTmpl2 = _interopRequireDefault(_channelViewTmpl);
+	
+	__webpack_require__(/*! ./styles/channel.scss */ 356);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -90221,6 +90223,53 @@
 /***/ function(module, exports) {
 
 	module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNDM4LjUzMyA0MzguNTMzIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MzguNTMzIDQzOC41MzM7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNNDA5LjEzMywxMDkuMjAzYy0xOS42MDgtMzMuNTkyLTQ2LjIwNS02MC4xODktNzkuNzk4LTc5Ljc5NkMyOTUuNzM2LDkuODAxLDI1OS4wNTgsMCwyMTkuMjczLDAgICBjLTM5Ljc4MSwwLTc2LjQ3LDkuODAxLTExMC4wNjMsMjkuNDA3Yy0zMy41OTUsMTkuNjA0LTYwLjE5Miw0Ni4yMDEtNzkuOCw3OS43OTZDOS44MDEsMTQyLjgsMCwxNzkuNDg5LDAsMjE5LjI2NyAgIGMwLDM5Ljc4LDkuODA0LDc2LjQ2MywyOS40MDcsMTEwLjA2MmMxOS42MDcsMzMuNTkyLDQ2LjIwNCw2MC4xODksNzkuNzk5LDc5Ljc5OGMzMy41OTcsMTkuNjA1LDcwLjI4MywyOS40MDcsMTEwLjA2MywyOS40MDcgICBzNzYuNDctOS44MDIsMTEwLjA2NS0yOS40MDdjMzMuNTkzLTE5LjYwMiw2MC4xODktNDYuMjA2LDc5Ljc5NS03OS43OThjMTkuNjAzLTMzLjU5NiwyOS40MDMtNzAuMjg0LDI5LjQwMy0xMTAuMDYyICAgQzQzOC41MzMsMTc5LjQ4NSw0MjguNzMyLDE0Mi43OTUsNDA5LjEzMywxMDkuMjAzeiBNMzUzLjc0MiwyOTcuMjA4Yy0xMy44OTQsMjMuNzkxLTMyLjczNiw0Mi42MzMtNTYuNTI3LDU2LjUzNCAgIGMtMjMuNzkxLDEzLjg5NC00OS43NzEsMjAuODM0LTc3Ljk0NSwyMC44MzRjLTI4LjE2NywwLTU0LjE0OS02Ljk0LTc3Ljk0My0yMC44MzRjLTIzLjc5MS0xMy45MDEtNDIuNjMzLTMyLjc0My01Ni41MjctNTYuNTM0ICAgYy0xMy44OTctMjMuNzkxLTIwLjg0My00OS43NzItMjAuODQzLTc3Ljk0MWMwLTI4LjE3MSw2Ljk0OS01NC4xNTIsMjAuODQzLTc3Ljk0M2MxMy44OTEtMjMuNzkxLDMyLjczOC00Mi42MzcsNTYuNTI3LTU2LjUzICAgYzIzLjc5MS0xMy44OTUsNDkuNzcyLTIwLjg0LDc3Ljk0My0yMC44NGMyOC4xNzMsMCw1NC4xNTQsNi45NDUsNzcuOTQ1LDIwLjg0YzIzLjc5MSwxMy44OTQsNDIuNjM0LDMyLjczOSw1Ni41MjcsNTYuNTMgICBjMTMuODk1LDIzLjc5MSwyMC44MzgsNDkuNzcyLDIwLjgzOCw3Ny45NDNDMzc0LjU4LDI0Ny40MzYsMzY3LjYzNywyNzMuNDE3LDM1My43NDIsMjk3LjIwOHoiIGZpbGw9IiNlY2ViZTQiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"
+
+/***/ },
+/* 355 */,
+/* 356 */
+/*!****************************************************!*\
+  !*** ./src/components/channel/styles/channel.scss ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../../~/css-loader!./../../../../~/sass-loader!./channel.scss */ 357);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../../~/style-loader/addStyles.js */ 353)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./channel.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./channel.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 357 */
+/*!***********************************************************************************!*\
+  !*** ./~/css-loader!./~/sass-loader!./src/components/channel/styles/channel.scss ***!
+  \***********************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../../~/css-loader/lib/css-base.js */ 352)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".channel-view {\n  background-color: #ECEBE4;\n  height: 100vh; }\n", ""]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);
