@@ -23,12 +23,10 @@ function authService( $rootScope, $state, lock, authManager ) {
           localStorage.setItem('id_token', authResult.idToken);
           authManager.authenticate();
 
-
           lock.getProfile(authResult.idToken, function(error, profile) {
             if (error) {
               console.log(error);
             }
-
             localStorage.setItem('profile', JSON.stringify(profile));
             $rootScope.$broadcast('userProfileSet', profile);
 

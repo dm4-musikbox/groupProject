@@ -1,0 +1,7 @@
+<h1>Save recording</h1>
+
+<textarea name="name" rows="8" cols="40" ng-model="recording"></textarea>
+
+<input type="submit" value="Send" ng-click="$ctrl.saveRecording( recording )">
+
+<div>{{ $ctrl.recordings }}</div>

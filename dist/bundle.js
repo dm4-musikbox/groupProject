@@ -103,27 +103,31 @@
 	
 	var _accountSettingsComponent2 = _interopRequireDefault(_accountSettingsComponent);
 	
-	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 340);
+	var _socketTestComponent = __webpack_require__(/*! ./components/socket-test/socket-test.component.js */ 340);
+	
+	var _socketTestComponent2 = _interopRequireDefault(_socketTestComponent);
+	
+	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 342);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
-	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 341);
+	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 343);
 	
 	var _browseComponent2 = _interopRequireDefault(_browseComponent);
 	
-	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 342);
+	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 344);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
-	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 343);
+	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 345);
 	
 	var _genresComponent2 = _interopRequireDefault(_genresComponent);
 	
-	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 344);
+	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 346);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	
-	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 345);
+	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 347);
 	
 	var _artistsComponent2 = _interopRequireDefault(_artistsComponent);
 	
@@ -150,7 +154,7 @@
 	      }
 	    }
 	  });
-	}).service("authService", _authService2.default).component("landingPageComponent", _landingPageComponent2.default).component("mainComponent", _mainComponent2.default).component("channelComponent", _channelComponent2.default).component("genreComponent", _genreComponent2.default).component("browseComponent", _browseComponent2.default).component("genresComponent", _genresComponent2.default).component("artistsComponent", _artistsComponent2.default).component("accountSettingsComponent", _accountSettingsComponent2.default).config(function ($httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider) {
+	}).service("authService", _authService2.default).component('socketTestComponent', _socketTestComponent2.default).component("landingPageComponent", _landingPageComponent2.default).component("mainComponent", _mainComponent2.default).component("channelComponent", _channelComponent2.default).component("genreComponent", _genreComponent2.default).component("browseComponent", _browseComponent2.default).component("genresComponent", _genresComponent2.default).component("artistsComponent", _artistsComponent2.default).component("accountSettingsComponent", _accountSettingsComponent2.default).config(function ($httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider) {
 	  lockProvider.init({
 	    clientID: "dxHLsmsTwuygusXFm9bs1e2bqbF91EK3",
 	    domain: "musikbox.auth0.com",
@@ -180,8 +184,9 @@
 	  $urlRouterProvider.otherwise("/");
 	
 	  $stateProvider.state("landing-page", {
-	    url: "/",
-	    component: 'landingPageComponent'
+	    url: "/"
+	    // , component: 'socketTestComponent'
+	    , component: 'landingPageComponent'
 	  }).state("main-view", {
 	    url: "/main",
 	    component: 'mainComponent'
@@ -89318,7 +89323,6 @@
 	        if (error) {
 	          console.log(error);
 	        }
-	
 	        localStorage.setItem('profile', JSON.stringify(profile));
 	        $rootScope.$broadcast('userProfileSet', profile);
 	
@@ -89346,7 +89350,7 @@
   \*************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-if=\"!isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"isAuthenticated\">\n    <p>Thank you for logging in!</p>\n\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
+	module.exports = "<div ng-if=\"!$ctrl.isAuthenticated\">\n    <p>You are not yet authenticated. <a ui-sref=\"landing-page\">Log in.</a></p>\n</div>\n\n<div ng-if=\"$ctrl.isAuthenticated\">\n    <p>Thank you for logging in!</p>\n\n    <ui-view></ui-view>\n\n    <button ng-click=\"$ctrl.authService.logout()\">Log Out</button>\n</div>\n";
 
 /***/ },
 /* 333 */
@@ -89371,11 +89375,12 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function mainCtrl(authService) {
+	function mainCtrl($rootScope, authService) {
 	
 	  var main = this;
 	
 	  main.authService = authService;
+	  main.isAuthenticated = $rootScope.isAuthenticated;
 	}
 	
 	var mainComponent = {
@@ -89506,6 +89511,61 @@
 
 /***/ },
 /* 340 */
+/*!*************************************************************!*\
+  !*** ./src/components/socket-test/socket-test.component.js ***!
+  \*************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 341);
+	
+	var _socketTestViewTmpl2 = _interopRequireDefault(_socketTestViewTmpl);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function socketTestCtrl($scope) {
+	    var _this = this;
+	
+	    var socket = io.connect();
+	
+	    this.users = [];
+	    this.recordings = [];
+	
+	    this.saveRecordings = function (recording) {
+	        if (recording) {
+	            socket.emit('save recording', recording);
+	        }
+	    };
+	
+	    socket.on('new recording', function (data) {
+	        _this.recordings.push(data);
+	        $scope.$apply();
+	    });
+	}
+	
+	var socketTestComponent = {
+	    template: _socketTestViewTmpl2.default,
+	    controller: socketTestCtrl
+	};
+	
+	exports.default = socketTestComponent;
+
+/***/ },
+/* 341 */
+/*!***************************************************************!*\
+  !*** ./src/components/socket-test/socket-test-view-tmpl.html ***!
+  \***************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<h1>Save recording</h1>\n\n<textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording\"></textarea>\n\n<input type=\"submit\" value=\"Send\" ng-click=\"$ctrl.saveRecording( recording )\">\n\n<div>{{ $ctrl.recordings }}</div>\n";
+
+/***/ },
+/* 342 */
 /*!*****************************************************!*\
   !*** ./src/components/browse/browse-view-tmpl.html ***!
   \*****************************************************/
@@ -89514,7 +89574,7 @@
 	module.exports = "<div>\n    <h1>Browse channels</h1>\n    {{ $ctrl.test }}\n\n    <ui-view></ui-view>\n</div>\n";
 
 /***/ },
-/* 341 */
+/* 343 */
 /*!**************************************************!*\
   !*** ./src/components/browse/browseComponent.js ***!
   \**************************************************/
@@ -89526,7 +89586,7 @@
 	  value: true
 	});
 	
-	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 340);
+	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 342);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
@@ -89546,7 +89606,7 @@
 	exports.default = browseComponent;
 
 /***/ },
-/* 342 */
+/* 344 */
 /*!*****************************************************!*\
   !*** ./src/components/genres/genres-view-tmpl.html ***!
   \*****************************************************/
@@ -89555,7 +89615,7 @@
 	module.exports = "<div>\n    <h1>Genres</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
 
 /***/ },
-/* 343 */
+/* 345 */
 /*!**************************************************!*\
   !*** ./src/components/genres/genresComponent.js ***!
   \**************************************************/
@@ -89567,7 +89627,7 @@
 	  value: true
 	});
 	
-	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 342);
+	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 344);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
@@ -89587,7 +89647,7 @@
 	exports.default = genresComponent;
 
 /***/ },
-/* 344 */
+/* 346 */
 /*!*******************************************************!*\
   !*** ./src/components/artists/artists-view-tmpl.html ***!
   \*******************************************************/
@@ -89596,7 +89656,7 @@
 	module.exports = "<div>\n    <h1>Artists</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
 
 /***/ },
-/* 345 */
+/* 347 */
 /*!****************************************************!*\
   !*** ./src/components/artists/artistsComponent.js ***!
   \****************************************************/
@@ -89608,7 +89668,7 @@
 	  value: true
 	});
 	
-	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 344);
+	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 346);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	

@@ -21,6 +21,7 @@ module.exports = {
 			if ( err ) {
 				return res.status( 500 ).json( err );
 			}
+			console.log( recording );
 			Channel.findByIdAndUpdate( req.params.channel_id, { $push: { channelRecordings: recording._id } }, { new: true }, ( err, channel ) => {
 				if ( err ) {
 					return res.status( 500 ).json( err );
