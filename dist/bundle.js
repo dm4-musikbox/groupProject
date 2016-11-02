@@ -107,27 +107,43 @@
 	
 	var _socketTestComponent2 = _interopRequireDefault(_socketTestComponent);
 	
-	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 341);
+	var _browseViewTmpl = __webpack_require__(/*! ./components/browse/browse-view-tmpl.html */ 342);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
-	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 342);
+	var _browseComponent = __webpack_require__(/*! ./components/browse/browseComponent.js */ 343);
 	
 	var _browseComponent2 = _interopRequireDefault(_browseComponent);
 	
-	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 343);
+	var _navbar = __webpack_require__(/*! ./components/browse/navbar/navbar.html */ 348);
+	
+	var _navbar2 = _interopRequireDefault(_navbar);
+	
+	var _navBarComponent = __webpack_require__(/*! ./components/browse/navbar/navBarComponent.js */ 349);
+	
+	var _navBarComponent2 = _interopRequireDefault(_navBarComponent);
+	
+	var _grid = __webpack_require__(/*! ./components/browse/grid/grid.html */ 350);
+	
+	var _grid2 = _interopRequireDefault(_grid);
+	
+	var _gridComponent = __webpack_require__(/*! ./components/browse/grid/gridComponent.js */ 351);
+	
+	var _gridComponent2 = _interopRequireDefault(_gridComponent);
+	
+	var _genresViewTmpl = __webpack_require__(/*! ./components/genres/genres-view-tmpl.html */ 344);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
-	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 344);
+	var _genresComponent = __webpack_require__(/*! ./components/genres/genresComponent.js */ 345);
 	
 	var _genresComponent2 = _interopRequireDefault(_genresComponent);
 	
-	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 345);
+	var _artistsViewTmpl = __webpack_require__(/*! ./components/artists/artists-view-tmpl.html */ 346);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	
-	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 346);
+	var _artistsComponent = __webpack_require__(/*! ./components/artists/artistsComponent.js */ 347);
 	
 	var _artistsComponent2 = _interopRequireDefault(_artistsComponent);
 	
@@ -154,7 +170,7 @@
 	      }
 	    }
 	  });
-	}).service("authService", _authService2.default).component('socketTestComponent', _socketTestComponent2.default).component("landingPageComponent", _landingPageComponent2.default).component("mainComponent", _mainComponent2.default).component("channelComponent", _channelComponent2.default).component("genreComponent", _genreComponent2.default).component("browseComponent", _browseComponent2.default).component("genresComponent", _genresComponent2.default).component("artistsComponent", _artistsComponent2.default).component("accountSettingsComponent", _accountSettingsComponent2.default).config(function ($httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider) {
+	}).service("authService", _authService2.default).component('socketTestComponent', _socketTestComponent2.default).component("landingPageComponent", _landingPageComponent2.default).component("mainComponent", _mainComponent2.default).component("channelComponent", _channelComponent2.default).component("genreComponent", _genreComponent2.default).component("browseComponent", _browseComponent2.default).component("browseNavbarComponent", _navBarComponent2.default).component("browseGridComponent", _gridComponent2.default).component("genresComponent", _genresComponent2.default).component("artistsComponent", _artistsComponent2.default).component("accountSettingsComponent", _accountSettingsComponent2.default).config(function ($httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider) {
 	  lockProvider.init({
 	    clientID: "dxHLsmsTwuygusXFm9bs1e2bqbF91EK3",
 	    domain: "musikbox.auth0.com",
@@ -184,9 +200,9 @@
 	  $urlRouterProvider.otherwise("/");
 	
 	  $stateProvider.state("landing-page", {
-	    url: "/",
-	    component: 'socketTestComponent'
-	    // , component: 'landingPageComponent'
+	    url: "/"
+	    // , component: 'socketTestComponent'
+	    , component: 'landingPageComponent'
 	  }).state("main-view", {
 	    url: "/main",
 	    component: 'mainComponent'
@@ -89522,7 +89538,7 @@
 	    value: true
 	});
 	
-	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 347);
+	var _socketTestViewTmpl = __webpack_require__(/*! ./socket-test-view-tmpl.html */ 341);
 	
 	var _socketTestViewTmpl2 = _interopRequireDefault(_socketTestViewTmpl);
 	
@@ -89671,15 +89687,24 @@
 
 /***/ },
 /* 341 */
+/*!***************************************************************!*\
+  !*** ./src/components/socket-test/socket-test-view-tmpl.html ***!
+  \***************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<h1 style=\"text-align: center\">Musikbox socket functions</h1>\n\n<main style=\"display: flex; justify-content: space-around\">\n    <div>\n        <h2>Channel data</h2>\n        <div ng-repeat=\"( key, value ) in $ctrl.channel\">\n            {{ key }} : {{ value }}\n        </div>\n\n        <h2>Channel status</h2>\n        <div>{{ $ctrl.channelStatus }}</div>\n    </div>\n\n    <div>\n        <h3>Channel functions</h3>\n        <input type=\"text\" placeholder=\"channel id\" ng-model=\"channel._id\">\n        <br />\n        <input type=\"text\" placeholder=\"user id\" ng-model=\"user._id\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.enterChannel( channel._id, user._id )\" value=\"Enter\">\n        <input type=\"submit\" ng-click=\"$ctrl.leaveChannel( channel._id, user._id )\" value=\"Leave\">\n        <input type=\"submit\" ng-click=\"$ctrl.subscribeToChannel( channel._id, user._id )\" value=\"Subscribe\">\n        <input type=\"submit\" ng-click=\"$ctrl.unsubscribeFromChannel( channel._id, user._id )\" value=\"Unsubscribe\">\n\n\n        <hr />\n\n        <h3>Recording functions</h3>\n        <input type=\"text\" ng-model=\"recording_id\" placeholder=\"recording id\">\n        <br />\n        <input type=\"text\" ng-model=\"recording.cloudUrl\" placeholder=\"cloud URL\">\n        <br />\n        <textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\" placeholder=\"recording description\"></textarea>\n        <br />\n        <input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n        <input type=\"submit\" value=\"Update recording\" ng-click=\"$ctrl.updateRecording( { _id: recording_id, description: recording.description } )\">\n        <input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording_id )\">\n\n        <hr />\n\n        <h3>Message functions</h3>\n        <input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n        <br />\n        <input type=\"text\" ng-model=\"message.type\" placeholder=\"message type\">\n        <br/>\n        <input type=\"text\" ng-model=\"message.content\" placeholder=\"message content\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.sendAndSaveMessage( message )\" value=\"Send and save message\">\n        <input type=\"submit\" ng-click=\"$ctrl.updateMessage( message_id, { content: message.content } )\" value=\"Update message\">\n        <input type=\"submit\" ng-click=\"$ctrl.deleteMessage( message_id )\" value=\"Delete message\">\n\n        <hr />\n    </div>\n</main>\n";
+
+/***/ },
+/* 342 */
 /*!*****************************************************!*\
   !*** ./src/components/browse/browse-view-tmpl.html ***!
   \*****************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n    <h1>Browse channels</h1>\n    {{ $ctrl.test }}\n\n    <ui-view></ui-view>\n</div>\n";
+	module.exports = "<div>\n    <h1>Browse channels</h1>\n    {{ $ctrl.test }}\n    <browse-navbar-component></browse-navbar-component>\n    <browse-grid-component></browse-grid-component>\n    <ui-view></ui-view>\n</div>\n";
 
 /***/ },
-/* 342 */
+/* 343 */
 /*!**************************************************!*\
   !*** ./src/components/browse/browseComponent.js ***!
   \**************************************************/
@@ -89691,7 +89716,7 @@
 	  value: true
 	});
 	
-	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 341);
+	var _browseViewTmpl = __webpack_require__(/*! ./browse-view-tmpl.html */ 342);
 	
 	var _browseViewTmpl2 = _interopRequireDefault(_browseViewTmpl);
 	
@@ -89711,7 +89736,7 @@
 	exports.default = browseComponent;
 
 /***/ },
-/* 343 */
+/* 344 */
 /*!*****************************************************!*\
   !*** ./src/components/genres/genres-view-tmpl.html ***!
   \*****************************************************/
@@ -89720,7 +89745,7 @@
 	module.exports = "<div>\n    <h1>Genres</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
 
 /***/ },
-/* 344 */
+/* 345 */
 /*!**************************************************!*\
   !*** ./src/components/genres/genresComponent.js ***!
   \**************************************************/
@@ -89732,7 +89757,7 @@
 	  value: true
 	});
 	
-	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 343);
+	var _genresViewTmpl = __webpack_require__(/*! ./genres-view-tmpl.html */ 344);
 	
 	var _genresViewTmpl2 = _interopRequireDefault(_genresViewTmpl);
 	
@@ -89752,7 +89777,7 @@
 	exports.default = genresComponent;
 
 /***/ },
-/* 345 */
+/* 346 */
 /*!*******************************************************!*\
   !*** ./src/components/artists/artists-view-tmpl.html ***!
   \*******************************************************/
@@ -89761,7 +89786,7 @@
 	module.exports = "<div>\n    <h1>Artists</h1>\n    {{ $ctrl.test }}\n\n</div>\n";
 
 /***/ },
-/* 346 */
+/* 347 */
 /*!****************************************************!*\
   !*** ./src/components/artists/artistsComponent.js ***!
   \****************************************************/
@@ -89773,7 +89798,7 @@
 	  value: true
 	});
 	
-	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 345);
+	var _artistsViewTmpl = __webpack_require__(/*! ./artists-view-tmpl.html */ 346);
 	
 	var _artistsViewTmpl2 = _interopRequireDefault(_artistsViewTmpl);
 	
@@ -89793,13 +89818,86 @@
 	exports.default = artistsComponent;
 
 /***/ },
-/* 347 */
-/*!***************************************************************!*\
-  !*** ./src/components/socket-test/socket-test-view-tmpl.html ***!
-  \***************************************************************/
+/* 348 */
+/*!**************************************************!*\
+  !*** ./src/components/browse/navbar/navbar.html ***!
+  \**************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<h1 style=\"text-align: center\">Musikbox socket functions</h1>\n\n<main style=\"display: flex; justify-content: space-around\">\n    <div>\n        <h2>Channel data</h2>\n        <div ng-repeat=\"( key, value ) in $ctrl.channel\">\n            {{ key }} : {{ value }}\n        </div>\n\n        <h2>Channel status</h2>\n        <div>{{ $ctrl.channelStatus }}</div>\n    </div>\n\n    <div>\n        <h3>Channel functions</h3>\n        <input type=\"text\" placeholder=\"channel id\" ng-model=\"channel._id\">\n        <br />\n        <input type=\"text\" placeholder=\"user id\" ng-model=\"user._id\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.enterChannel( channel._id, user._id )\" value=\"Enter\">\n        <input type=\"submit\" ng-click=\"$ctrl.leaveChannel( channel._id, user._id )\" value=\"Leave\">\n        <input type=\"submit\" ng-click=\"$ctrl.subscribeToChannel( channel._id, user._id )\" value=\"Subscribe\">\n        <input type=\"submit\" ng-click=\"$ctrl.unsubscribeFromChannel( channel._id, user._id )\" value=\"Unsubscribe\">\n\n\n        <hr />\n\n        <h3>Recording functions</h3>\n        <input type=\"text\" ng-model=\"recording_id\" placeholder=\"recording id\">\n        <br />\n        <input type=\"text\" ng-model=\"recording.cloudUrl\" placeholder=\"cloud URL\">\n        <br />\n        <textarea name=\"name\" rows=\"8\" cols=\"40\" ng-model=\"recording.description\" placeholder=\"recording description\"></textarea>\n        <br />\n        <input type=\"submit\" value=\"Save recording\" ng-click=\"$ctrl.saveRecording( recording )\">\n        <input type=\"submit\" value=\"Update recording\" ng-click=\"$ctrl.updateRecording( { _id: recording_id, description: recording.description } )\">\n        <input type=\"submit\" value=\"Delete recording\" ng-click=\"$ctrl.deleteRecording( recording_id )\">\n\n        <hr />\n\n        <h3>Message functions</h3>\n        <input type=\"text\" ng-model=\"message_id\" placeholder=\"message id\">\n        <br />\n        <input type=\"text\" ng-model=\"message.type\" placeholder=\"message type\">\n        <br/>\n        <input type=\"text\" ng-model=\"message.content\" placeholder=\"message content\">\n        <br />\n        <input type=\"submit\" ng-click=\"$ctrl.sendAndSaveMessage( message )\" value=\"Send and save message\">\n        <input type=\"submit\" ng-click=\"$ctrl.updateMessage( message_id, { content: message.content } )\" value=\"Update message\">\n        <input type=\"submit\" ng-click=\"$ctrl.deleteMessage( message_id )\" value=\"Delete message\">\n\n        <hr />\n    </div>\n</main>\n";
+	module.exports = "\n<div class=\"row\">\n   <div class=\"col s12\">\n     <ul class=\"tabs\">\n       <li class=\"tab col s3\"><a class=\"active\" href=\"#test1\">GENRES</a></li>\n       <li class=\"tab col s3\"><a href=\"#test2\">ARTISTS</a></li>\n       <li class=\"tab col s3\"><a href=\"#test3\">POPULAR</a></li>\n       <li class=\"tab col s3 disabled\"><a href=\"test4\"></a></li>\n       <li class=\"tab col s3 disabled\"><a href=\"test5\"></a></li>\n       <li class=\"tab col s3 disabled\"><a href=\"test6\"></a></li>\n     </ul>\n   </div>\n   <div id=\"test1\" class=\"col s12\"></div>\n   <div id=\"test2\" class=\"col s12\"></div>\n   <div id=\"test3\" class=\"col s12\"></div>\n</div>\n\n<!--\n  .row {\n  background-color: #181818;\n  max-width: 1030px;\n  margin-bottom: 0;\n\n}\n  .row .col .s12{\n  border-bottom: .5px solid grey;\n}\n  .tabs {\n  #181818\n}\n  .tabs .tab a {\n  color: white;\n}\n\n  .tabs .tab a:hover{\n  color: #10fbfb;\n}\n.tabs .indicator{\nbackground-color: #10fbfb;\n}\n-->\n";
+
+/***/ },
+/* 349 */
+/*!*********************************************************!*\
+  !*** ./src/components/browse/navbar/navBarComponent.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _navbar = __webpack_require__(/*! ./navbar.html */ 348);
+	
+	var _navbar2 = _interopRequireDefault(_navbar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function browseNavbarCtrl() {
+	  var navbar = this;
+	
+	  navbar.test = "browse navbar";
+	}
+	
+	var browseNavbarComponent = {
+	  template: _navbar2.default,
+	  controller: browseNavbarCtrl
+	};
+	
+	exports.default = browseNavbarComponent;
+
+/***/ },
+/* 350 */
+/*!**********************************************!*\
+  !*** ./src/components/browse/grid/grid.html ***!
+  \**********************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n  <h1>GRID GOES HERE</h1>\n</div>\n";
+
+/***/ },
+/* 351 */
+/*!*****************************************************!*\
+  !*** ./src/components/browse/grid/gridComponent.js ***!
+  \*****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _grid = __webpack_require__(/*! ./grid.html */ 350);
+	
+	var _grid2 = _interopRequireDefault(_grid);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function browseGridCtrl() {
+	  var grid = this;
+	
+	  grid.test = "grid";
+	}
+	
+	var browseGridComponent = {
+	  template: _grid2.default,
+	  controller: browseGridCtrl
+	};
+	
+	exports.default = browseGridComponent;
 
 /***/ }
 /******/ ]);

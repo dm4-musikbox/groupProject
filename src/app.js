@@ -24,11 +24,19 @@ import socketTestComponent from './components/socket-test/socket-test.component.
 import browseViewHtml from './components/browse/browse-view-tmpl.html';
 import browseComponent from './components/browse/browseComponent.js';
 
+import browseNavbarHtml from './components/browse/navbar/navbar.html';
+import browseNavbarComponent from './components/browse/navbar/navBarComponent.js';
+
+import browseGridHtml from './components/browse/grid/grid.html';
+import browseGridComponent from './components/browse/grid/gridComponent.js'
+
 import genresViewHtml from './components/genres/genres-view-tmpl.html';
 import genresComponent from './components/genres/genresComponent.js';
 
 import artistsViewHtml from './components/artists/artists-view-tmpl.html';
 import artistsComponent from './components/artists/artistsComponent.js';
+
+
 
 import authService from "./services/authService";
 
@@ -58,6 +66,8 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
     .component( "channelComponent", channelComponent )
     .component( "genreComponent", genreComponent )
     .component( "browseComponent", browseComponent )
+    .component( "browseNavbarComponent", browseNavbarComponent )
+    .component( "browseGridComponent", browseGridComponent )
     .component( "genresComponent", genresComponent )
     .component( "artistsComponent", artistsComponent )
     .component( "accountSettingsComponent", accountSettingsComponent )
@@ -93,8 +103,8 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", uiRouter ] )
       	$stateProvider
                   .state( "landing-page", {
                   	url: "/"
-                    , component: 'socketTestComponent'
-                  	// , component: 'landingPageComponent'
+                    // , component: 'socketTestComponent'
+                  	, component: 'landingPageComponent'
                   } )
                   .state( "main-view", {
                   	url: "/main"
