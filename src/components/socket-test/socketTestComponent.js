@@ -12,8 +12,8 @@ function socketTestCtrl( $scope, recordingService, socketFactory ) {
         recordingService.updateRecording( recording, this.channelId );
     };
 
-    this.deleteRecording = ( recordingId ) => {
-        recordingService.deleteRecording( recordingId, this.channelId );
+    this.deleteRecording = ( recording ) => {
+        recordingService.deleteRecording( recording, this.channelId );
     };
 
     /*****************************************************/

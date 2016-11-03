@@ -33,10 +33,14 @@
 
         <input type="text" ng-model="recording._id" placeholder="recording id">
         <br />
+        <input type="text" ng-model="recording.s3Bucket" placeholder="recording s3Bucket">
+        <br />
+        <input type="text" ng-model="recording.s3Key" placeholder="recording s3Key">
+        <br />
         <textarea name="name" rows="8" cols="40" ng-model="recording.description" placeholder="recording description"></textarea>
         <br />
         <input type="submit" value="Update recording" ng-click="$ctrl.updateRecording( recording )">
-        <input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( recording._id )">
+        <input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( recording )">
 
         <hr />
 

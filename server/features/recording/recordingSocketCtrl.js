@@ -102,14 +102,17 @@ module.exports = {
     }
 
     , deleteRecording( data, io ) {
-        const recordingId = data.recordingId;
+        const recording = data.recording;
         const channelId = data.channelId;
 
-        Recording.findByIdAndRemove( recordingId, ( err, response ) => {
+        Recording.findByIdAndRemove( recording._id, ( err, response ) => {
           if ( err ) {
              throw err;
           }
-          Channel.findByIdAndUpdate( channelId, { $pull: { channelRecordings: recordingId } }, { new: true } )
+
+          deleteFromS3( recording );
+
+          Channel.findByIdAndUpdate( channelId, { $pull: { channelRecordings: recording._id } }, { new: true } )
               .populate( 'channelMessages channelRecordings' )
               .exec( ( err, channel ) => {
                   if ( err ) {
@@ -120,6 +123,25 @@ module.exports = {
         } );
     }
 
+}
+
+function deleteFromS3( recording ) {
+    console.log( 'deleteFromS3 firing, recording is ', recording );
+    let s3obj = new AWS.S3();
+
+    const params = {
+        Bucket: recording.s3Bucket
+        , Key: recording.s3Key
+    };
+
+    s3obj.deleteObject( params, ( err, data ) => {
+        if ( err ) {
+            console.log( 's3 delete encountered an error: ', err, err.stack );
+        }
+        else {
+            console.log( 's3 delete worked: ', data );
+        }
+    } );
 }
 
 function updateChannel( channelId, io, update ) {
