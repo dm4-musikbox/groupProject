@@ -70,6 +70,6 @@ module.exports = {
 };
 
 function getUpdatedChannel( channel_id, io, channel ) {
-    io.to( channel_id ).emit( 'get channel', channel );
-    // io.sockets.emit( 'get channel', channel );
+    // io.to( channel_id ).emit( 'get channel', channel );
+    io.sockets.emit( 'get channel', channel );
 }

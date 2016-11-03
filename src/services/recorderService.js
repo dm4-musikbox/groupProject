@@ -5,12 +5,14 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
         , audioCtx
         , source
         , recorder
-        , currentUser;
+        , currentUser
+        , currentChannel;
 
     const client = new BinaryClient( 'ws://localhost:9000' );
 
-    this.setCurrentUser = ( userId ) => {
+    this.setCurrentUserAndChannel = ( userId, channelId ) => {
         currentUser = userId;
+        currentChannel = channelId;
     };
 
     this.startRecording = () => {
@@ -26,19 +28,8 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
         }
     };
 
-    this.stopRecording = () => {
-        isRecording = false;
-        $window.audioStream.end();
-        audioCtx.close();
-    };
-
-    this.restartRecording = () => {
-        this.stopRecording();
-        $state.go( $state.current.name, $state.params, { reload: true } );
-    }
-
     function initializeRecorder ( stream ) {
-        $window.audioStream = client.createStream( { user_id: currentUser, type: 'audio' } );
+        $window.audioStream = client.createStream( { userId: currentUser, channelId: currentChannel, type: 'audio' } );
         isRecording = true;
         const bufferSize = 2048;
         audioCtx = new ( $window.AudioContext || $window.webkitAudioContext )();
@@ -53,11 +44,11 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
         alert('Error capturing audio.');
     }
 
-    function recorderProcess( e ) {
+    function recorderProcess( audioEvent ) {
         if ( !isRecording ) {
             return;
         }
-        let left = e.inputBuffer.getChannelData( 0 );
+        let left = audioEvent.inputBuffer.getChannelData( 0 );
         console.log( 'Recording' );
         $window.audioStream.write( convertFloat32ToInt16( left ) );
     }
@@ -70,6 +61,22 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
          }
          return buf.buffer;
      }
+
+     this.stopRecording = () => {
+         isRecording = false;
+         $window.audioStream.end();
+         audioCtx
+             .close()
+             .then( () => console.log( 'audioContext closed!' ) );
+     };
+
+     this.uploadRecordingToS3 = ( recordingData, userId ) => {
+         let data = {
+             recording: recordingData
+             , userId: userId
+         };
+         socketFactory.emit( 'upload recording to S3', data );
+     };
 }
 
 export default recorderService;

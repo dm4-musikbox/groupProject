@@ -1,6 +1,6 @@
 import socketTestHtml from './socket-test-view-tmpl.html';
 
-function socketTestCtrl( $scope, socketFactory ) {
+function socketTestCtrl( $scope, recordingService, socketFactory ) {
     this.users = [];
     this.recordings = [];
     this.userId = '58196bc83a5bd823fca47594';
@@ -8,39 +8,13 @@ function socketTestCtrl( $scope, socketFactory ) {
     this.channel;
     this.channelStatus;
 
-    this.saveRecording = recording => {
-        if ( recording ) {
-            let data = {
-                recording: recording
-                , channel_id: this.channelId
-            };
-            socketFactory.emit( 'save recording', data );
-        }
+    this.updateRecording = ( recording ) => {
+        recordingService.updateRecording( recording, this.channelId );
     };
 
-    this.deleteRecording = recordingId => {
-        if ( recordingId ) {
-            let data = {
-                recording_id: recordingId
-                , channel_id: this.channelId
-            };
-            socketFactory.emit( 'delete recording', data );
-        }
+    this.deleteRecording = ( recordingId ) => {
+        recordingService.deleteRecording( recordingId, this.channelId );
     };
-
-    this.updateRecording = recording => {
-        if ( recording ) {
-            let data = {
-                recording
-                , channel_id: this.channelId
-            };
-            socketFactory.emit( 'update recording', data );
-        }
-    };
-
-    socketFactory.on( 'get recording', data => {
-        this.recordings.push( data );
-    } );
 
     /*****************************************************/
 
@@ -128,28 +102,7 @@ function socketTestCtrl( $scope, socketFactory ) {
     } );
 
     /**************************************************/
-    socketFactory.on( 'get recording preview', data => {
-        this.recordingData = data;
-    } );
 
-    socketFactory.on( 'get S3 data', data => {
-        this.s3Data = data;
-        this.data = {
-            userId: this.userId
-            , channelId: this.channelId
-            , recording: {
-                createdBy: this.userId
-                , description: ''
-                , s3ETag: data.ETag
-                , s3Location: data.Location
-                , s3Bucket: data.Bucket
-                , s3Key: data.Key
-            }
-        }
-        socketFactory.emit( 'save recording', this.data );
-    } );
-
-    /**************************************************/
     $scope.$on( '$destroy', event => {
         socket.removeAllListeners();
     } );

@@ -1,5 +1,11 @@
 <h1>Recorder</h1>
 
-<button ng-click="$ctrl.setCurrentUser( $ctrl.userId ); $ctrl.startRecording()">Start Recording</button>
+<button ng-click="$ctrl.startRecording()">Start Recording</button>
 <button ng-click="$ctrl.stopRecording()">Stop Recording</button>
 <button ng-click="$ctrl.uploadRecordingToS3()">Upload to Cloud</button>
+
+<h3>Recording data</h3>
+<div>{{ $ctrl.recordingData }}</div>
+
+<h3>S3 data</h3>
+<div>{{ $ctrl.s3Data }}</div>

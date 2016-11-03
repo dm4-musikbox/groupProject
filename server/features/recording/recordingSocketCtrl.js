@@ -11,7 +11,10 @@ const Channel = require( "./../channel/Channel" );
 
 module.exports = {
     createRecording ( io, client, stream, meta ) {
-        mp3FileName = meta.user_id + '-preview.mp3';
+        console.log( 'createRecording firing!' );
+
+        channelId = meta.channelId;
+        mp3FileName = meta.userId + '-preview.mp3';
         mp3FilePath = '/server/user-audio-previews/' + mp3FileName;
 
         let streamClone = require( 'stream' );
@@ -30,8 +33,7 @@ module.exports = {
         .pipe( fs.createWriteStream( path.resolve( 'server/user-audio-previews', mp3FileName ) ) )
         .on( 'close', () => {
             console.log( 'Done encoding to mp3' );
-            // client.send( { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName }, { type: 'mp3PreviewUrl' } );
-            // io.to( channel_id ).emit( 'get channel', channel );
+            // io.to( channelId ).emit( 'get recording preview', { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' } );
             io.sockets.emit( 'get recording preview', { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' } );
           } );
     }
@@ -39,12 +41,12 @@ module.exports = {
         console.log( 'uploading to S3' );
 
         let s3obj = new AWS.S3();
-        let mp3FileName = data.user_id + '-preview.mp3';
+        let mp3FileName = data.userId + '-preview.mp3';
         let mp3FilePath =  __dirname + '/../../user-audio-previews/' + mp3FileName;
         let body = fs.createReadStream( mp3FilePath );
         const params = {
-            Bucket: 'musikbox-recordings/' + data.user_id
-            , Key: data.user_id + '_' + new Date().toISOString() + '.mp3'
+            Bucket: 'musikbox-recordings/' + data.userId
+            , Key: data.userId + '_' + new Date().toISOString() + '.mp3'
             , Body: body
             , ACL: 'public-read'
         };
@@ -52,13 +54,13 @@ module.exports = {
         s3obj.upload( params )
             .on( 'httpUploadProgress', evt => { console.log( evt ); } )
             .send( ( err, s3Info ) => {
-                console.log( err, s3Info );
                 io.sockets.emit( 'get S3 data', s3Info );
                 // fs.unlink( mp3FilePath );
               } );
     }
     , saveRecording( data, io ) {
         console.log( 'saveRecording firing!', data );
+
         const recordingToSave = data.recording;
         const channelId = data.channelId;
 
@@ -73,22 +75,41 @@ module.exports = {
                     if ( err ) {
                       throw err;
                     }
-                    console.log( 'channel is ', channel );
                     getUpdatedChannel( channel, io );
                 } );
         } );
     }
 
-    , deleteRecording( data, io ) {
-        const recording = data.recording;
-        const channel_id = data.channel_id;
+    , updateRecording( data, io ) {
+      console.log( 'updateRecording firing!' );
 
-        Recording.findByIdAndRemove( data.recording_id, ( err, response ) => {
+      const recording = data.recording;
+      const channelId = data.channelId;
+
+      Recording.findByIdAndUpdate( recording._id, { $set: { description: recording.description } }, { new: true }, ( err, recording ) => {
+          if ( err ) {
+            throw err;
+          }
+          Channel.findById( channelId )
+              .populate( 'channelMessages channelRecordings' )
+              .exec( ( err, channel ) => {
+                  if ( err ) {
+                    throw err;
+                  }
+                  getUpdatedChannel( channel, io );
+              } );
+      } );
+    }
+
+    , deleteRecording( data, io ) {
+        const recordingId = data.recordingId;
+        const channelId = data.channelId;
+
+        Recording.findByIdAndRemove( recordingId, ( err, response ) => {
           if ( err ) {
              throw err;
           }
-          console.log( response );
-          Channel.findByIdAndUpdate( channel_id, { $pull: { channelRecordings: data.recording_id } }, { new: true } )
+          Channel.findByIdAndUpdate( channelId, { $pull: { channelRecordings: recordingId } }, { new: true } )
               .populate( 'channelMessages channelRecordings' )
               .exec( ( err, channel ) => {
                   if ( err ) {
@@ -99,26 +120,12 @@ module.exports = {
         } );
     }
 
-    , updateRecording( data, io ) {
-        Recording.findByIdAndUpdate( data.recording._id, { $set: { description: data.recording.description } }, { new: true }, ( err, recording ) => {
-          if ( err ) {
-              throw err;
-          }
-          Channel.findById( data.channel_id )
-              .populate( 'channelMessages channelRecordings' )
-              .exec( ( err, channel ) => {
-                if ( err ) {
-                  throw err;
-                }
-                getUpdatedChannel( channel, io );
-              } );
-        } );
-    }
 }
 
-function updateChannel( channel_id, io, update ) {
-    console.log( update );
-    Channel.findByIdAndUpdate( channel_id, update, { new: true } )
+function updateChannel( channelId, io, update ) {
+    console.log( 'updateChannel firing!' );
+
+    Channel.findByIdAndUpdate( channelId, update, { new: true } )
         .populate( 'channelMessages channelRecordings' )
         .exec( ( err, channel ) => {
             if ( err ) {
@@ -129,5 +136,6 @@ function updateChannel( channel_id, io, update ) {
 }
 
 function getUpdatedChannel( channel, io ) {
+    io.to( channel._id ).emit( 'get channel', channel );
     io.sockets.emit( 'get channel', channel );
 }

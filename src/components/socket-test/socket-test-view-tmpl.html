@@ -13,12 +13,6 @@
 
         <h2>Channel status</h2>
         <div>{{ $ctrl.channelStatus }}</div>
-
-        <h2>Recording data</h2>
-        <div>{{ $ctrl.recordingData }}</div>
-
-        <h2>S3 data</h2>
-        <div>{{ $ctrl.s3Data }}</div>
     </div>
 
     <div style="width: 40vw">
@@ -37,17 +31,20 @@
 
         <h3>Recording functions</h3>
 
-        <recorder-component user-id="$ctrl.userId" channel-id="$ctrl.channelId"></recorder-component>
-
-        <!-- <input type="text" ng-model="recording_id" placeholder="recording id">
-        <br />
-        <input type="text" ng-model="recording.cloudUrl" placeholder="cloud URL">
+        <input type="text" ng-model="recording._id" placeholder="recording id">
         <br />
         <textarea name="name" rows="8" cols="40" ng-model="recording.description" placeholder="recording description"></textarea>
         <br />
-        <input type="submit" value="Save recording" ng-click="$ctrl.saveRecording( recording )">
-        <input type="submit" value="Update recording" ng-click="$ctrl.updateRecording( { _id: recording_id, description: recording.description } )">
-        <input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( recording_id )"> -->
+        <input type="submit" value="Update recording" ng-click="$ctrl.updateRecording( recording )">
+        <input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( recording._id )">
+
+        <hr />
+
+        <recorder-component
+            channel-id="$ctrl.channelId"
+            user-id="$ctrl.userId"
+        >
+        </recorder-component>
 
         <hr />
 
