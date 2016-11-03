@@ -1,4 +1,5 @@
 import browseNavbarHtml from './navbar.html';
+import './styles/sass/navbar.scss';
 
 function browseNavbarCtrl() {
     const navbar = this;

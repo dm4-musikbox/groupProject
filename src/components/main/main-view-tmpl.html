@@ -4,8 +4,5 @@
 
 <div ng-if="$ctrl.isAuthenticated">
     <left-panel-dir></left-panel-dir>
-    <p>Thank you for logging in!</p>
-    <ui-view></ui-view>
-
-    <button ng-click="$ctrl.authService.logout()">Log Out</button>
+    <ui-view id="ui-float"></ui-view>
 </div>
