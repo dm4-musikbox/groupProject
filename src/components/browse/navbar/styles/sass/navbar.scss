@@ -15,10 +15,13 @@ border-bottom: .5px solid grey;
   background-color: $secondary-color;
 }
 .tabs .tab a {
-color: white;
+color: #646464;
 }
 .tabs .tab a:hover{
-color: #1db954;
+color: white;
+}
+.tabs .tab a.active{
+  color: white;
 }
 .tabs .indicator{
   background-color: #1db954;
@@ -32,3 +35,4 @@ color: #1db954;
   background-color: $secondary-color;
   margin-bottom: 0;
 }
+// #04ffa6
