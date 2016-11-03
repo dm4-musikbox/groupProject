@@ -1,7 +1,37 @@
 $white: #ECEBE4;
+$black: #33312E;
+
+
 
 
 .channel-view{
-  background-color: $white;
+  background-color: white;
   height: 100vh;
+  width: 82.25%;
+  float: left;
+  .top-audio-player{
+    width: 85%;
+    margin-left: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #33312E;
+    #play-button{
+      display: inline-block;
+      .material-icons.md-72{
+        font-size: 72px;
+        cursor: pointer;
+        color: $black;
+      }
+    }
+
+    .waves{
+      width: 750px;
+      display: inline-block;
+      #waveform{
+
+      }
+    }
+  }
+
 }

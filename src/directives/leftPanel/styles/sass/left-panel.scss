@@ -11,7 +11,7 @@
 
   .left-panel {
     float: left;
-    width: 20%;
+    width: 17.75%;
     background-color: $black;
     height: 100vh;
     position: relative;
@@ -22,7 +22,7 @@
       width: auto;
       #lp-title{
         font-size: 28px;
-        color: $white;
+        color: white;
         font-family: $logo-font;
         letter-spacing: 1px;
       }
@@ -39,7 +39,7 @@
         }
         #lp-user-name{
           display: inline-block;
-          color: $white;
+          color: white;
           font-family: $main-font;
         }
       }
