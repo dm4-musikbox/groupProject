@@ -1,22 +1,38 @@
 import recorderHtml from './recorder-component-tmpl.html';
 
-function recorderCtrl( recordingService ) {
+function recorderCtrl( recorderService, socketFactory ) {
+    this.setCurrentUser = ( userId ) => {
+      recorderService.setCurrentUser( userId );
+    };
+
     this.startRecording = () => {
-        return recordingService.startRecording();
+        return recorderService.startRecording();
     };
 
     this.stopRecording = () => {
-        return recordingService.stopRecording();
+        return recorderService.stopRecording();
     };
 
     this.restartRecording = () => {
-        return recordingService.restartRecording();
+        return recorderService.restartRecording();
+    };
+
+    this.uploadRecordingToS3 = ( recordingData, user_id ) => {
+        let data = {
+            recording: this.recordingData
+            , user_id: this.userId
+        };
+        socketFactory.emit( 'upload recording to S3', data );
     };
 
 }
 
 const recorderComponent = {
-    template: recorderHtml
+    bindings: {
+        channelId: '<'
+        , userId: '<'
+    }
+    , template: recorderHtml
     , controller: recorderCtrl
 }
 

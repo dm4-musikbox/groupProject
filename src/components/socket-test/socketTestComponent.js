@@ -3,8 +3,8 @@ import socketTestHtml from './socket-test-view-tmpl.html';
 function socketTestCtrl( $scope, socketFactory ) {
     this.users = [];
     this.recordings = [];
-    this.user_id = '58196bc83a5bd823fca47594';
-    this.channel_id = '5818046d2643fcff7ad9aea1';
+    this.userId = '58196bc83a5bd823fca47594';
+    this.channelId = '5818046d2643fcff7ad9aea1';
     this.channel;
     this.channelStatus;
 
@@ -12,7 +12,7 @@ function socketTestCtrl( $scope, socketFactory ) {
         if ( recording ) {
             let data = {
                 recording: recording
-                , channel_id: this.channel_id
+                , channel_id: this.channelId
             };
             socketFactory.emit( 'save recording', data );
         }
@@ -22,7 +22,7 @@ function socketTestCtrl( $scope, socketFactory ) {
         if ( recordingId ) {
             let data = {
                 recording_id: recordingId
-                , channel_id: this.channel_id
+                , channel_id: this.channelId
             };
             socketFactory.emit( 'delete recording', data );
         }
@@ -32,7 +32,7 @@ function socketTestCtrl( $scope, socketFactory ) {
         if ( recording ) {
             let data = {
                 recording
-                , channel_id: this.channel_id
+                , channel_id: this.channelId
             };
             socketFactory.emit( 'update recording', data );
         }
@@ -40,7 +40,6 @@ function socketTestCtrl( $scope, socketFactory ) {
 
     socketFactory.on( 'get recording', data => {
         this.recordings.push( data );
-        $scope.$apply();
     } );
 
     /*****************************************************/
@@ -49,7 +48,7 @@ function socketTestCtrl( $scope, socketFactory ) {
         if ( message ) {
             let data = {
                 message: message
-                , channel_id: this.channel_id
+                , channel_id: this.channelId
             };
             socketFactory.emit( 'send and save message', data );
         }
@@ -60,7 +59,7 @@ function socketTestCtrl( $scope, socketFactory ) {
             let data = {
                 message_update
                 , message_id
-                , channel_id: this.channel_id
+                , channel_id: this.channelId
             };
             console.log( data );
             socketFactory.emit( 'update message', data );
@@ -71,7 +70,7 @@ function socketTestCtrl( $scope, socketFactory ) {
         if ( messageId ) {
             let data = {
                 message_id: messageId
-                , channel_id: this.channel_id
+                , channel_id: this.channelId
             };
             socketFactory.emit( 'delete message', data );
         }
@@ -82,8 +81,8 @@ function socketTestCtrl( $scope, socketFactory ) {
     this.enterChannel = ( channel_id, user_id ) => {
       // if ( channel_id && user_id ) {
           let data = {
-              user_id: this.user_id
-              , channel_id: this.channel_id
+              user_id: this.userId
+              , channel_id: this.channelId
           };
           socketFactory.emit( 'enter channel', data );
       // }
@@ -92,8 +91,8 @@ function socketTestCtrl( $scope, socketFactory ) {
     this.leaveChannel = ( channel_id, user_id ) => {
       // if ( channel_id && user_id ) {
           let data = {
-              user_id: this.user_id
-              , channel_id: this.channel_id
+              user_id: this.userId
+              , channel_id: this.channelId
           };
           socketFactory.emit( 'leave channel', data );
       // }
@@ -102,8 +101,8 @@ function socketTestCtrl( $scope, socketFactory ) {
     this.subscribeToChannel = ( channel_id, user_id ) => {
       // if ( channel_id && user_id ) {
           let data = {
-              user_id: this.user_id
-              , channel_id: this.channel_id
+              user_id: this.userId
+              , channel_id: this.channelId
           };
           socketFactory.emit( 'subscribe to channel', data );
       // }
@@ -112,8 +111,8 @@ function socketTestCtrl( $scope, socketFactory ) {
     this.unsubscribeFromChannel = ( channel_id, user_id ) => {
       // if ( channel_id && user_id ) {
           let data = {
-              user_id: this.user_id
-              , channel_id: this.channel_id
+              user_id: this.userId
+              , channel_id: this.channelId
           };
           socketFactory.emit( 'unsubscribe from channel', data );
       // }
@@ -121,12 +120,36 @@ function socketTestCtrl( $scope, socketFactory ) {
 
     socketFactory.on( 'get channel', data => {
         this.channel = data;
+        console.log( 'get channel received! channel is ', data );
     } );
 
     socketFactory.on( 'get status of channel', data => {
         this.channelStatus = data;
     } );
 
+    /**************************************************/
+    socketFactory.on( 'get recording preview', data => {
+        this.recordingData = data;
+    } );
+
+    socketFactory.on( 'get S3 data', data => {
+        this.s3Data = data;
+        this.data = {
+            userId: this.userId
+            , channelId: this.channelId
+            , recording: {
+                createdBy: this.userId
+                , description: ''
+                , s3ETag: data.ETag
+                , s3Location: data.Location
+                , s3Bucket: data.Bucket
+                , s3Key: data.Key
+            }
+        }
+        socketFactory.emit( 'save recording', this.data );
+    } );
+
+    /**************************************************/
     $scope.$on( '$destroy', event => {
         socket.removeAllListeners();
     } );

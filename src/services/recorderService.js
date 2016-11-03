@@ -1,12 +1,17 @@
 import { BinaryClient } from 'binaryjs-client';
 
-function recordingService( $state, $window, socketFactory ) {
+function recorderService( $rootScope, $state, $window, socketFactory ) {
     let isRecording = false
         , audioCtx
         , source
-        , recorder;
+        , recorder
+        , currentUser;
 
     const client = new BinaryClient( 'ws://localhost:9000' );
+
+    this.setCurrentUser = ( userId ) => {
+        currentUser = userId;
+    };
 
     this.startRecording = () => {
         if ( !navigator.getUserMedia ) {
@@ -25,10 +30,6 @@ function recordingService( $state, $window, socketFactory ) {
         isRecording = false;
         $window.audioStream.end();
         audioCtx.close();
-
-        // audioCtx = null;
-        // source = null;
-        // recorder = null;
     };
 
     this.restartRecording = () => {
@@ -37,7 +38,7 @@ function recordingService( $state, $window, socketFactory ) {
     }
 
     function initializeRecorder ( stream ) {
-        $window.audioStream = client.createStream( { user_id: 'aplan88', type: 'audio' } );
+        $window.audioStream = client.createStream( { user_id: currentUser, type: 'audio' } );
         isRecording = true;
         const bufferSize = 2048;
         audioCtx = new ( $window.AudioContext || $window.webkitAudioContext )();
@@ -71,4 +72,4 @@ function recordingService( $state, $window, socketFactory ) {
      }
 }
 
-export default recordingService;
+export default recorderService;

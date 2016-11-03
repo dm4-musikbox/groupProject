@@ -17,13 +17,25 @@ module.exports = ( app, binaryServer, io ) => {
 
 		binaryServer.on( 'connection', client => {
 				client.on( 'stream', ( stream, meta ) => {
-						// rewrite with switch
-						if ( meta.type === 'audio' ) {
-								recordingSocketCtrl.createRecording( client, stream, meta );
-						}
-						else if ( meta.type === 'upload-to-S3' ) {
-								recordingSocketCtrl.uploadRecordingToS3( client, stream, meta );
-						}
+						recordingSocketCtrl.createRecording( io, client, stream, meta );
+				} );
+		} );
+
+		io.on( 'connection', socket => {
+				socket.on( 'upload recording to S3', data => {
+						recordingSocketCtrl.uploadRecordingToS3( data, io );
+				} );
+
+				socket.on( 'save recording', data => {
+						recordingSocketCtrl.saveRecording( data, io );
+				} );
+
+				socket.on( 'update recording', data => {
+						recordingSocketCtrl.updateRecording( data, io );
+				} );
+
+				socket.on( 'delete recording', data => {
+						recordingSocketCtrl.deleteRecording( data, io );
 				} );
 		} );
 

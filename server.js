@@ -3,10 +3,10 @@ const { json } = require( "body-parser" );
 const mongoose = require( "mongoose" );
 const session = require( "express-session" );
 const http = require( 'http' );
-// const sessionConfig = require( "./server/config/config.js" );
-const masterRoutes = require( "./server/masterRoutes.js" );
-const mongoUri = "mongodb://localhost:27017/groupProject";
 const binaryServer = require( 'binaryjs' ).BinaryServer( { port: 9000 } );
+const masterRoutes = require( "./server/masterRoutes.js" );
+// const sessionConfig = require( "./server/config/config.js" );
+const mongoUri = "mongodb://localhost:27017/groupProject";
 
 const app = express();
 const server = http.createServer( app );

@@ -1,17 +1,27 @@
 <h1 style="text-align: center">Musikbox socket functions</h1>
 
 <main style="display: flex; justify-content: space-around">
-    <div>
+    <div style="width: 60vw">
         <h2>Channel data</h2>
-        <div ng-repeat="( key, value ) in $ctrl.channel">
-            {{ key }} : {{ value }}
+        <div>
+          <ul>
+            <li ng-repeat="( key, value ) in $ctrl.channel">
+                {{ key }} : {{ value }}
+            </li>
+          </ul>
         </div>
 
         <h2>Channel status</h2>
         <div>{{ $ctrl.channelStatus }}</div>
+
+        <h2>Recording data</h2>
+        <div>{{ $ctrl.recordingData }}</div>
+
+        <h2>S3 data</h2>
+        <div>{{ $ctrl.s3Data }}</div>
     </div>
 
-    <div>
+    <div style="width: 40vw">
         <h3>Channel functions</h3>
         <input type="text" placeholder="channel id" ng-model="channel._id">
         <br />
@@ -26,7 +36,10 @@
         <hr />
 
         <h3>Recording functions</h3>
-        <input type="text" ng-model="recording_id" placeholder="recording id">
+
+        <recorder-component user-id="$ctrl.userId" channel-id="$ctrl.channelId"></recorder-component>
+
+        <!-- <input type="text" ng-model="recording_id" placeholder="recording id">
         <br />
         <input type="text" ng-model="recording.cloudUrl" placeholder="cloud URL">
         <br />
@@ -34,7 +47,7 @@
         <br />
         <input type="submit" value="Save recording" ng-click="$ctrl.saveRecording( recording )">
         <input type="submit" value="Update recording" ng-click="$ctrl.updateRecording( { _id: recording_id, description: recording.description } )">
-        <input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( recording_id )">
+        <input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( recording_id )"> -->
 
         <hr />
 
