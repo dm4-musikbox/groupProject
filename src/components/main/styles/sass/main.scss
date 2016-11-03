@@ -1,6 +1,10 @@
 #ui-float{
   float: right;
-  width: calc(100% - 220px);
+  width: calc(100% - 250px);
+}
+.main-height{
+  max-height: 100vh;
+  overflow: auto;
 }
 .cards-container{
   margin: 0 5%;
