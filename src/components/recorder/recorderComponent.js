@@ -1,6 +1,6 @@
 import recorderHtml from './recorder-component-tmpl.html';
 
-function recorderCtrl( recorderService, recordingService, socketFactory ) {
+function recorderCtrl( $scope, recorderService, recordingService, socketFactory ) {
     this.$onInit = () => {
       this.setCurrentUserAndChannel( this.userId, this.channelId );
     }
@@ -45,6 +45,10 @@ function recorderCtrl( recorderService, recordingService, socketFactory ) {
         }
         socketFactory.emit( 'save recording', this.data );
     } );
+
+    this.$onDestroy = () => {
+        socketFactory.removeAllListeners();
+    };
 }
 
 const recorderComponent = {

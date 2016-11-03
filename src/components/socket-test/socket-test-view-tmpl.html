@@ -16,6 +16,20 @@
     </div>
 
     <div style="width: 40vw">
+
+        <h3>Message functions</h3>
+        <input type="text" ng-model="message._id" placeholder="message id">
+        <br />
+        <input type="text" ng-model="message.type" placeholder="message type">
+        <br/>
+        <input type="text" ng-model="message.content" placeholder="message content">
+        <br />
+        <input type="submit" ng-click="$ctrl.sendAndSaveMessage( message )" value="Send and save message">
+        <input type="submit" ng-click="$ctrl.updateMessage( message )" value="Update message">
+        <input type="submit" ng-click="$ctrl.deleteMessage( message._id )" value="Delete message">
+
+        <hr />
+
         <h3>Channel functions</h3>
         <input type="text" placeholder="channel id" ng-model="channel._id">
         <br />
@@ -52,17 +66,5 @@
 
         <hr />
 
-        <h3>Message functions</h3>
-        <input type="text" ng-model="message_id" placeholder="message id">
-        <br />
-        <input type="text" ng-model="message.type" placeholder="message type">
-        <br/>
-        <input type="text" ng-model="message.content" placeholder="message content">
-        <br />
-        <input type="submit" ng-click="$ctrl.sendAndSaveMessage( message )" value="Send and save message">
-        <input type="submit" ng-click="$ctrl.updateMessage( message_id, { content: message.content } )" value="Update message">
-        <input type="submit" ng-click="$ctrl.deleteMessage( message_id )" value="Delete message">
-
-        <hr />
     </div>
 </main>

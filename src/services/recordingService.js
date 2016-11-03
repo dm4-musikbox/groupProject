@@ -14,7 +14,6 @@ function recordingService( socketFactory ) {
         };
         socketFactory.emit( 'delete recording', data );
     };
-
 }
 
 export default recordingService;

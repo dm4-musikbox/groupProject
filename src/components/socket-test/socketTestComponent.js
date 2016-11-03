@@ -1,6 +1,6 @@
 import socketTestHtml from './socket-test-view-tmpl.html';
 
-function socketTestCtrl( $scope, recordingService, socketFactory ) {
+function socketTestCtrl( messageService, recordingService, socketFactory ) {
     this.users = [];
     this.recordings = [];
     this.userId = '58196bc83a5bd823fca47594';
@@ -19,35 +19,15 @@ function socketTestCtrl( $scope, recordingService, socketFactory ) {
     /*****************************************************/
 
     this.sendAndSaveMessage = message => {
-        if ( message ) {
-            let data = {
-                message: message
-                , channel_id: this.channelId
-            };
-            socketFactory.emit( 'send and save message', data );
-        }
+        messageService.sendAndSaveMessage( message, this.channelId );
     };
 
-    this.updateMessage = ( message_id, message_update ) => {
-        if ( message_id && message_update ) {
-            let data = {
-                message_update
-                , message_id
-                , channel_id: this.channelId
-            };
-            console.log( data );
-            socketFactory.emit( 'update message', data );
-        }
+    this.updateMessage = ( message ) => {
+        messageService.updateMessage( message, this.channelId );
     };
 
     this.deleteMessage = messageId => {
-        if ( messageId ) {
-            let data = {
-                message_id: messageId
-                , channel_id: this.channelId
-            };
-            socketFactory.emit( 'delete message', data );
-        }
+        messageService.deleteMessage( messageId, this.channelId );
     };
 
     /**************************************************/
@@ -103,9 +83,9 @@ function socketTestCtrl( $scope, recordingService, socketFactory ) {
 
     /**************************************************/
 
-    $scope.$on( '$destroy', event => {
-        socket.removeAllListeners();
-    } );
+    this.$onDestroy = () => {
+        socketFactory.removeAllListeners();
+    };
 }
 
 const socketTestComponent = {
