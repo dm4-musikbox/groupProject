@@ -2,17 +2,19 @@
 
 .my-nav{
 
+  background-color: $primary-color;
+
 header{
-  background-color: $secondary-color;
   font-size: 50px;
-  padding-left: 20px;
+  padding-left: 5%;
   padding-top: 20px;
+  padding-bottom: 10px;
 }
-.row .col .s12{
-border-bottom: .5px solid grey;
+.row .col.s12{
+border-bottom: 1px solid #3c3939;
 }
 .tabs {
-  background-color: $secondary-color;
+  background-color: $primary-color;
 }
 .tabs .tab a {
 color: #646464;
@@ -29,10 +31,9 @@ color: white;
 }
 .row{
   margin-bottom: 0;
-  }
+  margin: 0 5%;
 }
-.row {
-  background-color: $secondary-color;
+.row{
   margin-bottom: 0;
 }
-// #04ffa6
+}
