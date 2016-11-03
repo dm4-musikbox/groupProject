@@ -103,9 +103,9 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", "components", "ser
       	$stateProvider
                   .state( "landing-page", {
                   	url: "/"
-                    // , component: 'landingPageComponent'
+                    , component: 'landingPageComponent'
                     // , component: 'socketTestComponent'
-                    , component: 'recorderComponent'
+                    // , component: 'recorderComponent'
                   } )
                   .state( "main-view", {
                   	url: "/main"
