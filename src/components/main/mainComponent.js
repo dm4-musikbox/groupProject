@@ -1,5 +1,6 @@
 import authService from './../../services/authService';
 import mainViewHtml from './main-view-tmpl.html';
+import './styles/sass/main.scss';
 
 function mainCtrl( $rootScope, authService ) {
 
