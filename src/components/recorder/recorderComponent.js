@@ -9,6 +9,10 @@ function recorderCtrl( recordingService ) {
         return recordingService.stopRecording();
     };
 
+    this.restartRecording = () => {
+        return recordingService.restartRecording();
+    };
+
 }
 
 const recorderComponent = {
