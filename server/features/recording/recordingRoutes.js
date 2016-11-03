@@ -1,7 +1,7 @@
 const recordingCtrl = require( './recordingCtrl' );
 const recordingSocketCtrl = require( './recordingSocketCtrl' );
 
-module.exports = ( app, io ) => {
+module.exports = ( app, binaryServer, io ) => {
 		app.route( "/api/recordings" )
 	        .get( recordingCtrl.getAllRecordings );
 
@@ -15,22 +15,15 @@ module.exports = ( app, io ) => {
 					.post( recordingCtrl.addRecordingToChannel )
 	        .delete( recordingCtrl.deleteAllRecordingsFromChannel );
 
-		io.on( 'connection', socket => {
-				socket.on( 'save recording', data => {
-						recordingSocketCtrl.saveRecording( data, io );
-				} );
-
-				socket.on( 'update recording', data => {
-						recordingSocketCtrl.updateRecording( data, io );
-				} );
-
-				socket.on( 'delete recording', data => {
-						recordingSocketCtrl.deleteRecording( data, io );
-				} );
-
-				// on posting recording, copy recording object and broadcast only to target channel
-				socket.on( 'post recording', ( recording ) => {
-						console.log( 'Recording-to-post received ', recording );
+		binaryServer.on( 'connection', client => {
+				client.on( 'stream', ( stream, meta ) => {
+						// rewrite with switch
+						if ( meta.type === 'audio' ) {
+								recordingSocketCtrl.createRecording( client, stream, meta );
+						}
+						else if ( meta.type === 'upload-to-S3' ) {
+								recordingSocketCtrl.uploadRecordingToS3( client, stream, meta );
+						}
 				} );
 		} );
 

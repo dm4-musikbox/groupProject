@@ -1,8 +1,6 @@
 import socketTestHtml from './socket-test-view-tmpl.html';
 
-function socketTestCtrl( $scope ) {
-    const socket = io.connect();
-
+function socketTestCtrl( $scope, socketFactory ) {
     this.users = [];
     this.recordings = [];
     this.user_id = '58196bc83a5bd823fca47594';
@@ -16,7 +14,7 @@ function socketTestCtrl( $scope ) {
                 recording: recording
                 , channel_id: this.channel_id
             };
-            socket.emit( 'save recording', data );
+            socketFactory.emit( 'save recording', data );
         }
     };
 
@@ -26,7 +24,7 @@ function socketTestCtrl( $scope ) {
                 recording_id: recordingId
                 , channel_id: this.channel_id
             };
-            socket.emit( 'delete recording', data );
+            socketFactory.emit( 'delete recording', data );
         }
     };
 
@@ -36,11 +34,11 @@ function socketTestCtrl( $scope ) {
                 recording
                 , channel_id: this.channel_id
             };
-            socket.emit( 'update recording', data );
+            socketFactory.emit( 'update recording', data );
         }
     };
 
-    socket.on( 'get recording', data => {
+    socketFactory.on( 'get recording', data => {
         this.recordings.push( data );
         $scope.$apply();
     } );
@@ -53,7 +51,7 @@ function socketTestCtrl( $scope ) {
                 message: message
                 , channel_id: this.channel_id
             };
-            socket.emit( 'send and save message', data );
+            socketFactory.emit( 'send and save message', data );
         }
     };
 
@@ -65,7 +63,7 @@ function socketTestCtrl( $scope ) {
                 , channel_id: this.channel_id
             };
             console.log( data );
-            socket.emit( 'update message', data );
+            socketFactory.emit( 'update message', data );
         }
     };
 
@@ -75,7 +73,7 @@ function socketTestCtrl( $scope ) {
                 message_id: messageId
                 , channel_id: this.channel_id
             };
-            socket.emit( 'delete message', data );
+            socketFactory.emit( 'delete message', data );
         }
     };
 
@@ -87,7 +85,7 @@ function socketTestCtrl( $scope ) {
               user_id: this.user_id
               , channel_id: this.channel_id
           };
-          socket.emit( 'enter channel', data );
+          socketFactory.emit( 'enter channel', data );
       // }
     };
 
@@ -97,7 +95,7 @@ function socketTestCtrl( $scope ) {
               user_id: this.user_id
               , channel_id: this.channel_id
           };
-          socket.emit( 'leave channel', data );
+          socketFactory.emit( 'leave channel', data );
       // }
     };
 
@@ -107,7 +105,7 @@ function socketTestCtrl( $scope ) {
               user_id: this.user_id
               , channel_id: this.channel_id
           };
-          socket.emit( 'subscribe to channel', data );
+          socketFactory.emit( 'subscribe to channel', data );
       // }
     };
 
@@ -117,18 +115,20 @@ function socketTestCtrl( $scope ) {
               user_id: this.user_id
               , channel_id: this.channel_id
           };
-          socket.emit( 'unsubscribe from channel', data );
+          socketFactory.emit( 'unsubscribe from channel', data );
       // }
     };
 
-    socket.on( 'get channel', data => {
+    socketFactory.on( 'get channel', data => {
         this.channel = data;
-        $scope.$apply();
     } );
 
-    socket.on( 'get status of channel', data => {
+    socketFactory.on( 'get status of channel', data => {
         this.channelStatus = data;
-        $scope.$apply();
+    } );
+
+    $scope.$on( '$destroy', event => {
+        socket.removeAllListeners();
     } );
 }
 
