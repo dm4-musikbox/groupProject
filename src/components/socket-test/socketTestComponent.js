@@ -1,6 +1,6 @@
 import socketTestHtml from './socket-test-view-tmpl.html';
 
-function socketTestCtrl( messageService, recordingService, socketFactory ) {
+function socketTestCtrl( channelService, messageService, recordingService, socketFactory ) {
     this.users = [];
     this.recordings = [];
     this.userId = '58196bc83a5bd823fca47594';
@@ -22,8 +22,8 @@ function socketTestCtrl( messageService, recordingService, socketFactory ) {
         messageService.sendAndSaveMessage( message, this.channelId );
     };
 
-    this.updateMessage = ( message ) => {
-        messageService.updateMessage( message, this.channelId );
+    this.updateMessage = ( messageId, message ) => {
+        messageService.updateMessage( messageId, message, this.channelId );
     };
 
     this.deleteMessage = messageId => {
@@ -32,44 +32,20 @@ function socketTestCtrl( messageService, recordingService, socketFactory ) {
 
     /**************************************************/
 
-    this.enterChannel = ( channel_id, user_id ) => {
-      // if ( channel_id && user_id ) {
-          let data = {
-              user_id: this.userId
-              , channel_id: this.channelId
-          };
-          socketFactory.emit( 'enter channel', data );
-      // }
+    this.enterChannel = ( channelId, userId ) => {
+        channelService.enterChannel( this.channelId, this.userId );
     };
 
-    this.leaveChannel = ( channel_id, user_id ) => {
-      // if ( channel_id && user_id ) {
-          let data = {
-              user_id: this.userId
-              , channel_id: this.channelId
-          };
-          socketFactory.emit( 'leave channel', data );
-      // }
+    this.leaveChannel = ( channelId, userId ) => {
+        channelService.leaveChannel( this.channelId, this.userId );
     };
 
-    this.subscribeToChannel = ( channel_id, user_id ) => {
-      // if ( channel_id && user_id ) {
-          let data = {
-              user_id: this.userId
-              , channel_id: this.channelId
-          };
-          socketFactory.emit( 'subscribe to channel', data );
-      // }
+    this.subscribeToChannel = ( channelId, userId ) => {
+        channelService.subscribeToChannel( this.channelId, this.userId );
     };
 
-    this.unsubscribeFromChannel = ( channel_id, user_id ) => {
-      // if ( channel_id && user_id ) {
-          let data = {
-              user_id: this.userId
-              , channel_id: this.channelId
-          };
-          socketFactory.emit( 'unsubscribe from channel', data );
-      // }
+    this.unsubscribeFromChannel = ( channelId, userId ) => {
+        channelService.unsubscribeFromChannel( this.channelId, this.userId );
     };
 
     socketFactory.on( 'get channel', data => {
