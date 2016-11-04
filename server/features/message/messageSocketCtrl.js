@@ -72,6 +72,6 @@ module.exports = {
 };
 
 function getUpdatedChannel( channelId, io, channel ) {
-    // io.to( channelId ).emit( 'get channel', channel );
-    io.sockets.emit( 'get channel', channel );
+    io.to( channelId ).emit( 'get channel', channel );
+    // io.sockets.emit( 'get channel', channel );
 }

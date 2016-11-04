@@ -16,15 +16,15 @@ module.exports = ( app, io ) => {
 				.delete( channelCtrl.deleteGenreFromChannel );
 
 		io.on( 'connection', socket => {
-				socket.on( 'create channel', ( data) => {
+				socket.on( 'create channel', ( data ) => {
 						// channelSocketCtrl.createChannel( data, io );
 				} );
 
-				socket.on( 'delete channel', ( data) => {
+				socket.on( 'delete channel', ( data ) => {
 						// channelSocketCtrl.deleteChannel( data, io );
 				} );
 
-				socket.on( 'update channel', ( data) => {
+				socket.on( 'update channel', ( data ) => {
 						// channelSocketCtrl.updateChannel( data, io );
 				} );
 

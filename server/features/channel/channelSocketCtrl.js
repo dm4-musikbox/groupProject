@@ -2,7 +2,7 @@ const mongoose = require( 'mongoose' );
 const Channel = require( "./Channel.js" );
 const User = require( "./../user/User.js" );
 
-const activeChannels = [];
+const activeChannels = {};
 
 module.exports = {
     subscribeToChannel( data, io, socket ) {
@@ -15,7 +15,7 @@ module.exports = {
                 if ( err ) {
                     throw err;
                 }
-                getUpdatedUser( io, userId, user );
+                getUpdatedUser( socket, userId, user );
             } );
 
         Channel
@@ -30,60 +30,57 @@ module.exports = {
     }
     , enterChannel( data, io, socket ) {
         console.log( 'enterChannel firing!' );
+
         const channelId = data.channelId;
         const userId = data.userId;
+        const userName = data.userName;
+        let channelStatus;
 
         socket.join( channelId );
-        if ( activeChannels.length ) {
-            for ( let i = 0; i < activeChannels.length; i++ ) {
-                if ( activeChannels[ i ].channelId.toString() === channelId ) {
-                  activeChannels[ i ].activeUsers.push( userId );
-                  getChannelStatus( io, channelId, activeChannels[ i ] );
-                }
-                else {
-                  activeChannels.push( {
-                    channelId: channelId
-                    , activeUsers: [ userId ]
-                  } );
-                  getChannelStatus( io, channelId, activeChannels[ activeChannels.length - 1 ] );
-                }
-            }
+
+        if ( activeChannels.hasOwnProperty( channelId ) ) {
+            activeChannels[ channelId ][ userId ] = socket;
+            channelStatus = {
+                channelId: channelId
+                , users: Object.keys( activeChannels[ channelId ] )
+            };
         }
         else {
-            activeChannels.push( {
+            activeChannels[ channelId ] = { [ userName ]: socket };
+            channelStatus = {
                 channelId: channelId
-                , activeUsers: [ userId ]
-            } );
-            getChannelStatus( io, channelId, activeChannels[ 0 ] );
+                , activeUsers: Object.keys( activeChannels[ channelId ] )
+            };
         }
+        getChannelStatus( io, channelId, channelStatus );
     }
     , leaveChannel( data, io, socket ) {
-          console.log( 'leave channel firing!' );
+          console.log( 'leaveChannel firing!' );
           const channelId = data.channelId;
           const userId = data.userId;
+          const userName = data.userName;
 
-          for ( let i = 0; i < activeChannels.length; i++ ) {
-              if ( activeChannels[ i ].channelId.toString() === data.channelId ) {
-                  let activeUserId = mongoose.Types.ObjectId( userId );
-                  let activeUserIndex = activeChannels[ i ].activeUsers.indexOf( activeUserId );
+          if ( activeChannels.hasOwnProperty( channelId ) ) {
+              delete activeChannels[ channelId ][ userName ];
 
-                  activeChannels[ i ].activeUsers.splice( activeUserIndex, 1 );
-
-                  if ( !activeChannels[ i ].activeUsers.length ) {
-                      activeChannelId = mongoose.Types.ObjectId( channelId );
-                      activeChannelIndex = activeChannels.indexOf( activeChannelId );
-                      activeChannels.splice( activeChannelIndex, 1 );
-                      getChannelStatus( io, channelId, { message: 'everyone has left the room.' } );
-                  }
-                  else {
-                      getChannelStatus( io, channelId, activeChannels[ i ] );
-                  }
+              if ( !Object.keys( activeChannels[ channelId ] ).length ) {
+                  delete activeChannels[ channelId ];
+                  getChannelStatus( io, channelId, { message: 'everyone has left the room.' } );
               }
-          }
+              else {
+                  let channelStatus = {
+                      channelId: channelId
+                      , activeUsers: Object.keys( activeChannels[ channelId ] )
+                  };
+                  getChannelStatus( io, channelId, channelStatus );
+              }
 
+          }
           socket.leave( channelId );
     }
     , unsubscribeFromChannel( data, io, socket ) {
+          console.log( 'unsubscribeFromChannel firing!' );
+          
           const channelId = data.channelId;
           const userId = data.userId;
 
@@ -94,7 +91,7 @@ module.exports = {
                   if ( err ) {
                       throw err;
                   }
-                  getUpdatedUser( io, userId, user );
+                  getUpdatedUser( socket, userId, user );
               } );
 
           Channel
@@ -117,33 +114,21 @@ function updateUser( io, update, userId ) {
             if ( err ) {
                 throw err;
             }
-            getUpdatedUser( io, userId, user );
+            getUpdatedUser( socket, userId, user );
         } );
 }
 
-function updateChannel( io, channelId, update ) {
-    Channel
-        .findByIdAndUpdate( channelId, update, { new: true } )
-        .populate( "channelRecordings channelMessages" )
-        .exec( ( err, channel ) => {
-            if ( err ) {
-                throw err;
-            }
-            getUpdatedChannel( io, channelId, channel );
-        } );
-}
-
-function getUpdatedUser( io, userId, user ) {
-    // io.to( userId ).emit( 'get user', user );
-    io.emit( 'get user', user );
+function getUpdatedUser( socket, userId, user ) {
+    socket.broadcast.to( socket.id ).emit( 'get user', user );
+    // io.emit( 'get user', user );
 }
 
 function getUpdatedChannel( io, channelId, channel ) {
-    // io.to( channelId ).emit( 'get channel', channel );
-    io.emit( 'get channel', channel );
+    io.to( channelId ).emit( 'get channel', channel );
+    // io.emit( 'get channel', channel );
 }
 
 function getChannelStatus( io, channelId, channelStatus ) {
-    // io.to( channelId ).emit( 'get status of channel', channelStatus );
-    io.emit( 'get status of channel', channelStatus );
+    io.to( channelId ).emit( 'get status of channel', channelStatus );
+    // io.emit( 'get status of channel', channelStatus );
 }

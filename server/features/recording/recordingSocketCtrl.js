@@ -33,12 +33,12 @@ module.exports = {
         .pipe( fs.createWriteStream( path.resolve( 'server/user-audio-previews', mp3FileName ) ) )
         .on( 'close', () => {
             console.log( 'Done encoding to mp3' );
-            // io.to( channelId ).emit( 'get recording preview', { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' } );
-            io.sockets.emit( 'get recording preview', { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' } );
+            io.to( channelId ).emit( 'get recording preview', { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' } );
+            // io.sockets.emit( 'get recording preview', { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' } );
           } );
     }
     , uploadRecordingToS3 ( data, io ) {
-        console.log( 'uploading to S3' );
+        console.log( 'uploadRecordingToS3 firing!' );
 
         let s3obj = new AWS.S3();
         let mp3FileName = data.userId + '-preview.mp3';
@@ -54,12 +54,13 @@ module.exports = {
         s3obj.upload( params )
             .on( 'httpUploadProgress', evt => { console.log( evt ); } )
             .send( ( err, s3Info ) => {
-                io.sockets.emit( 'get S3 data', s3Info );
+                io.to( channelId ).emit( 'get S3 data', s3Info );
+                // io.sockets.emit( 'get S3 data', s3Info );
                 // fs.unlink( mp3FilePath );
               } );
     }
     , saveRecording( data, io ) {
-        console.log( 'saveRecording firing!', data );
+        console.log( 'saveRecording firing!' );
 
         const recordingToSave = data.recording;
         const channelId = data.channelId;
@@ -68,7 +69,7 @@ module.exports = {
             if ( err ) {
                 throw err;
             }
-            io.sockets.emit( 'get recording', recording );
+            io.to( channelId ).emit( 'get recording', recording );
             Channel.findByIdAndUpdate( channelId, { $push: { channelRecordings: recording._id } }, { new: true } )
                 .populate( 'channelMessages channelRecordings' )
                 .exec( ( err, channel ) => {
@@ -126,7 +127,7 @@ module.exports = {
 }
 
 function deleteFromS3( recording ) {
-    console.log( 'deleteFromS3 firing, recording is ', recording );
+    console.log( 'deleteFromS3 firing' );
     let s3obj = new AWS.S3();
 
     const params = {
@@ -159,5 +160,5 @@ function updateChannel( channelId, io, update ) {
 
 function getUpdatedChannel( channel, io ) {
     io.to( channel._id ).emit( 'get channel', channel );
-    io.sockets.emit( 'get channel', channel );
+    // io.sockets.emit( 'get channel', channel );
 }

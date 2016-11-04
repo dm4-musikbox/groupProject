@@ -3,6 +3,7 @@ import socketTestHtml from './socket-test-view-tmpl.html';
 function socketTestCtrl( channelService, messageService, recordingService, socketFactory ) {
     this.users = [];
     this.recordings = [];
+    this.userName = 'Andrew Plan'
     this.userId = '58196bc83a5bd823fca47594';
     this.channelId = '5818046d2643fcff7ad9aea1';
     this.channel;
@@ -32,12 +33,12 @@ function socketTestCtrl( channelService, messageService, recordingService, socke
 
     /**************************************************/
 
-    this.enterChannel = ( channelId, userId ) => {
-        channelService.enterChannel( this.channelId, this.userId );
+    this.enterChannel = ( channelId, userId, userName ) => {
+        channelService.enterChannel( this.channelId, this.userId, this.userName );
     };
 
-    this.leaveChannel = ( channelId, userId ) => {
-        channelService.leaveChannel( this.channelId, this.userId );
+    this.leaveChannel = ( channelId, userId, userName ) => {
+        channelService.leaveChannel( this.channelId, this.userId, this.userName );
     };
 
     this.subscribeToChannel = ( channelId, userId ) => {
