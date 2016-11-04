@@ -5,41 +5,17 @@ const User = require( "./../user/User.js" );
 const activeChannels = {};
 
 module.exports = {
-    subscribeToChannel( data, io, socket ) {
-        const channelId = data.channelId;
-        const userId = data.userId;
-        User
-            .findByIdAndUpdate( userId, { $addToSet: { userChannels: channelId } }, { new: true } )
-            .populate( 'userChannels' )
-            .exec( ( err, user ) => {
-                if ( err ) {
-                    throw err;
-                }
-                getUpdatedUser( socket, userId, user );
-            } );
-
-        Channel
-            .findByIdAndUpdate( channelId, { $addToSet: { members: userId } }, { new: true } )
-            .populate( "channelRecordings channelMessages" )
-            .exec( ( err, channel ) => {
-                if ( err ) {
-                    throw err;
-                }
-                getUpdatedChannel( io, channelId, channel );
-            } );
-    }
-    , enterChannel( data, io, socket ) {
+    enterChannel( data, io, socket ) {
         console.log( 'enterChannel firing!' );
 
         const channelId = data.channelId;
-        const userId = data.userId;
         const userName = data.userName;
         let channelStatus;
 
         socket.join( channelId );
 
         if ( activeChannels.hasOwnProperty( channelId ) ) {
-            activeChannels[ channelId ][ userId ] = socket;
+            activeChannels[ channelId ][ userName ] = socket;
             channelStatus = {
                 channelId: channelId
                 , users: Object.keys( activeChannels[ channelId ] )
@@ -57,7 +33,6 @@ module.exports = {
     , leaveChannel( data, io, socket ) {
           console.log( 'leaveChannel firing!' );
           const channelId = data.channelId;
-          const userId = data.userId;
           const userName = data.userName;
 
           if ( activeChannels.hasOwnProperty( channelId ) ) {
@@ -78,9 +53,35 @@ module.exports = {
           }
           socket.leave( channelId );
     }
+    , subscribeToChannel( data, io, socket ) {
+        console.log( 'subscribeToChannel firing!' );
+
+        const channelId = data.channelId;
+        const userId = data.userId;
+
+        User
+            .findByIdAndUpdate( userId, { $addToSet: { userChannels: channelId } }, { new: true } )
+            .populate( 'userChannels' )
+            .exec( ( err, user ) => {
+                if ( err ) {
+                    throw err;
+                }
+                getUpdatedUser( socket, userId, user );
+            } );
+
+        Channel
+            .findByIdAndUpdate( channelId, { $addToSet: { members: userId } }, { new: true } )
+            .populate( "members admins channelRecordings channelMessages" )
+            .exec( ( err, channel ) => {
+                if ( err ) {
+                    throw err;
+                }
+                getUpdatedChannel( io, channelId, channel );
+            } );
+    }
     , unsubscribeFromChannel( data, io, socket ) {
           console.log( 'unsubscribeFromChannel firing!' );
-          
+
           const channelId = data.channelId;
           const userId = data.userId;
 
@@ -91,12 +92,12 @@ module.exports = {
                   if ( err ) {
                       throw err;
                   }
-                  getUpdatedUser( socket, userId, user );
+                  getUpdatedUser( io, socket, userId, user );
               } );
 
           Channel
               .findByIdAndUpdate( channelId, { $pull: { members: userId } }, { new: true } )
-              .populate( "channelRecordings channelMessages" )
+              .populate( "members admins channelRecordings channelMessages" )
               .exec( ( err, channel ) => {
                   if ( err ) {
                       throw err;
@@ -114,12 +115,12 @@ function updateUser( io, update, userId ) {
             if ( err ) {
                 throw err;
             }
-            getUpdatedUser( socket, userId, user );
+            getUpdatedUser( io, socket, userId, user );
         } );
 }
 
-function getUpdatedUser( socket, userId, user ) {
-    socket.broadcast.to( socket.id ).emit( 'get user', user );
+function getUpdatedUser( io, socket, userId, user ) {
+    io.to( socket.id ).emit( 'get user', user );
     // io.emit( 'get user', user );
 }
 

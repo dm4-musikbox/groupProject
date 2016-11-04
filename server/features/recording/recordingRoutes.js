@@ -15,15 +15,17 @@ module.exports = ( app, binaryServer, io ) => {
 					.post( recordingCtrl.addRecordingToChannel )
 	        .delete( recordingCtrl.deleteAllRecordingsFromChannel );
 
-		binaryServer.on( 'connection', client => {
-				client.on( 'stream', ( stream, meta ) => {
-						recordingSocketCtrl.createRecording( io, client, stream, meta );
-				} );
-		} );
+
 
 		io.on( 'connection', socket => {
+				binaryServer.on( 'connection', client => {
+						client.on( 'stream', ( stream, meta ) => {
+								recordingSocketCtrl.createRecording( io, socket, client, stream, meta );
+						} );
+				} );
+
 				socket.on( 'upload recording to S3', data => {
-						recordingSocketCtrl.uploadRecordingToS3( data, io );
+						recordingSocketCtrl.uploadRecordingToS3( data, io, socket );
 				} );
 
 				socket.on( 'save recording', data => {

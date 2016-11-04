@@ -5,14 +5,17 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
         , audioCtx
         , source
         , recorder
-        , currentUser
+        , currentUserId
+        , currentUserName
         , currentChannel;
 
     const client = new BinaryClient( 'ws://localhost:9000' );
 
-    this.setCurrentUserAndChannel = ( userId, channelId ) => {
-        currentUser = userId;
+    this.setCurrentUserAndChannel = ( userId, userName, channelId ) => {
+        currentUserId = userId;
+        currentUserName = userName;
         currentChannel = channelId;
+        console.log( currentUserId, currentUserName, currentChannel );
     };
 
     this.startRecording = () => {
@@ -29,7 +32,7 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
     };
 
     function initializeRecorder ( stream ) {
-        $window.audioStream = client.createStream( { userId: currentUser, channelId: currentChannel, type: 'audio' } );
+        $window.audioStream = client.createStream( { userId: currentUserId, userName: currentUserName, channelId: currentChannel, type: 'audio' } );
         isRecording = true;
         const bufferSize = 2048;
         audioCtx = new ( $window.AudioContext || $window.webkitAudioContext )();

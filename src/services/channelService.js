@@ -1,17 +1,15 @@
 function channelService( socketFactory ) {
-    this.enterChannel = ( channelId, userId, userName ) => {
+    this.enterChannel = ( channelId, userName ) => {
         let data = {
-            userId: userId
-            , userName: userName
+            userName: userName
             , channelId: channelId
         };
         socketFactory.emit( 'enter channel', data );
     };
 
-    this.leaveChannel = ( channelId, userId, userName ) => {
+    this.leaveChannel = ( channelId, userName ) => {
         let data = {
-            userId: userId
-            , userName: userName
+            userName: userName
             , channelId: channelId
         };
         socketFactory.emit( 'leave channel', data );

@@ -5,7 +5,7 @@ import "auth0-lock";
 import "angular-lock";
 import "angular-jwt";
 
-import './services/services';
+import './services/servicesModule';
 import './components/components';
 
 import leftPanelHtml from './directives/leftPanel/left-panel.html'

@@ -3,50 +3,64 @@ import socketTestHtml from './socket-test-view-tmpl.html';
 function socketTestCtrl( channelService, messageService, recordingService, socketFactory ) {
     this.users = [];
     this.recordings = [];
-    this.userName = 'Andrew Plan'
-    this.userId = '58196bc83a5bd823fca47594';
-    this.channelId = '5818046d2643fcff7ad9aea1';
-    this.channel;
+    this.user = {};
+    this.channel = {};
     this.channelStatus;
 
-    this.updateRecording = ( recording ) => {
-        recordingService.updateRecording( recording, this.channelId );
+    this.userId;
+    this.userName;
+    this.channelId;
+
+    this.setCurrentUserAndChannel = ( userId, userName, channelId ) => {
+        if ( userId ) {
+            this.userId = userId;
+        }
+        if ( userName ) {
+            this.userName = userName;
+        }
+        if ( channelId ) {
+            this.channelId = channelId;
+        }
     };
 
-    this.deleteRecording = ( recording ) => {
-        recordingService.deleteRecording( recording, this.channelId );
+    this.updateRecording = ( recording, channelId, userId ) => {
+        recordingService.updateRecording( recording, channelId, userId );
+    };
+
+    this.deleteRecording = ( recording, channelId, userId ) => {
+        recordingService.deleteRecording( recording, channelId, userId );
     };
 
     /*****************************************************/
 
-    this.sendAndSaveMessage = message => {
-        messageService.sendAndSaveMessage( message, this.channelId );
+    this.sendAndSaveMessage = ( message, channelId ) => {
+        messageService.sendAndSaveMessage( message, channelId );
     };
 
-    this.updateMessage = ( messageId, message ) => {
-        messageService.updateMessage( messageId, message, this.channelId );
+    this.updateMessage = ( messageId, message, channelId ) => {
+        messageService.updateMessage( messageId, message, channelId );
     };
 
-    this.deleteMessage = messageId => {
-        messageService.deleteMessage( messageId, this.channelId );
+    this.deleteMessage = ( messageId, channelId ) => {
+        messageService.deleteMessage( messageId, channelId );
     };
 
     /**************************************************/
 
-    this.enterChannel = ( channelId, userId, userName ) => {
-        channelService.enterChannel( this.channelId, this.userId, this.userName );
+    this.enterChannel = ( channelId, userName ) => {
+        channelService.enterChannel( channelId, userName );
     };
 
-    this.leaveChannel = ( channelId, userId, userName ) => {
-        channelService.leaveChannel( this.channelId, this.userId, this.userName );
+    this.leaveChannel = ( channelId, userName ) => {
+        channelService.leaveChannel( channelId, userName );
     };
 
     this.subscribeToChannel = ( channelId, userId ) => {
-        channelService.subscribeToChannel( this.channelId, this.userId );
+        channelService.subscribeToChannel( channelId, userId );
     };
 
     this.unsubscribeFromChannel = ( channelId, userId ) => {
-        channelService.unsubscribeFromChannel( this.channelId, this.userId );
+        channelService.unsubscribeFromChannel( channelId, userId );
     };
 
     socketFactory.on( 'get channel', data => {

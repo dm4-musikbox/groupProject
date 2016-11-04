@@ -10,8 +10,8 @@ const User = require( "./../user/User" );
 const Channel = require( "./../channel/Channel" );
 
 module.exports = {
-    createRecording ( io, client, stream, meta ) {
-        console.log( 'createRecording firing!' );
+    createRecording ( io, socket, client, stream, meta ) {
+        console.log( 'createRecording firing!', meta );
 
         channelId = meta.channelId;
         mp3FileName = meta.userId + '-preview.mp3';
@@ -33,11 +33,14 @@ module.exports = {
         .pipe( fs.createWriteStream( path.resolve( 'server/user-audio-previews', mp3FileName ) ) )
         .on( 'close', () => {
             console.log( 'Done encoding to mp3' );
-            io.to( channelId ).emit( 'get recording preview', { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' } );
+            let data = { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' };
+            console.log( data );
+            console.log( socket.id );
+            socket.to( channelId ).emit( 'get recording preview', data );
             // io.sockets.emit( 'get recording preview', { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' } );
           } );
     }
-    , uploadRecordingToS3 ( data, io ) {
+    , uploadRecordingToS3 ( data, io, socket ) {
         console.log( 'uploadRecordingToS3 firing!' );
 
         let s3obj = new AWS.S3();
@@ -54,12 +57,12 @@ module.exports = {
         s3obj.upload( params )
             .on( 'httpUploadProgress', evt => { console.log( evt ); } )
             .send( ( err, s3Info ) => {
-                io.to( channelId ).emit( 'get S3 data', s3Info );
+                socket.to( channelId ).emit( 'get S3 data', s3Info );
                 // io.sockets.emit( 'get S3 data', s3Info );
                 // fs.unlink( mp3FilePath );
               } );
     }
-    , saveRecording( data, io ) {
+    , saveRecording( data, io, socket ) {
         console.log( 'saveRecording firing!' );
 
         const recordingToSave = data.recording;
@@ -71,7 +74,7 @@ module.exports = {
             }
             io.to( channelId ).emit( 'get recording', recording );
             Channel.findByIdAndUpdate( channelId, { $push: { channelRecordings: recording._id } }, { new: true } )
-                .populate( 'channelMessages channelRecordings' )
+                .populate( 'members admins channelMessages channelRecordings' )
                 .exec( ( err, channel ) => {
                     if ( err ) {
                       throw err;
@@ -92,7 +95,7 @@ module.exports = {
             throw err;
           }
           Channel.findById( channelId )
-              .populate( 'channelMessages channelRecordings' )
+              .populate( 'members admins channelMessages channelRecordings' )
               .exec( ( err, channel ) => {
                   if ( err ) {
                     throw err;
@@ -114,7 +117,7 @@ module.exports = {
           deleteFromS3( recording );
 
           Channel.findByIdAndUpdate( channelId, { $pull: { channelRecordings: recording._id } }, { new: true } )
-              .populate( 'channelMessages channelRecordings' )
+              .populate( 'members admins channelMessages channelRecordings' )
               .exec( ( err, channel ) => {
                   if ( err ) {
                     throw err;
@@ -149,7 +152,7 @@ function updateChannel( channelId, io, update ) {
     console.log( 'updateChannel firing!' );
 
     Channel.findByIdAndUpdate( channelId, update, { new: true } )
-        .populate( 'channelMessages channelRecordings' )
+        .populate( 'members admins channelMessages channelRecordings' )
         .exec( ( err, channel ) => {
             if ( err ) {
               throw err;

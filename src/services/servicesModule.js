@@ -6,6 +6,7 @@ import channelService from './channelService.js';
 import messageService from './messageService.js';
 import recorderService from './recorderService.js';
 import recordingService from './recordingService.js';
+import userService from './userService.js';
 
 angular.module( 'services', [] )
       .factory( 'socketFactory', socketFactory )
@@ -13,4 +14,5 @@ angular.module( 'services', [] )
       .service( "channelService", channelService )
       .service( "messageService", messageService )
       .service( "recorderService", recorderService )
-      .service( "recordingService", recordingService );
+      .service( "recordingService", recordingService )
+      .service( "userService", userService );

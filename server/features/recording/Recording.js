@@ -2,7 +2,8 @@ const mongoose = require( "mongoose" );
 const findOrCreate = require( "mongoose-findorcreate" );
 
 const Recording = new mongoose.Schema( {
-		createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
+		userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
+		, userName: { type: String }
 		, dateCreated: { type: Date, default: Date.now() }
 		, description: { type: String }
 		, s3ETag: { type: String }

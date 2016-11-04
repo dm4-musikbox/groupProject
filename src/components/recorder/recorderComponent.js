@@ -1,12 +1,9 @@
 import recorderHtml from './recorder-component-tmpl.html';
 
-function recorderCtrl( $scope, recorderService, recordingService, socketFactory ) {
-    this.$onInit = () => {
-      this.setCurrentUserAndChannel( this.userId, this.channelId );
-    }
-
-    this.setCurrentUserAndChannel = ( userId, channelId ) => {
-      recorderService.setCurrentUserAndChannel( userId, channelId );
+function recorderCtrl( recorderService, socketFactory ) {
+    this.$onChanges = ( changes ) => {
+        console.log( changes );
+        recorderService.setCurrentUserAndChannel( changes.userId.currentValue, changes.userName.currentValue, changes.channelId.currentValue );
     };
 
     this.startRecording = () => {
@@ -26,6 +23,7 @@ function recorderCtrl( $scope, recorderService, recordingService, socketFactory 
     };
 
     socketFactory.on( 'get recording preview', data => {
+        console.log( data );
         this.recordingData = data;
     } );
 
@@ -55,6 +53,7 @@ const recorderComponent = {
     bindings: {
         channelId: '<'
         , userId: '<'
+        , userName: '<'
     }
     , template: recorderHtml
     , controller: recorderCtrl

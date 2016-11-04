@@ -1,5 +1,6 @@
 function recordingService( socketFactory ) {
-    this.updateRecording = ( recording, channelId ) => {
+    this.updateRecording = ( recording, channelId, userId ) => {
+        recording.createdBy = userId;
         let data = {
           recording
           , channelId: channelId
@@ -7,7 +8,8 @@ function recordingService( socketFactory ) {
         socketFactory.emit( 'update recording', data );
     };
 
-    this.deleteRecording = ( recording, channelId )  => {
+    this.deleteRecording = ( recording, channelId, userId )  => {
+        recording.createdBy = userId;
         let data = {
             recording
             , channelId: channelId
