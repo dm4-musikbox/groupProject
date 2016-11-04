@@ -1,27 +1,32 @@
 @import "variables";
 
 
-.my-grid{
+.my-grid {
+    header {
+        color: white;
+        padding-left: 20px;
+        padding-top: 21px;
+        margin: 0 5%;
+        border-bottom: 0.5px solid #3c3939;
+        font-size: 20px;
+    }
 
-header {
-  color: white;
-  padding-left: 20px;
-  padding-top: 21px;
-  margin: 0 5%;
-  border-bottom: .5px solid #3c3939;
-  font-size: 20px;
-}
+    .cards-container {
+        margin-top: 20px;
+    }
 
-.card.small{
-  height: 240px;
-}
-.card.small:hover{
-  cursor: pointer;
-}
-.card.small .card-image{
-  max-height: 68%;
-}
-.row{
-  margin-bottom: 0;
-}
+    .card.small {
+        height: 240px;
+        :hover {
+        cursor: pointer;
+      }
+    }
+
+    .card.small .card-image {
+        max-height: 68%;
+    }
+
+    .row {
+        margin-bottom: 0;
+    }
 }

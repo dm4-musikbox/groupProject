@@ -1,39 +1,41 @@
 @import "variables";
 
-.my-nav{
-
+.my-nav {
   background-color: $primary-color;
+}
 
-header{
+header {
   font-size: 50px;
   padding-left: 5%;
   padding-top: 20px;
   padding-bottom: 10px;
 }
-.row .col.s12{
-border-bottom: 1px solid #3c3939;
+
+div.row {
+  margin: 0 5%;
+  margin-bottom: 0;
+  div.col.s12 {
+    border-bottom: 1px solid #3c3939;
+  }
 }
-.tabs {
+
+ul.tabs {
   background-color: $primary-color;
 }
+
 .tabs .tab a {
-color: #646464;
+  color: #646464;
 }
-.tabs .tab a:hover{
-color: white;
-}
-.tabs .tab a.active{
+
+.tabs .tab a:hover {
   color: white;
 }
-.tabs .indicator{
+
+.tabs .tab a.active {
+  color: white;
+}
+
+.tabs .indicator {
   background-color: #1db954;
   height: 4px;
-}
-.row{
-  margin-bottom: 0;
-  margin: 0 5%;
-}
-.row{
-  margin-bottom: 0;
-}
 }
