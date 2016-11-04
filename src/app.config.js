@@ -30,8 +30,8 @@ function config ( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsP
     $stateProvider
               .state( "landing-page", {
                 url: "/"
-                , component: 'landingPageComponent'
-                // , component: 'socketTestComponent'
+                // , component: 'landingPageComponent'
+                , component: 'socketTestComponent'
               } )
               .state( "main-view", {
                 url: "/main"
