@@ -4,22 +4,23 @@
   background-color: $primary-color;
 }
 
-header {
+#browse-header {
   font-size: 50px;
   padding-left: 5%;
   padding-top: 20px;
   padding-bottom: 10px;
 }
 
-div.row {
+#nav-row {
   margin: 0 5%;
   margin-bottom: 0;
-  div.col.s12 {
-    border-bottom: 1px solid #3c3939;
-  }
 }
 
-ul.tabs {
+#nav-col {
+  border-bottom: 1px solid #3c3939;
+}
+
+#nav-tabs {
   background-color: $primary-color;
 }
 

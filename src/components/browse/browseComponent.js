@@ -1,4 +1,5 @@
 import browseViewHtml from './browse-view-tmpl.html';
+import './styles/sass/browse.scss';
 
 function browseCtrl() {
     const browse = this;
