@@ -2,28 +2,26 @@ import recorderHtml from './recorder-component-tmpl.html';
 
 function recorderCtrl( recorderService, socketFactory ) {
     this.$onChanges = ( changes ) => {
-        console.log( changes );
         recorderService.setCurrentUserAndChannel( changes.userId.currentValue, changes.userName.currentValue, changes.channelId.currentValue );
     };
 
     this.startRecording = () => {
-        return recorderService.startRecording();
+        recorderService.startRecording();
     };
 
     this.stopRecording = () => {
-        return recorderService.stopRecording();
+        recorderService.stopRecording();
     };
 
     this.restartRecording = () => {
-        return recorderService.restartRecording();
+        recorderService.restartRecording();
     };
 
     this.uploadRecordingToS3 = () => {
-        return recorderService.uploadRecordingToS3( this.recordingData, this.userId );
+        recorderService.uploadRecordingToS3( this.recordingData, this.userId, this.channelId );
     };
 
     socketFactory.on( 'get recording preview', data => {
-        console.log( data );
         this.recordingData = data;
     } );
 

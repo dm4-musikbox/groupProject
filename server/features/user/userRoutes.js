@@ -1,6 +1,6 @@
 const userCtrl = require( "./userCtrl.js" );
 
-module.exports = ( app ) => {
+module.exports = app => {
 	app.get( "/api/users", userCtrl.getUsers );
 	app.get( "/api/users/:id", userCtrl.getUserById );
 	app.post( "/api/users", userCtrl.findOrCreateUser );

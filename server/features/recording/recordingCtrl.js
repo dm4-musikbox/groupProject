@@ -22,7 +22,7 @@ module.exports = {
 						return res.status( 500 ).json( err );
 					}
 					console.log( recording );
-					Channel.findByIdAndUpdate( req.params.channel_id, { $push: { channelRecordings: recording._id } }, { new: true }, ( err, channel ) => {
+					Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $push: { channelRecordings: recording._id } }, { new: true }, ( err, channel ) => {
 						if ( err ) {
 							return res.status( 500 ).json( err );
 						}
@@ -40,7 +40,7 @@ module.exports = {
 						}
 						console.log( response );
 
-						Channel.findByIdAndUpdate( req.params.channel_id, { $pull: { channelRecordings: req.params.recording_id } }, { new: true }, ( err, channel ) => {
+						Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $pull: { channelRecordings: req.params.recording_id } }, { new: true }, ( err, channel ) => {
 							if ( err ) {
 								return res.status( 500 ).json( err );
 							}
@@ -61,7 +61,7 @@ module.exports = {
 						console.log( "Recording removed!", response );
 					} );
 				}
-				Channel.findByIdAndUpdate( req.params.channel_id, { $set: { channelRecordings: [] } }, { new: true }, ( err, channel ) => {
+				Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $set: { channelRecordings: [] } }, { new: true }, ( err, channel ) => {
 					if ( err ) {
 						return res.status( 500 ).json( err );
 					}
@@ -70,11 +70,16 @@ module.exports = {
 			}
 	  , updateRecording( req, res ) {
 					console.log( "updateRecording active!" );
-					Recording.findByIdAndUpdate( req.params.recording_id, { $set: req.body }, { new: true }, ( err, recording ) => {
+					Recording.findOneAndUpdate( { _id: req.params.recording_id }, { $set: req.body }, { new: true }, ( err, recording ) => {
 						if ( err ) {
 							return res.status( 500 ).json( err );
 						}
-						return res.status( 200 ).json( recording );
+						Channel.findOne( { _id: req.params.channel_id }, { $set: { channelRecordings: [] } }, { new: true }, ( err, channel ) => {
+							if ( err ) {
+								return res.status( 500 ).json( err );
+							}
+							return res.status( 200 ).json( channel );
+						} );
 					} );
 			}
 };

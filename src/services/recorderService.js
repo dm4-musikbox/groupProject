@@ -15,7 +15,6 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
         currentUserId = userId;
         currentUserName = userName;
         currentChannel = channelId;
-        console.log( currentUserId, currentUserName, currentChannel );
     };
 
     this.startRecording = () => {
@@ -73,10 +72,11 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
              .then( () => console.log( 'audioContext closed!' ) );
      };
 
-     this.uploadRecordingToS3 = ( recordingData, userId ) => {
+     this.uploadRecordingToS3 = ( recordingData, userId, channelId ) => {
          let data = {
              recording: recordingData
              , userId: userId
+             , channelId: channelId
          };
          socketFactory.emit( 'upload recording to S3', data );
      };

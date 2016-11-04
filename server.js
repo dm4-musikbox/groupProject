@@ -20,9 +20,9 @@ app.use( express.static( `server/user-audio-previews` ) );
 
 mongoose.connect( mongoUri );
 mongoose.connection.once( "open", () => {
-	console.log( `Connected to mongo db at ${ mongoUri }` );
+	console.log( `Connected to MongoDB at ${ mongoUri }` );
 } );
 
 masterRoutes( app, binaryServer, io );
 
-server.listen( port, () => console.log( `Listening on port ${ port }.` ) );
+server.listen( port, () => console.log( `Listening on port ${ port }` ) );

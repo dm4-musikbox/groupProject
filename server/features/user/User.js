@@ -11,6 +11,14 @@ const User = new mongoose.Schema(
 	}
 );
 
+function autoPopulate( next ) {
+		this.populate( 'userChannels' );
+		next();
+}
+
 User.plugin( findOrCreate );
+User
+		.pre( 'findOne', autoPopulate )
+		.pre( 'findOneAndUpdate', autoPopulate );
 
 module.exports = mongoose.model( "User", User );

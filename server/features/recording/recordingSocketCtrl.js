@@ -11,14 +11,13 @@ const Channel = require( "./../channel/Channel" );
 
 module.exports = {
     createRecording ( io, socket, client, stream, meta ) {
-        console.log( 'createRecording firing!', meta );
+        console.log( 'createRecording firing! meta is ', meta );
 
         channelId = meta.channelId;
         mp3FileName = meta.userId + '-preview.mp3';
         mp3FilePath = '/server/user-audio-previews/' + mp3FileName;
 
         let streamClone = require( 'stream' );
-
         let stream1 = stream.pipe( new streamClone.PassThrough() );
 
         stream1.pipe( new lame.Encoder( {
@@ -32,12 +31,13 @@ module.exports = {
           } ) )
         .pipe( fs.createWriteStream( path.resolve( 'server/user-audio-previews', mp3FileName ) ) )
         .on( 'close', () => {
-            console.log( 'Done encoding to mp3' );
-            let data = { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' };
+            let data = {
+                filename: mp3FileName
+                , url: 'http://localhost:5000/' + mp3FileName
+                , type: 'mp3PreviewUrl'
+            };
             console.log( data );
-            console.log( socket.id );
-            socket.to( channelId ).emit( 'get recording preview', data );
-            // io.sockets.emit( 'get recording preview', { filename: mp3FileName, url: 'http://localhost:5000/' + mp3FileName, type: 'mp3PreviewUrl' } );
+            socket.emit( 'get recording preview', data );
           } );
     }
     , uploadRecordingToS3 ( data, io, socket ) {
@@ -57,8 +57,7 @@ module.exports = {
         s3obj.upload( params )
             .on( 'httpUploadProgress', evt => { console.log( evt ); } )
             .send( ( err, s3Info ) => {
-                socket.to( channelId ).emit( 'get S3 data', s3Info );
-                // io.sockets.emit( 'get S3 data', s3Info );
+                socket.emit( 'get S3 data', s3Info );
                 // fs.unlink( mp3FilePath );
               } );
     }
@@ -72,9 +71,8 @@ module.exports = {
             if ( err ) {
                 throw err;
             }
-            io.to( channelId ).emit( 'get recording', recording );
-            Channel.findByIdAndUpdate( channelId, { $push: { channelRecordings: recording._id } }, { new: true } )
-                .populate( 'members admins channelMessages channelRecordings' )
+            Channel
+                .findOneAndUpdate( { _id: channelId }, { $push: { channelRecordings: recording._id } }, { new: true } )
                 .exec( ( err, channel ) => {
                     if ( err ) {
                       throw err;
@@ -90,12 +88,12 @@ module.exports = {
       const recording = data.recording;
       const channelId = data.channelId;
 
-      Recording.findByIdAndUpdate( recording._id, { $set: { description: recording.description } }, { new: true }, ( err, recording ) => {
+      Recording.findOneAndUpdate( { _id: recording._id }, { $set: { description: recording.description } }, { new: true }, ( err, recording ) => {
           if ( err ) {
-            throw err;
+              throw err;
           }
-          Channel.findById( channelId )
-              .populate( 'members admins channelMessages channelRecordings' )
+          Channel
+              .findOne( { _id: channelId } )
               .exec( ( err, channel ) => {
                   if ( err ) {
                     throw err;
@@ -116,8 +114,8 @@ module.exports = {
 
           deleteFromS3( recording );
 
-          Channel.findByIdAndUpdate( channelId, { $pull: { channelRecordings: recording._id } }, { new: true } )
-              .populate( 'members admins channelMessages channelRecordings' )
+          Channel
+              .findOneAndUpdate( { _id: channelId }, { $pull: { channelRecordings: recording._id } }, { new: true } )
               .exec( ( err, channel ) => {
                   if ( err ) {
                     throw err;
@@ -148,20 +146,6 @@ function deleteFromS3( recording ) {
     } );
 }
 
-function updateChannel( channelId, io, update ) {
-    console.log( 'updateChannel firing!' );
-
-    Channel.findByIdAndUpdate( channelId, update, { new: true } )
-        .populate( 'members admins channelMessages channelRecordings' )
-        .exec( ( err, channel ) => {
-            if ( err ) {
-              throw err;
-            }
-            getUpdatedChannel( channel, io );
-        } );
-}
-
 function getUpdatedChannel( channel, io ) {
     io.to( channel._id ).emit( 'get channel', channel );
-    // io.sockets.emit( 'get channel', channel );
 }

@@ -14,8 +14,7 @@ module.exports = {
                 throw err;
             }
             Channel
-                .findByIdAndUpdate( channelId, { $push: { channelMessages: message._id } }, { new: true } )
-                .populate( "members admins channelRecordings channelMessages" )
+                .findOneAndUpdate( { _id: channelId }, { $push: { channelMessages: message._id } }, { new: true } )
                 .exec( ( err, channel ) => {
                     if ( err ) {
                         throw err;
@@ -38,8 +37,7 @@ module.exports = {
             }
             console.log( 'Updated message is ', message );
             Channel
-                .findById( channelId )
-                .populate( "members admins channelRecordings channelMessages" )
+                .findOne( { _id: channelId } )
                 .exec( ( err, channel ) => {
                     if ( err ) {
                         throw err;
@@ -59,8 +57,7 @@ module.exports = {
             }
             console.log( 'Removed message! ', response );
             Channel
-                .findByIdAndUpdate( channelId, { $pull: { channelMessages: messageId } }, { new: true } )
-                .populate( "members admins channelRecordings channelMessages" )
+                .findOneAndUpdate( { _id: channelId }, { $pull: { channelMessages: messageId } }, { new: true } )
                 .exec( ( err, channel ) => {
                     if ( err ) {
                         throw err;

@@ -13,6 +13,38 @@ const Channel = new mongoose.Schema(
 	}
 );
 
+function autoPopulate( next ) {
+		this
+				.populate( "members admins" )
+				.populate( {
+						path: 'channelRecordings'
+						, model: 'Recording'
+						, populate: {
+								path: 'createdBy'
+								, model: 'User'
+						}
+				} )
+				.populate( {
+						path: 'channelMessages'
+						, model: 'Message'
+						, populate: [
+								{
+										path: 'author'
+										, model: 'User'
+								}
+								, {
+										path: 'recording'
+										, model: 'Recording'
+								}
+							]
+				} );
+		next();
+};
+
 Channel.plugin( findOrCreate );
+
+Channel
+		.pre( 'findOne', autoPopulate )
+		.pre( 'findOneAndUpdate', autoPopulate );
 
 module.exports = mongoose.model( "Channel", Channel );

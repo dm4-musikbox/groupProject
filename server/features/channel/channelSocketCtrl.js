@@ -32,6 +32,7 @@ module.exports = {
     }
     , leaveChannel( data, io, socket ) {
           console.log( 'leaveChannel firing!' );
+          
           const channelId = data.channelId;
           const userName = data.userName;
 
@@ -49,7 +50,6 @@ module.exports = {
                   };
                   getChannelStatus( io, channelId, channelStatus );
               }
-
           }
           socket.leave( channelId );
     }
@@ -60,8 +60,7 @@ module.exports = {
         const userId = data.userId;
 
         User
-            .findByIdAndUpdate( userId, { $addToSet: { userChannels: channelId } }, { new: true } )
-            .populate( 'userChannels' )
+            .findOneAndUpdate( { _id: userId }, { $addToSet: { userChannels: channelId } }, { new: true } )
             .exec( ( err, user ) => {
                 if ( err ) {
                     throw err;
@@ -70,8 +69,7 @@ module.exports = {
             } );
 
         Channel
-            .findByIdAndUpdate( channelId, { $addToSet: { members: userId } }, { new: true } )
-            .populate( "members admins channelRecordings channelMessages" )
+            .findOneAndUpdate( { _id: channelId }, { $addToSet: { members: userId } }, { new: true } )
             .exec( ( err, channel ) => {
                 if ( err ) {
                     throw err;
@@ -86,8 +84,7 @@ module.exports = {
           const userId = data.userId;
 
           User
-              .findByIdAndUpdate( userId, { $pull: { userChannels: channelId } }, { new: true } )
-              .populate( 'userChannels' )
+              .findOneAndUpdate( { _id: userId }, { $pull: { userChannels: channelId } }, { new: true } )
               .exec( ( err, user ) => {
                   if ( err ) {
                       throw err;
@@ -96,8 +93,7 @@ module.exports = {
               } );
 
           Channel
-              .findByIdAndUpdate( channelId, { $pull: { members: userId } }, { new: true } )
-              .populate( "members admins channelRecordings channelMessages" )
+              .findOneAndUpdate( { _id: channelId }, { $pull: { members: userId } }, { new: true } )
               .exec( ( err, channel ) => {
                   if ( err ) {
                       throw err;
@@ -107,29 +103,14 @@ module.exports = {
     }
 }
 
-function updateUser( io, update, userId ) {
-    User
-        .findByIdAndUpdate( userId, update, { new: true } )
-        .populate( 'userChannels' )
-        .exec( ( err, user ) => {
-            if ( err ) {
-                throw err;
-            }
-            getUpdatedUser( io, socket, userId, user );
-        } );
-}
-
 function getUpdatedUser( io, socket, userId, user ) {
     io.to( socket.id ).emit( 'get user', user );
-    // io.emit( 'get user', user );
 }
 
 function getUpdatedChannel( io, channelId, channel ) {
     io.to( channelId ).emit( 'get channel', channel );
-    // io.emit( 'get channel', channel );
 }
 
 function getChannelStatus( io, channelId, channelStatus ) {
     io.to( channelId ).emit( 'get status of channel', channelStatus );
-    // io.emit( 'get status of channel', channelStatus );
 }
