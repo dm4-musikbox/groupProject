@@ -1,14 +1,14 @@
-import browseViewHtml from './browse-view-tmpl.html';
+import browseViewHtml from "./browse-view-tmpl.html";
 
 function browseCtrl() {
-    const browse = this;
+	const browse = this;
 
-    browse.test = "This is a test for browse components!!!";
+	browse.test = "This is a test for browse components!!!";
 
 }
 
 const browseComponent = {
-  template: browseViewHtml
+	template: browseViewHtml
   , controller: browseCtrl
 };
 

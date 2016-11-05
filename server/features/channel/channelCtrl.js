@@ -14,18 +14,18 @@ module.exports = {
 				return res.status( 400 ).send( err );
 			}
 
-			if ( channel.type === 'public' ) {
-					for ( let i = 0; i < channel.genres.length; i++ ) {
-							Genre.findOneAndUpdate( { name: channel.genres[ i ] }, { $addToSet: { channels: channel._id } }, { new: true }, ( err, genre ) => {
-									if ( err ) {
-											return res.status( 500 ).json( err );
-									}
-									console.log( 'Channel added to genre ', genre );
-							} );
-					}
+			if ( channel.type === "public" ) {
+				for ( let i = 0; i < channel.genres.length; i++ ) {
+					Genre.findOneAndUpdate( { name: channel.genres[ i ] }, { $addToSet: { channels: channel._id } }, { new: true }, ( err, genre ) => {
+						if ( err ) {
+							return res.status( 500 ).json( err );
+						}
+						console.log( "Channel added to genre ", genre );
+					} );
+				}
 			}
 			if ( channel.channelRecordings !== [] || channel.channelMessages !== [] ) {
-					Channel
+				Channel
 								.findOne( { _id: channel._id } )
 								.populate( "channelRecordings channelMessages" )
 								.exec( ( err, channel ) => {
@@ -34,14 +34,13 @@ module.exports = {
 									}
 									return res.status( 200 ).json( channel );
 								} );
-			}
-			else {
-					return res.status( 200 ).json( channel );
+			}			else {
+				return res.status( 200 ).json( channel );
 			}
 		} );
 	}
 	  , getChannels( req, res ) {
-			Channel
+		Channel
 					.find()
 					.populate( "channelRecordings channelMessages" )
 					.exec( ( err, channels ) => {
@@ -52,28 +51,28 @@ module.exports = {
 					} );
 	}
 	 , getChannelById( req, res ) {
-			Channel.findOne( { _id: req.params.channel_id }, ( err, channel ) => {
-				if ( err ) {
-					return res.status( 400 ).send( err );
-				}
-				return res.status( 200 ).json( channel );
-			} );
+		Channel.findOne( { _id: req.params.channel_id }, ( err, channel ) => {
+			if ( err ) {
+				return res.status( 400 ).send( err );
+			}
+			return res.status( 200 ).json( channel );
+		} );
 	}
 	 , updateChannel( req, res ) {
-			Channel.findOneAndUpdate( { _id: req.params.channel_id }, req.body, { new: true }, ( err, response ) => {
-				if ( err ) {
-					return res.status( 400 ).send( err );
-				}
-				return res.status( 200 ).json( response );
-			} );
+		Channel.findOneAndUpdate( { _id: req.params.channel_id }, req.body, { new: true }, ( err, response ) => {
+			if ( err ) {
+				return res.status( 400 ).send( err );
+			}
+			return res.status( 200 ).json( response );
+		} );
 	}
 	 , deleteChannel( req, res ) {
-			Channel.findByIdAndRemove( req.params.channel_id, ( err, response ) => {
-				if ( err ) {
-					return res.status( 400 ).send( err );
-				}
-				return res.status( 200 ).json( response );
-			} );
+		Channel.findByIdAndRemove( req.params.channel_id, ( err, response ) => {
+			if ( err ) {
+				return res.status( 400 ).send( err );
+			}
+			return res.status( 200 ).json( response );
+		} );
 	}
 	, addGenreToChannel( req, res ) {
 		 Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $push: { genres: req.params.genre } }, { new: true }, ( err, channel ) => {
@@ -83,7 +82,7 @@ module.exports = {
 			 console.log( channel );
 			 return res.status( 200 ).json( channel );
 		 } );
- }
+	}
 	, deleteGenreFromChannel( req, res ) {
 		 Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $pull: { genres: req.params.genre } }, { new: true }, ( err, response ) => {
 			 if ( err ) {
@@ -91,5 +90,5 @@ module.exports = {
 			 }
 			 return res.status( 200 ).json( response );
 		 } );
- }
+	}
 };

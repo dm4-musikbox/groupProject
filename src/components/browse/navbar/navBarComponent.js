@@ -1,15 +1,15 @@
-import browseNavbarHtml from './navbar.html';
-import './styles/sass/navbar.scss';
+import browseNavbarHtml from "./navbar.html";
+import "./styles/sass/navbar.scss";
 
 function browseNavbarCtrl() {
-    const navbar = this;
+	const navbar = this;
 
-    navbar.test = "browse navbar";
+	navbar.test = "browse navbar";
 
 }
 
 const browseNavbarComponent = {
-  template: browseNavbarHtml
+	template: browseNavbarHtml
   , controller: browseNavbarCtrl
 };
 

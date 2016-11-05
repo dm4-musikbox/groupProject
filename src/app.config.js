@@ -1,73 +1,72 @@
-function config ( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider ) {
-    lockProvider.init( {
-      clientID: "dxHLsmsTwuygusXFm9bs1e2bqbF91EK3"
+function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsProvider, jwtInterceptorProvider, lockProvider ) {
+	lockProvider.init( {
+		clientID: "dxHLsmsTwuygusXFm9bs1e2bqbF91EK3"
        , domain: "musikbox.auth0.com"
        , options: {
-            autoclose: false
+	autoclose: false
              , auth: {
-              redirect: false
-            }
+	redirect: false
+}
              , languageDictionary: {
-                emailInputPlaceholder: "something@youremail.com"
+	emailInputPlaceholder: "something@youremail.com"
               , title: "Musikbox"
-            }
+}
             , theme: {
-                primaryColor: '#4d394b'
-            }
-      }
-    } );
+	primaryColor: "#4d394b"
+}
+}
+	} );
 
-    jwtOptionsProvider.config({
-      tokenGetter: function() {
-        return localStorage.getItem('id_token');
-      }
-      // , whiteListedDomains: [ 'http://s3.amazonaws.com/' ] 
-    } );
+	jwtOptionsProvider.config( {
+		tokenGetter() {
+			return localStorage.getItem( "id_token" );
+		}
+	} );
 
-    $httpProvider.interceptors.push('jwtInterceptor');
+	$httpProvider.interceptors.push( "jwtInterceptor" );
 
-    $urlRouterProvider.otherwise( "/" );
+	$urlRouterProvider.otherwise( "/" );
 
-    $stateProvider
+	$stateProvider
               .state( "landing-page", {
-                url: "/"
+	url: "/"
                 // , component: 'landingPageComponent'
-                , component: 'socketTestComponent'
-              } )
+                , component: "socketTestComponent"
+} )
               .state( "main-view", {
-                url: "/main"
-                , component: 'mainComponent'
-              } )
+	url: "/main"
+                , component: "mainComponent"
+} )
               .state( "channel-view", {
-                url: "/channel"
-                , parent: 'main-view'
-                , component: 'channelComponent'
-              } )
+	url: "/channel"
+                , parent: "main-view"
+                , component: "channelComponent"
+} )
               .state( "account-settings-view", {
-                url: "/account-settings"
-                , parent: 'main-view'
+	url: "/account-settings"
+                , parent: "main-view"
                 , component: "accountSettingsComponent"
-              } )
+} )
               .state( "genre-view", {
-                url: "/genre"
-                , parent: 'main-view'
-                , component: 'genreComponent'
-              } )
+	url: "/genre"
+                , parent: "main-view"
+                , component: "genreComponent"
+} )
               .state( "browse-view", {
-                url: "/browse"
-                , parent: 'main-view'
+	url: "/browse"
+                , parent: "main-view"
                 , component: "browseComponent"
-              } )
+} )
               .state( "genres-view", {
-                url: "/genres"
-                , parent: 'browse-view'
+	url: "/genres"
+                , parent: "browse-view"
                 , component: "genresComponent"
-              } )
+} )
               .state( "artists-view", {
-                url: "/artists"
-                , parent: 'browse-view'
+	url: "/artists"
+                , parent: "browse-view"
                 , component: "artistsComponent"
-              } )
+} );
 }
 
 export default config;

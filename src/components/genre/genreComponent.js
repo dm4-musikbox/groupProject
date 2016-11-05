@@ -1,14 +1,14 @@
-import genreViewHtml from './genre-view-tmpl.html';
+import genreViewHtml from "./genre-view-tmpl.html";
 
 function genreCtrl() {
-    const genre = this;
+	const genre = this;
 
-    genre.test = "This is a test for genre pop Components!!";
+	genre.test = "This is a test for genre pop Components!!";
 
 }
 
-const genreComponent ={
-  template: genreViewHtml
+const genreComponent = {
+	template: genreViewHtml
   , controller: genreCtrl
 };
 

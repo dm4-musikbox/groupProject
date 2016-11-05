@@ -4,12 +4,12 @@ import "auth0-lock";
 import "angular-lock";
 import "angular-jwt";
 
-import './services/servicesModule';
-import './components/componentsModule';
-import run from './app.run.js';
-import config from './app.config.js';
+import "./services/servicesModule";
+import "./components/componentsModule";
+import run from "./app.run.js";
+import config from "./app.config.js";
 
 angular
     .module( "musikboxApp", [ "auth0.lock", "angular-jwt", "components", "services", uiRouter ] )
     .run( run )
-    .config( config )
+    .config( config );

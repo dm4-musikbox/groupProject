@@ -1,13 +1,13 @@
-import browseGridHtml from './grid.html';
+import browseGridHtml from "./grid.html";
 
 function browseGridCtrl() {
-  const grid = this;
+	const grid = this;
 
-  grid.test = "grid";
+	grid.test = "grid";
 }
 
 const browseGridComponent = {
-  template: browseGridHtml
+	template: browseGridHtml
   , controller: browseGridCtrl
 };
 

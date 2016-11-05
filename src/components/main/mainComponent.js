@@ -1,19 +1,19 @@
-import authService from './../../services/authService';
-import mainViewHtml from './main-view-tmpl.html';
-import './styles/sass/main.scss';
+import authService from "./../../services/authService";
+import mainViewHtml from "./main-view-tmpl.html";
+import "./styles/sass/main.scss";
 
 function mainCtrl( $rootScope, authService ) {
 
-  const main = this;
+	const main = this;
 
-  main.authService = authService;
-  main.isAuthenticated = $rootScope.isAuthenticated;
+	main.authService = authService;
+	main.isAuthenticated = $rootScope.isAuthenticated;
 
 }
 
 const mainComponent = {
-  template: mainViewHtml
+	template: mainViewHtml
   , controller: mainCtrl
-}
+};
 
 export default mainComponent;
