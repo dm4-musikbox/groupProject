@@ -12,6 +12,7 @@ import browseGridComponent from './browse/grid/gridComponent.js'
 import genresComponent from './genres/genresComponent.js';
 import artistsComponent from './artists/artistsComponent.js';
 import leftPanelDir from './../directives/leftPanel/left-panel-dir.js'
+import fileReadDir from './../directives/file-read/fileReadDirective.js'
 
 angular.module( 'components', [] )
         .component( 'recorderComponent', recorderComponent )
@@ -26,4 +27,5 @@ angular.module( 'components', [] )
         .component( "genresComponent", genresComponent )
         .component( "artistsComponent", artistsComponent )
         .component( "accountSettingsComponent", accountSettingsComponent )
-        .directive( "leftPanelDir", leftPanelDir );
+        .directive( "leftPanelDir", leftPanelDir )
+        .directive( "fileReadDir", fileReadDir );

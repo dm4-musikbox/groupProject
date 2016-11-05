@@ -12,4 +12,4 @@ import config from './app.config.js';
 angular
     .module( "musikboxApp", [ "auth0.lock", "angular-jwt", "components", "services", uiRouter ] )
     .run( run )
-    .config( config );
+    .config( config )

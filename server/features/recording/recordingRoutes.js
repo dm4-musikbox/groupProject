@@ -9,6 +9,10 @@ module.exports = app => {
 	        .delete( recordingCtrl.deleteRecordingFromChannel );
 
 		app.route( "/api/recordings/channels/:channel_id" )
-					.post( recordingCtrl.addRecordingToChannel )
+					// .post( recordingCtrl.addRecordingToChannel )
+					// .post( recordingCtrl.uploadRecordingToChannel )
 	        .delete( recordingCtrl.deleteAllRecordingsFromChannel );
+
+		app.route( '/api/recordings/sign-s3' )
+					.get( recordingCtrl.uploadFileToS3 );
 };

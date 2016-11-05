@@ -21,6 +21,7 @@ function config ( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsP
       tokenGetter: function() {
         return localStorage.getItem('id_token');
       }
+      // , whiteListedDomains: [ 'http://s3.amazonaws.com/' ] 
     } );
 
     $httpProvider.interceptors.push('jwtInterceptor');

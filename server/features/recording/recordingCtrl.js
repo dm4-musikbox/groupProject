@@ -1,6 +1,8 @@
 const Recording = require( "./Recording" );
 const User = require( "./../user/User" );
 const Channel = require( "./../channel/Channel" );
+const AWS = require( 'aws-sdk' );
+AWS.config.loadFromPath( 'server/config/awsConfig.json' );
 
 module.exports = {
 		getAllRecordings( req, res ) {
@@ -13,23 +15,50 @@ module.exports = {
 					return res.status( 200 ).json( recordings );
 				} );
 		}
-	 , addRecordingToChannel( req, res ) {
-				console.log( "addRecordingToChannel active!" );
-	      // create recording and adds to recordings collection
-	      // add recording id to channel's recordings array
-				new Recording( req.body ).save( ( err, recording ) => {
-					if ( err ) {
-						return res.status( 500 ).json( err );
-					}
-					console.log( recording );
-					Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $push: { channelRecordings: recording._id } }, { new: true }, ( err, channel ) => {
-						if ( err ) {
-							return res.status( 500 ).json( err );
-						}
-						return res.status( 200 ).json( channel );
-					} );
-				} );
-			}
+	 , uploadFileToS3( req, res ) {
+				console.log( "uploadFileToChannel active!" );
+					  const s3 = new AWS.S3();
+					  const fileName = req.query['file-name'];
+					  const fileType = req.query['file-type'];
+					  const s3Params = {
+					    Bucket: 'musikbox-recordings',
+					    Key: fileName,
+					    Expires: 60,
+					    ContentType: fileType,
+					    ACL: 'public-read'
+					  };
+
+					  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+					    if(err){
+					      console.log(err);
+					      return res.end();
+					    }
+					    const returnData = {
+					      signedRequest: data,
+					      url: `https://musikbox-recordings.s3.amazonaws.com/${fileName}`
+					    };
+							console.log( returnData );
+					    res.write( JSON.stringify( returnData ) );
+					    res.end();
+					  });
+		}
+	//  , addRecordingToChannel( req, res ) {
+	// 			console.log( "addRecordingToChannel active!" );
+	//       // create recording and adds to recordings collection
+	//       // add recording id to channel's recordings array
+	// 			new Recording( req.body ).save( ( err, recording ) => {
+	// 				if ( err ) {
+	// 					return res.status( 500 ).json( err );
+	// 				}
+	// 				console.log( recording );
+	// 				Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $push: { channelRecordings: recording._id } }, { new: true }, ( err, channel ) => {
+	// 					if ( err ) {
+	// 						return res.status( 500 ).json( err );
+	// 					}
+	// 					return res.status( 200 ).json( channel );
+	// 				} );
+	// 			} );
+	// 		}
 		 , deleteRecordingFromChannel( req, res ) {
 					console.log( "deleteRecordingFromChannel active!" );
 					// delete recording from recordings collection

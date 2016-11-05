@@ -1,6 +1,6 @@
 import recorderHtml from './recorder-component-tmpl.html';
 
-function recorderCtrl( recorderService, socketFactory ) {
+function recorderCtrl( $scope, recorderService, socketFactory ) {
     this.$onChanges = ( changes ) => {
         recorderService.setCurrentUserAndChannel( changes.userId.currentValue, changes.userName.currentValue, changes.channelId.currentValue );
     };
@@ -26,7 +26,7 @@ function recorderCtrl( recorderService, socketFactory ) {
     } );
 
     socketFactory.on( 'get S3 data', data => {
-        this.s3Data = data;
+        this.s3Data = data; // for debugging purposes only ( will display on view )
         this.data = {
             userId: this.userId
             , channelId: this.channelId
@@ -41,6 +41,7 @@ function recorderCtrl( recorderService, socketFactory ) {
         }
         socketFactory.emit( 'save recording', this.data );
     } );
+
 
     this.$onDestroy = () => {
         socketFactory.removeAllListeners();

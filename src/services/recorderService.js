@@ -30,6 +30,23 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
         }
     };
 
+    this.stopRecording = () => {
+        isRecording = false;
+        $window.audioStream.end();
+        audioCtx
+            .close()
+            .then( () => console.log( 'audioContext closed!' ) );
+    };
+
+    this.uploadRecordingToS3 = ( recordingData, userId, channelId ) => {
+        let data = {
+            recording: recordingData
+            , userId: userId
+            , channelId: channelId
+        };
+        socketFactory.emit( 'upload recording to S3', data );
+    };
+
     function initializeRecorder ( stream ) {
         $window.audioStream = client.createStream( { userId: currentUserId, userName: currentUserName, channelId: currentChannel, type: 'audio' } );
         isRecording = true;
@@ -64,22 +81,7 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
          return buf.buffer;
      }
 
-     this.stopRecording = () => {
-         isRecording = false;
-         $window.audioStream.end();
-         audioCtx
-             .close()
-             .then( () => console.log( 'audioContext closed!' ) );
-     };
 
-     this.uploadRecordingToS3 = ( recordingData, userId, channelId ) => {
-         let data = {
-             recording: recordingData
-             , userId: userId
-             , channelId: channelId
-         };
-         socketFactory.emit( 'upload recording to S3', data );
-     };
 }
 
 export default recorderService;
