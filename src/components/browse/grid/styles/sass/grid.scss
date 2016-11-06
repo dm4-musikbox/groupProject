@@ -1,0 +1,53 @@
+@import "variables";
+
+
+.my-grid {
+  max-height: calc(100vh - 113px);
+  overflow: auto;
+  #grid-header {
+    color: white;
+    padding-left: 20px;
+    padding-top: 21px;
+    margin: 0 5%;
+    border-bottom: 0.5px solid #383737;
+    font-size: 20px;
+  }
+  #cards-container {
+    margin: 20px 5%;
+  }
+
+  #card-small{
+    height: 240px;
+    opacity: .7;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.46), 0 6px 11px rgba(0, 0, 0, 0.53);
+    :hover{
+      cursor: pointer;
+    }
+  }
+  #card-small:hover{
+    box-shadow: 7px 17px 20px rgba(0, 0, 0, .53), 0px 16px 20px rgba(0, 0, 0, .6);
+    opacity: 1;
+  }
+
+  #card-image{
+    max-height: 68%;
+  }
+
+  #row {
+    margin-bottom: 0;
+  }
+}
+
+//#e2e2e2
+// #062a38
+// #073649
+// #054259
+// #305670
+// #3d3149
+// #262d43
+//
+// #2b67bd
+// #4760b9
+// #7552b5
+// #9f44b1
+// #cc35ad
