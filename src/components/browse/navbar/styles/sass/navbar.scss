@@ -3,12 +3,12 @@
 .my-nav {
   background-color: $primary-color;
 }
-
+#nav-wrapper{
+  height: 0;
+}
 #browse-header {
-  font-size: 50px;
+  font-size: 44px;
   padding-left: 5%;
-  padding-top: 20px;
-  padding-bottom: 10px;
 }
 
 #nav-row {
@@ -17,15 +17,16 @@
 }
 
 #nav-col {
-  border-bottom: 1px solid #3c3939;
+  border-bottom: 1px solid #383737;
 }
 
 #nav-tabs {
-  background-color: $primary-color;
+  background-color: rgba(255,255,255, 0);
 }
 
 .tabs .tab a {
-  color: #646464;
+  color: #828282;
+  font-size: 16px;
 }
 
 .tabs .tab a:hover {
