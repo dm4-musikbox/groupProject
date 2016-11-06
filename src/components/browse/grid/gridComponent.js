@@ -1,4 +1,5 @@
 import browseGridHtml from './grid.html';
+import './styles/sass/grid.scss';
 
 function browseGridCtrl() {
   const grid = this;

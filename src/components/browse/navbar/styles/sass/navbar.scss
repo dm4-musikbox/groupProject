@@ -1,20 +1,43 @@
-.row {
-  max-width: 1030px;
+@import "variables";
+
+.my-nav {
+  background-color: $primary-color;
+}
+#nav-wrapper{
+  height: 0;
+}
+#browse-header {
+  font-size: 44px;
+  padding-left: 5%;
+}
+
+#nav-row {
+  margin: 0 5%;
   margin-bottom: 0;
 }
-  .row .col .s12{
-  border-bottom: .5px solid grey;
+
+#nav-col {
+  border-bottom: 1px solid #383737;
 }
-  .tabs {
-  background-color: #181818;
+
+#nav-tabs {
+  background-color: rgba(255,255,255, 0);
 }
-  .tabs .tab a {
+
+.tabs .tab a {
+  color: #828282;
+  font-size: 16px;
+}
+
+.tabs .tab a:hover {
   color: white;
 }
 
-  .tabs .tab a:hover{
-  color: #10fbfb;
+.tabs .tab a.active {
+  color: white;
 }
-.tabs .indicator{
-background-color: #10fbfb;
+
+.tabs .indicator {
+  background-color: #1db954;
+  height: 4px;
 }
