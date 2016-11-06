@@ -7,7 +7,7 @@ import channelComponent from "./channel/channelComponent.js";
 import genreComponent from "./genre/genreComponent.js";
 import accountSettingsComponent from "./account-settings/accountSettingsComponent.js";
 import browseComponent from "./browse/browseComponent.js";
-import browseNavbarComponent from "./browse/navbar/navBarComponent.js";
+import navBarComponent from "./browse/navbar/navBarComponent.js";
 import browseGridComponent from "./browse/grid/gridComponent.js";
 import genresComponent from "./genres/genresComponent.js";
 import artistsComponent from "./artists/artistsComponent.js";
@@ -22,7 +22,7 @@ angular.module( "components", [] )
         .component( "channelComponent", channelComponent )
         .component( "genreComponent", genreComponent )
         .component( "browseComponent", browseComponent )
-        .component( "browseNavbarComponent", browseNavbarComponent )
+        .component( "navBarComponent", navBarComponent )
         .component( "browseGridComponent", browseGridComponent )
         .component( "genresComponent", genresComponent )
         .component( "artistsComponent", artistsComponent )
