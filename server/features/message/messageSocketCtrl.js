@@ -1,75 +1,74 @@
-const mongoose = require( 'mongoose' );
+const mongoose = require( "mongoose" );
 
 const Message = require( "./../message/Message" );
 const Channel = require( "./../channel/Channel" );
 
 module.exports = {
-    sendAndSaveMessage( data, io ) {
-        console.log( 'sendAndSaveMessage firing!', io );
-        const message = data.message;
-        const channel_id = data.channel_id;
+	sendAndSaveMessage( data, io ) {
+		console.log( "sendAndSaveMessage firing!" );
+		const message = data.message;
+		const channelId = data.channelId;
 
-        new Message( message ).save( ( err, message ) => {
-            if ( err ) {
-                throw err;
-            }
-            Channel
-                .findByIdAndUpdate( channel_id, { $push: { channelMessages: message._id } }, { new: true } )
-                .populate( "channelRecordings channelMessages" )
+		new Message( message ).save( ( err, message ) => {
+			if ( err ) {
+				throw err;
+			}
+			Channel
+                .findOneAndUpdate( { _id: channelId }, { $push: { channelMessages: message._id } }, { new: true } )
                 .exec( ( err, channel ) => {
-                    if ( err ) {
-                        throw err;
-                    }
-                    getUpdatedChannel( channel_id, io, channel );
-                } );
-        } );
-    }
+	if ( err ) {
+		throw err;
+	}
+	getUpdatedChannel( channelId, io, channel );
+} );
+		} );
+	}
 
     , updateMessage( data, io ) {
-        const channel_id = data.channel_id;
-        const message_id = data.message_id;
-        const messageUpdate = data.message_update;
+	console.log( "updateMessage firing!" );
 
-        Message.findByIdAndUpdate( message_id, { $set: messageUpdate }, { new: true } , ( err, message ) => {
-            if ( err ) {
-                throw err;
-            }
-            console.log( 'Updated message is ', message );
-            Channel
-                .findById( channel_id )
-                .populate( "channelRecordings channelMessages" )
+	const channelId = data.channelId;
+	const messageId = data.messageId;
+	const messageContent = data.message.content;
+
+	Message.findByIdAndUpdate( messageId, { $set: { content: messageContent } }, { new: true }, ( err, message ) => {
+		if ( err ) {
+			throw err;
+		}
+		console.log( "Updated message is ", message );
+		Channel
+                .findOne( { _id: channelId } )
                 .exec( ( err, channel ) => {
-                    if ( err ) {
-                        throw err;
-                    }
-                    getUpdatedChannel( channel_id, io, channel );
-                } );
-        } );
-    }
+	if ( err ) {
+		throw err;
+	}
+	getUpdatedChannel( channelId, io, channel );
+} );
+	} );
+}
 
     , deleteMessage( data, io ) {
-        const message_id = data.message_id;
-        const channel_id = data.channel_id;
+	const messageId = data.messageId;
+	const channelId = data.channelId;
 
-        Message.findByIdAndRemove( message_id, ( err, response ) => {
-            if ( err ) {
-                throw err;
-            }
-            console.log( 'Removed message! ', response );
-            Channel
-                .findByIdAndUpdate( channel_id, { $pull: { channelMessages: message_id } }, { new: true } )
-                .populate( "channelRecordings channelMessages" )
+	Message.findByIdAndRemove( messageId, ( err, response ) => {
+		if ( err ) {
+			throw err;
+		}
+		console.log( "Removed message! ", response );
+		Channel
+                .findOneAndUpdate( { _id: channelId }, { $pull: { channelMessages: messageId } }, { new: true } )
                 .exec( ( err, channel ) => {
-                    if ( err ) {
-                        throw err;
-                    }
-                    getUpdatedChannel( channel_id, io, channel );
-                } );
-        } );
-    }
+	if ( err ) {
+		throw err;
+	}
+	getUpdatedChannel( channelId, io, channel );
+} );
+	} );
+}
 };
 
-function getUpdatedChannel( channel_id, io, channel ) {
-    // io.to( channel_id ).emit( 'get channel', channel );
-    io.sockets.emit( 'get channel', channel );
+function getUpdatedChannel( channelId, io, channel ) {
+	io.to( channelId ).emit( "get channel", channel );
+    // io.sockets.emit( 'get channel', channel );
 }

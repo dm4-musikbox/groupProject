@@ -2,13 +2,13 @@ import browseGridHtml from './grid.html';
 import './styles/sass/grid.scss';
 
 function browseGridCtrl() {
-  const grid = this;
+	const grid = this;
 
-  grid.test = "grid";
+	grid.test = "grid";
 }
 
 const browseGridComponent = {
-  template: browseGridHtml
+	template: browseGridHtml
   , controller: browseGridCtrl
 };
 

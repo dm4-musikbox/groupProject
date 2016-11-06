@@ -1,14 +1,14 @@
-import artistsViewHtml from './artists-view-tmpl.html';
+import artistsViewHtml from "./artists-view-tmpl.html";
 
 function artistsCtrl() {
-    const artists = this;
+	const artists = this;
 
-    artists.test = "This is test for artists components!!!";
+	artists.test = "This is test for artists components!!!";
 
 }
 
 const artistsComponent = {
-  template: artistsViewHtml
+	template: artistsViewHtml
   , controller: artistsCtrl
 };
 

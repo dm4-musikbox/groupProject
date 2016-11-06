@@ -1,54 +1,95 @@
 <h1 style="text-align: center">Musikbox socket functions</h1>
 
 <main style="display: flex; justify-content: space-around">
-    <div>
+    <div style="width: 60vw">
         <h2>Channel data</h2>
-        <div ng-repeat="( key, value ) in $ctrl.channel">
-            {{ key }} : {{ value }}
+        <div>
+          <h4>{{ $ctrl.channel.name }}</h4>
+          <h5>{{ $ctrl.channel.genres }}</h5>
+          <h5>Members</h5>
+          <ul>
+            <li ng-repeat="member in $ctrl.channel.members">
+                {{ member.name }}
+            </li>
+          </ul>
+
+          <h6>Messages</h6>
+          <ul>
+            <li ng-repeat="message in $ctrl.channel.channelMessages">
+                <div ng-repeat="( key, value ) in message">
+                    {{ key }} : {{ value }}
+                </div>
+            </li>
+          </ul>
+
+          <h6>Recordings</h6>
+          <ul>
+            <li ng-repeat="recording in $ctrl.channel.channelRecordings">
+                <div ng-repeat="( key, value ) in recording">
+                    {{ key }} : {{ value }}
+                </div>
+            </li>
+          </ul>
         </div>
 
         <h2>Channel status</h2>
         <div>{{ $ctrl.channelStatus }}</div>
     </div>
 
-    <div>
+    <div style="width: 40vw">
         <h3>Channel functions</h3>
-        <input type="text" placeholder="channel id" ng-model="channel._id">
+        <input type="text" placeholder="channel id" ng-model="$ctrl.channel._id">
         <br />
-        <input type="text" placeholder="user id" ng-model="user._id">
+        <input type="text" placeholder="user id" ng-model="$ctrl.user._id">
         <br />
-        <input type="submit" ng-click="$ctrl.enterChannel( channel._id, user._id )" value="Enter">
-        <input type="submit" ng-click="$ctrl.leaveChannel( channel._id, user._id )" value="Leave">
-        <input type="submit" ng-click="$ctrl.subscribeToChannel( channel._id, user._id )" value="Subscribe">
-        <input type="submit" ng-click="$ctrl.unsubscribeFromChannel( channel._id, user._id )" value="Unsubscribe">
-
-
-        <hr />
-
-        <h3>Recording functions</h3>
-        <input type="text" ng-model="recording_id" placeholder="recording id">
+        <input type="text" placeholder="user name" ng-model="$ctrl.user.name">
         <br />
-        <input type="text" ng-model="recording.cloudUrl" placeholder="cloud URL">
-        <br />
-        <textarea name="name" rows="8" cols="40" ng-model="recording.description" placeholder="recording description"></textarea>
-        <br />
-        <input type="submit" value="Save recording" ng-click="$ctrl.saveRecording( recording )">
-        <input type="submit" value="Update recording" ng-click="$ctrl.updateRecording( { _id: recording_id, description: recording.description } )">
-        <input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( recording_id )">
+        <input type="submit" ng-click="$ctrl.setCurrentUserAndChannel( $ctrl.user._id, $ctrl.user.name, $ctrl.channel._id )" value="Set user and channel">
+        <input type="submit" ng-click="$ctrl.enterChannel( $ctrl.channel._id, $ctrl.user.name )" value="Enter">
+        <input type="submit" ng-click="$ctrl.leaveChannel( $ctrl.channel._id, $ctrl.user.name )" value="Leave">
+        <input type="submit" ng-click="$ctrl.subscribeToChannel( $ctrl.channel._id, $ctrl.user._id )" value="Subscribe">
+        <input type="submit" ng-click="$ctrl.unsubscribeFromChannel( $ctrl.channel._id, $ctrl.user._id )" value="Unsubscribe">
 
         <hr />
 
         <h3>Message functions</h3>
-        <input type="text" ng-model="message_id" placeholder="message id">
+        <input type="text" ng-model="$ctrl.messageId" placeholder="message id">
         <br />
-        <input type="text" ng-model="message.type" placeholder="message type">
+        <input type="text" ng-model="$ctrl.message.author" placeholder="message author">
+        <br />
+        <input type="text" ng-model="$ctrl.message.type" placeholder="message type">
         <br/>
-        <input type="text" ng-model="message.content" placeholder="message content">
+        <input type="text" ng-model="$ctrl.message.content" placeholder="message content">
         <br />
-        <input type="submit" ng-click="$ctrl.sendAndSaveMessage( message )" value="Send and save message">
-        <input type="submit" ng-click="$ctrl.updateMessage( message_id, { content: message.content } )" value="Update message">
-        <input type="submit" ng-click="$ctrl.deleteMessage( message_id )" value="Delete message">
+        <input type="submit" ng-click="$ctrl.sendAndSaveMessage( $ctrl.message, $ctrl.channel._id )" value="Send and save message">
+        <input type="submit" ng-click="$ctrl.updateMessage( $ctrl.messageId, $ctrl.message, $ctrl.channel._id )" value="Update message">
+        <input type="submit" ng-click="$ctrl.deleteMessage( $ctrl.messageId, $ctrl.channel._id )" value="Delete message">
 
         <hr />
+
+        <recorder-component
+            channel-id="$ctrl.channelId"
+            user-id="$ctrl.userId"
+            user-name="$ctrl.userName"
+        >
+        </recorder-component>
+
+        <hr />
+
+        <h3>Recording functions</h3>
+
+        <input type="text" ng-model="$ctrl.recording._id" placeholder="recording id">
+        <br />
+        <input type="text" ng-model="$ctrl.recording.s3Bucket" placeholder="recording s3Bucket">
+        <br />
+        <input type="text" ng-model="$ctrl.recording.s3Key" placeholder="recording s3Key">
+        <br />
+        <textarea name="name" rows="8" cols="40" ng-model="$ctrl.recording.description" placeholder="recording description"></textarea>
+        <br />
+        <input type="submit" value="Update recording" ng-click="$ctrl.updateRecording( $ctrl.recording, $ctrl.channel._id, $ctrl.user._id )">
+        <input type="submit" value="Delete recording" ng-click="$ctrl.deleteRecording( $ctrl.recording, $ctrl.channel._id, $ctrl.user._id )">
+
+        <hr />
+
     </div>
 </main>

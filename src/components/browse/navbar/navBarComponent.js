@@ -1,16 +1,16 @@
-import navbarHtml from './navbar.html';
-import './styles/sass/navbar.scss';
+import navBarHtml from './navBar.html';
+import './styles/sass/navBar.scss';
 
-function browseNavbarCtrl() {
-    const navbar = this;
+function navBarCtrl() {
+	const navBar = this;
 
-    navbar.test = "browse navbar";
+	navBar.test = "browse navbar";
 
 }
 
-const navbarComponent = {
-  template: browseNavbarHtml
-  , controller: browseNavbarCtrl
+const navBarComponent = {
+  template: navBarHtml
+  , controller: navBarCtrl
 };
 
-export default navbarComponent;
+export default navBarComponent;
