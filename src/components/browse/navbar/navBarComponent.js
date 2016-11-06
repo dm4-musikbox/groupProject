@@ -1,7 +1,7 @@
 import navbarHtml from './navbar.html';
 import './styles/sass/navbar.scss';
 
-function browseNavbarCtrl() {
+function navbarCtrl() {
 	const navbar = this;
 
 	navbar.test = "browse navbar";
@@ -9,8 +9,8 @@ function browseNavbarCtrl() {
 }
 
 const navbarComponent = {
-  template: browseNavbarHtml
-  , controller: browseNavbarCtrl
+  template: navbarHtml
+  , controller: navbarCtrl
 };
 
 export default navbarComponent;
