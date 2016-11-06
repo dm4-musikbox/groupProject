@@ -1,30 +1,17 @@
-const recordingCtrl = require( './recordingCtrl' );
-const recordingSocketCtrl = require( './recordingSocketCtrl' );
+const recordingCtrl = require( "./recordingCtrl" );
 
-module.exports = ( app, binaryServer, io ) => {
-		app.route( "/api/recordings" )
+module.exports = app => {
+	app.route( "/api/recordings" )
 	        .get( recordingCtrl.getAllRecordings );
 
-		app.route( "/api/recordings/:recording_id" )
-	        .put( recordingCtrl.updateRecording );
-
-		app.route( "/api/recordings/:recording_id/channels/:channel_id" )
+	app.route( "/api/recordings/:recording_id/channels/:channel_id" )
+					.put( recordingCtrl.updateRecording )
 	        .delete( recordingCtrl.deleteRecordingFromChannel );
 
-		app.route( "/api/recordings/channels/:channel_id" )
+	app.route( "/api/recordings/channels/:channel_id" )
 					.post( recordingCtrl.addRecordingToChannel )
 	        .delete( recordingCtrl.deleteAllRecordingsFromChannel );
 
-		binaryServer.on( 'connection', client => {
-				client.on( 'stream', ( stream, meta ) => {
-						// rewrite with switch
-						if ( meta.type === 'audio' ) {
-								recordingSocketCtrl.createRecording( client, stream, meta );
-						}
-						else if ( meta.type === 'upload-to-S3' ) {
-								recordingSocketCtrl.uploadRecordingToS3( client, stream, meta );
-						}
-				} );
-		} );
-
+	app.route( "/api/recordings/sign-s3" )
+					.get( recordingCtrl.getSignedRequestFromS3 );
 };

@@ -20,7 +20,7 @@ module.exports = {
 		} );
 	}
 	 , getUserById( req, res ) {
-		User.findById( req.params.id, ( err, user ) => {
+		User.findOne( { _id: req.params.id }, ( err, user ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
 			}
@@ -28,7 +28,7 @@ module.exports = {
 		} );
 	}
 	 , updateUser( req, res ) {
-		User.findByIdAndUpdate( req.params.id, req.body, { new: true }, ( err, response ) => {
+		User.findOneAndUpdate( { _id: req.params.id }, req.body, { new: true }, ( err, response ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
 			}

@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+const webpack = require( 'webpack' );
 
 module.exports = {
     entry: "./src/app.js"
@@ -36,11 +36,14 @@ module.exports = {
             }
         ]
     }
-  //   ,plugins: [
-  //   new webpack.ProvidePlugin({
-  //     'window.jQuery': 'jquery'
-  //   })
-  // ]
+    , plugins: [
+        new webpack.ProvidePlugin(
+            {
+                $: "jquery"
+                , jQuery: "jquery"
+            }
+        )
+    ]
     , resolve: {
         extensions: [ "", ".js", ".css" ]
     }
