@@ -1,7 +1,26 @@
 import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
-function channelCtrl() {
+function channelCtrl( $scope ) {
+
+  const image = document.createElement( 'img' );
+    image.src = require( './styles/imgs/img_0907.jpg' );
+    $scope.user = image.src;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	const wavesurfer = WaveSurfer.create( {
 		container: "#waveform"
@@ -22,6 +41,7 @@ function channelCtrl() {
 	channel.test = "This is a test for channel Components!!!";
 
 }
+
 
 const channelComponent = {
 	template: channelViewHtml

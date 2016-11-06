@@ -1,21 +1,22 @@
 $white: #ECEBE4;
 $black: #33312E;
-
-
+$main-font: 'PT Sans Narrow';
+$grey: #BDBDBD;
 
 
 .channel-view{
   background-color: white;
   height: 100vh;
-  width: 82.25%;
+  width: calc(121% - 220px);
   float: left;
   .top-audio-player{
-    width: 85%;
+    width: 95%;
     margin-left: 20px;
     margin-top: 20px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #33312E;
+    height: 10%;
     #play-button{
       display: inline-block;
       .material-icons.md-72{
@@ -24,9 +25,8 @@ $black: #33312E;
         color: $black;
       }
     }
-
     .waves{
-      width: 750px;
+      width: 1000px;
       display: inline-block;
       #waveform{
 
@@ -34,4 +34,103 @@ $black: #33312E;
     }
   }
 
+    .chat-window{
+      width: 87%;
+      padding-top: 20px;
+      overflow: scroll;
+      height: 79%;
+      background-color: antiquewhite;
+      .message{
+      height: auto;
+      padding-left: 32px;
+      // position: relative;
+        .row{
+          .user-image-container{
+            width: 40px;
+            height: 50px;
+            // display: inline-block;
+            .user-image{
+              border-radius: 1.2rem;
+              width: auto;
+              height: auto;
+              max-width: 2.75rem;
+              max-height: 2.75rem;
+            }
+          }
+          .name-stamp{
+            // display: inline-block;
+              .user-name{
+                // position: absolute;
+                // top: 0px;
+                // left: 73px;
+                display: inline-block;
+                font-family: $main-font;
+                font-size: 18px;
+                font-weight: bold;
+               }
+               .time-stamp{
+                 display: inline-block;
+                 width: 200px;
+                 margin-left: 15px;
+                //  position: absolute;
+                //  top: 7px;
+                //  left: 160px;
+                 color: $grey;
+                 font-size: 12px;
+               }
+             }
+             .content{
+
+             }
+            }
+          }
+        }
+        .footer{
+          height: 4rem;
+          width: 100%;
+          position: relative;
+          .message-input-field{
+            height: 42px;
+            width: 95%;
+            position: absolute;
+            left: 1.9rem;
+            right: .25rem;
+            bottom: 1rem;
+            top: .6rem;
+            border: 2px solid $grey;
+            border-radius: 6px;
+            padding-bottom: 38px;
+            #mic-sec{
+              width: 4%;
+              height: 38px;
+              border-right: 2px solid $grey;
+              #mic-icon{
+                .material-icons.md-32{
+                  font-size: 32px;
+                  margin-left: 3px;
+                  margin-top: 4px;
+                  color: $grey;
+                }
+              }
+            }
+            #message-form{
+              height: 42px;
+              width: 100%;
+              margin: 0;
+              #message-input{
+                line-height: 1.2rem;
+                padding-top: .5625rem;
+                padding-bottom: .5625rem;
+                outline: 0;
+                border: 2px solid #BDBDBD;
+                border-left: none;
+                border-radius: 0px 6px 6px 0;
+                background-clip: padding-box;
+                position: absolute;
+                bottom: 2px;
+                resize: none;
+              }
+            }
+          }
+        }
 }

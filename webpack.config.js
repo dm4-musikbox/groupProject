@@ -15,10 +15,6 @@ module.exports = {
                 , loader: "style!css"
             }
             , {
-                test: /\.jpg/
-                , loader: "file-loader?name=./assets/images/[name].[ext]"
-            }
-            , {
                 test: /\.scss$/
                 , loader: 'style!css!sass'
             }
@@ -30,13 +26,13 @@ module.exports = {
                 test: /\.mp3$/
                 , loader: 'file'
             }
+            // , {
+            //     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/
+            //     ,  loader: 'url?limit=10000&mimetype=image/svg+xml'
+            // }
             , {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/
-                ,  loader: 'url?limit=10000&mimetype=image/svg+xml'
-            }
-            , {
-                test: /\.(png|jpg)$/
-                , loader: 'url-loader?limit=8192'
+                test: /\.(png|jpg|svg|gif)$/
+                , loader: 'file?name=assets/imgs/[name].[ext]'
             }
         ]
     }
