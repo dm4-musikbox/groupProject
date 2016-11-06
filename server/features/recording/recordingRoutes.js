@@ -13,5 +13,5 @@ module.exports = app => {
 	        .delete( recordingCtrl.deleteAllRecordingsFromChannel );
 
 	app.route( "/api/recordings/sign-s3" )
-					.get( recordingCtrl.uploadFileToS3 );
+					.get( recordingCtrl.getSignedRequestFromS3 );
 };

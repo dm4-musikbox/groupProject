@@ -3,6 +3,11 @@ import uiRouter from "angular-ui-router";
 import "auth0-lock";
 import "angular-lock";
 import "angular-jwt";
+import "wavesurfer.js";
+import $ from "jquery";
+
+window.jQuery = $;
+window.$ = $;
 
 import "./services/servicesModule";
 import "./components/componentsModule";

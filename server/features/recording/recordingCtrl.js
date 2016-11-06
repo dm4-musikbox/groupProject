@@ -15,13 +15,14 @@ module.exports = {
 			return res.status( 200 ).json( recordings );
 		} );
 	}
-	 , uploadFileToS3( req, res ) {
+	 , getSignedRequestFromS3( req, res ) {
 		console.log( "uploadFileToChannel active!" );
 					  const s3 = new AWS.S3();
 					  const fileName = req.query[ "file-name" ];
 					  const fileType = req.query[ "file-type" ];
+						const userId = req.query[ "user-id" ];
 					  const s3Params = {
-					    Bucket: "musikbox-recordings/" + "58196bc83a5bd823fca47594"
+					    Bucket: "musikbox-recordings/" + userId
 					    , Key: fileName
 					    , Expires: 60
 					    , ContentType: fileType
@@ -35,9 +36,9 @@ module.exports = {
 					    }
 					    const returnData = {
 					      signedRequest: data
-					      , url: `https://musikbox-recordings.s3.amazonaws.com/${ fileName }`
+					      , url: `https://musikbox-recordings.s3.amazonaws.com/${ userId }/${ fileName }`
 					    };
-						console.log( returnData );
+							console.log( returnData );
 					    res.write( JSON.stringify( returnData ) );
 					    res.end();
 					  } );

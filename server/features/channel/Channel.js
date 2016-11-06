@@ -16,26 +16,28 @@ const Channel = new mongoose.Schema(
 function autoPopulate( next ) {
 	this
 				.populate( "members admins" )
-				.populate( {
-					path: "channelRecordings"
-						, model: "Recording"
-						, populate: {
-							path: "createdBy"
-								, model: "User"
-						}
+				.populate(
+					{
+							path: "channelRecordings"
+							, model: "Recording"
+							, populate:
+										{
+												path: "createdBy"
+													, model: "User"
+										}
 				} )
 				.populate( {
-					path: "channelMessages"
+						path: "channelMessages"
 						, model: "Message"
 						, populate: [
 							{
 								path: "author"
 										, model: "User"
 							}
-								, {
-									path: "recording"
-										, model: "Recording"
-								}
+							, {
+								path: "recording"
+									, model: "Recording"
+							}
 						]
 				} );
 	next();
