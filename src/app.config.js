@@ -45,6 +45,14 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 									{
 											url: "/main"
               			, component: "mainComponent"
+										// , resolve: {
+										// 		user: function( userService, $stateParams ){
+										// 			 userService.findOrCreateUser( $stateParams.profile ).then(  )
+										// 	}
+										// , params: {
+										// 		profile: null
+										// 	}
+										// }
 									}
 							)
               .state( "channel-view",

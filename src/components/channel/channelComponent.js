@@ -24,10 +24,12 @@ function channelCtrl( $scope ) {
 
 	const wavesurfer = WaveSurfer.create( {
 		container: "#waveform"
-  , waveColor: "#BDBDBD"
-  , progressColor: "#33312E"
+  , waveColor: "#F46036"
+  , progressColor: "#000"
   , scrollParent: true
   , hideScrollbar: true
+  , height: 81
+  , barWidth: 2
 	} );
 
 	wavesurfer.load( "http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3" );

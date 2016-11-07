@@ -2,12 +2,25 @@ const User = require( "./User.js" );
 
 module.exports = {
 	findOrCreateUser( req, res ) {
-		const user = req.body;
 
-		User.findOrCreate( { name: user.name }, user, ( err, user ) => {
+		console.log( req.bodyb );
+		const user = {
+			authId: req.user.user_id
+			, name: req.user.name
+			, firstName: req.user.given_name
+			, lastName: req.user.family_name
+			, email: req.user.email
+			, photo: req.user.picture
+		}
+
+
+
+
+		User.findOrCreate( { authId: req.user.user_id }, user, ( err, user ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
 			}
+			console.log("nuts");
 			return res.status( 200 ).json( user );
 		} );
 	}

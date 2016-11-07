@@ -2,6 +2,8 @@ function authService( $rootScope, $state, lock, authManager ) {
 
 	let userProfile = JSON.parse( localStorage.getItem( "profile" ) ) || {};
 
+	console.log( userProfile ); 
+
 	function login() {
 		lock.show();
 	}
@@ -30,7 +32,7 @@ function authService( $rootScope, $state, lock, authManager ) {
 				localStorage.setItem( "profile", JSON.stringify( profile ) );
 				$rootScope.$broadcast( "userProfileSet", profile );
 
-				console.log( "Authenticated! token: ", authResult.idToken, "profile: ", profile );
+				// console.log( "Authenticated! token: ", authResult.idToken, "profile: ", profile );
 
 				$state.go( "genres-view", { profile } );
 			} );
