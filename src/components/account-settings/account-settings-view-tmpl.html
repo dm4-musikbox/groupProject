@@ -1,4 +1,30 @@
-<div>
-    <h1> account settings</h1>
-    {{$ctrl.test}}
+<h1>Account Settings</h1>
+<div class="row">
+  <div class="col s6">
+    <div input-field>
+      <input type="text" ng-model="dummyInputs.inputFieldInput">
+      <label>User Name</label>
+    </div>
+    <div input-field>
+      <input type="text" ng-model="dummyInputs.inputFieldInput">
+      <label>First Name</label>
+    </div>
+    <div input-field>
+      <input type="text" ng-model="dummyInputs.inputFieldInput">
+      <label>Last Name</label>
+    </div>
+    <div input-field>
+        <select class="" ng-model="select.value3" material-select multiple watch>
+            <option value="Pop">Pop</option>
+            <option value="Rock">Rock</option>
+            <option value="Rap">Rap</option>
+            <option value="Hip Hop">Hip Hop</option>
+        </select>
+        <label>Genres</label>
+    </div>
+    <div input-field>
+        <textarea ng-model="dummyInputs.textAreaInput" class="materialize-textarea"></textarea>
+        <label>Links</label>
+    </div>
+  </div>
 </div>
