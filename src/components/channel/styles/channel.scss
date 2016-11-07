@@ -2,6 +2,8 @@ $white: #ECEBE4;
 $black: #33312E;
 $main-font: 'PT Sans Narrow';
 $grey: #BDBDBD;
+$input-font: 'Slabo+27px';
+$newBlack: #120309;
 
 
 .channel-view{
@@ -10,36 +12,38 @@ $grey: #BDBDBD;
   width: calc(121% - 220px);
   float: left;
   .top-audio-player{
-    width: 95%;
-    margin-left: 20px;
+    width: 100%;
     margin-top: 20px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #33312E;
+    border-bottom: 9px solid black;
     height: 10%;
     #play-button{
       display: inline-block;
+      margin-left: 25px;
       .material-icons.md-72{
         font-size: 72px;
         cursor: pointer;
-        color: $black;
+        color: black;
       }
     }
     .waves{
       width: 1000px;
       display: inline-block;
       #waveform{
-
+        height: 97;
       }
     }
   }
 
     .chat-window{
-      width: 87%;
+      width: 84%;
       padding-top: 20px;
       overflow: scroll;
-      height: 79%;
-      background-color: antiquewhite;
+      height: 77%;
+      display:inline-block;
+
+      // background-color: antiquewhite;
       .message{
       height: auto;
       padding-left: 32px;
@@ -85,6 +89,34 @@ $grey: #BDBDBD;
             }
           }
         }
+
+        .playlist-sect{
+          float: right;
+          width: 16%;
+          display: inline-block;
+          height: 77%;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          .playlist{
+            background-color: rgba(244, 96, 54, .7);
+            width: 89%;
+            margin: auto;
+            height: 100%;
+            border-radius: 22px;
+            .playlist-title{
+              font-size: 20px;
+              color: $newBlack;
+              margin: auto;
+              width: auto;
+              text-decoration: line-through;
+              font-family: $input-font;
+              text-align: center;
+            }
+            .song{
+
+            }
+          }
+        }
         .footer{
           height: 4rem;
           width: 100%;
@@ -100,6 +132,7 @@ $grey: #BDBDBD;
             border: 2px solid $grey;
             border-radius: 6px;
             padding-bottom: 38px;
+            display: flex;
             #mic-sec{
               width: 4%;
               height: 38px;
@@ -109,17 +142,34 @@ $grey: #BDBDBD;
                   font-size: 32px;
                   margin-left: 3px;
                   margin-top: 4px;
-                  color: $black;
+                  color: $grey;
                 }
               }
             }
             #message-form{
               height: 42px;
+              position: relative;
+              width: 100%;
               #message-input{
                 height: 42px;
+                font-family: $input-font;
                 overflow-y: hidden;
+                resize: none;
+                border: 2px solid $grey;
+                border-left: none;
+                border-right: none;
+                border-radius: 0px 6px 6px 0px;
+                position: absolute;
+                bottom: 2px;
+                outline: none;
+                padding-top: .7rem;
+                padding-bottom: .5625rem;
+                padding-left: .5rem;
+                padding-right: 2.5rem;
+                line-height: 1.2rem;
               }
             }
           }
         }
+
 }
