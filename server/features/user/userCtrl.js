@@ -2,7 +2,7 @@ const User = require( "./User.js" );
 
 module.exports = {
 	findOrCreateUser( req, res ) {
-			console.log( 'findOrCreateUser firing! req.body is ', req.body );
+			console.log( 'findOrCreateUser firing!' );
 			User.findOrCreate( { authId: req.body.authId }, req.body, ( err, user ) => {
 					if ( err ) {
 						return res.status( 400 ).send( err );
@@ -27,19 +27,20 @@ module.exports = {
 		} );
 	}
 	 , updateUser( req, res ) {
-		User.findOneAndUpdate( { _id: req.params.id }, req.body, { new: true }, ( err, response ) => {
+		 console.log( 'updateUser firing!', req.body );
+		User.findOneAndUpdate( { _id: req.params.id }, { $set: req.body }, { new: true }, ( err, user ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
 			}
-			return res.status( 200 ).json( response );
+			return res.status( 200 ).json( user );
 		} );
 	}
 	 , deleteUser( req, res ) {
-		User.findByIdAndRemove( req.params.id, req.body, ( err, response ) => {
+		User.findByIdAndRemove( req.params.id, req.body, ( err, user ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
 			}
-			return res.status( 200 ).json( response );
+			return res.status( 200 ).json( user );
 		} );
 	}
 };

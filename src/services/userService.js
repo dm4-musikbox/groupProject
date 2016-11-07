@@ -1,14 +1,5 @@
 function userService( $http, ref, socketFactory ) {
-		let currentUser,
-				currentChannel;
-
-		this.getCurrentUser = () => {
-				return currentUser;
-		};
-
-		this.setCurrentChannel = ( channelId ) => {
-			currentChannel = channelId;
-		};
+		let currentUser;
 
 		this.findOrCreateUser = ( profile ) => {
 				if ( !profile ) {
@@ -24,9 +15,26 @@ function userService( $http, ref, socketFactory ) {
 				};
 		 		return $http
 									.post( `${ ref.url }/api/users`, user )
-									.then( user => {
-											currentUser = user.data;
-									} );
+									.then( user =>
+											{
+													currentUser = user.data;
+											}
+									);
+		};
+
+		this.getCurrentUser = () => {
+				return currentUser;
+		};
+
+		this.updateCurrentUser = ( updatedUser ) => {
+				return $http
+									.put( `${ ref.url }/api/users/${ updatedUser._id }`, updatedUser )
+									.then( user =>
+											{
+													console.log( 'user.data is ', user.data );
+										 			currentUser = user.data;
+											}
+									);
 		};
 
 		socketFactory.on( "get updated user", data => {

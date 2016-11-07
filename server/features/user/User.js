@@ -10,9 +10,9 @@ const User = new mongoose.Schema(
 		, userName: { type: String }
 		, email: { type: String }
 		, genre: [ { type: String } ]
-		, userLinks: { type: String, lowercase: true, trim: true }
 		, photo: { type: String }
 		, userChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
+		, userLinks: [ { type: String, lowercase: true, trim: true } ]
 	}
 );
 

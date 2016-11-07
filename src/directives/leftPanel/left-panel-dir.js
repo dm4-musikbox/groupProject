@@ -12,7 +12,6 @@ export default function leftPanelDir() {
 				const image = document.createElement( "img" );
 				image.src = require( "./styles/imgs/circle-shape-outline.svg" );
 				$scope.circle = image.src;
-				
 		}
 	};
 }

@@ -8,8 +8,9 @@ function mainCtrl( $rootScope, authService, userService  ) {
 				this.user = userService.getCurrentUser();
 		};
 
-
-
+		this.updateCurrentUser = ( updatedUser ) => {
+				userService.updateCurrentUser( updatedUser );
+		};
 }
 
 const mainComponent = {

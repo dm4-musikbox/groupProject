@@ -45,15 +45,10 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 									{
 											url: "/main"
               			, component: "mainComponent"
-										, onEnter: ( userService, $stateParams ) => {
-											 return userService.findOrCreateUser( $stateParams.profile );
-									 	}
 										, resolve:
 													{
 															user: ( $stateParams, userService ) => {
-																	console.log( 'resolve firing!' );
-																	return userService
-																						.findOrCreateUser( $stateParams.profile );
+																	return userService.findOrCreateUser( $stateParams.profile );
 														 	}
 													}
 										, params:
@@ -73,7 +68,7 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 									{
 											url: "/account-settings"
 		                , parent: "main-view"
-		                , component: "accountSettingsComponent"
+		                , template: "<account-settings-component user='$ctrl.user' on-update='$ctrl.updateCurrentUser( updatedUser )'></account-settings-component>"
 									}
 							)
               .state( "genre-view",

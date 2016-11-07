@@ -6,6 +6,7 @@ import mainComponent from "./main/mainComponent.js";
 import channelComponent from "./channel/channelComponent.js";
 import genreComponent from "./genre/genreComponent.js";
 import accountSettingsComponent from "./account-settings/accountSettingsComponent.js";
+import userLinkInputComponent from "./account-settings/user-link-input/userLinkInputComponent.js";
 import browseComponent from "./browse/browseComponent.js";
 import navBarComponent from "./browse/navbar/navBarComponent.js";
 import browseGridComponent from "./browse/grid/gridComponent.js";
@@ -27,5 +28,6 @@ angular.module( "components", [] )
         .component( "genresComponent", genresComponent )
         .component( "artistsComponent", artistsComponent )
         .component( "accountSettingsComponent", accountSettingsComponent )
+        .component( "userLinkInputComponent", userLinkInputComponent )
         .directive( "leftPanelDir", leftPanelDir )
         .directive( "fileReadDir", fileReadDir );
