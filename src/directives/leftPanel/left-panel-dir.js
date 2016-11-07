@@ -5,11 +5,14 @@ export default function leftPanelDir() {
 	return {
 		template: leftPanelHtml
     , restrict: "EA"
-    , scope: {}
-    , controller( $scope ) {
-	const image = document.createElement( "img" );
-	image.src = require( "./styles/imgs/circle-shape-outline.svg" );
-	$scope.circle = image.src;
-}
+    , scope: {
+				user: "<"
+		}
+    , controller ( $scope ) {
+				const image = document.createElement( "img" );
+				image.src = require( "./styles/imgs/circle-shape-outline.svg" );
+				$scope.circle = image.src;
+				
+		}
 	};
 }

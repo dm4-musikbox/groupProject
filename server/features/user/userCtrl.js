@@ -2,29 +2,15 @@ const User = require( "./User.js" );
 
 module.exports = {
 	findOrCreateUser( req, res ) {
-
-		console.log( req.bodyb );
-		const user = {
-			authId: req.user.user_id
-			, name: req.user.name
-			, firstName: req.user.given_name
-			, lastName: req.user.family_name
-			, email: req.user.email
-			, photo: req.user.picture
-		}
-
-
-
-
-		User.findOrCreate( { authId: req.user.user_id }, user, ( err, user ) => {
-			if ( err ) {
-				return res.status( 400 ).send( err );
-			}
-			console.log("nuts");
-			return res.status( 200 ).json( user );
-		} );
+			console.log( 'findOrCreateUser firing! req.body is ', req.body );
+			User.findOrCreate( { authId: req.body.authId }, req.body, ( err, user ) => {
+					if ( err ) {
+						return res.status( 400 ).send( err );
+					}
+					return res.status( 200 ).json( user );
+			} );
 	}
-	  , getUsers( req, res ) {
+  , getUsers( req, res ) {
 		User.find( ( req.query ), ( err, users ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );

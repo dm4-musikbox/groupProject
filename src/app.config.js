@@ -45,14 +45,21 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 									{
 											url: "/main"
               			, component: "mainComponent"
-										// , resolve: {
-										// 		user: function( userService, $stateParams ){
-										// 			 userService.findOrCreateUser( $stateParams.profile ).then(  )
-										// 	}
-										// , params: {
-										// 		profile: null
-										// 	}
-										// }
+										, onEnter: ( userService, $stateParams ) => {
+											 return userService.findOrCreateUser( $stateParams.profile );
+									 	}
+										, resolve:
+													{
+															user: ( $stateParams, userService ) => {
+																	console.log( 'resolve firing!' );
+																	return userService
+																						.findOrCreateUser( $stateParams.profile );
+														 	}
+													}
+										, params:
+													{
+															profile: null
+													}
 									}
 							)
               .state( "channel-view",

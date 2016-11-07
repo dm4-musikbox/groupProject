@@ -2,7 +2,7 @@ function authService( $rootScope, $state, lock, authManager ) {
 
 	let userProfile = JSON.parse( localStorage.getItem( "profile" ) ) || {};
 
-	console.log( userProfile ); 
+	// console.log( userProfile ); 
 
 	function login() {
 		lock.show();

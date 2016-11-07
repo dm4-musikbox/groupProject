@@ -1,16 +1,14 @@
-// import authService from "./../../services/authService";
-// import userService from "./../../services/userService";
 import mainViewHtml from "./main-view-tmpl.html";
 import "./styles/sass/main.scss";
 
 function mainCtrl( $rootScope, authService, userService  ) {
+		this.$onInit = () => {
+				this.authService = authService;
+				this.isAuthenticated = $rootScope.isAuthenticated;
+				this.user = userService.getCurrentUser();
+		};
 
 
-
-	const main = this;
-
-	main.authService = authService;
-	main.isAuthenticated = $rootScope.isAuthenticated;
 
 }
 

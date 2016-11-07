@@ -4,6 +4,10 @@
 
 <div ng-if="$ctrl.isAuthenticated">
 
-    <left-panel-dir></left-panel-dir>
+    <left-panel-dir
+      user="$ctrl.user"
+    >
+    </left-panel-dir>
+    
     <ui-view id="ui-float"></ui-view>
 </div>
