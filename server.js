@@ -6,7 +6,7 @@ const http = require( "http" );
 const binaryServer = require( "binaryjs" ).BinaryServer( { port: 9000 } );
 const masterRoutes = require( "./server/masterRoutes.js" );
 // const sessionConfig = require( "./server/config/config.js" );
-const mongoUri = "mongodb://localhost:27017/groupProject";
+const mongoUri = require( "./server/config/mlab-config.js" ).mongoUri;
 
 const app = express();
 const server = http.createServer( app );
