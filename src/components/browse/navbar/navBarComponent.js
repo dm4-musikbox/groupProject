@@ -8,9 +8,9 @@ function browseNavbarCtrl() {
 
 }
 
-const navbarComponent = {
-  template: browseNavbarHtml
+const navBarComponent = {
+  template: navbarHtml
   , controller: browseNavbarCtrl
 };
 
-export default navbarComponent;
+export default navBarComponent;

@@ -30,7 +30,7 @@ import browseViewHtml from './components/browse/browse-view-tmpl.html';
 import browseComponent from './components/browse/browseComponent.js';
 
 import navbarHtml from './components/browse/navbar/navbar.html';
-import navbarComponent from './components/browse/navbar/navBarComponent.js';
+import navBarComponent from './components/browse/navbar/navBarComponent.js';
 
 import browseGridHtml from './components/browse/grid/grid.html';
 import browseGridComponent from './components/browse/grid/gridComponent.js'
@@ -65,7 +65,7 @@ angular.module( "musikboxApp", [ "auth0.lock", "angular-jwt", "components", "ser
     .component( "channelComponent", channelComponent )
     .component( "genreComponent", genreComponent )
     .component( "browseComponent", browseComponent )
-    .component( "navbarComponent", navbarComponent )
+    .component( "navBarComponent", navBarComponent )
     .component( "browseGridComponent", browseGridComponent )
     .component( "genresComponent", genresComponent )
     .component( "artistsComponent", artistsComponent )
