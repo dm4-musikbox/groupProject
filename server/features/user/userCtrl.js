@@ -27,13 +27,13 @@ module.exports = {
 		} );
 	}
 	 , updateUser( req, res ) {
-		 console.log( 'updateUser firing!' );
-		User.findOneAndUpdate( { _id: req.params.id }, { $set: req.body }, { new: true }, ( err, user ) => {
-			if ( err ) {
-				return res.status( 400 ).send( err );
-			}
-			return res.status( 200 ).json( user );
-		} );
+		 	console.log( 'updateUser firing!' );
+			User.findOneAndUpdate( { _id: req.params.id }, { $set: req.body }, { new: true }, ( err, user ) => {
+				if ( err ) {
+					return res.status( 400 ).send( err );
+				}
+				return res.status( 200 ).json( user );
+			} );
 	}
 	 , deleteUser( req, res ) {
 		User.findByIdAndRemove( req.params.id, req.body, ( err, user ) => {

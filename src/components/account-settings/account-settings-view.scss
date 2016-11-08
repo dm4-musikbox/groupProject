@@ -1,0 +1,26 @@
+.account-settings-view-wrapper {
+    height: 100vh;
+    overflow: scroll;
+    padding-top: 1.5em;
+    padding-left: 1.5em;
+    color: white;
+    letter-spacing: 2px;
+    background-color: #00BCD4;
+    background-blend-mode: luminosity;
+    background-image: url( 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=02685b019e165d505d854980841eaca6' );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    h1 {
+      margin-top: 0;
+    }
+
+    &-channels-wrapper {
+
+        color: black;
+        .remove-circle {
+            color: #F44336;
+        }
+    }
+}
