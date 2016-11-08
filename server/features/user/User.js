@@ -2,16 +2,17 @@ const mongoose = require( "mongoose" );
 const findOrCreate = require( "mongoose-findorcreate" );
 
 const User = new mongoose.Schema(
-	{	authID: { type: String, unique: true, required: true }
-		, name: { type: String, required: true }
+	{
+		authId: { type: String, unique: true, required: true }
+		, fullName: { type: String, required: true }
 		, firstName: { type: String }
 		, lastName: { type: String }
 		, userName: { type: String }
 		, email: { type: String }
-		, genre: [ { type: String /*, required: true*/ } ]
-		, userLinks: { type: String, lowercase: true, trim: true }
+		, genre: [ { type: String } ]
 		, photo: { type: String }
 		, userChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
+		, userLinks: [ { type: String, lowercase: true, trim: true } ]
 	}
 );
 

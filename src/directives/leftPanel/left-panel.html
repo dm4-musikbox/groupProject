@@ -1,16 +1,24 @@
+<div class="left-panel">
+    <div class="lp-title-sect">
+        <div
+            id="lp-title"
+            ui-sref="genres-view"
+        >
+            muzikbox
+        </div>
 
-
-
-    <div class="left-panel">
-      <div class="lp-title-sect">
-          <div id="lp-title"> muzikbox </div>
         <div class="lp-user">
           <div class="status-circle">
             <img src="{{ circle }}">
           </div>
-          <div id="lp-user-name"> Theo Beck </div>
+          <div
+              id="lp-user-name"
+              ui-sref="account-settings-view( user )"
+          >
+              {{ user.fullName }}
+          </div>
         </div>
-      </div>
-      <!-- <button ng-click="$ctrl.authService.logout()">Log Out</button> -->
-
     </div>
+
+    <a style="position: absolute; bottom: 20px; left: 20px; color: white" href="" ng-click="authService.logout()">Log Out</a>
+</div>

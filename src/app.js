@@ -3,7 +3,6 @@ import uiRouter from "angular-ui-router";
 import "auth0-lock";
 import "angular-lock";
 import "angular-jwt";
-
 import "wavesurfer.js";
 import angularMaterialize from 'angular-materialize';
 
@@ -18,4 +17,4 @@ angular
     .config( config )
     .constant( 'ref', {
       url: 'http://localhost:5000'
-    });
+    } );

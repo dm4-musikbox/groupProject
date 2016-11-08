@@ -13,6 +13,7 @@
     float: left;
     width: 220px;
     background-color: black;
+    // background-color: #7a00ff;
     height: 100vh;
     position: relative;
     border-right: 2px solid white;
@@ -27,6 +28,9 @@
         font-family: $logo-font;
         letter-spacing: 1px;
         text-decoration: line-through;
+        &:hover {
+            cursor: pointer;
+        }
       }
       .lp-user{
         width: auto;
@@ -43,6 +47,9 @@
           display: inline-block;
           color: white;
           font-family: $main-font;
+          &:hover {
+              cursor: pointer;
+          }
         }
       }
     }
