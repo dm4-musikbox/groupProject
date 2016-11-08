@@ -41,6 +41,7 @@
     "lame": "^1.2.4",
     "materialize-css": "^0.97.8",
     "mongoose": "^4.6.5",
+    "mongoose-findorcreate": "^0.1.2",
     "node-sass": "^3.10.1",
     "raw-loader": "^0.5.1",
     "sass-loader": "^4.0.2",

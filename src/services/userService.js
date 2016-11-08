@@ -1,20 +1,36 @@
-function userService( $http, ref ) {
-	this.setCurrentUserAndChannel = ( userId, userName, channelId ) => {
-		currentUserId = userId;
-		currentUserName = userName;
-		currentChannel = channelId;
-	};
+function userService( $http, ref, socketFactory ) {
+		let currentUser;
 
-	// this.addUser = () => {
-	// 	$http.post( 'http://localhost:5000/api/users' ).then(  user => {
-	// 		console.log( 'New User' + user )
-	// 		// return response;
-	// 	})
-	// }
+		this.findOrCreateUser = ( profile ) => {
+				if ( !profile ) {
+						if ( localStorage.profile ) {
+								profile = JSON.parse( localStorage.profile );
+						}
+				}
+				
+				const user = {
+						authId: profile.user_id
+						, fullName: profile.name
+						, firstName: profile.given_name
+						, lastName: profile.family_name
+						, email: profile.email
+						, photo: profile.picture
+				};
 
-	this.findOrCreateUser = ( profile ) => {
-		$http.post( `${ref}`)
-	}
+		 		return $http
+									.post( `${ ref.url }/api/users`, user )
+									.then( user =>
+											{
+													return user.data;
+											}
+									);
+		};
+
+		this.updateCurrentUser = ( updatedUser ) => {
+				return $http
+									.put( `${ ref.url }/api/users/${ updatedUser._id }`, updatedUser )
+		};
+
 }
 
 export default userService;

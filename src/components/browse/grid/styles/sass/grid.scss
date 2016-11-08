@@ -15,8 +15,10 @@
   #cards-container {
     margin: 20px 5%;
   }
-
   #card-small{
+    // border-radius: 50%;
+    // max-width: 300px;
+    // overflow: hidden;
     height: 240px;
     opacity: .7;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.46), 0 6px 11px rgba(0, 0, 0, 0.53);
@@ -30,6 +32,7 @@
   }
 
   #card-image{
+    // max-height: 100%;
     max-height: 68%;
   }
 
@@ -37,17 +40,3 @@
     margin-bottom: 0;
   }
 }
-
-//#e2e2e2
-// #062a38
-// #073649
-// #054259
-// #305670
-// #3d3149
-// #262d43
-//
-// #2b67bd
-// #4760b9
-// #7552b5
-// #9f44b1
-// #cc35ad
