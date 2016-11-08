@@ -18,7 +18,50 @@
               {{ user.fullName }}
           </div>
         </div>
+        <div class="col">
+            <a href='#create-channel-modal' modal>
+                <i class="material-icons">
+                    add_circle_outline
+                </i>
+            </a>
+        </div>
     </div>
 
     <a style="position: absolute; bottom: 20px; left: 20px; color: white" href="" ng-click="authService.logout()">Log Out</a>
+</div>
+
+<!-- Modal Structure -->
+<div id="create-channel-modal" class="modal modal-fixed-footer">
+    <div class="modal-content" id="create-channel-modal-content">
+        <h4>Create a channel</h4>
+        <p>Channels are where you, your collaborators and listeners can connect.</p>
+        <div input-field>
+            <input
+                type="text"
+            >
+            <label>Name</label>
+        </div>
+        <div input-field>
+            <input
+                type="text"
+            >
+            <label>Type</label>
+        </div>
+        <div input-field>
+            <input
+                type="text"
+            >
+            <label>Purpose</label>
+        </div>
+        <div input-field>
+            <input
+                type="text"
+            >
+            <label>Send invites to: (optional)</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="" class="waves-effect waves-green btn-flat">Create</a>
+        <a href="" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+    </div>
 </div>
