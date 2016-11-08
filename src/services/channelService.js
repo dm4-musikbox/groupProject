@@ -5,6 +5,17 @@ function channelService( socketFactory ) {
 			currentChannel = channelId;
 	};
 
+	this.createChannel = ( channel ) => {
+			// create channel on database
+			// for collaborators, add them to admin array
+			// for listeners, add them to members array
+			// add channel to all users' channels array
+	};
+
+	this.updateChannel = ( channel ) => {
+
+	};
+
 	this.enterChannel = ( channelId, userName ) => {
 		const data =
 				{
