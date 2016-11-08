@@ -90,33 +90,76 @@ $newBlack: #120309;
           }
         }
 
-        .playlist-sect{
-          float: right;
-          width: 16%;
-          display: inline-block;
-          height: 77%;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          .playlist{
-            background-color: rgba(244, 96, 54, .7);
-            width: 89%;
-            margin: auto;
-            height: 100%;
-            border-radius: 22px;
-            .playlist-title{
-              font-size: 20px;
-              color: $newBlack;
-              margin: auto;
-              width: auto;
-              text-decoration: line-through;
-              font-family: $input-font;
-              text-align: center;
-            }
-            .song{
+        // .playlist-sect{
+        //   float: right;
+        //   width: 16%;
+        //   display: inline-block;
+        //   height: 77%;
+        //   padding-top: 10px;
+        //   padding-bottom: 10px;
+        //   .playlist{
+        //     background-color: rgba(244, 96, 54, .7);
+        //     width: 89%;
+        //     margin: auto;
+        //     height: 100%;
+        //     border-radius: 22px;
+        //     .playlist-title{
+        //       font-size: 20px;
+        //       color: $newBlack;
+        //       margin: auto;
+        //       width: auto;
+        //       text-decoration: line-through;
+        //       font-family: $input-font;
+        //       text-align: center;
+        //     }
+        //     .song{
+        //
+        //     }
+        //   }
+        // }
 
+        div[style]{
+          width: 298px !important;
+         &#list-nav {
+          width: 400px;
+          transform: translateX(0px);
+          .title-section{
+            position: relative;
+            margin: auto;
+            height: 200px;
+            width:100%;
+            .title{
+              text-align: center;
+              position: absolute;
+              top: 51px;
+              right: 64px;
+              width: 154px;
+              font-size: 28px;
+              color: white;
+              border: 4px solid white;
+              background-color: rgba(0, 0, 0, 0.28);
+              font-family: monospace;
+              .pic-container{
+
+              }
             }
           }
+          .playlist{
+            a{
+              padding-left: 10px;
+              padding-right: 10px;
+              border-bottom: 1px solid;
+              border-color: rgba(0,0,0,0.5);
+              .material-icons.md-24{
+                margin-right: 8px;
+                color: cadetblue;
+            }
+          }
+          }
         }
+      }
+
+
         .footer{
           height: 4rem;
           width: 100%;
@@ -171,5 +214,7 @@ $newBlack: #120309;
             }
           }
         }
+
+
 
 }
