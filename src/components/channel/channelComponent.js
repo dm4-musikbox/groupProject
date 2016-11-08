@@ -4,18 +4,12 @@ import "./styles/channel.scss";
 function channelCtrl( $scope ) {
 
   const image = document.createElement( 'img' );
-    image.src = require( './styles/imgs/img_0907.jpg' );
+    image.src = require( './styles/imgs/testpic.jpg' );
     $scope.user = image.src;
 
-
-
-
-
-
-
-
-
-
+  const playList = document.createElement( 'img' );
+    playList.src = require( './styles/imgs/webpack.jpg' );
+    $scope.playlist = playList.src;
 
 
 
