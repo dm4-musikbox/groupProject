@@ -10,17 +10,10 @@
         </div>
         <div input-field>
             <input
-                ng-model="$ctrl.updatedUser.firstName"
+                ng-model="$ctrl.updatedUser.fullName"
                 type="text"
             >
-            <label>First Name</label>
-        </div>
-        <div input-field>
-            <input
-                ng-model="$ctrl.updatedUser.lastName"
-                type="text"
-            >
-            <label>Last Name</label>
+            <label>Full Name</label>
         </div>
         <div input-field>
             <input
@@ -61,5 +54,6 @@
         </div>
 
         <button ng-click="$ctrl.updateCurrentUser( $ctrl.updatedUser )">Save</button>
+        <button ui-sref="genres-view">Cancel</button>
     </form>
 </div>

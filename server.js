@@ -5,7 +5,7 @@ const session = require( "express-session" );
 const http = require( "http" );
 const binaryServer = require( "binaryjs" ).BinaryServer( { port: 9000 } );
 const masterRoutes = require( "./server/masterRoutes.js" );
-// const sessionConfig = require( "./server/config/config.js" );
+// const sessionConfig = require( "./server/config/sessionConfig.js" );
 const mongoUri = require( "./server/config/mlab-config.js" ).mongoUri;
 
 const app = express();

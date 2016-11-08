@@ -27,7 +27,7 @@ module.exports = {
 		} );
 	}
 	 , updateUser( req, res ) {
-		 console.log( 'updateUser firing!', req.body );
+		 console.log( 'updateUser firing!' );
 		User.findOneAndUpdate( { _id: req.params.id }, { $set: req.body }, { new: true }, ( err, user ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
