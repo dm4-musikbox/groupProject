@@ -12,7 +12,7 @@ import browseGridComponent from "./browse/grid/gridComponent.js";
 import genresComponent from "./genres/genresComponent.js";
 import artistsComponent from "./artists/artistsComponent.js";
 import createChannelModalComponent from "./create-channel-modal/createChannelModalComponent.js";
-import leftPanelDir from "./../directives/leftPanel/left-panel-dir.js";
+import leftPanelComponent from "./left-panel/leftPanelComponent.js";
 import fileReadDir from "./../directives/file-read/fileReadDirective.js";
 // import playListComponent from "./playlist/playListComponent.js"
 
@@ -21,6 +21,7 @@ angular.module( "components", [] )
         .component( "socketTestComponent", socketTestComponent )
         .component( "landingPageComponent", landingPageComponent )
         .component( "mainComponent", mainComponent )
+        .component( "leftPanelComponent", leftPanelComponent )
         .component( "channelComponent", channelComponent )
         .component( "genreComponent", genreComponent )
         .component( "browseComponent", browseComponent )
@@ -31,5 +32,4 @@ angular.module( "components", [] )
         // .component( "playListComponent", playlistComponent )
         .component( "accountSettingsComponent", accountSettingsComponent )
         // .component( "createChannelModalComponent", createChannelModalComponent )
-        .directive( "leftPanelDir", leftPanelDir )
         .directive( "fileReadDir", fileReadDir )

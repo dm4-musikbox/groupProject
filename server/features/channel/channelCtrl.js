@@ -1,19 +1,14 @@
 const Channel = require( "./Channel.js" );
 const Genre = require( "./../genre/Genre.js" );
+const User = require( "./../user/User.js" );
 
 module.exports = {
-	findOrCreateChannel( req, res ) {
-		const channel = req.body.channel;
-		const user = req.body.user;
-
-		channel.admins = [ user._id ];
-		channel.members = [ user._id ];
-
-		Channel.findOrCreate( { channel: channel.name }, channel, ( err, channel ) => {
+	createChannel( req, res ) {
+		const channelToCreate = req.body;
+		new Channel( channelToCreate ).save( ( err, channel ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
 			}
-
 			if ( channel.type === "public" ) {
 				for ( let i = 0; i < channel.genres.length; i++ ) {
 					Genre.findOneAndUpdate( { name: channel.genres[ i ] }, { $addToSet: { channels: channel._id } }, { new: true }, ( err, genre ) => {
@@ -24,19 +19,24 @@ module.exports = {
 					} );
 				}
 			}
-			if ( channel.channelRecordings !== [] || channel.channelMessages !== [] ) {
-				Channel
-								.findOne( { _id: channel._id } )
-								.populate( "channelRecordings channelMessages" )
-								.exec( ( err, channel ) => {
-									if ( err ) {
-										return res.status( 500 ).json( err );
-									}
-									return res.status( 200 ).json( channel );
-								} );
-			}			else {
-				return res.status( 200 ).json( channel );
+			// for collaborators, add them to admin array
+			if ( channel.invitedAsAdmin.length > 0 ) {
+					for ( let i = 0; i < channel.invitedAsAdmin.length; i++ ) {
+							User.findOneAndUpdate( { _id: channel.invitedAsAdmin[ i ] }, { $set: { invitedAsAdmin: channel._id } } );
+					}
 			}
+			// for listeners, add them to members array
+			if ( channel.invitedAsMember.length > 0 ) {
+					for ( let i = 0; i < channel.invitedAsMember.length; i++ ) {
+							User.findOneAndUpdate( { _id: channel.invitedAsMember[ i ] }, { $set: { invitedAsMember: channel._id } } );
+					}
+			}
+			User.findOneAndUpdate( { _id: channel.admins[ 0 ] }, { $push: { userChannels: channel._id } }, ( err, user ) => {
+					if ( err ) {
+							return res.status( 500 ).json( err );
+					}
+			} );
+			return res.status( 200 ).json( channel );
 		} );
 	}
 	  , getChannels( req, res ) {
@@ -51,13 +51,14 @@ module.exports = {
 					} );
 	}
 	 , getChannelById( req, res ) {
-		Channel.findOne( { _id: req.params.channel_id }, ( err, channel ) => {
-			if ( err ) {
-				return res.status( 400 ).send( err );
+		 console.log( 'getChannelById firing!' );
+				Channel.findOne( { _id: req.params.channel_id }, ( err, channel ) => {
+					if ( err ) {
+						return res.status( 400 ).send( err );
+					}
+					return res.status( 200 ).json( channel );
+				} );
 			}
-			return res.status( 200 ).json( channel );
-		} );
-	}
 	 , updateChannel( req, res ) {
 		Channel.findOneAndUpdate( { _id: req.params.channel_id }, req.body, { new: true }, ( err, response ) => {
 			if ( err ) {
@@ -79,7 +80,6 @@ module.exports = {
 			 if ( err ) {
 				 return res.status( 400 ).send( err );
 			 }
-			 console.log( channel );
 			 return res.status( 200 ).json( channel );
 		 } );
 	}
