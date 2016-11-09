@@ -1,4 +1,5 @@
 import genreViewHtml from "./genre-view-tmpl.html";
+import './styles/sass/genre.scss';
 
 function genreCtrl() {
 	const genre = this;
