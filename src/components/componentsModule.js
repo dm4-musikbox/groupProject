@@ -11,7 +11,8 @@ import navBarComponent from "./browse/navbar/navBarComponent.js";
 import browseGridComponent from "./browse/grid/gridComponent.js";
 import genresComponent from "./genres/genresComponent.js";
 import artistsComponent from "./artists/artistsComponent.js";
-import leftPanelDir from "./../directives/leftPanel/left-panel-dir.js";
+import createChannelModalComponent from "./create-channel-modal/createChannelModalComponent.js";
+import leftPanelComponent from "./left-panel/leftPanelComponent.js";
 import fileReadDir from "./../directives/file-read/fileReadDirective.js";
 // import playListComponent from "./playlist/playListComponent.js"
 
@@ -20,6 +21,7 @@ angular.module( "components", [] )
         .component( "socketTestComponent", socketTestComponent )
         .component( "landingPageComponent", landingPageComponent )
         .component( "mainComponent", mainComponent )
+        .component( "leftPanelComponent", leftPanelComponent )
         .component( "channelComponent", channelComponent )
         .component( "genreComponent", genreComponent )
         .component( "browseComponent", browseComponent )
@@ -29,5 +31,5 @@ angular.module( "components", [] )
         .component( "artistsComponent", artistsComponent )
         // .component( "playListComponent", playlistComponent )
         .component( "accountSettingsComponent", accountSettingsComponent )
-        .directive( "leftPanelDir", leftPanelDir )
-        .directive( "fileReadDir", fileReadDir );
+        // .component( "createChannelModalComponent", createChannelModalComponent )
+        .directive( "fileReadDir", fileReadDir )

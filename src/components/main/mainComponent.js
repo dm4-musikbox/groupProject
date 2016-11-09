@@ -13,9 +13,20 @@ function mainCtrl( $rootScope, authService, socketFactory, userService  ) {
 						.then( user =>
 								{
 										this.user = user.data;
+										userService.setCurrentUser( this.user );
 								}
 						);
 		};
+		// this.updateCurrentUser = ( updatedUser ) => {
+		// 		userService
+		// 				.updateCurrentUser( updatedUser )
+		// 				.then( user =>
+		// 						{
+		// 								this.user = user.data;
+		// 								userService.setCurrentUser( this.user );
+		// 						}
+		// 				);
+		// };
 
 		socketFactory.on( "get updated user", data => {
 				this.user = data;
@@ -25,9 +36,10 @@ function mainCtrl( $rootScope, authService, socketFactory, userService  ) {
 const mainComponent = {
 		template: mainViewHtml
 	  , controller: mainCtrl
-		, bindings: {
-				user: '<user'
-		}
+		, bindings:
+				{
+						user: '<user'
+				}
 };
 
 export default mainComponent;

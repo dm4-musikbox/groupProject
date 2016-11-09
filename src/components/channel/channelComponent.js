@@ -2,6 +2,14 @@ import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
 function channelCtrl( $scope ) {
+  this.$onInit = () => {
+
+  };
+
+  this.$onChanges = ( changes ) => {
+      console.log( 'changes are', changes );
+      this.mainCtrl.updateCurrentUser();
+  };
 
   const image = document.createElement( 'img' );
     image.src = require( './styles/imgs/testpic.jpg' );
@@ -10,11 +18,6 @@ function channelCtrl( $scope ) {
   const playList = document.createElement( 'img' );
     playList.src = require( './styles/imgs/webpack.jpg' );
     $scope.playlist = playList.src;
-
-
-
-
-
 
 	const wavesurfer = WaveSurfer.create( {
 		container: "#waveform"
@@ -29,19 +32,26 @@ function channelCtrl( $scope ) {
 	wavesurfer.load( "http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3" );
 
 	wavesurfer.on( "ready", () => {
-		wavesurfer.play();
+		  wavesurfer.play();
 	} );
 
-
-	const channel = this;
-	channel.test = "This is a test for channel Components!!!";
+  this.$onDestroy = () => {
+      wavesurfer.stop();
+  };
 
 }
-
 
 const channelComponent = {
 	template: channelViewHtml
   , controller: channelCtrl
+  , require:
+      {
+          mainCtrl: '^mainComponent'
+      }
+  , bindings:
+      {
+          channel: '<'
+      }
 };
 
 export default channelComponent;

@@ -1,8 +1,36 @@
-function channelService( socketFactory ) {
+function channelService( $http, ref, socketFactory ) {
 	let currentChannel;
 
 	this.setCurrentChannel = ( channelId ) => {
 			currentChannel = channelId;
+	};
+
+	this.createChannel = ( channel ) => {
+			channel.genres = channel.genres.split( ',' );
+			if ( channel.invitedAsAdmin ) {
+					channel.invitedAsAdmin = channel.invitedAsAdmin.split( ',' );
+			}
+			if ( channel.invitedAsMember ) {
+					channel.invitedAsMember = channel.invitedAsMember.split( ',' );
+			}
+			console.log( channel );
+			return $http
+								.post( `${ ref.url }/api/channels`, channel )
+
+	};
+
+	this.getChannelById = ( channelId ) => {
+			return $http
+								.get( `${ ref.url }/api/channels/${ channelId }` )
+								.then( channel =>
+										{
+												return channel.data;
+										}
+								);
+	};
+
+	this.updateChannel = ( channel ) => {
+
 	};
 
 	this.enterChannel = ( channelId, userName ) => {
