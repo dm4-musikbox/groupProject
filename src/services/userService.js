@@ -7,7 +7,7 @@ function userService( $http, ref, socketFactory ) {
 								profile = JSON.parse( localStorage.profile );
 						}
 				}
-				
+
 				const user = {
 						authId: profile.user_id
 						, fullName: profile.name
@@ -30,6 +30,14 @@ function userService( $http, ref, socketFactory ) {
 				return $http
 									.put( `${ ref.url }/api/users/${ updatedUser._id }`, updatedUser )
 		};
+
+		this.setCurrentUser = ( user ) => {
+			currentUser = user;
+		}
+
+		this.getCurrentUser = () =>{
+			currentUser;
+		}
 
 }
 

@@ -3,6 +3,8 @@ import "./styles/channel.scss";
 
 function channelCtrl( $scope ) {
 
+
+
   const image = document.createElement( 'img' );
     image.src = require( './styles/imgs/testpic.jpg' );
     $scope.user = image.src;
@@ -10,9 +12,6 @@ function channelCtrl( $scope ) {
   const playList = document.createElement( 'img' );
     playList.src = require( './styles/imgs/webpack.jpg' );
     $scope.playlist = playList.src;
-
-
-
 
 
 
@@ -42,6 +41,10 @@ function channelCtrl( $scope ) {
 const channelComponent = {
 	template: channelViewHtml
   , controller: channelCtrl
+  , bindings: {
+      channel: '<channel'
+      user: '<user'
+  }
 };
 
 export default channelComponent;

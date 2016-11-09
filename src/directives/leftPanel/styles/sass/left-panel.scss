@@ -28,6 +28,8 @@
         font-family: $logo-font;
         letter-spacing: 1px;
         text-decoration: line-through;
+        padding: 5px;
+        border: 2px solid;
         &:hover {
             cursor: pointer;
         }

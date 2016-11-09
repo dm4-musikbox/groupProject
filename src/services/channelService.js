@@ -40,6 +40,11 @@ function channelService( socketFactory ) {
 				};
 		socketFactory.emit( "unsubscribe from channel", data );
 	};
+
+	this.getChannelById = ( channelId ) => {
+		http.get( `${ref.url}/channel/${ channelId }` ).then( channel => {
+			return channel.data;
+		} )
 }
 
 export default channelService;

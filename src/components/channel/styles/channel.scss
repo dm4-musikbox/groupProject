@@ -160,60 +160,60 @@ $newBlack: #120309;
       }
 
 
-        .footer{
-          height: 4rem;
-          width: 100%;
-          position: relative;
-          .message-input-field{
-            height: 42px;
-            width: 95%;
-            position: absolute;
-            left: 1.9rem;
-            right: .25rem;
-            bottom: 1rem;
-            top: .6rem;
-            border: 2px solid $grey;
-            border-radius: 6px;
-            padding-bottom: 38px;
-            display: flex;
-            #mic-sec{
-              width: 4%;
-              height: 38px;
-              border-right: 2px solid $grey;
-              #mic-icon{
-                .material-icons.md-32{
-                  font-size: 32px;
-                  margin-left: 3px;
-                  margin-top: 4px;
-                  color: $grey;
-                }
-              }
-            }
-            #message-form{
-              height: 42px;
-              position: relative;
-              width: 100%;
-              #message-input{
-                height: 42px;
-                font-family: $input-font;
-                overflow-y: hidden;
-                resize: none;
-                border: 2px solid $grey;
-                border-left: none;
-                border-right: none;
-                border-radius: 0px 6px 6px 0px;
-                position: absolute;
-                bottom: 2px;
-                outline: none;
-                padding-top: .7rem;
-                padding-bottom: .5625rem;
-                padding-left: .5rem;
-                padding-right: 2.5rem;
-                line-height: 1.2rem;
-              }
-            }
-          }
-        }
+        // .footer{
+        //   height: 4rem;
+        //   width: 90%;
+        //   position: relative;
+        //   .message-input-field{
+        //     height: 42px;
+        //     width: 95%;
+        //     position: absolute;
+        //     left: 1.9rem;
+        //     right: .25rem;
+        //     bottom: 1rem;
+        //     top: .6rem;
+        //     border: 2px solid $grey;
+        //     border-radius: 6px;
+        //     padding-bottom: 38px;
+        //     display: flex;
+        //     #mic-sec{
+        //       width: 4%;
+        //       height: 38px;
+        //       border-right: 2px solid $grey;
+        //       #mic-icon{
+        //         .material-icons.md-32{
+        //           font-size: 32px;
+        //           margin-left: 3px;
+        //           margin-top: 4px;
+        //           color: $grey;
+        //         }
+        //       }
+        //     }
+        //     #message-form{
+        //       height: 42px;
+        //       position: relative;
+        //       width: 100%;
+        //       #message-input{
+        //         height: 42px;
+        //         font-family: $input-font;
+        //         overflow-y: hidden;
+        //         resize: none;
+        //         border: 2px solid $grey;
+        //         border-left: none;
+        //         border-right: none;
+        //         border-radius: 0px 6px 6px 0px;
+        //         position: absolute;
+        //         bottom: 2px;
+        //         outline: none;
+        //         padding-top: .7rem;
+        //         padding-bottom: .5625rem;
+        //         padding-left: .5rem;
+        //         padding-right: 2.5rem;
+        //         line-height: 1.2rem;
+        //       }
+        //     }
+        //   }
+        // }
 
 
 
