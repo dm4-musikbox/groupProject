@@ -1,0 +1,17 @@
+@import "variables";
+
+#genre-grid-view {
+  max-height: 100vh;
+  overflow: auto;
+}
+#genre-header {
+  color: black;
+  padding-left: 20px;
+  padding-top: 21px;
+  margin: 0 5%;
+  border-bottom: .5px solid #383737;
+  font-size: 40px;
+}
+#genre-cards-container {
+  margin: 20px 5%;
+}
