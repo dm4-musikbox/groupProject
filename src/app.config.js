@@ -153,6 +153,22 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 													}
 												}
 									}
+							)
+              .state( "popular-view",
+									{
+										url: "/popular"
+		                , parent: "browse-view"
+		                , component: "popularComponent"
+										, resolve:
+												{
+													artistChannels: ( artistService ) => {
+															return artistService.getAllArtistChannels()
+																			.then( artistChannels => {
+																					return artistChannels.data;
+																			} );
+													}
+												}
+									}
 							);
 }
 

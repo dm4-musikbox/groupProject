@@ -1,9 +1,8 @@
-<div id="artists"></div>
-<!-- <div class="col s12 artists-bg"> -->
+<div id="popular"></div>
 <div class="col s12">
     <section class="my-grid">
         <!-- <header id="grid-header">
-            Artists
+            Popular
         </header> -->
         <div class="row" id="nav-row">
            <div class="col s12" id="nav-col">
@@ -23,17 +22,19 @@
 
         <div class="cards-container" id="cards-container">
             <!-- <div class="row" id="row" ng-repeat="channelBlock in $ctrl.artistChannels | filter: $ctrl.filterArtists | groupBy:4"> -->
-            <div class="row" id="row" ng-repeat="( key, value ) in $ctrl.artistChannels | filter: $ctrl.filterArtists | groupBy:'genres[ 0 ]' ">
-                <div class="row">
-                    <h2>{{ key }}</h2>
-                </div>
-                <div class="col s2 m3" ng-repeat="channel in value">
+            <div class="row" id="row" ng-repeat="( key, value ) in $ctrl.artistChannels | filter: $ctrl.filterArtists | groupBy:4">
+                <div class="col s2 m3" ng-repeat="channel in value | orderBy: 'channel.members.length' | reverse: true">
                     <div class="card small">
                         <div class="card-image waves-effect waves-block waves-light">
                             <img class="activator" src="http://wallpaper.zone/img/852297.jpg">
                         </div>
                         <div class="card-content">
                             <span class="card-title activator grey-text text-darken-4">{{ channel.name }}<i class="material-icons right">keyboard_arrow_up</i></span>
+                            <div>
+                                {{ channel.members.length }}
+                                <span ng-if="channel.members.length !== 1">subscribers</span>
+                                <span ng-if="channel.members.length === 1">subscriber</span>
+                            </div>
                             <p><a href ui-sref="channel-view( { _id: channel._id } )">Join Channel</a></p>
                         </div>
                         <div class="card-reveal">
