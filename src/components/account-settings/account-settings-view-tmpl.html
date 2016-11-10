@@ -1,10 +1,14 @@
 <div class="account-settings-view-wrapper">
     <h1>Account Settings</h1>
     <div class="row">
-        <form class="col s8">
+        <form
+            class="col s8"
+            ng-submit="$ctrl.updateCurrentUser( $ctrl.updatedUser )"
+        >
             <div input-field>
                 <input
                     ng-model="$ctrl.updatedUser.userName"
+                    required
                     type="text"
                 >
                 <label>User Name</label>
@@ -12,6 +16,7 @@
             <div input-field>
                 <input
                     ng-model="$ctrl.updatedUser.fullName"
+                    required
                     type="text"
                 >
                 <label>Full Name</label>
@@ -19,6 +24,7 @@
             <div input-field>
                 <input
                     ng-model="$ctrl.updatedUser.email"
+                    required
                     type="text"
                 >
                 <label>Email</label>
@@ -33,11 +39,14 @@
             </div>
 
             <div input-field>
-                <select class="" ng-model="$ctrl.updatedUser.genre" material-select multiple watch>
-                    <option value="Pop">Pop</option>
-                    <option value="Rock">Rock</option>
-                    <option value="Rap">Rap</option>
-                    <option value="Hip Hop">Hip Hop</option>
+                <select
+                    class=""
+                    material-select
+                    multiple
+                    ng-model="$ctrl.updatedUser.genre"
+                    ng-options="genreName.displayName as genreName.displayName for genreName in $ctrl.genreNames"
+                    watch
+                >
                 </select>
                 <label>Genres</label>
             </div>
@@ -48,6 +57,7 @@
                 <textarea
                     class="materialize-textarea"
                     ng-model="$ctrl.updatedUser.userLinks"
+                    required
                     type="text"
                 >
                 </textarea>

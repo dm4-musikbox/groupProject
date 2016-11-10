@@ -8,9 +8,27 @@
       <div class="row" id="nav-row">
          <div class="col s12" id="nav-col">
            <ul tabs id="nav-tabs">
-             <li class="tab col s1 m2 l2"><a class="active" href="#test1">GENRES</a></li>
-             <li class="tab col s1 m2 l2"><a href="#test2">ARTISTS</a></li>
-             <li class="tab col s1 m2 l2"><a href="#test3">POPULAR</a></li>
+             <li class="tab col s1 m2 l2" ui-sref="genres-view">
+                 <a ui-sref-active="active" href="#genres">
+                     <span ui-sref="genres-view">
+                         GENRES
+                     </span>
+                 </a>
+             </li>
+             <li class="tab col s1 m2 l2" ui-sref="artists-view">
+                 <a ui-sref-active="active" href="#artists" >
+                     <span ui-sref="artists-view">
+                         ARTISTS
+                     </span>
+                 </a>
+             </li>
+             <li class="tab col s1 m2 l2 disabled">
+                 <a ui-sref-active="active" href="#popular">
+                     <!-- <span ui-sref="popular-view"> -->
+                         POPULAR
+                     <!-- </span> -->
+                 </a>
+             </li>
              <li class="tab col s1 m2 l2 disabled"><a href="test4"></a></li>
              <li class="tab col s1 m2 l2 disabled"><a href="test5"></a></li>
              <li class="tab col s1 m2 l2 disabled"><a href="test6"></a></li>

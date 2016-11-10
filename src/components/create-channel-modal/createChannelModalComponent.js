@@ -1,12 +1,12 @@
-import './create-channel-modal.scss'
-import createChannelModalHtml from './create-channel-modal-tmpl.html';
+import "./create-channel-modal.scss";
+import createChannelModalHtml from "./create-channel-modal-tmpl.html";
 
-function createChannelModalCtrl () {
+function createChannelModalCtrl() {
 
 }
 
 const createChannelModalComponent = {
-    template: createChannelModalHtml
+	template: createChannelModalHtml
     , controller: createChannelModalCtrl
 };
 

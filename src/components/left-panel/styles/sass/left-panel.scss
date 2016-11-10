@@ -12,11 +12,10 @@
   .left-panel {
     float: left;
     width: 220px;
-    background-color: $purple;
+    background-color: #2a0738;
     color: white;
     height: 100vh;
     position: relative;
-    border-right: 2px solid white;
     .lp-title-sect{
       position: absolute;
       left: 22px;
@@ -64,6 +63,16 @@
 
       &-content {
           height: 100vh;
+          padding-bottom: 5em;
       }
+  }
+
+  .lean-overlay-fix {
+      z-index: 1002;
+      display: block;
+      opacity: 0.9;
+      height: 100vh;
+      background-color: black;
+      transition: 1s all ease-in-out;
   }
 }

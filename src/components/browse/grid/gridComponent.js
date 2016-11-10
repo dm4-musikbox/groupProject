@@ -1,10 +1,13 @@
-import browseGridHtml from './grid.html';
-import './styles/sass/grid.scss';
+import browseGridHtml from "./grid.html";
+import "./styles/sass/grid.scss";
 
-function browseGridCtrl() {
-	const grid = this;
-
-	grid.test = "grid";
+function browseGridCtrl( genreService ) {
+		this.$onInit = () => {
+				genreService.getGenreNames()
+						.then( genreNames => {
+								this.genreNames = genreNames.data;
+						} );
+		};
 }
 
 const browseGridComponent = {

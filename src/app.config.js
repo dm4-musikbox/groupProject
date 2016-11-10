@@ -7,26 +7,26 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 							autoclose: false
 							, auth:
 									{
-											redirect: false
+										redirect: false
 									}
 							, languageDictionary:
 									{
-											emailInputPlaceholder: "something@youremail.com"
-				              , title: "Musikbox"
+										emailInputPlaceholder: "something@youremail.com"
+			              , title: "Musikbox"
 									}
             	, theme:
 									{
-											primaryColor: "#4d394b"
+										primaryColor: "#4d394b"
 									}
-					}
+						}
 	} );
 
 	jwtOptionsProvider.config(
-			{
-					tokenGetter() {
-						return localStorage.getItem( "id_token" );
-					}
+		{
+			tokenGetter() {
+				return localStorage.getItem( "id_token" );
 			}
+		}
 	);
 
 	$httpProvider.interceptors.push( "jwtInterceptor" );
@@ -36,81 +36,122 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 	$stateProvider
               .state( "landing-page",
 									{
-											url: "/"
-										, component: 'landingPageComponent'
-	                		// , component: "socketTestComponent"
+										url: "/"
+										, component: "landingPageComponent"
+                		// , component: "socketTestComponent"
 									}
 							)
               .state( "main-view",
 									{
-											url: "/main"
+										url: "/main"
               			, component: "mainComponent"
 										, resolve:
-													{
-															user: ( $stateParams, userService ) => {
-																	return userService.findOrCreateUser( $stateParams.profile );
-														 	}
-													}
+												{
+														user: ( $stateParams, userService ) => {
+																return userService.findOrCreateUser( $stateParams.profile );
+													 	}
+														, genreNames: ( genreService ) => {
+																return genreService.getGenreNames().then( genreNames => genreNames.data );
+														}
+														, users: ( userService ) => {
+																return userService.getAllUsers().then( users => users.data );
+														}
+												}
 										, params:
-													{
-															profile: null
-													}
+										{
+											profile: null
+										}
 									}
 							)
               .state( "channel-view",
 									{
-
-											url: "/channel/:_id"
+										url: "/channel/:_id"
               			, parent: "main-view"
                 		, component: "channelComponent"
 										, resolve:
 												{
-														channel: ( $stateParams, channelService ) => {
-																return channelService.getChannelById( $stateParams._id );
-														}
-														, user: ( userService ) => {
-																return userService.getCurrentUser();
-														}
+													channel: ( $stateParams, channelService ) => {
+														return channelService.getChannelById( $stateParams._id );
+													}
+													, user: ( userService ) => {
+															return userService.getCurrentUser();
+													}
 												}
 										, params:
 												{
-														_id: null
+													_id: null
 												}
 									}
 							)
               .state( "account-settings-view",
 									{
-											url: "/account-settings"
+										url: "/account-settings"
 		                , parent: "main-view"
 		                , template: "<account-settings-component user='$ctrl.user' on-update='$ctrl.updateCurrentUser( updatedUser )'></account-settings-component>"
 									}
 							)
               .state( "genre-view",
 									{
-											url: "/genre"
+										url: "/genre/:name"
 		                , parent: "main-view"
 		                , component: "genreComponent"
+										, resolve:
+												{
+														genre: ( $stateParams, genreService ) => {
+																let genreName;
+																if ( $stateParams.name ) {
+																		genreName = $stateParams.name;
+																}
+																else {
+																		genreName = JSON.parse( localStorage.getItem( 'currentGenreName' ) );
+																}
+																return genreService.getChannelsByGenreName( genreName ).then( genre => genre.data );
+														}
+												}
+										, params:
+												{
+														name: null
+														, displayName: null
+												}
 									}
 							)
               .state( "browse-view",
 									{
-											url: "/browse"
+										url: "/browse"
 		                , parent: "main-view"
 		                , component: "browseComponent"
 									}
 							)
               .state( "genres-view",
 									{
-											url: "/genres"
+										url: "/genres"
 		                , parent: "browse-view"
 		                , component: "genresComponent"
+										, resolve:
+												{
+														genreNames: ( genreService ) => {
+																return genreService.getGenreNames()
+																			.then( genreNames => {
+																					return genreNames.data;
+																			} );
+														}
+												}
 									}
 							)
               .state( "artists-view",
 									{
-											url: "/artists"
+										url: "/artists"
 		                , parent: "browse-view"
 		                , component: "artistsComponent"
+										, resolve:
+												{
+													artistChannels: ( artistService ) => {
+															return artistService.getAllArtistChannels()
+																			.then( artistChannels => {
+																					return artistChannels.data;
+																			} );
+													}
+												}
 									}
 							);
 }

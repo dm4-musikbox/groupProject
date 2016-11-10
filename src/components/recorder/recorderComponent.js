@@ -31,13 +31,13 @@ function recorderCtrl( $scope, recorderService, socketFactory ) {
 		        userId: this.userId
             , channelId: this.channelId
             , recording: {
-                createdBy: this.userId
+	createdBy: this.userId
                 , description: ""
                 , s3ETag: data.ETag
                 , s3Location: data.Location
                 , s3Bucket: data.Bucket
                 , s3Key: data.Key
-              }
+}
 		};
 		socketFactory.emit( "save recording", this.data );
 	} );

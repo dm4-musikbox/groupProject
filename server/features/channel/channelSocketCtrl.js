@@ -4,7 +4,8 @@ const User = require( "./../user/User.js" );
 
 const activeChannels = {};
 
-module.exports = {
+module.exports =
+{
 	enterChannel( data, io, socket ) {
 		console.log( "enterChannel firing!" );
 
@@ -16,89 +17,86 @@ module.exports = {
 
 		if ( activeChannels.hasOwnProperty( channelId ) ) {
 			activeChannels[ channelId ][ userName ] = socket;
-			channelStatus = {
+			channelStatus =
+			{
 				channelId
-                , users: Object.keys( activeChannels[ channelId ] )
+							        	, users: Object.keys( activeChannels[ channelId ] )
 			};
 		}		else {
 			activeChannels[ channelId ] = { [ userName ]: socket };
-			channelStatus = {
+			channelStatus =
+			{
 				channelId
-                , activeUsers: Object.keys( activeChannels[ channelId ] )
+				              , activeUsers: Object.keys( activeChannels[ channelId ] )
 			};
 		}
 		getChannelStatus( io, channelId, channelStatus );
 	}
-    , leaveChannel( data, io, socket ) {
-	console.log( "leaveChannel firing!" );
 
-	const channelId = data.channelId;
-	const userName = data.userName;
+	, leaveChannel( data, io, socket ) {
+			console.log( "leaveChannel firing!" );
 
-	if ( activeChannels.hasOwnProperty( channelId ) ) {
-		delete activeChannels[ channelId ][ userName ];
+			const channelId = data.channelId;
+			const userName = data.userName;
 
-		if ( !Object.keys( activeChannels[ channelId ] ).length ) {
-			delete activeChannels[ channelId ];
-			getChannelStatus( io, channelId, { message: "everyone has left the room." } );
-		}		else {
-			const channelStatus = {
-				channelId
-                      , activeUsers: Object.keys( activeChannels[ channelId ] )
-			};
-			getChannelStatus( io, channelId, channelStatus );
+			if ( activeChannels.hasOwnProperty( channelId ) ) {
+				delete activeChannels[ channelId ][ userName ];
+
+				if ( !Object.keys( activeChannels[ channelId ] ).length ) {
+					delete activeChannels[ channelId ];
+					getChannelStatus( io, channelId, { message: "everyone has left the room." } );
+				}		else {
+					const channelStatus = {
+						channelId
+					                      , activeUsers: Object.keys( activeChannels[ channelId ] )
+					};
+					getChannelStatus( io, channelId, channelStatus );
+				}
+			}
+			socket.leave( channelId );
 		}
-	}
-	socket.leave( channelId );
-}
-    , subscribeToChannel( data, io, socket ) {
-	console.log( "subscribeToChannel firing!" );
 
-	const channelId = data.channelId;
-	const userId = data.userId;
+		, subscribeToChannel( data, io, socket ) {
+			console.log( "subscribeToChannel firing!" );
 
-	User
-            .findOneAndUpdate( { _id: userId }, { $addToSet: { userChannels: channelId } }, { new: true } )
-            .exec( ( err, user ) => {
-	if ( err ) {
-		throw err;
-	}
-	getUpdatedUser( socket, userId, user );
-} );
+			const channelId = data.channelId;
+			const userId = data.userId;
 
-	Channel
-            .findOneAndUpdate( { _id: channelId }, { $addToSet: { members: userId } }, { new: true } )
-            .exec( ( err, channel ) => {
-	if ( err ) {
-		throw err;
-	}
-	getUpdatedChannel( io, channelId, channel );
-} );
-}
-    , unsubscribeFromChannel( data, io, socket ) {
-	console.log( "unsubscribeFromChannel firing!" );
+			User.findOneAndUpdate( { _id: userId }, { $addToSet: { userChannels: channelId } }, { new: true }, ( err, user ) => {
+				if ( err ) {
+					throw err;
+				}
+				getUpdatedUser( socket, userId, user );
+			} );
 
-	const channelId = data.channelId;
-	const userId = data.userId;
+			Channel.findOneAndUpdate( { _id: channelId }, { $addToSet: { members: userId } }, { new: true }, ( err, channel ) => {
+				if ( err ) {
+					throw err;
+				}
+				getUpdatedChannel( io, channelId, channel );
+			} );
+		}
 
-	User
-              .findOneAndUpdate( { _id: userId }, { $pull: { userChannels: channelId } }, { new: true } )
-              .exec( ( err, user ) => {
-	if ( err ) {
-		throw err;
-	}
-	getUpdatedUser( io, socket, userId, user );
-} );
+		, unsubscribeFromChannel( data, io, socket ) {
+			console.log( "unsubscribeFromChannel firing!" );
 
-	Channel
-              .findOneAndUpdate( { _id: channelId }, { $pull: { members: userId } }, { new: true } )
-              .exec( ( err, channel ) => {
-	if ( err ) {
-		throw err;
-	}
-	getUpdatedChannel( io, channelId, channel );
-} );
-}
+			const channelId = data.channelId;
+			const userId = data.userId;
+
+			User.findOneAndUpdate( { _id: userId }, { $pull: { userChannels: channelId } }, { new: true }, ( err, user ) => {
+				if ( err ) {
+					throw err;
+				}
+				getUpdatedUser( io, socket, userId, user );
+			} );
+
+			Channel.findOneAndUpdate( { _id: channelId }, { $pull: { members: userId } }, { new: true }, ( err, channel ) => {
+				if ( err ) {
+					throw err;
+				}
+				getUpdatedChannel( io, channelId, channel );
+			} );
+		}
 };
 
 function getUpdatedUser( io, socket, userId, user ) {

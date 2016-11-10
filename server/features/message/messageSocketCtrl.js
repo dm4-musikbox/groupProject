@@ -4,24 +4,24 @@ const Message = require( "./../message/Message" );
 const Channel = require( "./../channel/Channel" );
 
 module.exports = {
-		sendAndSaveMessage( data, io ) {
-			console.log( "sendAndSaveMessage firing!" );
-			const message = data.message;
-			const channelId = data.channelId;
+	sendAndSaveMessage( data, io ) {
+		console.log( "sendAndSaveMessage firing!" );
+		const message = data.message;
+		const channelId = data.channelId;
 
-			new Message( message ).save( ( err, message ) => {
+		new Message( message ).save( ( err, message ) => {
+			if ( err ) {
+				throw err;
+			}
+			Channel
+				      .findOneAndUpdate( { _id: channelId }, { $push: { channelMessages: message._id } }, { new: true }, ( err, channel ) => {
 					if ( err ) {
 						throw err;
 					}
-					Channel
-				      .findOneAndUpdate( { _id: channelId }, { $push: { channelMessages: message._id } }, { new: true }, ( err, channel ) => {
-									if ( err ) {
-										throw err;
-									}
-									getUpdatedChannel( channelId, io, channel );
-							} );
-			} );
-		}
+					getUpdatedChannel( channelId, io, channel );
+				} );
+		} );
+	}
 
 	, updateMessage( data, io ) {
 		console.log( "updateMessage firing!" );
@@ -32,16 +32,16 @@ module.exports = {
 
 		Message.findByIdAndUpdate( messageId, { $set: { content: messageContent } }, { new: true }, ( err, message ) => {
 			if ( err ) {
-					throw err;
+				throw err;
 			}
 			console.log( "Updated message is ", message );
 			Channel
 	        .findOne( { _id: channelId }, ( err, channel ) => {
-						if ( err ) {
-							throw err;
-						}
-						getUpdatedChannel( channelId, io, channel );
-					} );
+		if ( err ) {
+			throw err;
+		}
+		getUpdatedChannel( channelId, io, channel );
+	} );
 		} );
 	}
 
@@ -55,10 +55,10 @@ module.exports = {
 			}
 			console.log( "Removed message! ", response );
 			Channel.findOneAndUpdate( { _id: channelId }, { $pull: { channelMessages: messageId } }, { new: true }, ( err, channel ) => {
-					if ( err ) {
-						throw err;
-					}
-					getUpdatedChannel( channelId, io, channel );
+				if ( err ) {
+					throw err;
+				}
+				getUpdatedChannel( channelId, io, channel );
 			} );
 		} );
 	}

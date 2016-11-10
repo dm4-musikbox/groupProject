@@ -5,9 +5,12 @@
 <div ng-if="$ctrl.isAuthenticated">
 
     <left-panel-component
+      genre-names="$ctrl.genreNames"
       user="$ctrl.user"
+      users="$ctrl.users"
     >
     </left-panel-component>
 
     <ui-view id="ui-float"></ui-view>
+
 </div>
