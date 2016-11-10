@@ -26,6 +26,10 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
     }
   };
 
+  this.updateMessage = ( messageId, message, channelId ) => {
+    messageService.updateMessage( messageId, message, channelId );
+  }
+
   socketFactory.on( "get channel", data => {
     this.channel = data;
     console.log( "get channel received! channel is ", this.channel );

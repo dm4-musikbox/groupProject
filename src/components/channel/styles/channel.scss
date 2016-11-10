@@ -126,12 +126,21 @@ $purple: #2a0738;
              }
              .content{
                 display: inline-block;
-             }
-             .edit{
-               display: inline-block;
-               .material-icons.md-18{
-                 font-size: 18px;
-               }
+
+                .tools{
+                  width: 60px;
+                  display: inline-block;
+                  float: right;
+                  // visibility: hidden;
+                  .material-icons.create{
+                    font-size: 15px;
+                    cursor: pointer
+                  }
+                  .material-icons.delete{
+                    font-size: 15px;
+                    cursor: pointer
+                  }
+                }
              }
             }
           }

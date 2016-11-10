@@ -51,10 +51,15 @@
             </div>
           </div>
           <div class="content col s10">
-            <div>{{ message.content }}</div>
-          </div>
+            <div>{{ message.content }}
 
+              <div class="tools">
+                <i ng-click="updateMessage( )" class="material-icons create">create</i>
+                <i ng-click="deleteMessage( )" class="material-icons delete">clear</i>
+              </div>
+          </div>
       </div>
+
     </div>
 
     </section>
