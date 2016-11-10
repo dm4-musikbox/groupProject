@@ -102,8 +102,8 @@ const genreNames = [
 				, name: "soul"
 			}
 		, {
-				displayName: "Folk & Americana"
-				, name: "folk-and-americana"
+				displayName: "Folk"
+				, name: "folk"
 			}
 		, {
 				displayName: "Christian"

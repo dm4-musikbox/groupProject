@@ -1,7 +1,7 @@
 import popularViewHtml from './popular-view-tmpl.html'
 
 function popularCtrl () {
-    console.log( this.artistChannels );
+    // console.log( this.artistChannels );
 }
 
 const popularComponent = {
