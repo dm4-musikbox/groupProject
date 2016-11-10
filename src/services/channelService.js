@@ -6,14 +6,13 @@ function channelService( $http, ref, socketFactory ) {
 	};
 
 	this.createChannel = ( channel ) => {
-		channel.genres = channel.genres.split( "," );
+		console.log( channel );
 		if ( channel.invitedAsAdmin ) {
 			channel.invitedAsAdmin = channel.invitedAsAdmin.split( "," );
 		}
 		if ( channel.invitedAsMember ) {
 			channel.invitedAsMember = channel.invitedAsMember.split( "," );
 		}
-		console.log( channel );
 		return $http
 								.post( `${ ref.url }/api/channels`, channel );
 

@@ -3,7 +3,7 @@ import "./styles/sass/genre.scss";
 
 function genreCtrl( $location, $stateParams ) {
 		this.$onInit = () => {
-
+				console.log( this.genre );
 		};
 
 }

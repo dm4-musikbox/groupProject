@@ -47,6 +47,15 @@ module.exports = {
 						return res.status( 200 ).json( channels );
 					} );
 	}
+	, getPublicChannels( req, res ) {
+		Channel
+					.find( { type: 'public' }, ( err, channels ) => {
+							if ( err ) {
+								return res.status( 500 ).json( err );
+							}
+							return res.status( 200 ).json( channels );
+					} );
+	}
 	 , getChannelById( req, res ) {
 		 console.log( "getChannelById firing!" );
 		Channel.findOne( { _id: req.params.channel_id }, ( err, channel ) => {

@@ -16,16 +16,6 @@ function mainCtrl( $rootScope, authService, socketFactory, userService  ) {
 						}
 						);
 	};
-		// this.updateCurrentUser = ( updatedUser ) => {
-		// 		userService
-		// 				.updateCurrentUser( updatedUser )
-		// 				.then( user =>
-		// 						{
-		// 								this.user = user.data;
-		// 								userService.setCurrentUser( this.user );
-		// 						}
-		// 				);
-		// };
 
 	socketFactory.on( "get updated user", data => {
 		this.user = data;
@@ -37,7 +27,8 @@ const mainComponent = {
 	  , controller: mainCtrl
 		, bindings:
 		{
-			user: "<user"
+			genreNames: '<'
+			, user: "<"
 		}
 };
 

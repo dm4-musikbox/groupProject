@@ -27,8 +27,9 @@ const leftPanelComponent = {
 	template: leftPanelHtml
 		, controller: leftPanelCtrl
     , bindings: {
-	user: "<"
-}
+				genreNames: "<"
+				, user: "<"
+			}
 };
 
 export default leftPanelComponent;

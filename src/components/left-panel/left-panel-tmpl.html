@@ -75,10 +75,15 @@
             <label>Description</label>
         </div>
         <div input-field>
-            <input
+            <select
+                class=""
+                material-select
+                multiple
                 ng-model="$ctrl.channel.genres"
-                type="text"
+                ng-options="genreName.displayName as genreName.displayName for genreName in $ctrl.genreNames"
+                watch
             >
+            </select>
             <label>Genres</label>
         </div>
         <div input-field>

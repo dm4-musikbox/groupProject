@@ -46,11 +46,17 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 										url: "/main"
               			, component: "mainComponent"
 										, resolve:
-										{
-											user: ( $stateParams, userService ) => {
-												return userService.findOrCreateUser( $stateParams.profile );
-														 	}
-										}
+												{
+														user: ( $stateParams, userService ) => {
+																return userService.findOrCreateUser( $stateParams.profile );
+													 	}
+														, genreNames: ( genreService ) => {
+																return genreService.getGenreNames()
+																			.then( genreNames => {
+																					return genreNames.data;
+																			} );
+														}
+												}
 										, params:
 										{
 											profile: null

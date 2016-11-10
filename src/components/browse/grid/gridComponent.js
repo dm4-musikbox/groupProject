@@ -6,7 +6,6 @@ function browseGridCtrl( genreService ) {
 				genreService.getGenreNames()
 						.then( genreNames => {
 								this.genreNames = genreNames.data;
-								console.log( this.genreNames );
 						} );
 		};
 }
