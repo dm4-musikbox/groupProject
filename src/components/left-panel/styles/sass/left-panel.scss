@@ -12,24 +12,25 @@
   .left-panel {
     float: left;
     width: 220px;
-    background-color: black;
-    // background-color: #7a00ff;
+    background-color: $purple;
+    color: white;
     height: 100vh;
     position: relative;
     border-right: 2px solid white;
     .lp-title-sect{
       position: absolute;
-      left: 13px;
-      top: 5px;
+      left: 22px;
+      top: 15px;
       width: auto;
       #lp-title{
-        font-size: 28px;
+        font-size: 30px;
         color: white;
         font-family: $logo-font;
         letter-spacing: 1px;
         text-decoration: line-through;
-        padding: 5px;
-        border: 2px solid;
+        padding-bottom: 2px;
+        border: 10px solid;
+        text-align: center;
         &:hover {
             cursor: pointer;
         }
@@ -55,5 +56,14 @@
         }
       }
     }
+  }
+
+  #create-channel-modal {
+      width: 80vw;
+      height: 100vh;
+
+      &-content {
+          height: 100vh;
+      }
   }
 }

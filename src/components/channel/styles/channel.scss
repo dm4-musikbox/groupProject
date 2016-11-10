@@ -4,43 +4,84 @@ $main-font: 'PT Sans Narrow';
 $grey: #BDBDBD;
 $input-font: 'Slabo+27px';
 $newBlack: #120309;
-
+$logo-font: 'Roboto Slab';
+$purple: #2a0738;
 
 .channel-view{
   background-color: white;
   height: 100vh;
   width: calc(121% - 220px);
   float: left;
-  .top-audio-player{
+  .top-audio-player-container{
     width: 100%;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    border-bottom: 9px solid black;
     height: 10%;
-    #play-button{
-      display: inline-block;
-      margin-left: 25px;
-      .material-icons.md-72{
-        font-size: 72px;
-        cursor: pointer;
-        color: black;
+    .top-audio-player{
+      width: 90%;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      height: 90%;
+      #play-button{
+        display: inline-block;
+        margin-left: 25px;
+        .material-icons.md-72{
+          font-size: 72px;
+          cursor: pointer;
+          color: $purple;
+        }
       }
-    }
-    .waves{
-      width: 1000px;
-      display: inline-block;
-      #waveform{
-        height: 97;
+      .waves{
+        width: 1000px;
+        display: inline-block;
+        #waveform{
+          height: 88px;
+        }
       }
     }
   }
 
+    .channel-nav{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $purple;
+      opacity: .7;
+      .channel-info{
+        width: 600px;
+        .channel-name{
+          margin: auto;
+          text-align: center;
+          text-align: center;
+          font-size: 25px;
+          width: 300px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          font-family: $logo-font;
+        }
+        .channel-description{
+          margin: auto;
+          text-align: center;
+          width: 300px;
+        }
+      }
+      .channel-buttons{
+        display: flex;
+        #side-nav-icon{
+          .material-icons.md-24.button-collapse{
+            font-size: 24px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
     .chat-window{
-      width: 84%;
+      width: 100%;
       padding-top: 20px;
       overflow: scroll;
-      height: 77%;
+      height: 69%;
       display:inline-block;
 
       // background-color: antiquewhite;
@@ -84,7 +125,13 @@ $newBlack: #120309;
                }
              }
              .content{
-
+                display: inline-block;
+             }
+             .edit{
+               display: inline-block;
+               .material-icons.md-18{
+                 font-size: 18px;
+               }
              }
             }
           }
@@ -118,9 +165,9 @@ $newBlack: #120309;
         //   }
         // }
 
-        div[style]{
-          width: 298px !important;
-         &#list-nav {
+        // div[style]{
+        //   width: 298px !important;
+         #list-nav {
           width: 400px;
           transform: translateX(0px);
           .title-section{
@@ -143,7 +190,7 @@ $newBlack: #120309;
 
               }
             }
-          }
+          // }
           .playlist{
             a{
               padding-left: 10px;
@@ -160,60 +207,60 @@ $newBlack: #120309;
       }
 
 
-        // .footer{
-        //   height: 4rem;
-        //   width: 90%;
-        //   position: relative;
-        //   .message-input-field{
-        //     height: 42px;
-        //     width: 95%;
-        //     position: absolute;
-        //     left: 1.9rem;
-        //     right: .25rem;
-        //     bottom: 1rem;
-        //     top: .6rem;
-        //     border: 2px solid $grey;
-        //     border-radius: 6px;
-        //     padding-bottom: 38px;
-        //     display: flex;
-        //     #mic-sec{
-        //       width: 4%;
-        //       height: 38px;
-        //       border-right: 2px solid $grey;
-        //       #mic-icon{
-        //         .material-icons.md-32{
-        //           font-size: 32px;
-        //           margin-left: 3px;
-        //           margin-top: 4px;
-        //           color: $grey;
-        //         }
-        //       }
-        //     }
-        //     #message-form{
-        //       height: 42px;
-        //       position: relative;
-        //       width: 100%;
-        //       #message-input{
-        //         height: 42px;
-        //         font-family: $input-font;
-        //         overflow-y: hidden;
-        //         resize: none;
-        //         border: 2px solid $grey;
-        //         border-left: none;
-        //         border-right: none;
-        //         border-radius: 0px 6px 6px 0px;
-        //         position: absolute;
-        //         bottom: 2px;
-        //         outline: none;
-        //         padding-top: .7rem;
-        //         padding-bottom: .5625rem;
-        //         padding-left: .5rem;
-        //         padding-right: 2.5rem;
-        //         line-height: 1.2rem;
-        //       }
-        //     }
-        //   }
-        // }
+       .footer{
+         height: 4rem;
+         width: 100%;
+         position: relative;
+         .message-input-field{
+           height: 42px;
+           width: 95%;
+           position: absolute;
+           left: 1.9rem;
+           right: .25rem;
+           bottom: 1rem;
+           top: .6rem;
+           border: 2px solid $grey;
+           border-radius: 6px;
+           padding-bottom: 38px;
+           display: flex;
+           #mic-sec{
+             width: 4%;
+             height: 38px;
+             border-right: 2px solid $grey;
+             #mic-icon{
+               .material-icons.md-32{
+                 font-size: 32px;
+                 margin-left: 3px;
+                 margin-top: 4px;
+                 color: $grey;
+               }
+             }
+           }
+           #message-form{
+             height: 42px;
+             position: relative;
+             width: 100%;
+             #message-input{
+               height: 42px;
+               font-family: $input-font;
+               overflow-y: hidden;
+               resize: none;
+               border: 2px solid $grey;
+               border-left: none;
+               border-right: none;
+               border-radius: 0px 6px 6px 0px;
+               position: absolute;
+               bottom: 2px;
+               outline: none;
+               padding-top: .7rem;
+               padding-bottom: .5625rem;
+               padding-left: .5rem;
+               padding-right: 2.5rem;
+               line-height: 1.2rem;
+             }
+           }
+          }
+        }
 
 
 

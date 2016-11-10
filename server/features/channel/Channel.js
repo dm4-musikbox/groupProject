@@ -4,17 +4,20 @@ const findOrCreate = require( "mongoose-findorcreate" );
 const Channel = new mongoose.Schema(
 	{
 		type: { type: String, enum: [ "public", "private" ], default: "private", required: true }
-		  , name: { type: String, required: true }
-		 , admins: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
-		 , genres: [ { type: String, required: true } ]
-		 , members: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
-		 , channelRecordings: [ { type: mongoose.Schema.Types.ObjectId, ref: "Recording" } ]
-		 , channelMessages: [ { type: mongoose.Schema.Types.ObjectId, ref: "Message" } ]
+		, name: { type: String, required: true }
+		, description: { type: String, required: true }
+		, admins: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
+		, genres: [ { type: String, required: true } ]
+		, members: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
+		, channelRecordings: [ { type: mongoose.Schema.Types.ObjectId, ref: "Recording" } ]
+		, channelMessages: [ { type: mongoose.Schema.Types.ObjectId, ref: "Message" } ]
+		, invitedAsAdmin: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
+		, invitedAsMember: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
 	}
 );
 
 function autoPopulate( next ) {
-	this
+		this
 				.populate( "members admins" )
 				.populate(
 					{

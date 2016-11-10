@@ -3,7 +3,7 @@ const channelCtrl = require( "./channelCtrl.js" );
 module.exports = app => {
 	app.route( "/api/channels" )
 				.get( channelCtrl.getChannels )
-				.post( channelCtrl.findOrCreateChannel );
+				.post( channelCtrl.createChannel );
 
 	app.route( "/api/channels/:channel_id" )
 				.get( channelCtrl.getChannelById )

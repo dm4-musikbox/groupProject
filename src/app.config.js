@@ -59,21 +59,23 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 							)
               .state( "channel-view",
 									{
-											url: "/channel/:id"
+
+											url: "/channel/:_id"
               			, parent: "main-view"
                 		, component: "channelComponent"
-										, resolve: {
-																	channel: ( $tateParams._id, channelService ) => {
-																		 channelService.getChannelById( $stateParams._id );
-																	}
-																	user: ( userService ) => {
-																	  userService.setCurrentUser();
-																	}
-															 }
-										, params: {
-											    _id: null
-										}
-
+										, resolve:
+												{
+														channel: ( $stateParams, channelService ) => {
+																return channelService.getChannelById( $stateParams._id );
+														}
+														, user: ( userService ) => {
+																return userService.getCurrentUser();
+														}
+												}
+										, params:
+												{
+														_id: null
+												}
 									}
 							)
               .state( "account-settings-view",

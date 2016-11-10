@@ -13,21 +13,36 @@ function mainCtrl( $rootScope, authService, socketFactory, userService  ) {
 						.then( user =>
 								{
 										this.user = user.data;
+										userService.setCurrentUser( this.user );
+										console.log( "update currentUser firing");
 								}
 						);
 		};
+		// this.updateCurrentUser = ( updatedUser ) => {
+		// 		userService
+		// 				.updateCurrentUser( updatedUser )
+		// 				.then( user =>
+		// 						{
+		// 								this.user = user.data;
+		// 								userService.setCurrentUser( this.user );
+		// 						}
+		// 				);
+		// };
 
 		socketFactory.on( "get updated user", data => {
 				this.user = data;
 		} );
+
+
 }
 
 const mainComponent = {
 		template: mainViewHtml
 	  , controller: mainCtrl
-		, bindings: {
-				user: '<user'
-		}
+		, bindings:
+				{
+						user: '<user'
+				}
 };
 
 export default mainComponent;

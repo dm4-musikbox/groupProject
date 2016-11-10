@@ -1,59 +1,63 @@
 <div>
   <main class="channel-view">
-    <section class="top-audio-player">
-      <div id="play-button" ><i class="material-icons md-72">play_circle_outline</i></div>
+  <section class="top-audio-player-container">
+    <div class="top-audio-player">
+      <div id="play-button"><i class="material-icons md-72">play_circle_outline</i></div>
         <div class="waves">
            <div id="waveform"></div>
-
-      <!-- pause button
-      <i class="material-icons md-72">pause_circle_outline</i> -->
-
-
-
-      </div>
-
-
+        <!-- pause button
+        <i class="material-icons md-72">pause_circle_outline</i> -->
+        </div>
+    </div>
   </section>
-  <section class="chat-window">
-    <div class="message">
+    <div class="channel-nav">
+        <div class="channel-info">
+          <div class="channel-name">{{ $ctrl.channel.name }}</div>
+          <div class="channel-description"><em>{{ $ctrl.channel.description }}</em></div>
+        </div>
+        <div class="channe-buttons">
+          <div id="side-nav-icon">
+            <i class="material-icons md-24 button-collapse" data-activates="list-nav" data-sidenav="right" data-menuwidth="298" data-closeonclick="false">queue_music</i>
+              <!-- Show side-nav -->
+          </div>
+        </div>
+    </div>
+
+         <!-- <div class="message">
       <div class="row">
         <div class="user-image-container col s1">
           <img class="user-image" src="{{ user }}"/>
         </div>
         <div class="name-stamp col s9">
           <div class="user-name">
-             Theo Beck
+             Theo Beck -->
+
+    <section class="chat-window">
+      <div
+          class="message"
+          ng-if="$ctrl.channel.channelMessages"
+          ng-repeat="message in $ctrl.channel.channelMessages"
+      >
+        <div class="row">
+          <div class="user-image-container col s1">
+            <img class="user-image" src="{{ message.author.photo }}"/>
           </div>
-          <div class="time-stamp">
-            11/3/16 • 11:34 AM
+          <div class="name-stamp col s6">
+            <div class="user-name">
+               {{ message.author.userName || message.author.fullName }}
+            </div>
+            <div class="time-stamp">
+              {{ message.timestamp | date: 'short' }}
+            </div>
           </div>
-        </div>
-        <div class="content col s11">
-          <div> I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with. </div>
-        </div>
+          <div class="content col s10">
+            <div>{{ message.content }}</div>
+          </div>
+
       </div>
     </div>
 
-    <!-- <div class="message">
-      <div class="row">
-        <div class="user-image-container col s1">
-          <img class="user-image" src="{{ user }}"/>
-        </div>
-        <div class="name-stamp col s9">
-          <div class="user-name">
-             Theo Beck
-          </div>
-          <div class="time-stamp">
-            11/3/16 • 11:34 AM
-          </div>
-        </div>
-        <div class="content col s11">
-          <div> I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with.I know someone I'd like to put you in contact with. </div>
-        </div>
-      </div>
-    </div> -->
-
-  </section>
+    </section>
 <!--
   <section class="playlist-sect">
     <div class="playlist">
@@ -83,9 +87,10 @@
   </ul> -->
 
 
+<!-- Side Nav  -->
   <div id="list-nav" class="side-nav">
     <div class="title-section">
-      <div class="title"> Studio </br> Playlist </div>
+      <div class="title"> Channel </br> Playlist </div>
       <img src="{{ playlist }}" id="pic" style="max-height: 204px; border-bottom: 5px solid cadetblue;"/>
       <div class="pic-container">
 
@@ -99,10 +104,11 @@
       </ul>
     </div>
   </div>
-
-  <a href="#" class="button-collapse" data-activates="list-nav" data-sidenav="right" data-menuwidth="500" data-closeonclick="false">
+<!--
+  <a href="#" class="button-collapse" data-activates="list-nav" data-sidenav="right" data-menuwidth="298" data-closeonclick="false">
+    <i class="material-icons">queue_music</i>
       Show side-nav
-  </a>
+  </a>  -->
 
   <div class="footer">
     <div class="message-input-field">
@@ -111,8 +117,8 @@
           <i class="material-icons md-32">mic_none</i>
         </div>
       </div>
-      <form id="message-form" ng-submit="">
-        <textarea id="message-input" placeholder="Let's Talk Music!" spellcheck="true"></textarea>
+      <form id="message-form" ng-keypress="$ctrl.sendAndSaveMessage( $event, $ctrl.message )">
+        <textarea id="message-input" ng-model="$ctrl.message.content" placeholder="Let's Talk Music!" spellcheck="true"></textarea>
       </form>
     </div>
   </div>

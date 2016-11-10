@@ -21,23 +21,26 @@ function userService( $http, ref, socketFactory ) {
 									.post( `${ ref.url }/api/users`, user )
 									.then( user =>
 											{
+													currentUser = user.data;
 													return user.data;
 											}
 									);
 		};
 
 		this.updateCurrentUser = ( updatedUser ) => {
-				return $http
-									.put( `${ ref.url }/api/users/${ updatedUser._id }`, updatedUser )
+				if ( updatedUser ) {
+						return $http.put( `${ ref.url }/api/users/${ updatedUser._id }`, updatedUser );
+				}
+				return $http.get( `${ ref.url }/api/users/${ currentUser._id }` );
 		};
 
 		this.setCurrentUser = ( user ) => {
-			currentUser = user;
-		}
+				currentUser = user;
+		};
 
-		this.getCurrentUser = () =>{
-			currentUser;
-		}
+		this.getCurrentUser = () => {
+				return currentUser;
+		};
 
 }
 

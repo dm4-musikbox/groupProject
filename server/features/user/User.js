@@ -12,6 +12,8 @@ const User = new mongoose.Schema(
 		, genre: [ { type: String } ]
 		, photo: { type: String }
 		, userChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
+		, invitedAsMember: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
+		, invitedAsAdmin: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
 		, userLinks: [ { type: String, lowercase: true, trim: true } ]
 	}
 );
