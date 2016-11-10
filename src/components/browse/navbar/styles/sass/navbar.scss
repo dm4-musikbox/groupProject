@@ -9,6 +9,7 @@
 #browse-header {
   font-size: 44px;
   padding-left: 5%;
+  color: #460d5d;
 }
 
 #nav-row {
@@ -17,7 +18,7 @@
 }
 
 #nav-col {
-  border-bottom: 1px solid #383737;
+  border-bottom: 1px solid grey;
 }
 
 #nav-tabs {
@@ -25,19 +26,19 @@
 }
 
 .tabs .tab a {
-  color: #828282;
+  color: #7e7184;
   font-size: 16px;
 }
 
 .tabs .tab a:hover {
-  color: white;
+  color: #702290;
 }
 
 .tabs .tab a.active {
-  color: white;
+  color: #702290;
 }
 
 .tabs .indicator {
-  background-color: #1db954;
+  background-color: gold;
   height: 4px;
 }
