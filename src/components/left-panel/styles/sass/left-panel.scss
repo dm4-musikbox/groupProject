@@ -18,15 +18,18 @@
     position: relative;
     .lp-title-sect{
       position: absolute;
-      left: 13px;
-      top: 5px;
+      left: 22px;
+      top: 15px;
       width: auto;
       #lp-title{
-        font-size: 28px;
+        font-size: 30px;
         color: white;
         font-family: $logo-font;
         letter-spacing: 1px;
         text-decoration: line-through;
+        padding-bottom: 2px;
+        border: 10px solid;
+        text-align: center;
         &:hover {
             cursor: pointer;
         }

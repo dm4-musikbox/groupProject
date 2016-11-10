@@ -4,6 +4,7 @@ function messageService( socketFactory ) {
 			message
             , channelId
 		};
+		console.log( data );
 		socketFactory.emit( "send and save message", data );
 	};
 

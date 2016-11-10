@@ -1,22 +1,54 @@
 import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
-function channelCtrl( $scope ) {
-	this.$onInit = () => {
+function channelCtrl( $scope, messageService, socketFactory, channelService ) {
+  this.$onInit = () => {
+    this.enterChannel();
+  };
 
-	};
+  this.$onChanges = ( changes ) => {
+      console.log( 'changes are', changes );
+      this.mainCtrl.updateCurrentUser()
+      console.log( this.user );
+  };
 
-	this.$onChanges = ( changes ) => {
-		console.log( "changes are", changes );
-	};
+  this.enterChannel = () => {
+    channelService.enterChannel( this.channel._id, this.user.userName );
+  };
 
-	const image = document.createElement( "img" );
-	image.src = require( "./styles/imgs/testpic.jpg" );
-	$scope.user = image.src;
+  this.sendAndSaveMessage = ( keyEvent, message ) => {
+    if( keyEvent.which === 13 ){
+      this.channelId = this.channel._id
+      console.log (this.user);
+      message.author = this.user._id
+      message.type = "message";
+      messageService.sendAndSaveMessage( message, this.channelId );
+    }
+  };
+
+  this.updateMessage = ( messageId, message, channelId ) => {
+    messageService.updateMessage( messageId, message, channelId );
+  }
+
+  socketFactory.on( "get channel", data => {
+    this.channel = data;
+    console.log( "get channel received! channel is ", this.channel );
+  } );
+
+  socketFactory.on( "get status of channel", data => {
+    console.log( data );
+    this.channelStatus = data;
+  } );
+
+
+  const image = document.createElement( 'img' );
+    image.src = require( './styles/imgs/testpic.jpg' );
+    $scope.user = image.src;
 
 	const playList = document.createElement( "img" );
 	playList.src = require( "./styles/imgs/webpack.jpg" );
 	$scope.playlist = playList.src;
+
 
 	const wavesurfer = WaveSurfer.create( {
 		container: "#waveform"
@@ -48,9 +80,10 @@ const channelComponent = {
 				mainCtrl: "^mainComponent"
 			}
   , bindings:
-			{
-				channel: "<"
-			}
+      {
+          channel: '<'
+          , user: '<'
+      }
 };
 
 export default channelComponent;

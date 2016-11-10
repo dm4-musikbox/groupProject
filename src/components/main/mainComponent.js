@@ -21,6 +21,7 @@ function mainCtrl( $rootScope, authService, socketFactory, userService  ) {
 						);
 	};
 
+
 	socketFactory.on( "get updated user", data => {
 		this.user = data;
 	} );
