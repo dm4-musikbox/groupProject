@@ -1,6 +1,7 @@
 import angular from "angular";
 
 import socketFactory from "./socketFactory.js";
+import artistService from "./artistService.js";
 import authService from "./authService.js";
 import channelService from "./channelService.js";
 import genreService from "./genreService.js";
@@ -12,6 +13,7 @@ import userService from "./userService.js";
 
 angular.module( "services", [] )
       .factory( "socketFactory", socketFactory )
+      .service( "artistService", artistService )
       .service( "authService", authService )
       .service( "channelService", channelService )
       .service( "genreService", genreService )

@@ -53,54 +53,95 @@
     <div class="modal-content" id="create-channel-modal-content">
         <h4>Create a channel</h4>
         <p>Channels are where you, your collaborators and listeners can connect.</p>
-        <div input-field>
-            <input
-                ng-model="$ctrl.channel.name"
-                type="text"
-            >
-            <label>Name</label>
+        <div class="row">
+            <div input-field class="col s6 m6 l6">
+                <input
+                    ng-model="$ctrl.channel.name"
+                    type="text"
+                >
+                <label>Name</label>
+            </div>
+            <div input-field class="col s6 m6 l6">
+                <input
+                    ng-model="$ctrl.channel.description"
+                    type="text"
+                >
+                <label>Description</label>
+            </div>
         </div>
-        <div input-field>
-            <input
-                ng-model="$ctrl.channel.type"
-                type="text"
-            >
-            <label>Type</label>
+
+        <div class="row">
+            <div input-field class="col s6 m6 l6">
+                <select
+                    class=""
+                    material-select
+                    multiple
+                    ng-model="$ctrl.channel.genres"
+                    ng-options="genreName.displayName as genreName.displayName for genreName in $ctrl.genreNames"
+                    type="text"
+                    watch
+                >
+                </select>
+                <label>Genres</label>
+            </div>
+            <div input-field class="col s6 m6 l6">
+                <select
+                    material-select
+                    ng-model="$ctrl.channel.type"
+                    type="text"
+                >
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                </select>
+                <label>Type</label>
+            </div>
         </div>
-        <div input-field>
-            <input
-                ng-model="$ctrl.channel.description"
-                type="text"
+        <div class="row">
+            <div
+              angucomplete-alt
+              id="collaborators"
+              class="col s6 m6 l6"
+              pause="400"
+              placeholder="Send invites to collaborators: (optional)"
+              selected-object="$ctrl.inviteAsAdmin"
+              clear-selected="true"
+              remote-url="http://localhost:5000/api/users/find?searchStr="
+              title-field="fullName"
+              description-field="genre"
+              image-field="photo"
+              input-class="form-control form-control-small"
+              minimum-length="1"
             >
-            <label>Description</label>
+              <label>Send invites to collaborators: (optional)</label>
+            </div>
+            <div
+              angucomplete-alt
+              id="collaborators"
+              class="col s6 m6 l6"
+              pause="400"
+              placeholder="Send invites to listeners: (optional)"
+              selected-object="$ctrl.inviteAsMember"
+              remote-url="http://localhost:5000/api/users/find?searchStr="
+              title-field="fullName"
+              description-field="genre"
+              image-field="photo"
+              input-class="form-control form-control-small"
+              minimum-length="1"
+              clear-selected="true"
+            >
+            </div>
         </div>
-        <div input-field>
-            <select
-                class=""
-                material-select
-                multiple
-                ng-model="$ctrl.channel.genres"
-                ng-options="genreName.displayName as genreName.displayName for genreName in $ctrl.genreNames"
-                watch
-            >
-            </select>
-            <label>Genres</label>
-        </div>
-        <div input-field>
-            <input
-                ng-model="$ctrl.channel.invitedAsAdmin"
-                type="text"
-            >
-            <label>Send invites to collaborators: (optional)</label>
-        </div>
-        <div input-field>
-            <input
-                ng-model="$ctrl.channel.invitedAsMember"
-                type="text"
-            >
-            <label>Send invites to listeners: (optional)</label>
+        <div class="row" style="z-index: -1">
+            <div class="col s6 m6 l6">
+                <div ng-repeat="channel in $ctrl.channel.invitedAsAdmin">{{ channel }}</div>
+            </div>
+            <div class="col s6 m6 l6">
+                <div ng-repeat="channel in $ctrl.channel.invitedAsMember">{{ channel }}</div>
+            </div>
+
         </div>
     </div>
+
     <div class="modal-footer">
         <a
             class="modal-action modal-close waves-effect waves-green btn-flat"

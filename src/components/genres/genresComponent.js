@@ -3,7 +3,7 @@ import "./styles/sass/genresView.scss";
 
 function genresCtrl() {
 		this.$onInit = () => {
-				console.log( this.genreNames );
+
 		};
 }
 

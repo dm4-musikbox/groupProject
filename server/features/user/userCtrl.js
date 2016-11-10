@@ -11,10 +11,21 @@ module.exports = {
 		} );
 	}
   , getUsers( req, res ) {
-	User.find( ( req.query ), ( err, users ) => {
+		console.log( 'getUsers firing!' );
+	User.find( {}, ( err, users ) => {
 		if ( err ) {
 			return res.status( 400 ).send( err );
 		}
+		return res.status( 200 ).json( users );
+	} );
+}
+  , findSpecificUsers( req, res ) {
+		console.log( 'findSpecificUsers firing!', req.query.searchStr );
+	User.find( { fullName: { "$regex": req.query.searchStr, "$options": "i" } }, ( err, users ) => {
+		if ( err ) {
+			return res.status( 400 ).send( err );
+		}
+		console.log( users );
 		return res.status( 200 ).json( users );
 	} );
 }

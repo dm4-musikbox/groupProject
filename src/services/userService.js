@@ -41,6 +41,10 @@ function userService( $http, ref, socketFactory ) {
 		return currentUser;
 	};
 
+	this.getAllUsers = () => {
+			return $http.get( `${ ref.url }/api/users` );
+	};
+
 }
 
 export default userService;

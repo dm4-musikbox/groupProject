@@ -7,10 +7,14 @@ function mainCtrl( $rootScope, authService, socketFactory, userService  ) {
 		this.isAuthenticated = $rootScope.isAuthenticated;
 	};
 
+	this.$onChanges = ( changes ) => {
+			console.log( changes );
+	}
+
 	this.updateCurrentUser = ( updatedUser ) => {
 		userService
 						.updateCurrentUser( updatedUser )
-						.then( user =>								{
+						.then( user => {
 							this.user = user.data;
 							userService.setCurrentUser( this.user );
 						}
@@ -28,7 +32,8 @@ const mainComponent = {
 		, bindings:
 		{
 			genreNames: '<'
-			, user: "<"
+			, user: '<'
+			, users: '<'
 		}
 };
 

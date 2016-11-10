@@ -13,8 +13,7 @@ function channelService( $http, ref, socketFactory ) {
 		if ( channel.invitedAsMember ) {
 			channel.invitedAsMember = channel.invitedAsMember.split( "," );
 		}
-		return $http
-								.post( `${ ref.url }/api/channels`, channel );
+		return $http.post( `${ ref.url }/api/channels`, channel );
 
 	};
 

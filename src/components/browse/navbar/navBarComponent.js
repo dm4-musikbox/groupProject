@@ -1,10 +1,7 @@
 import navBarHtml from "./navBar.html";
 import "./styles/sass/navBar.scss";
 
-function navBarCtrl() {
-	const navBar = this;
-
-	navBar.test = "browse navbar";
+function navBarCtrl( $state ) {
 
 }
 

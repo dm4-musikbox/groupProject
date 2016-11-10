@@ -1,5 +1,6 @@
 import angular from "angular";
 import angularFilter from "angular-filter";
+import "angucomplete-alt"
 import uiRouter from "angular-ui-router";
 import "auth0-lock";
 import "angular-lock";
@@ -13,7 +14,7 @@ import run from "./app.run.js";
 import config from "./app.config.js";
 
 angular
-    .module( "musikboxApp", [ "auth0.lock", "angular-jwt", "components", "services", angularFilter, angularMaterialize, uiRouter ] )
+    .module( "musikboxApp", [ "auth0.lock", "angular-jwt", "angucomplete-alt", "components", "services", angularFilter, angularMaterialize, uiRouter ] )
     .run( run )
     .config( config )
     .constant( "ref", {

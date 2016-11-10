@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angucomplete-alt": "^2.5.0",
     "angular": "^1.5.8",
     "angular-filter": "^0.5.11",
     "angular-jwt": "^0.1.7",

@@ -5,6 +5,8 @@ const User = require( "./../user/User.js" );
 module.exports = {
 	createChannel( req, res ) {
 		const channelToCreate = req.body;
+		channel.type = channel.type.toLowerCase();
+		
 		new Channel( channelToCreate ).save( ( err, channel ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );

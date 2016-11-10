@@ -1,24 +1,26 @@
-<section class="my-grid">
-    <header id="grid-header">
-        Genres
-    </header>
-    <div class="cards-container" id="cards-container">
-        <div
-            class="row"
-            id="row"
-            ng-repeat="genres in $ctrl.genreNames | groupBy:4"
-        >
+<div id="genres" class="col s12 grid-bg">
+    <section class="my-grid">
+        <header id="grid-header">
+            Genres
+        </header>
+        <div class="cards-container" id="cards-container">
             <div
-                class="col s2 m3"
-                ng-repeat="genre in genres"
-                ui-sref="genre-view( { name: genre.name, displayName: genre.displayName } )"
+                class="row"
+                id="row"
+                ng-repeat="genres in $ctrl.genreNames | groupBy:4"
             >
-                <div class="lols bkg">
-                    <div id="hello">
-                       <p>{{ genre.displayName }}</p>
+                <div
+                    class="col s2 m3"
+                    ng-repeat="genre in genres"
+                    ui-sref="genre-view( { name: genre.name, displayName: genre.displayName } )"
+                >
+                    <div class="lols bkg">
+                        <div id="hello">
+                           <p>{{ genre.displayName }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>

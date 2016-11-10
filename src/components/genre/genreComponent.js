@@ -1,9 +1,9 @@
 import genreViewHtml from "./genre-view-tmpl.html";
 import "./styles/sass/genre.scss";
 
-function genreCtrl( $location, $stateParams ) {
+function genreCtrl() {
 		this.$onInit = () => {
-				console.log( this.genre );
+
 		};
 
 }

@@ -51,10 +51,10 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 																return userService.findOrCreateUser( $stateParams.profile );
 													 	}
 														, genreNames: ( genreService ) => {
-																return genreService.getGenreNames()
-																			.then( genreNames => {
-																					return genreNames.data;
-																			} );
+																return genreService.getGenreNames().then( genreNames => genreNames.data );
+														}
+														, users: ( userService ) => {
+																return userService.getAllUsers().then( users => users.data );
 														}
 												}
 										, params:
@@ -143,6 +143,15 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 										url: "/artists"
 		                , parent: "browse-view"
 		                , component: "artistsComponent"
+										, resolve:
+												{
+													artistChannels: ( artistService ) => {
+															return artistService.getAllArtistChannels()
+																			.then( artistChannels => {
+																					return artistChannels.data;
+																			} );
+													}
+												}
 									}
 							);
 }
