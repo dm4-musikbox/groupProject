@@ -1,16 +1,20 @@
 import genreViewHtml from "./genre-view-tmpl.html";
-import './styles/sass/genre.scss';
+import "./styles/sass/genre.scss";
 
-function genreCtrl() {
-	const genre = this;
+function genreCtrl( $location, $stateParams ) {
+		this.$onInit = () => {
 
-	genre.test = "This is a test for genre pop Components!!";
+		};
 
 }
 
 const genreComponent = {
 	template: genreViewHtml
   , controller: genreCtrl
+	, bindings:
+			{
+					genre: '<'
+			}
 };
 
 export default genreComponent;

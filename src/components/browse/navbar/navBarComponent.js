@@ -1,5 +1,5 @@
-import navBarHtml from './navBar.html';
-import './styles/sass/navBar.scss';
+import navBarHtml from "./navBar.html";
+import "./styles/sass/navBar.scss";
 
 function navBarCtrl() {
 	const navBar = this;
@@ -9,7 +9,7 @@ function navBarCtrl() {
 }
 
 const navBarComponent = {
-  template: navBarHtml
+	template: navBarHtml
   , controller: navBarCtrl
 };
 

@@ -2,9 +2,9 @@ function fileReadDirective( uploadService ) {
 	return {
 		restrict: "A"
   , scope: {
-      userId: '@'
-      , channelId: '@'
-  }
+	userId: "@"
+      , channelId: "@"
+}
 	, link( scope, elem, attrs ) {
       // when element value changes, callback is invoked
   		elem.bind( "change", ( changeEvent ) => {
@@ -16,7 +16,7 @@ function fileReadDirective( uploadService ) {
   			}
 
         // uploadService.setCurrentUserAndChannelId( scope.userId, scope.channelId );
-        uploadService.setCurrentUserAndChannelId( '58196bc83a5bd823fca47594', '5818046d2643fcff7ad9aea1' );
+			uploadService.setCurrentUserAndChannelId( "58196bc83a5bd823fca47594", "5818046d2643fcff7ad9aea1" );
   			uploadService.getSignedRequest( file );
   		} );
 	}

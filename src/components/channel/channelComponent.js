@@ -2,22 +2,21 @@ import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
 function channelCtrl( $scope ) {
-  this.$onInit = () => {
+	this.$onInit = () => {
 
-  };
+	};
 
-  this.$onChanges = ( changes ) => {
-      console.log( 'changes are', changes );
-      this.mainCtrl.updateCurrentUser();
-  };
+	this.$onChanges = ( changes ) => {
+		console.log( "changes are", changes );
+	};
 
-  const image = document.createElement( 'img' );
-    image.src = require( './styles/imgs/testpic.jpg' );
-    $scope.user = image.src;
+	const image = document.createElement( "img" );
+	image.src = require( "./styles/imgs/testpic.jpg" );
+	$scope.user = image.src;
 
-  const playList = document.createElement( 'img' );
-    playList.src = require( './styles/imgs/webpack.jpg' );
-    $scope.playlist = playList.src;
+	const playList = document.createElement( "img" );
+	playList.src = require( "./styles/imgs/webpack.jpg" );
+	$scope.playlist = playList.src;
 
 	const wavesurfer = WaveSurfer.create( {
 		container: "#waveform"
@@ -35,9 +34,9 @@ function channelCtrl( $scope ) {
 		  wavesurfer.play();
 	} );
 
-  this.$onDestroy = () => {
-      wavesurfer.stop();
-  };
+	this.$onDestroy = () => {
+		wavesurfer.stop();
+	};
 
 }
 
@@ -45,13 +44,13 @@ const channelComponent = {
 	template: channelViewHtml
   , controller: channelCtrl
   , require:
-      {
-          mainCtrl: '^mainComponent'
-      }
+			{
+				mainCtrl: "^mainComponent"
+			}
   , bindings:
-      {
-          channel: '<'
-      }
+			{
+				channel: "<"
+			}
 };
 
 export default channelComponent;

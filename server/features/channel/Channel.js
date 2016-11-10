@@ -6,8 +6,9 @@ const Channel = new mongoose.Schema(
 		type: { type: String, enum: [ "public", "private" ], default: "private", required: true }
 		, name: { type: String, required: true }
 		, description: { type: String, required: true }
-		, admins: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
 		, genres: [ { type: String, required: true } ]
+		, createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
+		, admins: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
 		, members: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
 		, channelRecordings: [ { type: mongoose.Schema.Types.ObjectId, ref: "Recording" } ]
 		, channelMessages: [ { type: mongoose.Schema.Types.ObjectId, ref: "Message" } ]
@@ -17,20 +18,20 @@ const Channel = new mongoose.Schema(
 );
 
 function autoPopulate( next ) {
-		this
+	this
 				.populate( "members admins" )
 				.populate(
-					{
-							path: "channelRecordings"
+		{
+			path: "channelRecordings"
 							, model: "Recording"
 							, populate:
-										{
-												path: "createdBy"
+							{
+								path: "createdBy"
 													, model: "User"
-										}
-				} )
+							}
+		} )
 				.populate( {
-						path: "channelMessages"
+					path: "channelMessages"
 						, model: "Message"
 						, populate: [
 							{

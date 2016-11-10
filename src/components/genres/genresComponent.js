@@ -1,15 +1,19 @@
-import genresViewHtml from './genres-view-tmpl.html';
-import './styles/sass/genresView.scss';
+import genresViewHtml from "./genres-view-tmpl.html";
+import "./styles/sass/genresView.scss";
 
 function genresCtrl() {
-	const genres = this;
-
-	genres.test = "This is a test for Genresss Components!!";
+		this.$onInit = () => {
+				console.log( this.genreNames );
+		};
 }
 
 const genresComponent = {
 	template: genresViewHtml
   , controller: genresCtrl
+	, bindings:
+			{
+					genreNames: '<'
+			}
 };
 
 export default genresComponent;

@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-filter": "^0.5.11",
     "angular-jwt": "^0.1.7",
     "angular-lock": "^1.0.5",
     "angular-materialize": "^0.2.1",

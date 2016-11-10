@@ -29,7 +29,7 @@ module.exports = {
               , bitRate: 192
               , outSampleRate: 44100
               , mode: lame.STEREO
-          } ) )
+} ) )
         .pipe( fs.createWriteStream( path.resolve( "server/user-audio-previews", mp3FileName ) ) )
         .on( "close", () => {
           	const data = {
@@ -39,7 +39,7 @@ module.exports = {
           	};
           	console.log( data );
           	socket.emit( "get recording preview", data );
-        } );
+} );
 	}
   , uploadRecordingToS3( data, io, socket ) {
     	console.log( "uploadRecordingToS3 firing!" );
@@ -49,7 +49,7 @@ module.exports = {
     	const mp3FilePath =  `${ __dirname  }/../../user-audio-previews/${  mp3FileName }`;
     	const body = fs.createReadStream( mp3FilePath );
     	const params = {
-          Bucket: `musikbox-recordings/${  data.userId }`
+		Bucket: `musikbox-recordings/${  data.userId }`
           , Key: `${ data.userId  }_${  new Date().toISOString()  }.mp3`
           , Body: body
           , ACL: "public-read"
@@ -59,12 +59,12 @@ module.exports = {
           .upload( params )
           .on( "httpUploadProgress", evt => {
           	 console.log( evt );
-          } )
+} )
           .send( ( err, s3Info ) => {
     	        socket.emit( "get S3 data", s3Info );
               // fs.unlink( mp3FilePath );
-          } );
-  }
+} );
+}
   , saveRecording( data, io, socket ) {
   	console.log( "saveRecording firing!" );
 
@@ -81,10 +81,10 @@ module.exports = {
             	if ( err ) {
             		  throw err;
             	}
-              getUpdatedChannel( channel, io );
-          } );
+	getUpdatedChannel( channel, io );
+} );
   	} );
-  }
+}
   , updateRecording( data, io ) {
   	console.log( "updateRecording firing!" );
 
@@ -102,9 +102,9 @@ module.exports = {
           		throw err;
           	}
           	getUpdatedChannel( channel, io );
-          } );
-     } );
-  }
+} );
+	} );
+}
 
   , deleteRecording( data, io ) {
   	const recording = data.recording;
@@ -123,9 +123,9 @@ module.exports = {
             	if ( err ) {
             		throw err;
             	}
-              getUpdatedChannel( channel, io );
-          } );
-     } );
+	getUpdatedChannel( channel, io );
+} );
+	} );
 }
 
 };

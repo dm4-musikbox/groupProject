@@ -20,7 +20,10 @@
         </div>
         <div class="col">
             <span>Channels</span>
-            <a href='#create-channel-modal' modal>
+            <a href='#create-channel-modal'
+              modal
+              ng-click="this.showModalOverlay = !this.showModalOverlay"
+            >
                 <i class="material-icons">
                     add_circle_outline
                 </i>
@@ -95,12 +98,21 @@
     </div>
     <div class="modal-footer">
         <a
-            class="modal-close waves-effect waves-green btn-flat"
+            class="modal-action modal-close waves-effect waves-green btn-flat"
             href=""
-            ng-click="$ctrl.createChannel( $ctrl.channel )"
+            ng-click="this.showModalOverlay = !this.showModalOverlay; $ctrl.createChannel( $ctrl.channel )"
         >
             Create
         </a>
-        <a href="" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a
+            class="modal-close waves-effect waves-green btn-flat"
+            href=""
+            ng-click="this.showModalOverlay = !this.showModalOverlay"
+        >
+            Cancel
+        </a>
     </div>
+
 </div>
+
+<div class="lean-overlay lean-overlay-fix" id="materialize-lean-overlay-1" ng-if="showModalOverlay" style="z-index: 1002; display: block; opacity: 0.9; height: 100vh; background-color: black;"></div>

@@ -5,11 +5,14 @@ module.exports = app => {
         .get( genreCtrl.getAllGenres )
         .post( genreCtrl.addGenre );
 
-	app.route( "/api/genres/:genre_name" )
+	app.route( "/api/genres/names" )
+				.get( genreCtrl.getAllGenreNames );
+
+	app.route( "/api/genres/:name" )
         .get( genreCtrl.getOneGenre );
 
-	app.route( "/api/genres/:genre_id" )
-        .get( genreCtrl.getGenreById )
+	app.route( "/api/genres/:_id" )
+        // .get( genreCtrl.getGenreById )
         .put( genreCtrl.updateGenreById )
         .delete( genreCtrl.deleteGenreById );
 
