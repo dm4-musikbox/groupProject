@@ -1,15 +1,16 @@
 import artistsViewHtml from "./artists-view-tmpl.html";
 
-function artistsCtrl() {
-	const artists = this;
-
-	artists.test = "This is test for artists components!!!";
-
+function artistsCtrl( $state ) {
+		console.log( this.artistChannels );
 }
 
 const artistsComponent = {
 	template: artistsViewHtml
   , controller: artistsCtrl
+	, bindings:
+			{
+					artistChannels: '<'
+			}
 };
 
 export default artistsComponent;

@@ -1,127 +1,26 @@
-<section class="my-grid">
-  <header id="grid-header">
-    Genres
-  </header>
-  <div class="cards-container" id="cards-container">
-    <div class="row" id="row">
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-           <p>POP</p>
-          </div>
+<div id="genres" class="col s12 grid-bg">
+    <section class="my-grid">
+        <header id="grid-header">
+            Genres
+        </header>
+        <div class="cards-container" id="cards-container">
+            <div
+                class="row"
+                id="row"
+                ng-repeat="genres in $ctrl.genreNames | groupBy:4"
+            >
+                <div
+                    class="col s2 m3"
+                    ng-repeat="genre in genres"
+                    ui-sref="genre-view( { name: genre.name, displayName: genre.displayName } )"
+                >
+                    <div class="lols bkg">
+                        <div id="hello">
+                           <p>{{ genre.displayName }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-           <p>HIP HOP</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-            <p>LATINO</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-         <div id="hello">
-           <p>DANCE</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row" id="row">
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-           <p>COUNTRY</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-           <p>ROCK</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-            <p>RnB</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-         <div id="hello">
-           <p>INDIE</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row" id="row">
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-           <p>SOUL</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-           <p>CHISTIAN</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-            <p>JAZZ</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-         <div id="hello">
-           <p>CLASSICAL</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row" id="row">
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-           <p>METAL</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-           <p>REGGAE</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-          <div id="hello">
-            <p>PUNK</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s2 m3">
-        <div class="lols bkg">
-         <div id="hello">
-           <p>BLUES</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
+</div>

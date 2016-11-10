@@ -20,9 +20,9 @@ module.exports = {
 					  const s3 = new AWS.S3();
 					  const fileName = req.query[ "file-name" ];
 					  const fileType = req.query[ "file-type" ];
-						const userId = req.query[ "user-id" ];
+		const userId = req.query[ "user-id" ];
 					  const s3Params = {
-					    Bucket: "musikbox-recordings/" + userId
+					    Bucket: `musikbox-recordings/${  userId }`
 					    , Key: fileName
 					    , Expires: 60
 					    , ContentType: fileType
@@ -38,28 +38,28 @@ module.exports = {
 					      signedRequest: data
 					      , url: `https://musikbox-recordings.s3.amazonaws.com/${ userId }/${ fileName }`
 					    };
-							console.log( returnData );
+						console.log( returnData );
 					    res.write( JSON.stringify( returnData ) );
 					    res.end();
 					  } );
 	}
 	 , addRecordingToChannel( req, res ) {
-				console.log( "addRecordingToChannel active!" );
+		console.log( "addRecordingToChannel active!" );
 	      // create recording and adds to recordings collection
 	      // add recording id to channel's recordings array
-				new Recording( req.body ).save( ( err, recording ) => {
-					if ( err ) {
-						return res.status( 500 ).json( err );
-					}
-					console.log( recording );
-					Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $push: { channelRecordings: recording._id } }, { new: true }, ( err, channel ) => {
-						if ( err ) {
-							return res.status( 500 ).json( err );
-						}
-						return res.status( 200 ).json( channel );
-					} );
-				} );
+		new Recording( req.body ).save( ( err, recording ) => {
+			if ( err ) {
+				return res.status( 500 ).json( err );
 			}
+			console.log( recording );
+			Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $push: { channelRecordings: recording._id } }, { new: true }, ( err, channel ) => {
+				if ( err ) {
+					return res.status( 500 ).json( err );
+				}
+				return res.status( 200 ).json( channel );
+			} );
+		} );
+	}
 		 , deleteRecordingFromChannel( req, res ) {
 			console.log( "deleteRecordingFromChannel active!" );
 					// delete recording from recordings collection

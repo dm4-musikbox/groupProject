@@ -32,4 +32,4 @@ angular.module( "components", [] )
         // .component( "playListComponent", playlistComponent )
         .component( "accountSettingsComponent", accountSettingsComponent )
         // .component( "createChannelModalComponent", createChannelModalComponent )
-        .directive( "fileReadDir", fileReadDir )
+        .directive( "fileReadDir", fileReadDir );
