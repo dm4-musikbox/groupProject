@@ -1,8 +1,5 @@
 @import "variables";
 
-.my-nav {
-  background-color: $primary-color;
-}
 #nav-wrapper{
   height: 0;
 }
@@ -19,6 +16,7 @@
 
 #nav-col {
   border-bottom: 1px solid #2a0738;
+  padding: 0;
 }
 
 #nav-tabs {
@@ -41,4 +39,12 @@
 .tabs .indicator {
   background-color: gold;
   height: 4px;
+}
+
+nav .input-field label.active i {
+  color: #24062f;
+}
+
+.input-field input[type=search]:focus+label i {
+  color: #0c71b2;
 }

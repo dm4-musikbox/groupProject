@@ -1,4 +1,4 @@
-import popularViewHtml from './popular-view-tmpl.html'
+import popularViewHtml from './popular-view-tmpl.html';
 
 function popularCtrl () {
     // console.log( this.artistChannels );
