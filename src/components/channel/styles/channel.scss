@@ -272,5 +272,26 @@ $purple: #2a0738;
         }
 
 
+        .editable-wrap{
+            display:inline;
+         .editable-controls{
+
+           textarea {
+            margin-bottom: 0;
+            width: 80%;
+            height: 90px;
+            margin-left: 12px;
+            resize: none;
+            outline: none;
+            }
+          }
+        }
+
+        .editable-buttons{
+          display: flex;
+          margin-left: 46px;
+        }
+
+
 
 }

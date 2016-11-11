@@ -27,10 +27,10 @@ module.exports = {
 		console.log( "updateMessage firing!" );
 
 		const channelId = data.channelId;
-		const messageId = data.messageId;
+		const messageId = data.message._id;
 		const messageContent = data.message.content;
 
-		Message.findByIdAndUpdate( messageId, { $set: { content: messageContent } }, { new: true }, ( err, message ) => {
+		Message.findByIdAndUpdate( messageId, { $set: { content: messageContent, timestamp: Date.now() } }, { new: true }, ( err, message ) => {
 			if ( err ) {
 				throw err;
 			}

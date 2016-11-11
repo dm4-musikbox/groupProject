@@ -8,10 +8,9 @@ function messageService( socketFactory ) {
 		socketFactory.emit( "send and save message", data );
 	};
 
-	this.updateMessage = ( messageId, message, channelId ) => {
+	this.updateMessage = ( message, channelId ) => {
 		const data = {
 			message
-            , messageId
             , channelId
 		};
 		console.log( data );
