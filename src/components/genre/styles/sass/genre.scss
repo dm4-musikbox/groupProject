@@ -1,17 +1,120 @@
 @import "variables";
 
+.genre-container {
+  height: 210px;
+  border-bottom: 1px solid #2a0738;
+  position: relative;
+  background: linear-gradient(rgba(42, 7, 56, .08), rgba(42, 7, 56, .08)), url(http://androidwallpape.rs/content/02-wallpapers/78-street/wallpaper-2594020.jpg);
+  background-size: cover;
+  background-position-y: -188px;
+}
+// linear-gradient(rgba(73, 175, 159, .10), rgba(73, 175, 159, .10)),
 #genre-grid-view {
   max-height: 100vh;
   overflow: auto;
 }
 #genre-header {
-  color: black;
+  color: white;
   padding-left: 20px;
-  padding-top: 21px;
-  margin: 0 5%;
-  border-bottom: .5px solid #383737;
-  font-size: 40px;
+  position: absolute;
+  bottom: 0;
+  font-size: 60px;
 }
 #genre-cards-container {
   margin: 20px 5%;
+}
+#subs {
+  font-size: 15px;
+  padding-top: 5px;
+  padding-left: 0;
+}
+.artist-card{
+  height: 300px;
+  overflow: hidden;
+  min-width: 216px;
+  position: relative;
+  margin: 1.5rem 0 1rem 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.top-container{
+  height: 70%;
+  overflow: hidden;
+  padding: 6px;
+  background:linear-gradient(rgba(42, 7, 56, .71), rgba(42, 7, 56, 0.71)), url(http://wallpaper.zone/img/852297.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.top-img {
+  height: 100%;
+  border-radius: 50%;
+  background: url(https://lh3.googleusercontent.com/7TouXkT9nyh04sLklAZzna4Xu5aM3hmlaw1EU81Z7QJF7scfwL3Tb8bP6i2ZTBO9EwE=h900);
+  background-size: cover;
+  background-position-x: -66px;
+  display: block;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  transition: all 300ms;
+  max-width: 100%;
+}
+.artist-card:hover .top-img{
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  transform: scale(1.4);
+}
+.bot-container {
+  height: 30%;
+  background-color: white;
+  color: #2a0738;
+  // line-height: 48px;
+  font-size: 24px;
+  font-weight: 300;
+  padding-top: 18px;
+  padding-left: 20px;
+}
+.hidden-words {
+  background: rgba(42, 7, 56, 0.9);
+  color: white;
+  display: table;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 300ms;
+  transition-delay: 100ms;
+  width: 100%;
+  z-index: 100;
+}
+.artist-card .hidden-words div {
+  display: table-cell;
+  font-size: 1.2em;
+  position: relative;
+  top: -90px;
+  padding-left: 1px;
+  padding-right: 1px;
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+.artist-card:hover .hidden-words {
+  opacity: 1;
+  cursor: pointer;
+}
+.artist-card:hover .hidden-words div {
+  -webkit-transform: translateY(90px);
+  -moz-transform: translateY(90px);
+  transform: translateY(90px);
+}
+.mysymbol {
+  font-size: 40px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  bottom: 0;
+  position: absolute;
+  right: 0;
 }
