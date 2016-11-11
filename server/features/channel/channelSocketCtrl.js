@@ -19,17 +19,15 @@ module.exports =
 
 		if ( activeChannels.hasOwnProperty( channelId ) ) {
 			activeChannels[ channelId ][ userName ] = socket;
-			channelStatus =
-			{
+			channelStatus =	{
 				channelId
-							        	, users: Object.keys( activeChannels[ channelId ] )
+				, users: Object.keys( activeChannels[ channelId ] )
 			};
 		}		else {
 			activeChannels[ channelId ] = { [ userName ]: socket };
-			channelStatus =
-			{
+			channelStatus = {
 				channelId
-				              , activeUsers: Object.keys( activeChannels[ channelId ] )
+				, activeUsers: Object.keys( activeChannels[ channelId ] )
 			};
 		}
 		getChannelStatus( io, channelId, channelStatus );
@@ -88,7 +86,7 @@ module.exports =
 						throw err;
 					}
 					console.log( user );
-					getUpdatedUser( socket, userId, user );
+					// getUpdatedUser( socket, userId, user );
 				} );
 				Channel.findOneAndUpdate( { _id: channelId }, channelUpdateObj, { new: true }, ( err, channel ) => {
 					if ( err ) {
@@ -99,7 +97,7 @@ module.exports =
 		}
 
 		, removeUserFromChannel( data, io, socket ) {
-			console.log( "removeUserFromChannel firing!", data );
+			console.log( "removeUserFromChannel firing!" );
 			const channelId = data.channelId,
 						userId = data.userId,
 						userType = data.userType;
@@ -128,7 +126,7 @@ module.exports =
 				if ( err ) {
 					throw err;
 				}
-				getUpdatedUser( socket, userId, user );
+				// getUpdatedUser( socket, userId, user );
 			} );
 
 			Channel.findOneAndUpdate( { _id: channelId }, channelUpdateObj, { new: true }, ( err, channel ) => {
@@ -167,7 +165,7 @@ module.exports =
 								User.findById( member._id, { $pull: { invitedAsMember: channel._id } } );
 						} );
 
-						Channel.removeById( channel._id, ( err, response ) => {
+						Channel.findByIdAndRemove( channel._id, ( err, response ) => {
 								io.to( channelId ).emit( "channel deleted", response );
 						} )
 				 } );

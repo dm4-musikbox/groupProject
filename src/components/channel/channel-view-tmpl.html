@@ -1,4 +1,8 @@
-<div>
+<div ng-if="!$ctrl.channel">
+    <h4>Channel not found</h4>
+    <p>The channel may have been deleted by its creator.</p>
+</div>
+<div ng-if="$ctrl.channel">
   <main class="channel-view">
   <section class="top-audio-player-container">
     <div class="top-audio-player">
@@ -160,6 +164,8 @@
       </div>
 
   </div>
+
+  <!-- Footer for invitation accept/decline -->
   <div
       class="footer"
       ng-show="$ctrl.isUserAdminInvite || $ctrl.isUserMemberInvite"
@@ -167,13 +173,45 @@
   >
       <div ng-show="$ctrl.isUserAdminInvite">
           <h5>Congrats! You've been invited to the channel as a collaborator.</h5>
-          <a class="btn" href>Join as collaborator</a>
-          <a class="btn" href>Decline invitation</a>
+          <a
+              class="btn"
+              href
+              ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'admin' );
+                        $ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'invitedAsAdmin' );
+                        $ctrl.isUserAdmin = !$ctrl.isUserAdmin;
+                        $ctrl.isUserAdminInvite = !$ctrl.isUserAdminInvite"
+          >
+              Join as collaborator
+          </a>
+          <a
+              class="btn"
+              href
+              ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'invitedAsAdmin' );
+                        $ctrl.isUserAdminInvite = !$ctrl.isUserAdminInvite"
+          >
+              Decline invitation
+          </a>
       </div>
       <div ng-show="$ctrl.isUserMemberInvite">
           <h5>Congrats! You've been invited to the channel as a listener.</h5>
-          <a class="btn" href>Subscribe as listener</a>
-          <a class="btn" href>Decline invitation</a>
+          <a
+              class="btn"
+              href
+              ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'member' );
+                        $ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'invitedAsMember' );
+                        $ctrl.isUserMember = !$ctrl.isUserMember;
+                        $ctrl.isUserMemberInvite = !$ctrl.isUserMemberInvite"
+          >
+              Subscribe as listener
+          </a>
+          <a
+              class="btn"
+              href
+              ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'invitedAsMember' );
+                        $ctrl.isUserMemberInvite = !$ctrl.isUserMemberInvite"
+          >
+              Decline invitation
+          </a>
       </div>
   </div>
 
@@ -232,7 +270,7 @@
         </li>
         <li class="divider"></li>
         <li
-            ng-show="!$ctrl.isUserMember || !$ctrl.isUserAdmin || $ctrl.isUserMemberInvite"
+            ng-show="!$ctrl.isUserMember || $ctrl.isUserMemberInvite"
             ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'member' ); $ctrl.isUserMember = !$ctrl.isUserMember"
         >
             <a href='javascript:void(0);'>
@@ -288,7 +326,6 @@
               angucomplete-alt
               class="col s6 m6 l6"
               clear-selected="true"
-              description-field="genre"
               id="collaborators"
               image-field="photo"
               input-class="form-control form-control-small"
@@ -303,7 +340,7 @@
             <div class="col s6 m6 l6">
                 <div class="chip" ng-repeat="user in $ctrl.invitedAsAdmin">
                     <img ng-if="user.image" ng-src="{{ user.image }}" alt="Contact Person">
-                    {{ user.title }}
+                        {{ user.title }}
                     <i
                         class="close material-icons"
                         ng-click="$ctrl.removeFromInvites( user, 'admin' )"
@@ -346,7 +383,6 @@
               angucomplete-alt
               class="col s6 m6 l6"
               clear-selected="true"
-              description-field="genre"
               id="members"
               image-field="photo"
               input-class="form-control form-control-small"
