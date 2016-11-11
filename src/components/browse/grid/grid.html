@@ -14,7 +14,7 @@
                     ng-repeat="genre in genres"
                     ui-sref="genre-view( { name: genre.name, displayName: genre.displayName } )"
                 >
-                    <div class="lols bkg">
+                    <div class="lols bkg" ng-style="{ 'background': 'url( {{ genre.img }} )', 'background-size': '{{ genre.size }}', 'background-color': '#2a0738', 'background-blend-mode': 'screen', 'background-position': '{{ genre.position }}' }">
                         <div id="hello">
                            <p>{{ genre.displayName }}</p>
                         </div>

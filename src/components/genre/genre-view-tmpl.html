@@ -1,9 +1,10 @@
 <section class="genre-grid-view">
+  <div class="genre-container" >
     <header id="genre-header">
         {{ $ctrl.genre.displayName }}
     </header>
-
-    <div class="cards-container" id="genre-cards-container">
+  </div>
+    <!-- <div class="cards-container" id="genre-cards-container">
         <div class="row" id="row" ng-repeat="channelBlock in $ctrl.genre.channels | groupBy:4">
             <div class="col s2 m3" ng-repeat="channel in channelBlock">
                 <div class="card small">
@@ -20,6 +21,28 @@
                     </div>
                 </div>
             </div>
+
         </div>
+    </div> -->
+    <div class="cards-container" id="genre-cards-container">
+      <div class="row">
+        <div class="col s2 m3">
+            <div class="artist-card">
+              <div class="top-container">
+                <div class="top-img">
+                </div>
+              </div>
+              <div class="bot-container">
+                   bot
+              </div>
+              <div class="hidden-words">
+                <p>
+                  here are some words come join my channel noobs!
+                </p>
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
+
 </section>

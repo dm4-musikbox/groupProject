@@ -1,17 +1,94 @@
 @import "variables";
 
+.genre-container {
+  height: 150px;
+  border-bottom: 1px solid #2a0738;
+  position: relative;
+}
 #genre-grid-view {
   max-height: 100vh;
   overflow: auto;
 }
 #genre-header {
-  color: black;
+  color: white;
   padding-left: 20px;
-  padding-top: 21px;
-  margin: 0 5%;
-  border-bottom: .5px solid #383737;
-  font-size: 40px;
+  position: absolute;
+  bottom: 0;
+  font-size: 60px;
 }
 #genre-cards-container {
   margin: 20px 5%;
+}
+.artist-card{
+  height: 300px;
+  position: relative;
+  margin: 1.5rem 0 1rem 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.top-container{
+  height: 70%;
+  overflow: hidden;
+  padding: 6px;
+  background:linear-gradient(rgba(0, 0, 0, .71), rgba(0, 0, 0, 0.71)), url(https://images6.alphacoders.com/374/374706.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.top-img {
+  height: 100%;
+  border-radius: 50%;
+  background: url(https://images6.alphacoders.com/374/374706.jpg);
+  background-size: cover;
+  background-position: center;
+  display: block;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  transition: all 300ms;
+  max-width: 100%;
+}
+.artist-card:hover .top-img{
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  transform: scale(1.4);
+}
+.bot-container {
+  height: 30%;
+  background-color: #2a0738;
+  color: white;
+}
+.hidden-words {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: table;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 300ms;
+  transition-delay: 100ms;
+  width: 100%;
+  z-index: 100;
+}
+.artist-card .hidden-words p {
+  display: table-cell;
+  font-size: 1.5em;
+  position: relative;
+  top: -90px;
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+.hidden-words:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.artist-card .hidden-words p:hover {
+  -webkit-transform: translateY(90px);
+  -moz-transform: translateY(90px);
+  transform: translateY(90px);
 }
