@@ -26,14 +26,14 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
       }
 
       for ( let i = 0; i < this.channel.invitedAsMember.length; i++ ) {
-          if ( this.channel.invitedAsMember[ i ]._id === this.user._id ) {
+          if ( this.channel.invitedAsMember[ i ] === this.user._id ) {
               this.isUserMemberInvite = true;
               this.isUserAnon = false;
           }
       }
 
       for ( let i = 0; i < this.channel.invitedAsAdmin.length; i++ ) {
-          if ( this.channel.invitedAsAdmin[ i ]._id === this.user._id ) {
+          if ( this.channel.invitedAsAdmin[ i ] === this.user._id ) {
               this.isUserAdminInvite = true;
               this.isUserAnon = false;
           }
@@ -176,10 +176,6 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
 	this.wavesurfer.on( "ready", () => {
 		  // wavesurfer.play();
 	} );
-
-	this.$onDestroy = () => {
-		this.wavesurfer.stop();
-	};
 
 }
 

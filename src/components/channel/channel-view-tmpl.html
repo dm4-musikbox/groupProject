@@ -136,19 +136,33 @@
       Show side-nav
   </a>  -->
 
-  <div class="footer">
-    <div class="message-input-field">
-      <div id="mic-sec">
-        <div id="mic-icon">
-          <i class="material-icons md-32">mic_none</i>
-        </div>
+<!-- Message input -->
+  <div
+      class="footer"
+      ng-if="!$ctrl.isUserAdminInvite || !$ctrl.isUserMemberInvite"
+  >
+      <div
+          class="message-input-field"
+      >
+          <div id="mic-sec">
+              <div id="mic-icon">
+                  <i class="material-icons md-32">mic_none</i>
+              </div>
+          </div>
+          <form id="message-form" ng-keypress="$ctrl.sendAndSaveMessage( $event, $ctrl.message )">
+              <textarea id="message-input" ng-model="$ctrl.message.content" placeholder="Let's Talk Music!" spellcheck="true"></textarea>
+          </form>
       </div>
-      <form id="message-form" ng-keypress="$ctrl.sendAndSaveMessage( $event, $ctrl.message )">
-        <textarea id="message-input" ng-model="$ctrl.message.content" placeholder="Let's Talk Music!" spellcheck="true"></textarea>
-      </form>
-    </div>
-  </div>
 
+  </div>
+  <div
+      class="footer"
+      ng-show="$ctrl.isUserAdminInvite"
+  >
+      <h5>Congrats! You've been invited to the channel as a collaborator.</h5>
+      <a class="btn" href>Join as collaborator</a>
+      <a class="btn" href>Decline invitation</a>
+  </div>
 
   </main>
 </div>
@@ -205,8 +219,7 @@
         </li>
         <li class="divider"></li>
         <li
-            ng-show="!$ctrl.isUserMember"
-            ng-hide="$ctrl.isUserAdmin || $ctrl.isUserChannelCreator"
+            ng-show="!$ctrl.isUserMember || !$ctrl.isUserAdmin || $ctrl.isUserMemberInvite"
             ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'member' ); $ctrl.isUserMember = !$ctrl.isUserMember"
         >
             <a href='javascript:void(0);'>
@@ -223,7 +236,7 @@
         </li>
         <li
             ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'admin' ); $ctrl.isUserAdmin = !$ctrl.isUserAdmin"
-            ng-show="!$ctrl.isUserAdmin && $ctrl.isUserChannelCreator"
+            ng-show="( !$ctrl.isUserAdmin && $ctrl.isUserChannelCreator ) || $ctrl.isUserMemberInvite"
         >
             <a href='javascript:void(0);'>
                 Join collaboration
@@ -231,7 +244,7 @@
         </li>
         <li
             ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'admin' ); $ctrl.isUserAdmin = !$ctrl.isUserAdmin"
-            ng-show="$ctrl.isUserAdmin || $ctrl.isUserAdmin && $ctrl.isUserChannelCreator"
+            ng-show="$ctrl.isUserAdmin || ( $ctrl.isUserAdmin && $ctrl.isUserChannelCreator )"
         >
             <a href='javascript:void(0);'>
                 Leave collaboration
