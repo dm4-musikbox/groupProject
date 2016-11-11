@@ -53,7 +53,7 @@
           <div class="user-name">
              Theo Beck -->
 
-    <section class="chat-window">
+    <section class="chat-window" scroll-glue="glued">
       <div
           class="message"
           ng-if="$ctrl.channel.channelMessages"
@@ -71,18 +71,24 @@
               {{ message.timestamp | date: 'short' }}
             </div>
           </div>
-          <div class="content col s10">
-            <div>{{ message.content }}
+          <div class="content col s10"
+               editable-textarea="message.content"
+               e-rows="30" e-cols="40"
+               e-formclass="content col s10"
+               e-form="editButton"
+               onaftersave='$ctrl.updateMessage( message, $ctrl.channel._id )'
+          >
 
-              <div class="tools">
-                <i ng-click="updateMessage( )" class="material-icons create">create</i>
-                <i ng-click="deleteMessage( )" class="material-icons delete">clear</i>
-              </div>
+            {{ message.content }}
+
+            <div class="tools">
+              <i class="material-icons create" ng-click="editButton.$show()" ng-hide"editButton.$visible">create</i>
+              <i class="material-icons delete">clear</i>
             </div>
           </div>
         </div>
       </div>
-    </section>
+  </section>
 <!--
   <section class="playlist-sect">
     <div class="playlist">

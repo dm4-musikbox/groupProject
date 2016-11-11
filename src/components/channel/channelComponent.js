@@ -133,6 +133,7 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
   };
 
   this.updateMessage = ( message, channelId ) => {
+    console.log("Im Running")
     messageService.updateMessage( message, channelId );
   }
 
