@@ -1,9 +1,10 @@
-function run( $rootScope, $state, $timeout, authService, authManager, jwtHelper, lock ) {
+function run( $rootScope, $state, $timeout, authService, authManager, jwtHelper, lock, editableOptions ) {
 	lock.interceptHash();
 	$rootScope.authService = authService;
 	authService.registerAuthenticationListener();
 	authManager.checkAuthOnRefresh();
 	authManager.redirectWhenUnauthenticated();
+	editableOptions.theme ='default';
 
 	$rootScope.$on( "$stateChangeStart", ( event, to, toParams ) => {
 		const token = localStorage.getItem( "id_token" );
