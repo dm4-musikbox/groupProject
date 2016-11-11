@@ -78,11 +78,10 @@
                 <i ng-click="updateMessage( )" class="material-icons create">create</i>
                 <i ng-click="deleteMessage( )" class="material-icons delete">clear</i>
               </div>
+            </div>
           </div>
+        </div>
       </div>
-
-    </div>
-
     </section>
 <!--
   <section class="playlist-sect">
@@ -139,7 +138,7 @@
 <!-- Message input -->
   <div
       class="footer"
-      ng-if="!$ctrl.isUserAdminInvite || !$ctrl.isUserMemberInvite"
+      ng-hide="$ctrl.isUserAdminInvite || $ctrl.isUserMemberInvite"
   >
       <div
           class="message-input-field"
@@ -157,11 +156,19 @@
   </div>
   <div
       class="footer"
-      ng-show="$ctrl.isUserAdminInvite"
+      ng-show="$ctrl.isUserAdminInvite || $ctrl.isUserMemberInvite"
+      style="text-align"
   >
-      <h5>Congrats! You've been invited to the channel as a collaborator.</h5>
-      <a class="btn" href>Join as collaborator</a>
-      <a class="btn" href>Decline invitation</a>
+      <div ng-show="$ctrl.isUserAdminInvite">
+          <h5>Congrats! You've been invited to the channel as a collaborator.</h5>
+          <a class="btn" href>Join as collaborator</a>
+          <a class="btn" href>Decline invitation</a>
+      </div>
+      <div ng-show="$ctrl.isUserMemberInvite">
+          <h5>Congrats! You've been invited to the channel as a listener.</h5>
+          <a class="btn" href>Subscribe as listener</a>
+          <a class="btn" href>Decline invitation</a>
+      </div>
   </div>
 
   </main>
