@@ -19,7 +19,7 @@ const Channel = new mongoose.Schema(
 
 function autoPopulate( next ) {
 	this
-				.populate( "members admins" )
+				.populate( "createdBy members admins" )
 				.populate(
 		{
 			path: "channelRecordings"
