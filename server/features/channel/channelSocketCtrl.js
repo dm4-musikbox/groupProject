@@ -55,42 +55,81 @@ module.exports =
 			}
 			socket.leave( channelId );
 		}
+		, addUserToChannel( data, io, socket ) {
+				console.log( "addUserFromChannel firing!" );
+				const channelId = data.channelId,
+							userId = data.userId,
+							userType = data.userType;
 
-		, subscribeToChannel( data, io, socket ) {
-			console.log( "subscribeToChannel firing!" );
+				let channelUpdateObj,
+						userUpdateObj;
 
-			const channelId = data.channelId;
-			const userId = data.userId;
+				if ( userType === 'member' ) {
+						channelUpdateObj = { $addToSet: { members: userId } };
+						userUpdateObj = { $addToSet: { memberInChannels: channelId } };
+				}
+				else if ( userType === 'admin' ) {
+						channelUpdateObj = { $addToSet: { admins: userId } };
+						userUpdateObj = { $addToSet: { adminInChannels: channelId } };
+				}
+				else if ( userType === 'invitedAsMember' ) {
+						channelUpdateObj = { $addToSet: { invitedAsMember: userId } };
+						userUpdateObj = { $addToSet: { invitedAsMember: channelId } };
+				}
+				else if ( userType === 'invitedAsAdmin' ) {
+					channelUpdateObj = { $addToSet: { invitedAsAdmin: userId } };
+					userUpdateObj = { $addToSet: { invitedAsAdmin: channelId } };
+				}
 
-			User.findOneAndUpdate( { _id: userId }, { $addToSet: { userChannels: channelId } }, { new: true }, ( err, user ) => {
+				User.findOneAndUpdate( { _id: userId }, userUpdateObj, { new: true }, ( err, user ) => {
+					if ( err ) {
+						throw err;
+					}
+					console.log( user );
+					getUpdatedUser( socket, userId, user );
+				} );
+				Channel.findOneAndUpdate( { _id: channelId }, channelUpdateObj, { new: true }, ( err, channel ) => {
+					if ( err ) {
+						throw( err );
+					}
+					getUpdatedChannel( io, channelId, channel );
+				} );
+		}
+
+		, removeUserFromChannel( data, io, socket ) {
+			console.log( "removeUserFromChannel firing!", data );
+			const channelId = data.channelId,
+						userId = data.userId,
+						userType = data.userType;
+
+			let channelUpdateObj,
+					userUpdateObj;
+
+			if ( userType === 'member' ) {
+					channelUpdateObj = { $pull: { members: userId } };
+					userUpdateObj = { $pull: { memberInChannels: channelId } };
+			}
+			else if ( userType === 'admin' ) {
+					channelUpdateObj = { $pull: { admins: userId } };
+					userUpdateObj = { $pull: { adminInChannels: channelId } };
+			}
+			else if ( userType === 'invitedAsMember' ) {
+					channelUpdateObj = { $pull: { invitedAsMember: userId } };
+					userUpdateObj = { $pull: { invitedAsMember: channelId } };
+			}
+			else if ( userType === 'invitedAsAdmin' ) {
+					channelUpdateObj = { $pull: { invitedAsAdmin: userId } };
+					userUpdateObj = { $pull: { invitedAsAdmin: channelId } };
+			}
+
+			User.findOneAndUpdate( { _id: userId }, userUpdateObj, { new: true }, ( err, user ) => {
 				if ( err ) {
 					throw err;
 				}
 				getUpdatedUser( socket, userId, user );
 			} );
 
-			Channel.findOneAndUpdate( { _id: channelId }, { $addToSet: { members: userId } }, { new: true }, ( err, channel ) => {
-				if ( err ) {
-					throw err;
-				}
-				getUpdatedChannel( io, channelId, channel );
-			} );
-		}
-
-		, unsubscribeFromChannel( data, io, socket ) {
-			console.log( "unsubscribeFromChannel firing!" );
-
-			const channelId = data.channelId;
-			const userId = data.userId;
-
-			User.findOneAndUpdate( { _id: userId }, { $pull: { userChannels: channelId } }, { new: true }, ( err, user ) => {
-				if ( err ) {
-					throw err;
-				}
-				getUpdatedUser( io, socket, userId, user );
-			} );
-
-			Channel.findOneAndUpdate( { _id: channelId }, { $pull: { members: userId } }, { new: true }, ( err, channel ) => {
+			Channel.findOneAndUpdate( { _id: channelId }, channelUpdateObj, { new: true }, ( err, channel ) => {
 				if ( err ) {
 					throw err;
 				}
@@ -99,8 +138,8 @@ module.exports =
 		}
 };
 
-function getUpdatedUser( io, socket, userId, user ) {
-	io.to( socket.id ).emit( "get user", user );
+function getUpdatedUser( socket, userId, user ) {
+	socket.emit( "get user", user );
 }
 
 function getUpdatedChannel( io, channelId, channel ) {

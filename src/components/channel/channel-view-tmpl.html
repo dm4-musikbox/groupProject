@@ -2,7 +2,14 @@
   <main class="channel-view">
   <section class="top-audio-player-container">
     <div class="top-audio-player">
-      <div id="play-button"><i class="material-icons md-72">play_circle_outline</i></div>
+      <div
+          id="play-button"
+          ng-click="$ctrl.wavesurfer.play()"
+      >
+          <i class="material-icons md-72">
+              play_circle_outline
+          </i>
+      </div>
         <div class="waves">
            <div id="waveform"></div>
         <!-- pause button
@@ -19,6 +26,20 @@
           <div id="side-nav-icon">
             <i class="material-icons md-24 button-collapse" data-activates="list-nav" data-sidenav="right" data-menuwidth="298" data-closeonclick="false">queue_music</i>
               <!-- Show side-nav -->
+          </div>
+          <div>
+            <i class="material-icons">
+                <a
+                    class="button-collapse"
+                    data-activates="channelSideNav"
+                    data-closeonclick="false"
+                    data-menuwidth="300"
+                    data-sidenav="right"
+                    href="#"
+                >
+                    settings
+                </a>
+            </i>
           </div>
         </div>
     </div>
@@ -130,4 +151,58 @@
 
 
   </main>
+</div>
+
+<!-- Dropdown Structure -->
+<div id='channelSideNav' class="side-nav">
+    <ul class="collapsible" data-collapsible="accordion" watch>
+        <li>
+            <div class="collapsible-header">View channel details</div>
+            <div class="collapsible-body" style="padding: 0.5em">
+                <!-- <h4>{{ $ctrl.channel.name }}</h4>
+                    <span>{{ $ctrl.channel.description }}</span> -->
+                <h5>Created by</h5>
+                    <span>{{ $ctrl.channel.createdBy.fullName }}</span>
+                <h5 ng-if="$ctrl.channel.admins.length">Admins</h5>
+                    <div ng-repeat="admin in $ctrl.channel.admins">
+                        <i
+                            class="material-icons"
+                            ng-if="$ctrl.isUserAdmin"
+                            ng-click="removeUserFromChannel( $ctrl.channel._id, admin._id, 'admin' )"
+                        >
+                            remove_circle
+                        </i>
+                        {{ admin.fullName }}
+                    </div>
+                <h5 ng-if="$ctrl.channel.members.length">Members</h5>
+                    <div ng-repeat="member in $ctrl.channel.members">
+                        <i
+                            class="material-icons"
+                            ng-if="$ctrl.isUserAdmin"
+                            ng-click="removeUserFromChannel( $ctrl.channel._id, member._id, 'member' )"
+                        >
+                            remove_circle
+                        </i>
+                        {{ member.fullName }}
+                    </div>
+            </div>
+        </li>
+        <li class="divider"></li>
+        <li ng-show="!$ctrl.isUserMember" ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'member' ); $ctrl.isUserMember = !$ctrl.isUserMember">
+            <a href='javascript:void(0);'>
+                Subscribe
+            </a>
+        </li>
+        <li ng-show="$ctrl.isUserMember" ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'member' ); $ctrl.isUserMember = !$ctrl.isUserMember">
+            <a href='javascript:void(0);'>
+                Unsubscribe
+            </a>
+        </li>
+        <li ng-show="$ctrl.isUserAdmin" ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'admin' ); $ctrl.isUserAdmin = !$ctrl.isUserAdmin">
+            <a href='javascript:void(0);'>
+                Leave collaboration
+            </a>
+        </li>
+
+    </ul>
 </div>

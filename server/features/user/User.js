@@ -11,7 +11,9 @@ const User = new mongoose.Schema(
 		, email: { type: String }
 		, genre: [ { type: String } ]
 		, photo: { type: String }
-		, userChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
+		, createdChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
+		, adminInChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
+		, memberInChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
 		, invitedAsMember: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
 		, invitedAsAdmin: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
 		, userLinks: [ { type: String, lowercase: true, trim: true } ]
@@ -19,7 +21,7 @@ const User = new mongoose.Schema(
 );
 
 function autoPopulate( next ) {
-	this.populate( "userChannels" );
+	this.populate( "createdChannels adminInChannels memberInChannels invitedAsMember invitedAsAdmin" );
 	next();
 }
 

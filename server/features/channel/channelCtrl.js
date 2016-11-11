@@ -5,8 +5,7 @@ const User = require( "./../user/User.js" );
 module.exports = {
 	createChannel( req, res ) {
 		const channelToCreate = req.body;
-		channel.type = channel.type.toLowerCase();
-		
+
 		new Channel( channelToCreate ).save( ( err, channel ) => {
 			if ( err ) {
 				return res.status( 400 ).send( err );
@@ -29,7 +28,7 @@ module.exports = {
 			for ( let i = 0; i < channel.invitedAsMember.length; i++ ) {
 				User.findOneAndUpdate( { _id: channel.invitedAsMember[ i ] }, { $set: { invitedAsMember: channel._id } } );
 			}
-			User.findOneAndUpdate( { _id: channel.createdBy }, { $push: { userChannels: channel._id } }, ( err, user ) => {
+			User.findOneAndUpdate( { _id: channel.createdBy }, { $push: { createdChannels: channel._id } }, ( err, user ) => {
 				if ( err ) {
 					return res.status( 500 ).json( err );
 				}
@@ -83,8 +82,17 @@ module.exports = {
 			return res.status( 200 ).json( response );
 		} );
 	}
+	
+	, deleteUserFromChannel( req, res ) {
+		 Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $pull: { genres: req.params.genre } }, { new: true }, ( err, response ) => {
+			 if ( err ) {
+				 return res.status( 400 ).send( err );
+			 }
+			 return res.status( 200 ).json( response );
+		 } );
+	}
 	, addGenreToChannel( req, res ) {
-		 Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $push: { genres: req.params.genre } }, { new: true }, ( err, channel ) => {
+		 Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $addToSet: { genres: req.params.genre } }, { new: true }, ( err, channel ) => {
 			 if ( err ) {
 				 return res.status( 400 ).send( err );
 			 }

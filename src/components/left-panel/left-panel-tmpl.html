@@ -8,18 +8,19 @@
         </div>
 
         <div class="lp-user">
-          <div class="status-circle">
-            <img src="{{ $ctrl.circle }}">
-          </div>
-          <div
-              id="lp-user-name"
-              ui-sref="account-settings-view( $ctrl.user )"
-          >
-              {{ $ctrl.user.fullName }}
-          </div>
+            <div class="status-circle">
+                <img src="{{ $ctrl.circle }}">
+            </div>
+            <div
+                id="lp-user-name"
+                ui-sref="account-settings-view( $ctrl.user )"
+            >
+                {{ $ctrl.user.fullName }}
+            </div>
         </div>
+
         <div class="col">
-            <span>Channels</span>
+            <span><b>Channels</b></span>
             <a href='#create-channel-modal'
               modal
               ng-click="this.showModalOverlay = !this.showModalOverlay"
@@ -29,11 +30,59 @@
                 </i>
             </a>
         </div>
-        <div
-            ng-repeat="channel in $ctrl.user.userChannels"
-            ui-sref="channel-view( { _id: channel._id } )"
-        >
-            {{ channel.name }}
+
+        <!-- <div ng-if="$ctrl.user.createdChannels.length">
+            <span style="text-decoration: underline; font-style: italic">Created</span>
+            <ul>
+                <li
+                    ng-repeat="channelCreator in $ctrl.user.createdChannels"
+                    ui-sref="channel-view( { _id: channelCreator._id } )"
+                >
+                    {{ channelCreator.name }}
+                </li>
+            </ul>
+        </div> -->
+
+        <div ng-if="$ctrl.user.adminInChannels.length">
+            <span style="text-decoration: underline; font-style: italic">Collaborations</span>
+            <ul>
+                <li
+                    ng-repeat="channelAdmin in $ctrl.user.adminInChannels"
+                    ui-sref="channel-view( { _id: channelAdmin._id } )"
+                >
+                    {{ channelAdmin.name }}
+                </li>
+            </ul>
+        </div>
+
+        <div ng-if="$ctrl.user.memberInChannels.length">
+            <span style="text-decoration: underline; font-style: italic">Following</span>
+            <ul>
+                <li
+                    ng-repeat="channelMember in $ctrl.user.memberInChannels"
+                    ui-sref="channel-view( { _id: channelMember._id } )"
+                >
+                    {{ channelMember.name }}
+                </li>
+            </ul>
+        </div>
+
+        <div ng-if="$ctrl.user.invitedAsAdmin.length || $ctrl.user.invitedAsMember.length">
+            <span style="text-decoration: underline; font-style: italic">Invites</span>
+            <ul>
+                <li
+                    ng-repeat="adminInvite in $ctrl.user.invitedAsAdmin"
+                    ui-sref="channel-view( { _id: adminInvite._id } )"
+                >
+                    {{ adminInvite.name }}
+                </li>
+                <li
+                    ng-repeat="memberInvite in $ctrl.user.invitedAsMember"
+                    ui-sref="channel-view( { _id: memberInvite._id } )"
+                >
+                    {{ memberInvite.name }}
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -133,10 +182,28 @@
         </div>
         <div class="row" style="z-index: -1">
             <div class="col s6 m6 l6">
-                <div ng-repeat="channel in $ctrl.channel.invitedAsAdmin">{{ channel }}</div>
+                <div class="chip" ng-repeat="user in $ctrl.invitedAsAdmin">
+                    <img ng-if="user.image" ng-src="{{ user.image }}" alt="Contact Person">
+                    {{ user.title }}
+                    <i
+                        class="close material-icons"
+                        ng-click="$ctrl.removeFromInvites( user, 'admin' )"
+                    >
+                        close
+                    </i>
+                </div>
             </div>
-            <div class="col s6 m6 l6">
-                <div ng-repeat="channel in $ctrl.channel.invitedAsMember">{{ channel }}</div>
+            <div class="col s6 m6 l6" style="z-index: -1">
+                <div class="chip" ng-repeat="user in $ctrl.invitedAsMember">
+                    <img ng-if="user.image" ng-src="{{ user.image }}" alt="Contact Person">
+                    {{ user.title }}
+                    <i
+                        class="close material-icons"
+                        ng-click="$ctrl.removeFromInvites( user, 'member' )"
+                    >
+                        close
+                    </i>
+                </div>
             </div>
 
         </div>
@@ -153,7 +220,7 @@
         <a
             class="modal-close waves-effect waves-green btn-flat"
             href=""
-            ng-click="this.showModalOverlay = !this.showModalOverlay"
+            ng-click="this.showModalOverlay = !this.showModalOverlay; $ctrl.clearInputs()"
         >
             Cancel
         </a>
@@ -161,4 +228,10 @@
 
 </div>
 
-<div class="lean-overlay lean-overlay-fix" id="materialize-lean-overlay-1" ng-if="showModalOverlay" style="z-index: 1002; display: block; opacity: 0.9; height: 100vh; background-color: black;"></div>
+<div
+    class="lean-overlay lean-overlay-fix"
+    id="materialize-lean-overlay-1"
+    ng-if="showModalOverlay"
+    style="z-index: 1002; display: block; opacity: 0.9; height: 100vh; background-color: black;"
+>
+</div>
