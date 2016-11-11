@@ -19,8 +19,10 @@ function channelService( $http, ref, socketFactory ) {
 								);
 	};
 
-	this.updateChannel = ( channel ) => {
-
+	this.deleteChannel = ( channelId ) => {
+		const data = {};
+		data.channelId = channelId;
+		socketFactory.emit( "delete channel", data );
 	};
 
 	this.enterChannel = ( channelId, userName ) => {

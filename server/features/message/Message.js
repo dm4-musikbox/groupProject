@@ -4,6 +4,7 @@ const Message = new mongoose.Schema(
 	{
 		type: { type: String, enum: [ "message", "recording" ], required: true }
 					, author: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
+					, channel: { type: mongoose.Schema.Types.ObjectId, ref: "Channel" }
 					, content: { type: String, trim: true }
 					, timestamp: { type: Date, default: Date.now() }
 					, recording: [ { type: mongoose.Schema.Types.ObjectId, ref: "Recording" } ]

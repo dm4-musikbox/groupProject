@@ -1,6 +1,8 @@
 const mongoose = require( "mongoose" );
 const Channel = require( "./Channel.js" );
 const User = require( "./../user/User.js" );
+const Message = require( "./../message/Message.js" );
+const Genre = require( "./../genre/Genre.js" );
 
 const activeChannels = {};
 
@@ -136,6 +138,40 @@ module.exports =
 				getUpdatedChannel( io, channelId, channel );
 			} );
 		}
+		, deleteChannel( data, io ) {
+				let channelId = data.channelId;
+				 Channel.findOne( { _id: channelId }, ( err, channel ) => {
+					 if ( err ) {
+						 return res.status( 400 ).send( err );
+					 }
+					 	User.findByIdAndUpdate( channel.createdBy._id, { $pull: { createdChannels: channel._id } } );
+						channel.genres.forEach( genre => {
+								Genre.findOneAndUpdate( { displayName: genre }, { $pull: { channels: channel._id } } );
+						} );
+						channel.admins.forEach( admin => {
+								User.findById( admin._id, { $pull: { adminInChannels: channel._id } } );
+						} );
+						channel.members.forEach( member => {
+								User.findById( member._id, { $pull: { memberInChannels: channel._id } } );
+						} );
+						channel.channelMessages.forEach( message => {
+								Message.findByIdAndRemove( message._id );
+						} );
+						channel.channelRecordings.forEach( recording => {
+								Recording.findByIdAndRemove( recording._id );
+						} );
+						channel.invitedAsAdmin.forEach( admin => {
+								User.findById( admin._id, { $pull: { invitedAsAdmin: channel._id } } );
+						} );
+						channel.invitedAsMember.forEach( member => {
+								User.findById( member._id, { $pull: { invitedAsMember: channel._id } } );
+						} );
+
+						Channel.removeById( channel._id, ( err, response ) => {
+								io.to( channelId ).emit( "channel deleted", response );
+						} )
+				 } );
+		 }
 };
 
 function getUpdatedUser( socket, userId, user ) {

@@ -159,16 +159,14 @@
         <li>
             <div class="collapsible-header">View channel details</div>
             <div class="collapsible-body" style="padding: 0.5em">
-                <!-- <h4>{{ $ctrl.channel.name }}</h4>
-                    <span>{{ $ctrl.channel.description }}</span> -->
                 <h5>Created by</h5>
                     <span>{{ $ctrl.channel.createdBy.fullName }}</span>
-                <h5 ng-if="$ctrl.channel.admins.length">Admins</h5>
+                <h5 ng-if="$ctrl.channel.admins.length">Collaborators</h5>
                     <div ng-repeat="admin in $ctrl.channel.admins">
                         <i
                             class="material-icons"
-                            ng-if="$ctrl.isUserAdmin"
-                            ng-click="removeUserFromChannel( $ctrl.channel._id, admin._id, 'admin' )"
+                            ng-if="$ctrl.isUserChannelCreator"
+                            ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, admin._id, 'admin' )"
                         >
                             remove_circle
                         </i>
@@ -178,31 +176,200 @@
                     <div ng-repeat="member in $ctrl.channel.members">
                         <i
                             class="material-icons"
-                            ng-if="$ctrl.isUserAdmin"
-                            ng-click="removeUserFromChannel( $ctrl.channel._id, member._id, 'member' )"
+                            ng-if="$ctrl.isUserChannelCreator"
+                            ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, member._id, 'member' )"
                         >
                             remove_circle
                         </i>
                         {{ member.fullName }}
                     </div>
             </div>
+        <li ng-show="$ctrl.isUserAdmin || $ctrl.isUserChannelCreator">
+            <a
+                href='#invite-admin-modal'
+                modal
+                ng-click="this.showInviteModalOverlay = !this.showInviteModalOverlay"
+            >
+                Invite collaborators
+            </a>
+        </li>
+        <li ng-show="!$ctrl.isUserAnon">
+            <a
+                href='#invite-member-modal'
+                modal
+                ng-click="this.showInviteModalOverlay = !this.showInviteModalOverlay"
+            >
+                Invite listeners
+            </a>
+        </li>
         </li>
         <li class="divider"></li>
-        <li ng-show="!$ctrl.isUserMember" ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'member' ); $ctrl.isUserMember = !$ctrl.isUserMember">
+        <li
+            ng-show="!$ctrl.isUserMember"
+            ng-hide="$ctrl.isUserAdmin || $ctrl.isUserChannelCreator"
+            ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'member' ); $ctrl.isUserMember = !$ctrl.isUserMember"
+        >
             <a href='javascript:void(0);'>
                 Subscribe
             </a>
         </li>
-        <li ng-show="$ctrl.isUserMember" ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'member' ); $ctrl.isUserMember = !$ctrl.isUserMember">
+        <li
+            ng-show="$ctrl.isUserMember"
+            ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'member' ); $ctrl.isUserMember = !$ctrl.isUserMember"
+        >
             <a href='javascript:void(0);'>
                 Unsubscribe
             </a>
         </li>
-        <li ng-show="$ctrl.isUserAdmin" ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'admin' ); $ctrl.isUserAdmin = !$ctrl.isUserAdmin">
+        <li
+            ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'admin' ); $ctrl.isUserAdmin = !$ctrl.isUserAdmin"
+            ng-show="!$ctrl.isUserAdmin && $ctrl.isUserChannelCreator"
+        >
+            <a href='javascript:void(0);'>
+                Join collaboration
+            </a>
+        </li>
+        <li
+            ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'admin' ); $ctrl.isUserAdmin = !$ctrl.isUserAdmin"
+            ng-show="$ctrl.isUserAdmin || $ctrl.isUserAdmin && $ctrl.isUserChannelCreator"
+        >
             <a href='javascript:void(0);'>
                 Leave collaboration
+            </a>
+        </li>
+        <li
+            ng-click="$ctrl.deleteChannel()"
+            ng-show="$ctrl.isUserChannelCreator"
+        >
+            <a href='javascript:void(0);'>
+                Delete channel
             </a>
         </li>
 
     </ul>
 </div>
+
+<!-- Modal Structure -->
+<div
+    class="modal modal-fixed-footer"
+    id="invite-admin-modal"
+>
+    <div class="modal-content" id="create-channel-modal-content">
+        <h4>Invite collaborators</h4>
+        <p>Connect with other musicians and make sweet music together.</p>
+        <div class="row">
+            <div
+              angucomplete-alt
+              class="col s6 m6 l6"
+              clear-selected="true"
+              description-field="genre"
+              id="collaborators"
+              image-field="photo"
+              input-class="form-control form-control-small"
+              minimum-length="1"
+              pause="400"
+              placeholder="Send invites to collaborators: (optional)"
+              remote-url="http://localhost:5000/api/users/find?searchStr="
+              selected-object="$ctrl.inviteUserAsAdmin"
+              title-field="fullName"
+            >
+            </div>
+            <div class="col s6 m6 l6">
+                <div class="chip" ng-repeat="user in $ctrl.invitedAsAdmin">
+                    <img ng-if="user.image" ng-src="{{ user.image }}" alt="Contact Person">
+                    {{ user.title }}
+                    <i
+                        class="close material-icons"
+                        ng-click="$ctrl.removeFromInvites( user, 'admin' )"
+                    >
+                        close
+                    </i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <a
+            class="modal-action modal-close waves-effect waves-green btn-flat"
+            href=""
+            ng-click="$ctrl.confirmInvites()"
+        >
+            Invite
+        </a>
+        <a
+            class="modal-close waves-effect waves-green btn-flat"
+            href=""
+            ng-click="$ctrl.cancelInvites()"
+        >
+            Cancel
+        </a>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div
+    class="modal modal-fixed-footer"
+    id="invite-member-modal"
+>
+    <div class="modal-content" id="create-channel-modal-content">
+        <h4>Invite listeners</h4>
+        <p>Connect with your audience and get feedback on your latest masterpiece(s).</p>
+        <div class="row">
+            <div
+              angucomplete-alt
+              class="col s6 m6 l6"
+              clear-selected="true"
+              description-field="genre"
+              id="members"
+              image-field="photo"
+              input-class="form-control form-control-small"
+              minimum-length="1"
+              pause="400"
+              placeholder="Send invites to listeners: (optional)"
+              remote-url="http://localhost:5000/api/users/find?searchStr="
+              selected-object="$ctrl.inviteUserAsMember"
+              title-field="fullName"
+            >
+            </div>
+
+            <div class="col s6 m6 l6">
+                <div class="chip" ng-repeat="user in $ctrl.invitedAsMember">
+                    <img ng-if="user.image" ng-src="{{ user.image }}" alt="Contact Person">
+                    {{ user.title }}
+                    <i
+                        class="close material-icons"
+                        ng-click="$ctrl.removeFromInvites( user, 'member' )"
+                    >
+                        close
+                    </i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <a
+            class="modal-action modal-close waves-effect waves-green btn-flat"
+            href=""
+            ng-click="$ctrl.confirmInvites()"
+        >
+            Invite
+        </a>
+        <a
+            class="modal-close waves-effect waves-green btn-flat"
+            href=""
+            ng-click="$ctrl.cancelInvites()"
+        >
+            Cancel
+        </a>
+    </div>
+</div>
+
+<!-- <div
+    class="lean-overlay lean-overlay-fix"
+    id="materialize-lean-overlay-1"
+    ng-if="showInviteModalOverlay"
+    style="z-index: 1002; display: block; opacity: 0.9; height: 100vh; background-color: black;"
+>
+</div> -->
