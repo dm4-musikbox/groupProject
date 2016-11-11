@@ -4,6 +4,7 @@ import "./styles/channel.scss";
 function channelCtrl( $scope, messageService, socketFactory, channelService ) {
   this.$onInit = () => {
     this.enterChannel();
+
   };
 
   this.$onChanges = ( changes ) => {
