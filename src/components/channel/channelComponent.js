@@ -64,7 +64,7 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
 	wavesurfer.load( "http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3" );
 
 	wavesurfer.on( "ready", () => {
-		  wavesurfer.play();
+		  // wavesurfer.play();
 	} );
 
 	this.$onDestroy = () => {
