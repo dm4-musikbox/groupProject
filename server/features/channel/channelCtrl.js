@@ -21,7 +21,6 @@ module.exports = {
 				}
 			}
 				// for collaborators, add them to admin array
-				console.log( channel.invitedAsAdmin );
 			for ( let i = 0; i < channel.invitedAsAdmin.length; i++ ) {
 				User.findOneAndUpdate( { _id: channel.invitedAsAdmin[ i ] }, { $addToSet: { invitedAsAdmin: channel._id } }, ( err, user ) => {
 					if ( err ) {

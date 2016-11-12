@@ -43,6 +43,18 @@
             </ul>
         </div> -->
 
+        <div ng-if="$ctrl.user.createdChannels.length">
+            <span style="text-decoration: underline; font-style: italic">Created</span>
+            <ul>
+                <li
+                    ng-repeat="createdChannel in $ctrl.user.createdChannels"
+                    ui-sref="channel-view( { _id: createdChannel._id } )"
+                >
+                    {{ createdChannel.name }}
+                </li>
+            </ul>
+        </div>
+
         <div ng-if="$ctrl.user.adminInChannels.length">
             <span style="text-decoration: underline; font-style: italic">Collaborations</span>
             <ul>
