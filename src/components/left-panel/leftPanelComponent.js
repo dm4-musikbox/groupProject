@@ -24,11 +24,13 @@ function leftPanelCtrl( $state, authService, channelService ) {
 	this.inviteAsAdmin = ( user ) => {
 			this.invitedAsAdmin.push( user );
 			this.channel.invitedAsAdmin.push( user.originalObject._id );
+			console.log( this.invitedAsAdmin );
 	};
 
 	this.inviteAsMember = ( user ) => {
 			this.invitedAsMember.push( user );
 			this.channel.invitedAsMember.push( user.originalObject._id );
+			console.log( this.invitedAsMember );
 	};
 
 	this.removeFromInvites = ( user, type ) => {

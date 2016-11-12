@@ -106,6 +106,7 @@
             <div input-field class="col s6 m6 l6">
                 <input
                     ng-model="$ctrl.channel.name"
+                    required
                     type="text"
                 >
                 <label>Name</label>
@@ -113,6 +114,7 @@
             <div input-field class="col s6 m6 l6">
                 <input
                     ng-model="$ctrl.channel.description"
+                    required
                     type="text"
                 >
                 <label>Description</label>
@@ -127,6 +129,7 @@
                     multiple
                     ng-model="$ctrl.channel.genres"
                     ng-options="genreName.displayName as genreName.displayName for genreName in $ctrl.genreNames"
+                    required
                     type="text"
                     watch
                 >
@@ -137,6 +140,7 @@
                 <select
                     material-select
                     ng-model="$ctrl.channel.type"
+                    required
                     type="text"
                 >
                     <option value="public">Public</option>
@@ -160,7 +164,6 @@
               selected-object="$ctrl.inviteAsAdmin"
               title-field="fullName"
             >
-              <label>Send invites to collaborators: (optional)</label>
             </div>
             <div
               angucomplete-alt

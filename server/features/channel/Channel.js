@@ -6,6 +6,7 @@ const Channel = new mongoose.Schema(
 		type: { type: String, enum: [ "public", "private" ], default: "private", required: true }
 		, name: { type: String, required: true }
 		, description: { type: String, required: true }
+		, photoUrl: { type: String }
 		, genres: [ { type: String, required: true } ]
 		, createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 		, admins: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]

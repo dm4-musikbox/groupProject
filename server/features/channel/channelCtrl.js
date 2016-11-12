@@ -21,14 +21,23 @@ module.exports = {
 				}
 			}
 				// for collaborators, add them to admin array
+				console.log( channel.invitedAsAdmin );
 			for ( let i = 0; i < channel.invitedAsAdmin.length; i++ ) {
-				User.findOneAndUpdate( { _id: channel.invitedAsAdmin[ i ] }, { $set: { invitedAsAdmin: channel._id } } );
+				User.findOneAndUpdate( { _id: channel.invitedAsAdmin[ i ] }, { $addToSet: { invitedAsAdmin: channel._id } }, ( err, user ) => {
+					if ( err ) {
+						return res.status( 500 ).json( err );
+					}
+				} );
 			}
 				// for listeners, add them to members array
 			for ( let i = 0; i < channel.invitedAsMember.length; i++ ) {
-				User.findOneAndUpdate( { _id: channel.invitedAsMember[ i ] }, { $set: { invitedAsMember: channel._id } } );
+				User.findOneAndUpdate( { _id: channel.invitedAsMember[ i ] }, { $addToSet: { invitedAsMember: channel._id } }, ( err, user ) => {
+					if ( err ) {
+						return res.status( 500 ).json( err );
+					}
+				} );
 			}
-			User.findOneAndUpdate( { _id: channel.createdBy }, { $push: { createdChannels: channel._id } }, ( err, user ) => {
+			User.findOneAndUpdate( { _id: channel.createdBy }, { $addToSet: { createdChannels: channel._id } }, ( err, user ) => {
 				if ( err ) {
 					return res.status( 500 ).json( err );
 				}
@@ -82,7 +91,7 @@ module.exports = {
 			return res.status( 200 ).json( response );
 		} );
 	}
-	
+
 	, deleteUserFromChannel( req, res ) {
 		 Channel.findOneAndUpdate( { _id: req.params.channel_id }, { $pull: { genres: req.params.genre } }, { new: true }, ( err, response ) => {
 			 if ( err ) {

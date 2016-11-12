@@ -3,73 +3,55 @@ import "./styles/channel.scss";
 
 function channelCtrl( $scope, $state, messageService, socketFactory, channelService ) {
   this.$onInit = () => {
-      if ( this.channel ) {
-          this.enterChannel();
-          this.isUserMember = false;
-          this.isUserAdmin = false;
-          this.isUserChannelCreator = false;
-          this.isUserMemberInvite = false;
-          this.isUserAdminInvite = false;
-          this.isUserAnon = true;
+      this.enterChannel();
+      this.isUserMember = false;
+      this.isUserAdmin = false;
+      this.isUserChannelCreator = false;
+      this.isUserMemberInvite = false;
+      this.isUserAdminInvite = false;
+      this.isUserAnon = true;
 
-          for ( let i = 0; i < this.channel.members.length; i++ ) {
-              if ( this.channel.members[ i ]._id === this.user._id ) {
-                  this.isUserMember = true;
-                  this.isUserAnon = false;
-              }
-          }
-
-          for ( let i = 0; i < this.channel.admins.length; i++ ) {
-              if ( this.channel.admins[ i ]._id === this.user._id ) {
-                  this.isUserAdmin = true;
-                  this.isUserAnon = false;
-              }
-          }
-
-          for ( let i = 0; i < this.channel.invitedAsMember.length; i++ ) {
-              if ( this.channel.invitedAsMember[ i ] === this.user._id ) {
-                  this.isUserMemberInvite = true;
-                  this.isUserAnon = false;
-              }
-          }
-
-          for ( let i = 0; i < this.channel.invitedAsAdmin.length; i++ ) {
-              if ( this.channel.invitedAsAdmin[ i ] === this.user._id ) {
-                  this.isUserAdminInvite = true;
-                  this.isUserAnon = false;
-              }
-          }
-
-          if ( this.channel.createdBy._id === this.user._id ) {
-              this.isUserChannelCreator = true;
+      for ( let i = 0; i < this.channel.members.length; i++ ) {
+          if ( this.channel.members[ i ]._id === this.user._id ) {
+              this.isUserMember = true;
               this.isUserAnon = false;
           }
-
-          if ( this.channel.type === 'private' && this.isUserAnon === true ) {
-              console.log( 'You do not have access to this channel.' );
-              $state.go( 'genres-view' );
-          }
-          // console.log( this.isUserMember, this.isUserAdmin, this.isUserChannelCreator, this.isUserMemberInvite, this.isUserAdminInvite, this.isUserAnon );
-
-          this.invitedAsAdmin = [];
-          this.invitedAsMember = [];
-
-          this.wavesurfer = WaveSurfer.create( {
-            container: "#waveform"
-            , waveColor: "#F46036"
-            , progressColor: "#000"
-            , scrollParent: true
-            , hideScrollbar: true
-            , height: 81
-            , barWidth: 2
-          } );
-
-          this.wavesurfer.load( "http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3" );
-
-          this.wavesurfer.on( "ready", () => {
-            // wavesurfer.play();
-          } );
       }
+
+      for ( let i = 0; i < this.channel.admins.length; i++ ) {
+          if ( this.channel.admins[ i ]._id === this.user._id ) {
+              this.isUserAdmin = true;
+              this.isUserAnon = false;
+          }
+      }
+
+      for ( let i = 0; i < this.channel.invitedAsMember.length; i++ ) {
+          if ( this.channel.invitedAsMember[ i ] === this.user._id ) {
+              this.isUserMemberInvite = true;
+              this.isUserAnon = false;
+          }
+      }
+
+      for ( let i = 0; i < this.channel.invitedAsAdmin.length; i++ ) {
+          if ( this.channel.invitedAsAdmin[ i ] === this.user._id ) {
+              this.isUserAdminInvite = true;
+              this.isUserAnon = false;
+          }
+      }
+
+      if ( this.channel.createdBy._id === this.user._id ) {
+          this.isUserChannelCreator = true;
+          this.isUserAnon = false;
+      }
+
+      if ( this.channel.type === 'private' && this.isUserAnon === true ) {
+          console.log( 'You do not have access to this channel.' );
+          $state.go( 'genres-view' );
+      }
+      // console.log( this.isUserMember, this.isUserAdmin, this.isUserChannelCreator, this.isUserMemberInvite, this.isUserAdminInvite, this.isUserAnon );
+
+      this.invitedAsAdmin = [];
+      this.invitedAsMember = [];
   };
 
   this.$onChanges = ( changes ) => {
@@ -183,6 +165,21 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
 	playList.src = require( "./styles/imgs/webpack.jpg" );
 	$scope.playlist = playList.src;
 
+  this.wavesurfer = WaveSurfer.create( {
+    container: "#waveform"
+    , waveColor: "#F46036"
+    , progressColor: "#000"
+    , scrollParent: true
+    , hideScrollbar: true
+    , height: 81
+    , barWidth: 2
+  } );
+
+  this.wavesurfer.load( "http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3" );
+
+  this.wavesurfer.on( "ready", () => {
+    // wavesurfer.play();
+  } );
 }
 
 const channelComponent = {

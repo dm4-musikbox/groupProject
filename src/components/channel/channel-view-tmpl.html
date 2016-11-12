@@ -1,8 +1,8 @@
-<div ng-if="!$ctrl.channel">
+<div ng-show="!$ctrl.channel">
     <h4>Channel not found</h4>
     <p>The channel may have been deleted by its creator.</p>
 </div>
-<div ng-if="$ctrl.channel">
+<div ng-show="$ctrl.channel">
   <main class="channel-view">
   <section class="top-audio-player-container">
     <div class="top-audio-player">
@@ -230,7 +230,7 @@
                     <div ng-repeat="admin in $ctrl.channel.admins">
                         <i
                             class="material-icons"
-                            ng-if="$ctrl.isUserChannelCreator"
+                            ng-if="$ctrl.isUserChannelCreator || $ctrl.isUserAdmin"
                             ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, admin._id, 'admin' )"
                         >
                             remove_circle
@@ -241,7 +241,7 @@
                     <div ng-repeat="member in $ctrl.channel.members">
                         <i
                             class="material-icons"
-                            ng-if="$ctrl.isUserChannelCreator"
+                            ng-if="$ctrl.isUserChannelCreator || $ctrl.isUserAdmin"
                             ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, member._id, 'member' )"
                         >
                             remove_circle
