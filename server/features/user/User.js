@@ -11,6 +11,7 @@ const User = new mongoose.Schema(
 		, email: { type: String }
 		, genre: [ { type: String } ]
 		, photo: { type: String }
+		, notifications: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
 		, createdChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
 		, adminInChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
 		, memberInChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]

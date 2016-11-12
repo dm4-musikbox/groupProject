@@ -67,11 +67,11 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
   };
 
   this.enterChannel = () => {
-      channelService.enterChannel( this.channel._id, this.user.userName );
+      channelService.enterChannel( this.channel, this.user );
   };
 
   this.leaveChannel = () => {
-      channelService.leaveChannel( this.channel._id, this.user.userName );
+      channelService.leaveChannel( this.channel._id, this.user.fullName );
   };
 
   this.deleteChannel = () => {

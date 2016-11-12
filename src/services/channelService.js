@@ -25,20 +25,20 @@ function channelService( $http, ref, socketFactory ) {
 		socketFactory.emit( "delete channel", data );
 	};
 
-	this.enterChannel = ( channelId, userName ) => {
+	this.enterChannel = ( channel, user ) => {
 		const data =
 			{
-					channelId
-					, userName
+					channel
+					, user
 			};
 		socketFactory.emit( "enter channel", data );
 	};
 
-	this.leaveChannel = ( channelId, userName ) => {
+	this.leaveChannel = ( channelId, userFullName ) => {
 		const data =
 			{
 					channelId
-					, userName
+					, userFullName
 			};
 		socketFactory.emit( "leave channel", data );
 	};

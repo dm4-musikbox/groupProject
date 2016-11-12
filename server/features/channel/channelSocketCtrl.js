@@ -11,45 +11,48 @@ module.exports =
 	enterChannel( data, io, socket ) {
 		console.log( "enterChannel firing!" );
 
-		const channelId = data.channelId;
-		const userName = data.userName;
+		const channel = data.channel;
+		const user = data.user;
 		let channelStatus;
 
-		socket.join( channelId );
+		socket.join( channel._id );
 
-		if ( activeChannels.hasOwnProperty( channelId ) ) {
-			activeChannels[ channelId ][ userName ] = socket;
-			channelStatus =	{
-				channelId
-				, users: Object.keys( activeChannels[ channelId ] )
-			};
-		}		else {
-			activeChannels[ channelId ] = { [ userName ]: socket };
-			channelStatus = {
-				channelId
-				, activeUsers: Object.keys( activeChannels[ channelId ] )
-			};
+		if ( activeChannels.hasOwnProperty( channel._id ) ) {
+			activeChannels[ channel._id ].activeUsers[ user.fullName ] = { socket, user };
 		}
-		getChannelStatus( io, channelId, channelStatus );
+		else {
+			activeChannels[ channel._id ] = {
+					channel
+					, activeUsers: { [ user.fullName ]: { socket, user } }
+			};
+
+		}
+		channelStatus =	Object.assign( {}, activeChannels[ channel._id ] );
+		for ( let prop in channelStatus.activeUsers ) {
+			delete channelStatus.activeUsers[ prop ].socket;
+		}
+		getChannelStatus( io, channel._id, channelStatus );
 	}
 
 	, leaveChannel( data, io, socket ) {
 			console.log( "leaveChannel firing!" );
 
 			const channelId = data.channelId;
-			const userName = data.userName;
+			const userFullName = data.userFullName;
+			let channelStatus =	Object.assign( {}, activeChannels[ channelId ] );
+			for ( let prop in channelStatus.activeUsers ) {
+				delete channelStatus.activeUsers[ prop ].socket;
+			}
 
 			if ( activeChannels.hasOwnProperty( channelId ) ) {
-				delete activeChannels[ channelId ][ userName ];
+				delete activeChannels[ channelId ][ userFullName ];
 
-				if ( !Object.keys( activeChannels[ channelId ] ).length ) {
+				if ( Object.keys( activeChannels[ channelId ].activeUsers ).length ) {
 					delete activeChannels[ channelId ];
+					channelStatus = {};
 					getChannelStatus( io, channelId, { message: "everyone has left the room." } );
-				}		else {
-					const channelStatus = {
-						channelId
-					                      , activeUsers: Object.keys( activeChannels[ channelId ] )
-					};
+				}
+				else {
 					getChannelStatus( io, channelId, channelStatus );
 				}
 			}
