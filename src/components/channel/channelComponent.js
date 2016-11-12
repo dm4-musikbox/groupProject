@@ -80,7 +80,7 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
   this.$onDestroy = () => {
       if ( this.channel ) {
           this.leaveChannel();
-          socketFactory.removeAllListeners();  
+          socketFactory.removeAllListeners();
       }
   };
 
@@ -94,6 +94,7 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
 
   this.deleteChannel = () => {
       channelService.deleteChannel( this.channel._id );
+      angular.element( document.querySelector( '#sidenav-overlay' ) ).css( 'opacity', '0' );
   };
 
   this.addUserToChannel = ( channelId, userId, userType ) => {
@@ -169,6 +170,7 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
 
   socketFactory.on( "channel deleted", data => {
     console.log( "channel deleted", data );
+    this.mainCtrl.updateCurrentUser();
     $state.go( "genres-view" );
   } );
 
