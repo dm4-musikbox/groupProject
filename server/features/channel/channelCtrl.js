@@ -22,7 +22,7 @@ module.exports = {
 			}
 				// for collaborators, add them to admin array
 			for ( let i = 0; i < channel.invitedAsAdmin.length; i++ ) {
-				User.findOneAndUpdate( { _id: channel.invitedAsAdmin[ i ] }, { $addToSet: { invitedAsAdmin: channel._id } }, ( err, user ) => {
+				User.findOneAndUpdate( { _id: channel.invitedAsAdmin[ i ] }, { $addToSet: { invitedAsAdmin: { channel: channel._id } } }, ( err, user ) => {
 					if ( err ) {
 						return res.status( 500 ).json( err );
 					}
@@ -30,13 +30,13 @@ module.exports = {
 			}
 				// for listeners, add them to members array
 			for ( let i = 0; i < channel.invitedAsMember.length; i++ ) {
-				User.findOneAndUpdate( { _id: channel.invitedAsMember[ i ] }, { $addToSet: { invitedAsMember: channel._id } }, ( err, user ) => {
+				User.findOneAndUpdate( { _id: channel.invitedAsMember[ i ] }, { $addToSet: { invitedAsMember: { channel: channel._id } } }, ( err, user ) => {
 					if ( err ) {
 						return res.status( 500 ).json( err );
 					}
 				} );
 			}
-			User.findOneAndUpdate( { _id: channel.createdBy }, { $addToSet: { createdChannels: channel._id } }, ( err, user ) => {
+			User.findOneAndUpdate( { _id: channel.createdBy }, { $addToSet: { createdChannels: { channel: channel._id } } }, ( err, user ) => {
 				if ( err ) {
 					return res.status( 500 ).json( err );
 				}

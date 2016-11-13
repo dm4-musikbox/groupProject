@@ -16,8 +16,8 @@ module.exports = ( app, io ) => {
 				.delete( channelCtrl.deleteGenreFromChannel );
 
 	io.on( "connection", socket => {
-		socket.on( "create channel", ( data ) => {
-            // channelSocketCtrl.createChannel( data, io );
+		socket.on( "enter app", ( data ) => {
+			channelSocketCtrl.enterApp( data, io, socket );
 		} );
 
 		socket.on( "delete channel", ( data ) => {
@@ -38,6 +38,10 @@ module.exports = ( app, io ) => {
 
 		socket.on( "remove user from channel", ( data ) => {
 			channelSocketCtrl.removeUserFromChannel( data, io, socket );
+		} );
+
+		socket.on( "disconnected", () => {
+			channelSocketCtrl.disconnectUser( socket );
 		} );
 	} );
 };

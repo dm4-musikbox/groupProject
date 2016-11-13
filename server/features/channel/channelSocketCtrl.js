@@ -5,10 +5,21 @@ const Message = require( "./../message/Message.js" );
 const Genre = require( "./../genre/Genre.js" );
 
 const activeChannels = {};
+const activeUsers = {}
 
 module.exports =
 {
-	enterChannel( data, io, socket ) {
+	enterApp( data, io, socket ) {
+		let user = data.user;
+		activeUsers[ user.fullName ] = {
+			user,
+			socket
+		};
+		console.log( Object.keys( activeUsers ) );
+		socket.emit( 'app entered' );
+	}
+
+	, enterChannel( data, io, socket ) {
 		console.log( "enterChannel firing!" );
 
 		const channel = data.channel;
@@ -39,15 +50,16 @@ module.exports =
 
 			const channelId = data.channelId;
 			const userFullName = data.userFullName;
+
 			let channelStatus =	Object.assign( {}, activeChannels[ channelId ] );
 			for ( let prop in channelStatus.activeUsers ) {
 				delete channelStatus.activeUsers[ prop ].socket;
 			}
 
 			if ( activeChannels.hasOwnProperty( channelId ) ) {
-				delete activeChannels[ channelId ][ userFullName ];
+				delete activeChannels[ channelId ].activeUsers[ userFullName ];
 
-				if ( Object.keys( activeChannels[ channelId ].activeUsers ).length ) {
+				if ( !Object.keys( activeChannels[ channelId ].activeUsers ).length ) {
 					delete activeChannels[ channelId ];
 					channelStatus = {};
 					getChannelStatus( io, channelId, { message: "everyone has left the room." } );
@@ -59,7 +71,7 @@ module.exports =
 			socket.leave( channelId );
 		}
 		, addUserToChannel( data, io, socket ) {
-				console.log( "addUserFromChannel firing!" );
+				console.log( "addUserToChannel firing!", data );
 				const channelId = data.channelId,
 							userId = data.userId,
 							userType = data.userType;
@@ -69,27 +81,26 @@ module.exports =
 
 				if ( userType === 'member' ) {
 						channelUpdateObj = { $addToSet: { members: userId } };
-						userUpdateObj = { $addToSet: { memberInChannels: channelId } };
+						userUpdateObj = { $addToSet: { memberInChannels: { channel: channelId } } };
 				}
 				else if ( userType === 'admin' ) {
 						channelUpdateObj = { $addToSet: { admins: userId } };
-						userUpdateObj = { $addToSet: { adminInChannels: channelId } };
+						userUpdateObj = { $addToSet: { adminInChannels: { channel: channelId } } };
 				}
 				else if ( userType === 'invitedAsMember' ) {
 						channelUpdateObj = { $addToSet: { invitedAsMember: userId } };
-						userUpdateObj = { $addToSet: { invitedAsMember: channelId } };
+						userUpdateObj = { $addToSet: { invitedAsMember: { channel: channelId } } };
 				}
 				else if ( userType === 'invitedAsAdmin' ) {
 					channelUpdateObj = { $addToSet: { invitedAsAdmin: userId } };
-					userUpdateObj = { $addToSet: { invitedAsAdmin: channelId } };
+					userUpdateObj = { $addToSet: { invitedAsAdmin: { channel: channelId } } };
 				}
 
 				User.findOneAndUpdate( { _id: userId }, userUpdateObj, { new: true }, ( err, user ) => {
 					if ( err ) {
 						throw err;
 					}
-					console.log( user );
-					// getUpdatedUser( socket, userId, user );
+					getUpdatedUser( user );
 				} );
 				Channel.findOneAndUpdate( { _id: channelId }, channelUpdateObj, { new: true }, ( err, channel ) => {
 					if ( err ) {
@@ -102,34 +113,37 @@ module.exports =
 		, removeUserFromChannel( data, io, socket ) {
 			console.log( "removeUserFromChannel firing!" );
 			const channelId = data.channelId,
+						user = data.user,
 						userId = data.userId,
 						userType = data.userType;
+
+						console.log( data );
 
 			let channelUpdateObj,
 					userUpdateObj;
 
 			if ( userType === 'member' ) {
 					channelUpdateObj = { $pull: { members: userId } };
-					userUpdateObj = { $pull: { memberInChannels: channelId } };
+					userUpdateObj = { $pull: { memberInChannels: { channel: channelId } } };
 			}
 			else if ( userType === 'admin' ) {
 					channelUpdateObj = { $pull: { admins: userId } };
-					userUpdateObj = { $pull: { adminInChannels: channelId } };
+					userUpdateObj = { $pull: { adminInChannels: { channel: channelId } } };
 			}
 			else if ( userType === 'invitedAsMember' ) {
 					channelUpdateObj = { $pull: { invitedAsMember: userId } };
-					userUpdateObj = { $pull: { invitedAsMember: channelId } };
+					userUpdateObj = { $pull: { invitedAsMember: { channel: channelId } } };
 			}
 			else if ( userType === 'invitedAsAdmin' ) {
 					channelUpdateObj = { $pull: { invitedAsAdmin: userId } };
-					userUpdateObj = { $pull: { invitedAsAdmin: channelId } };
+					userUpdateObj = { $pull: { invitedAsAdmin: { channel: channelId } } };
 			}
 
 			User.findOneAndUpdate( { _id: userId }, userUpdateObj, { new: true }, ( err, user ) => {
 				if ( err ) {
 					throw err;
 				}
-				// getUpdatedUser( socket, userId, user );
+				getUpdatedUser( user );
 			} );
 
 			Channel.findOneAndUpdate( { _id: channelId }, channelUpdateObj, { new: true }, ( err, channel ) => {
@@ -145,15 +159,15 @@ module.exports =
 					 if ( err ) {
 						 return res.status( 400 ).send( err );
 					 }
-					 	User.findByIdAndUpdate( channel.createdBy._id, { $pull: { createdChannels: channel._id } } );
+					 	User.findByIdAndUpdate( channel.createdBy._id, { $pull: { createdChannels: { channel: channel._id } } } );
 						channel.genres.forEach( genre => {
 								Genre.findOneAndUpdate( { displayName: genre }, { $pull: { channels: channel._id } } );
 						} );
 						channel.admins.forEach( admin => {
-								User.findById( admin._id, { $pull: { adminInChannels: channel._id } } );
+								User.findById( admin._id, { $pull: { adminInChannels: { channel: channel._id } } } );
 						} );
 						channel.members.forEach( member => {
-								User.findById( member._id, { $pull: { memberInChannels: channel._id } } );
+								User.findById( member._id, { $pull: { memberInChannels: { channel: channel._id } } } );
 						} );
 						channel.channelMessages.forEach( message => {
 								Message.findByIdAndRemove( message._id );
@@ -162,10 +176,10 @@ module.exports =
 								Recording.findByIdAndRemove( recording._id );
 						} );
 						channel.invitedAsAdmin.forEach( admin => {
-								User.findById( admin._id, { $pull: { invitedAsAdmin: channel._id } } );
+								User.findById( admin._id, { $pull: { invitedAsAdmin: { channel: channel._id } } } );
 						} );
 						channel.invitedAsMember.forEach( member => {
-								User.findById( member._id, { $pull: { invitedAsMember: channel._id } } );
+								User.findById( member._id, { $pull: { invitedAsMember: { channel: channel._id } } } );
 						} );
 
 						Channel.findByIdAndRemove( channel._id, ( err, response ) => {
@@ -173,10 +187,40 @@ module.exports =
 						} )
 				 } );
 		 }
+		 , disconnectUser( socket ) {
+			 	for ( let channelProp in activeChannels ) {
+						for ( let activeUserProp in activeChannels[ channelProp ] ) {
+								if ( activeChannels[ channelProp ].activeUsers[ activeUserProp ].socket = socket ) {
+										delete activeChannels[ channelProp ].activeUsers[ activeUserProp ];
+								}
+						}
+						for ( let activeUserProp in activeChannels[ channelProp ] ) {
+								if ( activeChannels[ channelProp ].activeUsers[ activeUserProp ].socket = socket ) {
+										delete activeChannels[ channelProp ].activeUsers[ activeUserProp ];
+								}
+						}
+				}
+
+				for ( let prop in activeUsers ) {
+						if ( activeUsers[ prop ].socket = socket ) {
+								delete activeUsers[ prop ];
+						}
+				}
+		 }
+		 , getActiveUsersInChannel( channelId ) {
+			 	console.log( channelId );
+				return activeChannels[ channelId ].activeUsers;
+		 }
+		 , getAllActiveUsers() {
+			 	return activeUsers;
+		 }
 };
 
-function getUpdatedUser( socket, userId, user ) {
-	socket.emit( "get user", user );
+function getUpdatedUser( user ) {
+	if ( activeUsers.hasOwnProperty( user.fullName ) ) {
+		let socket = activeUsers[ user.fullName ].socket;
+		socket.emit( "get user", user );
+	}
 }
 
 function getUpdatedChannel( io, channelId, channel ) {

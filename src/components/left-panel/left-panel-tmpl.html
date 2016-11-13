@@ -29,72 +29,68 @@
                     add_circle_outline
                 </i>
             </a>
-        </div>
 
-        <!-- <div ng-if="$ctrl.user.createdChannels.length">
-            <span style="text-decoration: underline; font-style: italic">Created</span>
-            <ul>
-                <li
-                    ng-repeat="channelCreator in $ctrl.user.createdChannels"
-                    ui-sref="channel-view( { _id: channelCreator._id } )"
-                >
-                    {{ channelCreator.name }}
-                </li>
-            </ul>
-        </div> -->
+            <div ng-if="$ctrl.user.createdChannels.length">
+                <span style="text-decoration: underline; font-style: italic">Created</span>
+                <ul class="channel-title-font">
+                    <li
+                        ng-repeat="createdChannel in $ctrl.user.createdChannels"
+                        ui-sref="channel-view( { _id: createdChannel.channel._id } )"
+                    >
+                        {{ createdChannel.channel.name }}
+                    </li>
+                </ul>
+            </div>
 
-        <div ng-if="$ctrl.user.createdChannels.length">
-            <span style="text-decoration: underline; font-style: italic">Created</span>
-            <ul>
-                <li
-                    ng-repeat="createdChannel in $ctrl.user.createdChannels"
-                    ui-sref="channel-view( { _id: createdChannel._id } )"
-                >
-                    {{ createdChannel.name }}
-                </li>
-            </ul>
-        </div>
+            <div ng-if="$ctrl.user.adminInChannels.length">
+                <span style="text-decoration: underline; font-style: italic">Collaborations</span>
+                <ul class="channel-title-font">
+                    <li
+                        ng-class="{ isUpdated: channelAdmin.isUpdated }"
+                        ng-click="$ctrl.setIsUpdatedProp( channelAdmin.channel, $ctrl.user, 'admin', false )"
+                        ng-repeat="channelAdmin in $ctrl.user.adminInChannels"
+                        ui-sref="channel-view( { _id: channelAdmin.channel._id } )"
+                    >
+                        {{ channelAdmin.channel.name }}
+                    </li>
+                </ul>
+            </div>
 
-        <div ng-if="$ctrl.user.adminInChannels.length">
-            <span style="text-decoration: underline; font-style: italic">Collaborations</span>
-            <ul>
-                <li
-                    ng-repeat="channelAdmin in $ctrl.user.adminInChannels"
-                    ui-sref="channel-view( { _id: channelAdmin._id } )"
-                >
-                    {{ channelAdmin.name }}
-                </li>
-            </ul>
-        </div>
+            <div ng-if="$ctrl.user.memberInChannels.length">
+                <span style="text-decoration: underline; font-style: italic">Following</span>
+                <ul class="channel-title-font">
+                    <li
+                        ng-class="{ isUpdated: channelMember.isUpdated }"
+                        ng-click="$ctrl.setIsUpdatedProp( channelMember.channel, $ctrl.user, 'member', false )"
+                        ng-repeat="channelMember in $ctrl.user.memberInChannels"
+                        ui-sref="channel-view( { _id: channelMember.channel._id } )"
+                    >
+                        {{ channelMember.channel.name }}
+                    </li>
+                </ul>
+            </div>
 
-        <div ng-if="$ctrl.user.memberInChannels.length">
-            <span style="text-decoration: underline; font-style: italic">Following</span>
-            <ul>
-                <li
-                    ng-repeat="channelMember in $ctrl.user.memberInChannels"
-                    ui-sref="channel-view( { _id: channelMember._id } )"
-                >
-                    {{ channelMember.name }}
-                </li>
-            </ul>
-        </div>
-
-        <div ng-if="$ctrl.user.invitedAsAdmin.length || $ctrl.user.invitedAsMember.length">
-            <span style="text-decoration: underline; font-style: italic">Invites</span>
-            <ul>
-                <li
-                    ng-repeat="adminInvite in $ctrl.user.invitedAsAdmin"
-                    ui-sref="channel-view( { _id: adminInvite._id } )"
-                >
-                    {{ adminInvite.name }}
-                </li>
-                <li
-                    ng-repeat="memberInvite in $ctrl.user.invitedAsMember"
-                    ui-sref="channel-view( { _id: memberInvite._id } )"
-                >
-                    {{ memberInvite.name }}
-                </li>
-            </ul>
+            <div ng-if="$ctrl.user.invitedAsAdmin.length || $ctrl.user.invitedAsMember.length">
+                <span style="text-decoration: underline; font-style: italic">Invites</span>
+                <ul class="channel-title-font">
+                    <li
+                        ng-class="{ isUpdated: adminInvite.isUpdated }"
+                        ng-click="$ctrl.setIsUpdatedProp( adminInvite.channel, $ctrl.user, 'invitedAsAdmin', false )"
+                        ng-repeat="adminInvite in $ctrl.user.invitedAsAdmin"
+                        ui-sref="channel-view( { _id: adminInvite.channel._id } )"
+                    >
+                        {{ adminInvite.channel.name }}
+                    </li>
+                    <li
+                        ng-class="{ isUpdated: memberInvite.isUpdated }"
+                        ng-click="$ctrl.setIsUpdatedProp( memberInvite.channel, $ctrl.user, 'invitedAsMember', false )"
+                        ng-repeat="memberInvite in $ctrl.user.invitedAsMember"
+                        ui-sref="channel-view( { _id: memberInvite.channel._id } )"
+                    >
+                        {{ memberInvite.channel.name }}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 

@@ -5,6 +5,9 @@ function mainCtrl( $rootScope, authService, socketFactory, userService  ) {
 	this.$onInit = () => {
 		this.authService = authService;
 		this.isAuthenticated = $rootScope.isAuthenticated;
+		let data = {};
+		data.user = this.user;
+		socketFactory.emit( 'enter app', data );
 	};
 
 	this.$onChanges = ( changes ) => {
@@ -24,6 +27,10 @@ function mainCtrl( $rootScope, authService, socketFactory, userService  ) {
 	socketFactory.on( "get user", data => {
 		this.user = data;
 		console.log( 'updated user received: ', this.user );
+	} );
+
+	socketFactory.on( 'app entered', () => {
+		console.log( 'app entered' );
 	} );
 }
 

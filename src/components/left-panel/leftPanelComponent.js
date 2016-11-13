@@ -1,7 +1,7 @@
 import leftPanelHtml from "./left-panel-tmpl.html";
 import "./styles/sass/left-panel.scss";
 
-function leftPanelCtrl( $state, authService, channelService ) {
+function leftPanelCtrl( $state, authService, channelService, userService ) {
 	this.$onInit = () => {
 			this.channel = {
 					invitedAsAdmin: []
@@ -70,6 +70,10 @@ function leftPanelCtrl( $state, authService, channelService ) {
 						}
 						);
 	};
+
+	this.setIsUpdatedProp = ( channel, user, userType, setTo ) => {
+		userService.setIsUpdatedProp( channel, user, userType, setTo );
+	}
 }
 
 const leftPanelComponent = {

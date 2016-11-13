@@ -45,6 +45,17 @@ function userService( $http, ref, socketFactory ) {
 			return $http.get( `${ ref.url }/api/users` );
 	};
 
+	this.setIsUpdatedProp = ( channel, user, userType, setTo ) => {
+		const data =
+		{
+			channel
+			, setTo
+			, user
+			, userType
+		};
+		socketFactory.emit( "set isUpdated on channel", data );
+	};
+
 }
 
 export default userService;
