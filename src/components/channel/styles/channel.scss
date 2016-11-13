@@ -297,7 +297,108 @@ $purple: #2a0738;
           display: flex;
           margin-left: 67px;
         }
+  .myMic {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    background-color: #111;
+    opacity: .96;
+    overflow: hidden;
+    transition: .8s;
+    padding-top: 0px;
+    text-align:center;
+  }
+  .myMic a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+  .myMic a:hover {
+    color: #f1f1f1;
+  }
+  .myMic .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 
+  }
+  .mic-top-container {
+    height: 30vh;
+    width: 100%;
+  }
+  .mic-img-container {
+    display: table;
+    height: 70vh;
+    left: 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+  }
 
+  .animate-mic {
+    animation: myMove 2s;
+    animation-fill-mode: forwards;
+  }
+
+  .animate-mic-reverse {
+    animation: myMoveReverse 0.8s;
+    animation-fill-mode: forwards;
+  }
+  .rec-img {
+    height: 80px;
+    width: 80px;
+    margin-top: 40px;
+    margin-left: 50px;
+    background: url("http://41.media.tumblr.com/02a16e8f7c738069fc224bdebb9224bd/tumblr_inline_nqb3u1h8Ke1s0cufr_250.png");
+    background-size: contain;
+  }
+  .shadowFilter {
+    -webkit-filter: drop-shadow(0px 0px 0px rgba(255,0,0,0.10));
+    -webkit-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+  }
+  .shadowFilter:hover {
+    -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 0, 0, 0.9));
+  }
+  .mic-img {
+    height: 100%;
+    width: 100%;
+    background: url("http://www.penguinproducer.com/Blog/wp-content/uploads/2012/02/Microphone-e1329635815555.png") no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  @keyframes myMove {
+    from {bottom: -800px;}
+    to {bottom:0;}
+  }
+
+  @keyframes myMoveReverse {
+    from { bottom: 0px; }
+    to { bottom: -800px; }
+  }
+  // #record-button {
+  //   position: absolute;
+  //   bottom: 0;
+  //   right: 0;
+  //   margin-bottom: 40px;
+  //   margin-right: 50px;
+  //   width: 140px;
+  //   height: 48px;
+  //   border-radius: 12px;
+  //   color: white;
+  //   background-color: #a2001c;
+  //   border: none;
+  //   font-size: 20px;
+  // }
 
 }

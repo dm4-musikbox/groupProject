@@ -6,10 +6,10 @@ const genreRoutes = require( "./features/genre/genreRoutes.js" );
 const socketRoutes = require( "./features/socket/socketRoutes.js" );
 
 module.exports = ( app, binaryServer, io ) => {
-	userRoutes( app );
-	channelRoutes( app );
-	messageRoutes( app );
-	recordingRoutes( app );
-	genreRoutes( app );
+	userRoutes( app, io );
+	channelRoutes( app, io );
+	messageRoutes( app, io );
+	recordingRoutes( app, binaryServer, io );
+	genreRoutes( app, io );
 	socketRoutes( binaryServer, io );
 };

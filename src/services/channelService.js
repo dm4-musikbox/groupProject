@@ -7,14 +7,7 @@ function channelService( $http, ref, socketFactory ) {
 
 	this.createChannel = ( channel ) => {
 		console.log( channel );
-		if ( channel.invitedAsAdmin ) {
-			channel.invitedAsAdmin = channel.invitedAsAdmin.split( "," );
-		}
-		if ( channel.invitedAsMember ) {
-			channel.invitedAsMember = channel.invitedAsMember.split( "," );
-		}
 		return $http.post( `${ ref.url }/api/channels`, channel );
-
 	};
 
 	this.getChannelById = ( channelId ) => {
@@ -26,15 +19,17 @@ function channelService( $http, ref, socketFactory ) {
 								);
 	};
 
-	this.updateChannel = ( channel ) => {
-
+	this.deleteChannel = ( channelId ) => {
+		const data = {};
+		data.channelId = channelId;
+		socketFactory.emit( "delete channel", data );
 	};
 
 	this.enterChannel = ( channelId, userName ) => {
 		const data =
 			{
-				userName
-          	, channelId
+					channelId
+					, userName
 			};
 		socketFactory.emit( "enter channel", data );
 	};
@@ -42,28 +37,30 @@ function channelService( $http, ref, socketFactory ) {
 	this.leaveChannel = ( channelId, userName ) => {
 		const data =
 			{
-				userName
-          	, channelId
+					channelId
+					, userName
 			};
 		socketFactory.emit( "leave channel", data );
 	};
 
-	this.subscribeToChannel = ( channelId, userId ) => {
+	this.addUserToChannel = ( channelId, userId, userType ) => {
 		const data =
 			{
-				userId
-            , channelId
+					channelId
+					, userId
+					, userType
 			};
-		socketFactory.emit( "subscribe to channel", data );
+		socketFactory.emit( "add user to channel", data );
 	};
 
-	this.unsubscribeFromChannel = ( channelId, userId ) => {
+	this.removeUserFromChannel = ( channelId, userId, userType ) => {
 		const data =
 			{
-				userId
-            , channelId
+      		channelId
+					, userId
+					, userType
 			};
-		socketFactory.emit( "unsubscribe from channel", data );
+		socketFactory.emit( "remove user from channel", data );
 	};
 }
 
