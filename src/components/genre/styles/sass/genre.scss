@@ -97,9 +97,9 @@
   width: 100%;
   vertical-align: middle;
   text-align: center;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
+  -webkit-transition: all 100ms ease-out;
+  -moz-transition: all 100ms ease-out;
+  transition: all 100ms ease-out;
 }
 .artist-card:hover .hidden-words {
   opacity: 1;

@@ -20,31 +20,6 @@
            </div>
          </div>
 
-        <!-- <div class="cards-container" id="cards-container">
-            <div class="row" id="row" ng-repeat="( key, value ) in $ctrl.artistChannels | filter: $ctrl.filterArtists | groupBy:4">
-                <div class="col s2 m3" ng-repeat="channel in value | orderBy: 'channel.members.length' | reverse: true">
-                    <div class="card small">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="http://wallpaper.zone/img/852297.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">{{ channel.name }}<i class="material-icons right">keyboard_arrow_up</i></span>
-                            <div>
-                                {{ channel.members.length }}
-                                <span ng-if="channel.members.length !== 1">subscribers</span>
-                                <span ng-if="channel.members.length === 1">subscriber</span>
-                            </div>
-                            <p><a href ui-sref="channel-view( { _id: channel._id } )">Join Channel</a></p>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">{{ channel.name }}<i class="material-icons right">close</i></span>
-                            <p>{{ channel.description }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
         <div class="cards-container" id="genre-cards-container">
           <div class="row" id="row" ng-repeat="( key, value ) in $ctrl.artistChannels | filter: $ctrl.filterArtists | groupBy:4">
             <div class="col s2 m3" ng-repeat="channel in value | orderBy: 'channel.members.length' | reverse: true">

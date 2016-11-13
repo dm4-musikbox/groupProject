@@ -177,6 +177,18 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
 	this.wavesurfer.on( "ready", () => {
 		  // wavesurfer.play();
 	} );
+  this.openNav = () => {
+  angular.element( document.querySelector( '.mic-img-container' )  ).removeClass( 'animate-mic-reverse' );
+  document.getElementById("myBotMic").style.height = "100%";
+  angular.element( document.querySelector( '.mic-img-container' )  ).addClass( 'animate-mic' );
+
+  }
+
+  this.closeNav = () => {
+  angular.element( document.querySelector( '.mic-img-container' )  ).removeClass( 'animate-mic' );
+  angular.element( document.querySelector( '.mic-img-container' )  ).addClass( 'animate-mic-reverse' );
+  document.getElementById("myBotMic").style.height = "0";
+  }
 
 }
 

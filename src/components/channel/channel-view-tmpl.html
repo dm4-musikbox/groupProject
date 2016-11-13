@@ -141,6 +141,21 @@
       Show side-nav
   </a>  -->
 
+  <!-- microphone pop up -->
+  <div id="myBotMic" class="myMic">
+    <a href="javascript:void(0)" class="closebtn" ng-click="$ctrl.closeNav()">&times;</a>
+    <div class="mic-top-container">
+      <div class="rec-img shadowFilter">
+
+      </div>
+    </div>
+    <div class="mic-img-container">
+      <div class="mic-img">
+
+      </div>
+      <span><button type="button" id="record-button">Start</button></span>
+    </div>
+  </div>
 <!-- Message input -->
   <div
       class="footer"
@@ -151,7 +166,7 @@
       >
           <div id="mic-sec">
               <div id="mic-icon">
-                  <i class="material-icons md-32">mic_none</i>
+                  <i class="material-icons md-32" style="font-size: 30px; cursor:pointer" ng-click="$ctrl.openNav()">mic_none</i>
               </div>
           </div>
           <form id="message-form" ng-keypress="$ctrl.sendAndSaveMessage( $event, $ctrl.message )">
@@ -160,6 +175,9 @@
       </div>
 
   </div>
+
+
+<!-- footer channel invite / subscribe -->
   <div
       class="footer"
       ng-show="$ctrl.isUserAdminInvite || $ctrl.isUserMemberInvite"
