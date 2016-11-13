@@ -10,7 +10,7 @@ $purple: #2a0738;
 .channel-view{
   background-color: white;
   height: 100vh;
-  width: calc(121% - 220px);
+  width: 100%;
   float: left;
   .top-audio-player-container{
     width: 100%;
@@ -30,6 +30,12 @@ $purple: #2a0738;
           color: $purple;
         }
       }
+      #pause-button{
+        @extend #play-button;
+        .material-icons.md-72{
+        }
+      }
+
       .waves{
         width: 1000px;
         display: inline-block;
@@ -91,15 +97,16 @@ $purple: #2a0738;
       // position: relative;
         .row{
           .user-image-container{
-            width: 40px;
+            width: 57px;
             height: 50px;
             // display: inline-block;
             .user-image{
-              border-radius: 1.2rem;
+              border-radius: .3rem;
               width: auto;
               height: auto;
-              max-width: 2.75rem;
-              max-height: 2.75rem;
+              width: 45px;
+              height: 45px;
+              margin-top: 3px;
             }
           }
           .name-stamp{
@@ -199,18 +206,17 @@ $purple: #2a0738;
 
               }
             }
-          // }
-          .playlist{
-            a{
-              padding-left: 10px;
-              padding-right: 10px;
-              border-bottom: 1px solid;
-              border-color: rgba(0,0,0,0.5);
-              .material-icons.md-24{
-                margin-right: 8px;
-                color: cadetblue;
+        }
+        .playlist{
+          a{
+            padding-left: 10px;
+            padding-right: 10px;
+            border-bottom: 1px solid;
+            border-color: rgba(0,0,0,0.5);
+            .material-icons.md-24{
+              margin-right: 8px;
+              color: cadetblue;
             }
-          }
           }
         }
       }
@@ -289,7 +295,7 @@ $purple: #2a0738;
 
         .editable-buttons{
           display: flex;
-          margin-left: 46px;
+          margin-left: 67px;
         }
 
 

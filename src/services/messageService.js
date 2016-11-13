@@ -18,6 +18,8 @@ function messageService( socketFactory ) {
 	};
 
 	this.deleteMessage = ( messageId, channelId ) => {
+		console.log(messageId);
+		console.log(channelId);
 		const data = {
 			messageId
             , channelId

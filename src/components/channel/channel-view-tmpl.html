@@ -2,7 +2,8 @@
   <main class="channel-view">
   <section class="top-audio-player-container">
     <div class="top-audio-player">
-      <div id="play-button"><i class="material-icons md-72">play_circle_outline</i></div>
+      <div id="play-button" ng-show="!$ctrl.playing" ng-click="$ctrl.togglePlay()"><i class="material-icons md-72">play_circle_outline</i></div>
+      <div id="pause-button" ng-show="$ctrl.playing" ng-click="$ctrl.togglePlay()"><i class="material-icons md-72">pause_circle_outline</i></div>
         <div class="waves">
            <div id="waveform"></div>
         <!-- pause button
@@ -15,7 +16,7 @@
           <div class="channel-name">{{ $ctrl.channel.name }}</div>
           <div class="channel-description"><em>{{ $ctrl.channel.description }}</em></div>
         </div>
-        <div class="channe-buttons">
+        <div class="channel-buttons">
           <div id="side-nav-icon">
             <i class="material-icons md-24 button-collapse" data-activates="list-nav" data-sidenav="right" data-menuwidth="298" data-closeonclick="false">queue_music</i>
               <!-- Show side-nav -->
@@ -32,7 +33,7 @@
           <div class="user-name">
              Theo Beck -->
 
-    <section id="chat-window" scroll-glue="glued">
+    <section id="chat-window" scroll-glue="$ctrl.glued">
       <div
           class="message"
           ng-if="$ctrl.channel.channelMessages"
@@ -62,7 +63,7 @@
 
             <div class="tools">
               <i class="material-icons create" ng-click="editButton.$show()" ng-hide"editButton.$visible">create</i>
-              <i class="material-icons delete">clear</i>
+              <i class="material-icons delete" ng-click="$ctrl.deleteMessage( message._id, $ctrl.channel._id)">clear</i>
             </div>
           </div>
           </div>

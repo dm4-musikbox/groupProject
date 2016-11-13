@@ -1,10 +1,12 @@
 import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
+
 function channelCtrl( $scope, messageService, socketFactory, channelService ) {
   this.$onInit = () => {
     this.enterChannel();
-
+    this.glued = true;
+    this.playing = false;
   };
 
   this.$onChanges = ( changes ) => {
@@ -12,6 +14,15 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
       this.mainCtrl.updateCurrentUser()
       console.log( this.user );
   };
+
+  this.togglePlay = () => {
+    if( !this.playing ){
+      this.playing = true;
+    }
+    else {
+      this.playing = false;
+    }
+  }
 
   this.enterChannel = () => {
     channelService.enterChannel( this.channel._id, this.user.userName );
@@ -24,12 +35,20 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
       message.author = this.user._id
       message.type = "message";
       messageService.sendAndSaveMessage( message, this.channelId );
+      this.message.content = "";
     }
   };
 
+
+
+
+
   this.updateMessage = ( message, channelId ) => {
-    console.log("Im Running")
     messageService.updateMessage( message, channelId );
+  }
+
+  this.deleteMessage = ( messageId, channelId ) => {
+    messageService.deleteMessage( messageId, channelId );
   }
 
   socketFactory.on( "get channel", data => {
@@ -52,6 +71,8 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
 	$scope.playlist = playList.src;
 
 
+
+
 	const wavesurfer = WaveSurfer.create( {
 		container: "#waveform"
   , waveColor: "#F46036"
@@ -65,7 +86,7 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
 	wavesurfer.load( "http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3" );
 
 	wavesurfer.on( "ready", () => {
-		  // wavesurfer.play();
+		  wavesurfer.play();
 	} );
 
 	this.$onDestroy = () => {
