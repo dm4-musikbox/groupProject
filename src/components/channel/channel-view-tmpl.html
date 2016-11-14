@@ -231,7 +231,7 @@
                         <i
                             class="material-icons"
                             ng-if="$ctrl.isUserChannelCreator || $ctrl.isUserAdmin"
-                            ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, admin._id, 'admin' )"
+                            ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, admin._id, 'admin' ); $ctrl.isUserAdmin = !$ctrl.isUserAdmin"
                         >
                             remove_circle
                         </i>
