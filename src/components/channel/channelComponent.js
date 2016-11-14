@@ -2,7 +2,8 @@ import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
 
-function channelCtrl( $scope, messageService, socketFactory, channelService ) {
+
+function channelCtrl( $scope, messageService, socketFactory, channelService, recorderService ) {
   this.$onInit = () => {
       this.enterChannel();
       this.enterChannel();
@@ -183,6 +184,17 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
 	$scope.playlist = playList.src;
 
 
+// Record
+  recorderService.setCurrentUserAndChannel( this.user._id, this.user.fullName, this.channel._id );
+
+  this.startRecording = () => {
+    recorderService.startRecording();
+  }
+
+  this.stopRecording = () => {
+    this.closeNav();
+    recorderService.stopRecording()
+  }
 
 	this.wavesurfer = WaveSurfer.create( {
 		container: "#waveform"
@@ -194,11 +206,40 @@ function channelCtrl( $scope, messageService, socketFactory, channelService ) {
   , barWidth: 2
 	} );
 
-	this.wavesurfer.load( "http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3" );
-
 	this.wavesurfer.on( "ready", () => {
 		  wavesurfer.play();
 	} );
+
+  socketFactory.on( "get recording preview", data => {
+		this.recordingData = data;
+    this.wavesurfer.load( this.recordingData.url );
+
+    this.uploadAndSaveRecording = () => {
+      recorderService.uploadRecordingToS3( this.recordingData, this.user._id, this.channel._id );
+
+    };
+	} );
+
+  socketFactory.on( "get S3 data", data => {
+    console.log(data);
+    this.data = {
+            userId: this.user._id
+            , channelId: this.channel._id
+            , recording: {
+  createdBy: this.user._id
+                , description: ""
+                , s3ETag: data.ETag
+                , s3Location: data.Location
+                , s3Bucket: data.Bucket
+                , s3Key: data.Key
+}
+    };
+    socketFactory.emit( "save recording", this.data );
+  } );
+
+  // -----
+
+
   this.openNav = () => {
   angular.element( document.querySelector( '.mic-img-container' )  ).removeClass( 'animate-mic-reverse' );
   document.getElementById("myBotMic").style.height = "100%";

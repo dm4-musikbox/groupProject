@@ -6,6 +6,7 @@ $input-font: 'Slabo+27px';
 $newBlack: #120309;
 $logo-font: 'Roboto Slab';
 $purple: #2a0738;
+$blue: #039be5;
 
 .channel-view{
   background-color: white;
@@ -15,6 +16,7 @@ $purple: #2a0738;
   .top-audio-player-container{
     width: 100%;
     height: 10%;
+    display: inline-flex;
     .top-audio-player{
       width: 90%;
       margin-top: 20px;
@@ -43,7 +45,30 @@ $purple: #2a0738;
           height: 88px;
         }
       }
-    }
+   }
+   .recording-options{
+     display: flex;
+     flex-direction: column;
+     margin-top: 28px;
+     width: 40px;
+     margin-left: 26px;
+     .add-to-playlist-icon{
+       width: 100px;
+       .material-icons.ld-18{
+         font-size: 18px;
+         color: $blue;
+         cursor: pointer;
+       }
+     }
+     .cancel-recording-icon{
+       .material-icons.ld-18{
+         font-size: 18px;
+         margin-left: -2px;
+         color: $blue;
+         cursor: pointer;
+       }
+     }
+   }
   }
 
     .channel-nav{
@@ -145,7 +170,7 @@ $purple: #2a0738;
                   }
                   .material-icons.delete{
                     font-size: 15px;
-                    cursor: pointer
+                    cursor: pointer;
                   }
                 }
              }
@@ -297,6 +322,8 @@ $purple: #2a0738;
           display: flex;
           margin-left: 67px;
         }
+
+
   .myMic {
     height: 0;
     width: 100%;
@@ -360,6 +387,7 @@ $purple: #2a0738;
     margin-left: 50px;
     background: url("http://41.media.tumblr.com/02a16e8f7c738069fc224bdebb9224bd/tumblr_inline_nqb3u1h8Ke1s0cufr_250.png");
     background-size: contain;
+    cursor: pointer;
   }
   .shadowFilter {
     -webkit-filter: drop-shadow(0px 0px 0px rgba(255,0,0,0.10));
@@ -377,6 +405,26 @@ $purple: #2a0738;
     background-position: center;
     background-size: contain;
   }
+
+  .stop-recording-container{
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    bottom: 40px;
+    left: 51px;
+    cursor: pointer;
+    z-index: 100;
+    .stop-recording-img{
+      height: 80px;
+      width: 80px;
+      background: url("https://static1.squarespace.com/static/56af6fa42b8ddebdc8740983/577bc79b725e258e705c2605/57913e8320099e4df6bd0a46/1469286851098/Stop-Button-EJfr6QcP-.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+
+
   @keyframes myMove {
     from {bottom: -800px;}
     to {bottom:0;}
