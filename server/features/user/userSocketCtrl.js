@@ -72,20 +72,6 @@ module.exports = {
                 }
             }
           }
-        // if ( setTo === false ) {
-        //   userToSave = user;
-        // }
-        // else {
-        //   userToSave = user.toObject();
-        // }
-        // delete userToSave._id;
-        // console.log( 'userToSave is ', userToSave );
-        // User.findOneAndUpdate( { _id: user._id }, { $set: userToSave }, { new: true }, ( err, user ) => {
-        //     if ( socket ) {
-        //         socket.emit( 'get user', user );
-        //     }
-        //     console.log( 'updated user is: ', user );
-        // } );
 
           userToSave = user;
           userToSave.save( ( err, user ) => {

@@ -3,55 +3,57 @@ import "./styles/channel.scss";
 
 function channelCtrl( $scope, $state, messageService, socketFactory, channelService ) {
   this.$onInit = () => {
-      this.enterChannel();
-      this.isUserMember = false;
-      this.isUserAdmin = false;
-      this.isUserChannelCreator = false;
-      this.isUserMemberInvite = false;
-      this.isUserAdminInvite = false;
-      this.isUserAnon = true;
+      if ( this.channel ) {
+        this.enterChannel();
+        this.isUserMember = false;
+        this.isUserAdmin = false;
+        this.isUserChannelCreator = false;
+        this.isUserMemberInvite = false;
+        this.isUserAdminInvite = false;
+        this.isUserAnon = true;
 
-      for ( let i = 0; i < this.channel.members.length; i++ ) {
-          if ( this.channel.members[ i ]._id === this.user._id ) {
-              this.isUserMember = true;
-              this.isUserAnon = false;
-          }
-      }
+        for ( let i = 0; i < this.channel.members.length; i++ ) {
+            if ( this.channel.members[ i ]._id === this.user._id ) {
+                this.isUserMember = true;
+                this.isUserAnon = false;
+            }
+        }
 
-      for ( let i = 0; i < this.channel.admins.length; i++ ) {
-          if ( this.channel.admins[ i ]._id === this.user._id ) {
-              this.isUserAdmin = true;
-              this.isUserAnon = false;
-          }
-      }
+        for ( let i = 0; i < this.channel.admins.length; i++ ) {
+            if ( this.channel.admins[ i ]._id === this.user._id ) {
+                this.isUserAdmin = true;
+                this.isUserAnon = false;
+            }
+        }
 
-      for ( let i = 0; i < this.channel.invitedAsMember.length; i++ ) {
-          if ( this.channel.invitedAsMember[ i ] === this.user._id ) {
-              this.isUserMemberInvite = true;
-              this.isUserAnon = false;
-          }
-      }
+        for ( let i = 0; i < this.channel.invitedAsMember.length; i++ ) {
+            if ( this.channel.invitedAsMember[ i ] === this.user._id ) {
+                this.isUserMemberInvite = true;
+                this.isUserAnon = false;
+            }
+        }
 
-      for ( let i = 0; i < this.channel.invitedAsAdmin.length; i++ ) {
-          if ( this.channel.invitedAsAdmin[ i ] === this.user._id ) {
-              this.isUserAdminInvite = true;
-              this.isUserAnon = false;
-          }
-      }
+        for ( let i = 0; i < this.channel.invitedAsAdmin.length; i++ ) {
+            if ( this.channel.invitedAsAdmin[ i ] === this.user._id ) {
+                this.isUserAdminInvite = true;
+                this.isUserAnon = false;
+            }
+        }
 
-      if ( this.channel.createdBy._id === this.user._id ) {
-          this.isUserChannelCreator = true;
-          this.isUserAnon = false;
-      }
+        if ( this.channel.createdBy._id === this.user._id ) {
+            this.isUserChannelCreator = true;
+            this.isUserAnon = false;
+        }
 
-      if ( this.channel.type === 'private' && this.isUserAnon === true ) {
-          console.log( 'You do not have access to this channel.' );
-          $state.go( 'genres-view' );
-      }
-      // console.log( this.isUserMember, this.isUserAdmin, this.isUserChannelCreator, this.isUserMemberInvite, this.isUserAdminInvite, this.isUserAnon );
+        if ( this.channel.type === 'private' && this.isUserAnon === true ) {
+            console.log( 'You do not have access to this channel.' );
+            $state.go( 'genres-view' );
+        }
+        // console.log( this.isUserMember, this.isUserAdmin, this.isUserChannelCreator, this.isUserMemberInvite, this.isUserAdminInvite, this.isUserAnon );
 
-      this.invitedAsAdmin = [];
-      this.invitedAsMember = [];
+        this.invitedAsAdmin = [];
+        this.invitedAsMember = [];
+    }
   };
 
   this.$onChanges = ( changes ) => {
@@ -67,7 +69,9 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
   };
 
   this.enterChannel = () => {
-      channelService.enterChannel( this.channel, this.user );
+      if ( this.channel ) {
+        channelService.enterChannel( this.channel, this.user );
+      }
   };
 
   this.leaveChannel = () => {

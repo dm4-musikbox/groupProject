@@ -155,37 +155,112 @@ module.exports =
 		}
 		, deleteChannel( data, io ) {
 				let channelId = data.channelId;
-				 Channel.findOne( { _id: channelId }, ( err, channel ) => {
-					 if ( err ) {
-						 return res.status( 400 ).send( err );
-					 }
-					 	User.findByIdAndUpdate( channel.createdBy._id, { $pull: { createdChannels: { channel: channel._id } } } );
-						channel.genres.forEach( genre => {
-								Genre.findOneAndUpdate( { displayName: genre }, { $pull: { channels: channel._id } } );
-						} );
-						channel.admins.forEach( admin => {
-								User.findById( admin._id, { $pull: { adminInChannels: { channel: channel._id } } } );
-						} );
-						channel.members.forEach( member => {
-								User.findById( member._id, { $pull: { memberInChannels: { channel: channel._id } } } );
-						} );
-						channel.channelMessages.forEach( message => {
-								Message.findByIdAndRemove( message._id );
-						} );
-						channel.channelRecordings.forEach( recording => {
-								Recording.findByIdAndRemove( recording._id );
-						} );
-						channel.invitedAsAdmin.forEach( admin => {
-								User.findById( admin._id, { $pull: { invitedAsAdmin: { channel: channel._id } } } );
-						} );
-						channel.invitedAsMember.forEach( member => {
-								User.findById( member._id, { $pull: { invitedAsMember: { channel: channel._id } } } );
-						} );
-
-						Channel.findByIdAndRemove( channel._id, ( err, response ) => {
-								io.to( channelId ).emit( "channel deleted", response );
-						} )
-				 } );
+				console.log( channelId );
+				Channel.findOneAndRemove( { _id: channelId }, ( err, response ) => {
+						io.to( channelId ).emit( "channel deleted", response );
+				} );
+				//  Channel
+				//  		.findOne( { _id: channelId } )
+				//  		.exec( ( err, channel ) => {
+				// 			 if ( err ) {
+				// 				 return res.status( 400 ).send( err );
+				// 			 }
+				// 			 console.log( channel );
+				// 				channel.genres.forEach( genre => {
+				// 						Genre.findOneAndUpdate( { displayName: genre }, { $pull: { channels: channelId } } );
+				// 				} );
+				 //
+				// 				channel.channelMessages.forEach( message => {
+				// 						Message.findByIdAndRemove( message._id );
+				// 				} );
+				 //
+				// 				channel.channelRecordings.forEach( recording => {
+				// 						Recording.findByIdAndRemove( recording._id );
+				// 				} );
+				 //
+				// 				channel.admins.forEach( admin => {
+				// 						User.findById( admin._id, ( err, user ) => {
+				// 								if ( err ) throw err;
+				// 								for ( let i = user.adminInChannels.length - 1; i >= 0 ; i-- ) {
+				// 										if ( user.adminInChannels[ i ].channel._id.toString() === channelId.toString() ) {
+				// 												user.adminInChannels.splice( i, 1 );
+				// 										}
+				// 								}
+				// 								let userToSave = user;
+				// 								userToSave.save( ( err, user ) => {
+				// 										console.log( 'channel deleted from admin', user );
+				// 								} );
+				// 						} );
+				// 				} );
+				 //
+				// 				channel.members.forEach( member => {
+				// 						User.findById( member._id, ( err, user ) => {
+				// 								if ( err ) throw err;
+				// 								for ( let i = user.memberInChannels.length - 1; i >= 0; i-- ) {
+				// 										if ( user.memberInChannels[ i ].channel._id.toString() === channelId.toString() ) {
+				// 												user.memberInChannels.splice( i, 1 );
+				// 										}
+				// 								}
+				// 								let userToSave = user;
+				// 								userToSave.save( ( err, user ) => {
+				// 										console.log( 'channel deleted from member', user );
+				// 								} );
+				// 						} );
+				// 				} );
+				 //
+				// 				channel.invitedAsAdmin.forEach( admin => {
+				// 						console.log( admin );
+				// 						User.findById( admin, ( err, user ) => {
+				// 								if ( err ) throw err;
+				// 								console.log( user.invitedAsAdmin, channelId );
+				// 								for ( let i = user.invitedAsAdmin.length - 1; i >= 0; i-- ) {
+				// 										if ( user.invitedAsAdmin[ i ].channel._id.toString() === channelId.toString() ) {
+				// 												user.invitedAsAdmin.splice( i, 1 );
+				// 										}
+				// 								}
+				// 								let userToSave = user;
+				// 								userToSave.save( ( err, user ) => {
+				// 										console.log( 'channel deleted from invitedAsAdmin', user );
+				// 								} );
+				// 						} );
+				// 				} );
+				// 				channel.invitedAsMember.forEach( member => {
+				// 						console.log( member );
+				// 						User.findById( member, ( err, user ) => {
+				// 								if ( err ) throw err;
+				// 								console.log( user.invitedAsMember, channelId );
+				// 								for ( let i = user.invitedAsMember.length - 1; i >= 0; i-- ) {
+				// 										if ( user.invitedAsMember[ i ].channel._id.toString() === channelId.toString() ) {
+				// 												user.invitedAsMember.splice( i, 1 );
+				// 										}
+				// 								}
+				// 								let userToSave = user;
+				// 								userToSave.save( ( err, user ) => {
+				// 										console.log( 'channel deleted from invitedAsMember', user );
+				// 								} );
+				// 						} );
+				// 				} );
+				 //
+				// 				User.findById( channel.createdBy._id, ( err, user ) => {
+				// 						if ( err ) throw err;
+				// 						console.log( 'created by', user );
+				// 						for ( let i = user.createdChannels.length - 1; i >= 0; i-- ) {
+				// 								if ( user.createdChannels[ i ].channel._id.toString() === channelId.toString() ) {
+				// 										user.createdChannels.splice( i, 1 );
+				// 								}
+				// 						}
+				// 						let userToSave = user;
+				// 						userToSave.save( ( err, user ) => {
+				// 								console.log( 'channel deleted from creator', user );
+				// 								// getUpdatedUser( user );
+				// 						} );
+				// 				} );
+				// 			} )
+					// .then( channel => {
+					// 	Channel.findByIdAndRemove( channelId, ( err, response ) => {
+					// 			io.to( channelId ).emit( "channel deleted", response );
+					// 	} );
+					// } )
 		 }
 		 , disconnectUser( socket ) {
 			 	for ( let channelProp in activeChannels ) {
