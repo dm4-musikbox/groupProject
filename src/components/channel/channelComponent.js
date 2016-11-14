@@ -111,7 +111,7 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
       invitedUsers.splice( userIndex, 1 );
   };
 
-  this.confirmInvites = () => {
+  this.confirmAndSendInvites = () => {
       let invitedUsers;
       if ( this.invitedAsAdmin.length ) {
           invitedUsers = this.invitedAsAdmin;

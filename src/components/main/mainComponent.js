@@ -41,7 +41,6 @@ const mainComponent = {
 		{
 			genreNames: '<'
 			, user: '<'
-			, users: '<'
 		}
 };
 
