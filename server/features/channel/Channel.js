@@ -1,11 +1,15 @@
 const mongoose = require( "mongoose" );
 const findOrCreate = require( "mongoose-findorcreate" );
+const User = require( "./../user/User.js" );
+const Message = require( "./../message/Message.js" );
+const Genre = require( "./../genre/Genre.js" );
 
 const Channel = new mongoose.Schema(
 	{
 		type: { type: String, enum: [ "public", "private" ], default: "private", required: true }
 		, name: { type: String, required: true }
 		, description: { type: String, required: true }
+		, photoUrl: { type: String }
 		, genres: [ { type: String, required: true } ]
 		, createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 		, admins: [ { type: mongoose.Schema.Types.ObjectId, ref: "User" } ]
@@ -51,6 +55,6 @@ Channel.plugin( findOrCreate );
 
 Channel
 		.pre( "findOne", autoPopulate )
-		.pre( "findOneAndUpdate", autoPopulate );
+		.pre( "findOneAndUpdate", autoPopulate )
 
 module.exports = mongoose.model( "Channel", Channel );

@@ -53,9 +53,6 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 														, genreNames: ( genreService ) => {
 																return genreService.getGenreNames().then( genreNames => genreNames.data );
 														}
-														, users: ( userService ) => {
-																return userService.getAllUsers().then( users => users.data );
-														}
 												}
 										, params:
 										{

@@ -11,17 +11,42 @@ const User = new mongoose.Schema(
 		, email: { type: String }
 		, genre: [ { type: String } ]
 		, photo: { type: String }
-		, createdChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
-		, adminInChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
-		, memberInChannels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
-		, invitedAsMember: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
-		, invitedAsAdmin: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
+		, createdChannels: [
+				{
+						channel: { type: mongoose.Schema.Types.ObjectId, ref: "Channel" }
+						, isUpdated: { type: Boolean, default: true }
+				}
+			]
+		, adminInChannels: [
+				{
+						channel: { type: mongoose.Schema.Types.ObjectId, ref: "Channel" }
+						, isUpdated: { type: Boolean, default: true }
+				}
+			]
+		, memberInChannels: [
+				{
+						channel: { type: mongoose.Schema.Types.ObjectId, ref: "Channel" }
+						, isUpdated: { type: Boolean, default: true }
+				}
+			]
+		, invitedAsMember: [
+				{
+						channel: { type: mongoose.Schema.Types.ObjectId, ref: "Channel" }
+						, isUpdated: { type: Boolean, default: true }
+				}
+		 ]
+		, invitedAsAdmin: [
+				{
+						channel: { type: mongoose.Schema.Types.ObjectId, ref: "Channel" }
+						, isUpdated: { type: Boolean, default: true }
+				}
+		]
 		, userLinks: [ { type: String, lowercase: true, trim: true } ]
 	}
 );
 
 function autoPopulate( next ) {
-	this.populate( "createdChannels adminInChannels memberInChannels invitedAsMember invitedAsAdmin" );
+	this.populate( "createdChannels.channel adminInChannels.channel memberInChannels.channel invitedAsMember.channel invitedAsAdmin.channel" );
 	next();
 }
 

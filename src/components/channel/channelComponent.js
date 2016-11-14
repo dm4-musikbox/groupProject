@@ -1,73 +1,71 @@
 import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
-
-
-function channelCtrl( $scope, messageService, socketFactory, channelService, recorderService ) {
+function channelCtrl( $scope, $state, messageService, socketFactory, channelService ) {
   this.$onInit = () => {
-      this.enterChannel();
-      this.enterChannel();
-      this.glued = true;
-      this.playing = false;
-      this.isUserMember = false;
-      this.isUserAdmin = false;
-      this.isUserChannelCreator = false;
-      this.isUserMemberInvite = false;
-      this.isUserAdminInvite = false;
-      this.isUserAnon = true;
+      if ( this.channel ) {
+        this.enterChannel();
+        this.isUserMember = false;
+        this.isUserAdmin = false;
+        this.isUserChannelCreator = false;
+        this.isUserMemberInvite = false;
+        this.isUserAdminInvite = false;
+        this.isUserAnon = true;
 
-      for ( let i = 0; i < this.channel.members.length; i++ ) {
-          if ( this.channel.members[ i ]._id === this.user._id ) {
-              this.isUserMember = true;
-              this.isUserAnon = false;
-          }
-      }
+        for ( let i = 0; i < this.channel.members.length; i++ ) {
+            if ( this.channel.members[ i ]._id === this.user._id ) {
+                this.isUserMember = true;
+                this.isUserAnon = false;
+            }
+        }
 
-      for ( let i = 0; i < this.channel.admins.length; i++ ) {
-          if ( this.channel.admins[ i ]._id === this.user._id ) {
-              this.isUserAdmin = true;
-              this.isUserAnon = false;
-          }
-      }
+        for ( let i = 0; i < this.channel.admins.length; i++ ) {
+            if ( this.channel.admins[ i ]._id === this.user._id ) {
+                this.isUserAdmin = true;
+                this.isUserAnon = false;
+            }
+        }
 
-      for ( let i = 0; i < this.channel.invitedAsMember.length; i++ ) {
-          if ( this.channel.invitedAsMember[ i ] === this.user._id ) {
-              this.isUserMemberInvite = true;
-              this.isUserAnon = false;
-          }
-      }
+        for ( let i = 0; i < this.channel.invitedAsMember.length; i++ ) {
+            if ( this.channel.invitedAsMember[ i ] === this.user._id ) {
+                this.isUserMemberInvite = true;
+                this.isUserAnon = false;
+            }
+        }
 
-      for ( let i = 0; i < this.channel.invitedAsAdmin.length; i++ ) {
-          if ( this.channel.invitedAsAdmin[ i ] === this.user._id ) {
-              this.isUserAdminInvite = true;
-              this.isUserAnon = false;
-          }
-      }
+        for ( let i = 0; i < this.channel.invitedAsAdmin.length; i++ ) {
+            if ( this.channel.invitedAsAdmin[ i ] === this.user._id ) {
+                this.isUserAdminInvite = true;
+                this.isUserAnon = false;
+            }
+        }
 
-      if ( this.channel.createdBy._id === this.user._id ) {
-          this.isUserChannelCreator = true;
-          this.isUserAnon = false;
-      }
+        if ( this.channel.createdBy._id === this.user._id ) {
+            this.isUserChannelCreator = true;
+            this.isUserAnon = false;
+        }
 
-      if ( this.channel.type === 'private' && this.isUserAnon === true ) {
-          console.log( 'You do not have access to this channel.' );
-          $state.go( 'genres-view' );
-      }
+        if ( this.channel.type === 'private' && this.isUserAnon === true ) {
+            console.log( 'You do not have access to this channel.' );
+            $state.go( 'genres-view' );
+        }
+        // console.log( this.isUserMember, this.isUserAdmin, this.isUserChannelCreator, this.isUserMemberInvite, this.isUserAdminInvite, this.isUserAnon );
 
-      console.log( this.isUserMember, this.isUserAdmin, this.isUserChannelCreator, this.isUserMemberInvite, this.isUserAdminInvite, this.isUserAnon );
-
-      this.invitedAsAdmin = [];
-      this.invitedAsMember = [];
+        this.invitedAsAdmin = [];
+        this.invitedAsMember = [];
+    }
   };
 
   this.$onChanges = ( changes ) => {
       console.log( 'changes are', changes );
       this.mainCtrl.updateCurrentUser();
-
   };
 
   this.$onDestroy = () => {
-      this.leaveChannel();
+      if ( this.channel ) {
+          this.leaveChannel();
+          socketFactory.removeAllListeners();
+      }
   };
 
   this.togglePlay = () => {
@@ -80,15 +78,18 @@ function channelCtrl( $scope, messageService, socketFactory, channelService, rec
   }
 
   this.enterChannel = () => {
-      channelService.enterChannel( this.channel._id, this.user.userName );
+      if ( this.channel ) {
+        channelService.enterChannel( this.channel, this.user );
+      }
   };
 
   this.leaveChannel = () => {
-      channelService.leaveChannel( this.channel._id, this.user.userName );
+      channelService.leaveChannel( this.channel._id, this.user.fullName );
   };
 
   this.deleteChannel = () => {
       channelService.deleteChannel( this.channel._id );
+      angular.element( document.querySelector( '#sidenav-overlay' ) ).css( 'opacity', '0' );
   };
 
   this.addUserToChannel = ( channelId, userId, userType ) => {
@@ -119,15 +120,15 @@ function channelCtrl( $scope, messageService, socketFactory, channelService, rec
       invitedUsers.splice( userIndex, 1 );
   };
 
-  this.confirmInvites = () => {
+  this.confirmAndSendInvites = () => {
       let invitedUsers;
       if ( this.invitedAsAdmin.length ) {
           invitedUsers = this.invitedAsAdmin;
-          invitedUsers.forEach( user => this.addUserToChannel( this.channel._id, user._id, 'invitedAsAdmin' ) );
+          invitedUsers.forEach( user => this.addUserToChannel( this.channel._id, user.originalObject._id, 'invitedAsAdmin' ) );
       }
       else if ( this.invitedAsMember.length ) {
-          invitedUsers = this.invitedAsUser;
-          invitedUsers.forEach( user => this.addUserToChannel( this.channel._id, user._id, 'invitedAsMember' ) );
+          invitedUsers = this.invitedAsMember;
+          invitedUsers.forEach( user => this.addUserToChannel( this.channel._id, user.originalObject._id, 'invitedAsMember' ) );
       }
   }
 
@@ -147,10 +148,6 @@ function channelCtrl( $scope, messageService, socketFactory, channelService, rec
     }
   };
 
-
-
-
-
   this.updateMessage = ( message, channelId ) => {
     messageService.updateMessage( message, channelId );
   }
@@ -161,6 +158,7 @@ function channelCtrl( $scope, messageService, socketFactory, channelService, rec
 
   socketFactory.on( "get channel", data => {
     this.channel = data;
+    this.mainCtrl.updateCurrentUser();
     console.log( "updated channel is: ", this.channel );
   } );
 
@@ -170,7 +168,11 @@ function channelCtrl( $scope, messageService, socketFactory, channelService, rec
   } );
 
   socketFactory.on( "channel deleted", data => {
-    console.log( "channel deleted", data );
+    this.mainCtrl.updateCurrentUser();
+    $state.reload();
+  } );
+
+  socketFactory.on( "redirect channel creator upon channel deletion", data => {
     $state.go( "genres-view" );
   } );
 
@@ -183,6 +185,15 @@ function channelCtrl( $scope, messageService, socketFactory, channelService, rec
 	playList.src = require( "./styles/imgs/webpack.jpg" );
 	$scope.playlist = playList.src;
 
+  this.wavesurfer = WaveSurfer.create( {
+    container: "#waveform"
+    , waveColor: "#F46036"
+    , progressColor: "#000"
+    , scrollParent: true
+    , hideScrollbar: true
+    , height: 81
+    , barWidth: 2
+  } );
 
 // Record
   recorderService.setCurrentUserAndChannel( this.user._id, this.user.fullName, this.channel._id );
@@ -232,7 +243,7 @@ function channelCtrl( $scope, messageService, socketFactory, channelService, rec
                 , s3Location: data.Location
                 , s3Bucket: data.Bucket
                 , s3Key: data.Key
-}
+            }
     };
     socketFactory.emit( "save recording", this.data );
   } );

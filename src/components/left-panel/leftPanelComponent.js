@@ -1,7 +1,7 @@
 import leftPanelHtml from "./left-panel-tmpl.html";
 import "./styles/sass/left-panel.scss";
 
-function leftPanelCtrl( $state, authService, channelService ) {
+function leftPanelCtrl( $state, authService, channelService, socketFactory, userService ) {
 	this.$onInit = () => {
 			this.channel = {
 					invitedAsAdmin: []
@@ -24,11 +24,13 @@ function leftPanelCtrl( $state, authService, channelService ) {
 	this.inviteAsAdmin = ( user ) => {
 			this.invitedAsAdmin.push( user );
 			this.channel.invitedAsAdmin.push( user.originalObject._id );
+			console.log( this.invitedAsAdmin );
 	};
 
 	this.inviteAsMember = ( user ) => {
 			this.invitedAsMember.push( user );
 			this.channel.invitedAsMember.push( user.originalObject._id );
+			console.log( this.invitedAsMember );
 	};
 
 	this.removeFromInvites = ( user, type ) => {
@@ -60,14 +62,18 @@ function leftPanelCtrl( $state, authService, channelService ) {
 	this.createChannel = ( channel ) => {
 		channel.createdBy = this.user._id;
 		channel.admins = [ this.user._id ];
-		channelService
-						.createChannel( channel )
-						.then( channel =>								{
-							this.clearInputs();
-							$state.go( "channel-view", { _id: channel.data._id } );
-						}
-						);
+		channelService.createChannel( channel );
 	};
+
+	this.setIsUpdatedProp = ( channel, user, userType, setTo ) => {
+		userService.setIsUpdatedProp( channel, user, userType, setTo );
+	}
+
+	socketFactory.on( 'channel created', ( data ) => {
+			this.clearInputs();
+			$state.go( "channel-view", { _id: data._id } );
+	} )
+
 }
 
 const leftPanelComponent = {

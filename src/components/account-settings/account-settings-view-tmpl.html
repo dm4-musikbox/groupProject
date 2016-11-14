@@ -33,6 +33,7 @@
             <div input-field>
                 <input
                     ng-model="$ctrl.updatedUser.photo"
+                    required
                     type="text"
                 >
                 <label>Avatar URL</label>
@@ -45,6 +46,7 @@
                     multiple
                     ng-model="$ctrl.updatedUser.genre"
                     ng-options="genreName.displayName as genreName.displayName for genreName in $ctrl.genreNames"
+                    required
                     watch
                 >
                 </select>
@@ -63,32 +65,6 @@
                 </textarea>
                 <label>Links</label>
             </div>
-
-            <ul
-                class="collection
-                      with-header
-                      account-settings-view-wrapper-channels-wrapper"
-
-            >
-                <li class="collection-header"><h4>Channels</h4></li>
-                <li
-                    class="collection-item"
-                    ng-repeat="channel in $ctrl.updatedUser.userChannels"
-                >
-                    <div>
-                        {{ channel.name }}
-                        <a
-                            class="secondary-content"
-                            href=""
-                            ng-click="$ctrl.unsubscribeFromChannel( channel )"
-                        >
-                            <i class="material-icons remove-circle">
-                                remove_circle
-                            </i>
-                        </a>
-                    </div>
-                </li>
-            </ul>
 
             <a
                 class="waves-effect waves-light btn"

@@ -7,7 +7,9 @@ function channelService( $http, ref, socketFactory ) {
 
 	this.createChannel = ( channel ) => {
 		console.log( channel );
-		return $http.post( `${ ref.url }/api/channels`, channel );
+		// return $http.post( `${ ref.url }/api/channels`, channel );
+		let data = channel;
+		socketFactory.emit( 'create channel', data );
 	};
 
 	this.getChannelById = ( channelId ) => {
@@ -25,20 +27,20 @@ function channelService( $http, ref, socketFactory ) {
 		socketFactory.emit( "delete channel", data );
 	};
 
-	this.enterChannel = ( channelId, userName ) => {
+	this.enterChannel = ( channel, user ) => {
 		const data =
 			{
-					channelId
-					, userName
+					channel
+					, user
 			};
 		socketFactory.emit( "enter channel", data );
 	};
 
-	this.leaveChannel = ( channelId, userName ) => {
+	this.leaveChannel = ( channelId, userFullName ) => {
 		const data =
 			{
 					channelId
-					, userName
+					, userFullName
 			};
 		socketFactory.emit( "leave channel", data );
 	};

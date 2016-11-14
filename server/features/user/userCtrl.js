@@ -20,12 +20,11 @@ module.exports = {
 	} );
 }
   , findSpecificUsers( req, res ) {
-		console.log( 'findSpecificUsers firing!', req.query.searchStr );
+		console.log( 'findSpecificUsers firing!' );
 	User.find( { fullName: { "$regex": req.query.searchStr, "$options": "i" } }, ( err, users ) => {
 		if ( err ) {
 			return res.status( 400 ).send( err );
 		}
-		console.log( users );
 		return res.status( 200 ).json( users );
 	} );
 }

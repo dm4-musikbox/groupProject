@@ -29,60 +29,68 @@
                     add_circle_outline
                 </i>
             </a>
-        </div>
 
-        <!-- <div ng-if="$ctrl.user.createdChannels.length">
-            <span style="text-decoration: underline; font-style: italic">Created</span>
-            <ul>
-                <li
-                    ng-repeat="channelCreator in $ctrl.user.createdChannels"
-                    ui-sref="channel-view( { _id: channelCreator._id } )"
-                >
-                    {{ channelCreator.name }}
-                </li>
-            </ul>
-        </div> -->
+            <div ng-if="$ctrl.user.createdChannels.length">
+                <span style="text-decoration: underline; font-style: italic">Created</span>
+                <ul class="channel-title-font">
+                    <li
+                        ng-repeat="createdChannel in $ctrl.user.createdChannels"
+                        ui-sref="channel-view( { _id: createdChannel.channel._id } )"
+                    >
+                        {{ createdChannel.channel.name }}
+                    </li>
+                </ul>
+            </div>
 
-        <div ng-if="$ctrl.user.adminInChannels.length">
-            <span style="text-decoration: underline; font-style: italic">Collaborations</span>
-            <ul>
-                <li
-                    ng-repeat="channelAdmin in $ctrl.user.adminInChannels"
-                    ui-sref="channel-view( { _id: channelAdmin._id } )"
-                >
-                    {{ channelAdmin.name }}
-                </li>
-            </ul>
-        </div>
+            <div ng-if="$ctrl.user.adminInChannels.length">
+                <span style="text-decoration: underline; font-style: italic">Collaborations</span>
+                <ul class="channel-title-font">
+                    <li
+                        ng-class="{ isUpdated: channelAdmin.isUpdated }"
+                        ng-click="$ctrl.setIsUpdatedProp( channelAdmin.channel, $ctrl.user, 'admin', false )"
+                        ng-repeat="channelAdmin in $ctrl.user.adminInChannels"
+                        ui-sref="channel-view( { _id: channelAdmin.channel._id } )"
+                    >
+                        {{ channelAdmin.channel.name }}
+                    </li>
+                </ul>
+            </div>
 
-        <div ng-if="$ctrl.user.memberInChannels.length">
-            <span style="text-decoration: underline; font-style: italic">Following</span>
-            <ul>
-                <li
-                    ng-repeat="channelMember in $ctrl.user.memberInChannels"
-                    ui-sref="channel-view( { _id: channelMember._id } )"
-                >
-                    {{ channelMember.name }}
-                </li>
-            </ul>
-        </div>
+            <div ng-if="$ctrl.user.memberInChannels.length">
+                <span style="text-decoration: underline; font-style: italic">Following</span>
+                <ul class="channel-title-font">
+                    <li
+                        ng-class="{ isUpdated: channelMember.isUpdated }"
+                        ng-click="$ctrl.setIsUpdatedProp( channelMember.channel, $ctrl.user, 'member', false )"
+                        ng-repeat="channelMember in $ctrl.user.memberInChannels"
+                        ui-sref="channel-view( { _id: channelMember.channel._id } )"
+                    >
+                        {{ channelMember.channel.name }}
+                    </li>
+                </ul>
+            </div>
 
-        <div ng-if="$ctrl.user.invitedAsAdmin.length || $ctrl.user.invitedAsMember.length">
-            <span style="text-decoration: underline; font-style: italic">Invites</span>
-            <ul>
-                <li
-                    ng-repeat="adminInvite in $ctrl.user.invitedAsAdmin"
-                    ui-sref="channel-view( { _id: adminInvite._id } )"
-                >
-                    {{ adminInvite.name }}
-                </li>
-                <li
-                    ng-repeat="memberInvite in $ctrl.user.invitedAsMember"
-                    ui-sref="channel-view( { _id: memberInvite._id } )"
-                >
-                    {{ memberInvite.name }}
-                </li>
-            </ul>
+            <div ng-if="$ctrl.user.invitedAsAdmin.length || $ctrl.user.invitedAsMember.length">
+                <span style="text-decoration: underline; font-style: italic">Invites</span>
+                <ul class="channel-title-font">
+                    <li
+                        ng-class="{ isUpdated: adminInvite.isUpdated }"
+                        ng-click="$ctrl.setIsUpdatedProp( adminInvite.channel, $ctrl.user, 'invitedAsAdmin', false )"
+                        ng-repeat="adminInvite in $ctrl.user.invitedAsAdmin"
+                        ui-sref="channel-view( { _id: adminInvite.channel._id } )"
+                    >
+                        {{ adminInvite.channel.name }}
+                    </li>
+                    <li
+                        ng-class="{ isUpdated: memberInvite.isUpdated }"
+                        ng-click="$ctrl.setIsUpdatedProp( memberInvite.channel, $ctrl.user, 'invitedAsMember', false )"
+                        ng-repeat="memberInvite in $ctrl.user.invitedAsMember"
+                        ui-sref="channel-view( { _id: memberInvite.channel._id } )"
+                    >
+                        {{ memberInvite.channel.name }}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -106,6 +114,7 @@
             <div input-field class="col s6 m6 l6">
                 <input
                     ng-model="$ctrl.channel.name"
+                    required
                     type="text"
                 >
                 <label>Name</label>
@@ -113,6 +122,7 @@
             <div input-field class="col s6 m6 l6">
                 <input
                     ng-model="$ctrl.channel.description"
+                    required
                     type="text"
                 >
                 <label>Description</label>
@@ -127,6 +137,7 @@
                     multiple
                     ng-model="$ctrl.channel.genres"
                     ng-options="genreName.displayName as genreName.displayName for genreName in $ctrl.genreNames"
+                    required
                     type="text"
                     watch
                 >
@@ -137,6 +148,7 @@
                 <select
                     material-select
                     ng-model="$ctrl.channel.type"
+                    required
                     type="text"
                 >
                     <option value="public">Public</option>
@@ -148,35 +160,32 @@
         <div class="row">
             <div
               angucomplete-alt
-              id="collaborators"
               class="col s6 m6 l6"
-              pause="400"
-              placeholder="Send invites to collaborators: (optional)"
-              selected-object="$ctrl.inviteAsAdmin"
               clear-selected="true"
-              remote-url="http://localhost:5000/api/users/find?searchStr="
-              title-field="fullName"
-              description-field="genre"
+              id="collaborators"
               image-field="photo"
               input-class="form-control form-control-small"
               minimum-length="1"
+              pause="400"
+              placeholder="Send invites to collaborators: (optional)"
+              remote-url="http://localhost:5000/api/users/find?searchStr="
+              selected-object="$ctrl.inviteAsAdmin"
+              title-field="fullName"
             >
-              <label>Send invites to collaborators: (optional)</label>
             </div>
             <div
               angucomplete-alt
-              id="collaborators"
               class="col s6 m6 l6"
+              clear-selected="true"
+              id="collaborators"
+              image-field="photo"
+              input-class="form-control form-control-small"
+              minimum-length="1"
               pause="400"
               placeholder="Send invites to listeners: (optional)"
               selected-object="$ctrl.inviteAsMember"
               remote-url="http://localhost:5000/api/users/find?searchStr="
               title-field="fullName"
-              description-field="genre"
-              image-field="photo"
-              input-class="form-control form-control-small"
-              minimum-length="1"
-              clear-selected="true"
             >
             </div>
         </div>
