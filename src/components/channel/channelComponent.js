@@ -68,6 +68,15 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
       }
   };
 
+  this.togglePlay = () => {
+    if( !this.playing ){
+      this.playing = true;
+    }
+    else {
+      this.playing = false;
+    }
+  }
+
   this.enterChannel = () => {
       if ( this.channel ) {
         channelService.enterChannel( this.channel, this.user );
@@ -135,12 +144,16 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
       message.author = this.user._id
       message.type = "message";
       messageService.sendAndSaveMessage( message, this.channel._id );
+      this.message.content = "";
     }
   };
 
   this.updateMessage = ( message, channelId ) => {
-    console.log("Im Running")
     messageService.updateMessage( message, channelId );
+  }
+
+  this.deleteMessage = ( messageId, channelId ) => {
+    messageService.deleteMessage( messageId, channelId );
   }
 
   socketFactory.on( "get channel", data => {
@@ -182,11 +195,75 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
     , barWidth: 2
   } );
 
-  this.wavesurfer.load( "http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3" );
+// Record
+  recorderService.setCurrentUserAndChannel( this.user._id, this.user.fullName, this.channel._id );
 
-  this.wavesurfer.on( "ready", () => {
-    // wavesurfer.play();
+  this.startRecording = () => {
+    recorderService.startRecording();
+  }
+
+  this.stopRecording = () => {
+    this.closeNav();
+    recorderService.stopRecording()
+  }
+
+	this.wavesurfer = WaveSurfer.create( {
+		container: "#waveform"
+  , waveColor: "#F46036"
+  , progressColor: "#000"
+  , scrollParent: true
+  , hideScrollbar: true
+  , height: 81
+  , barWidth: 2
+	} );
+
+	this.wavesurfer.on( "ready", () => {
+		  wavesurfer.play();
+	} );
+
+  socketFactory.on( "get recording preview", data => {
+		this.recordingData = data;
+    this.wavesurfer.load( this.recordingData.url );
+
+    this.uploadAndSaveRecording = () => {
+      recorderService.uploadRecordingToS3( this.recordingData, this.user._id, this.channel._id );
+
+    };
+	} );
+
+  socketFactory.on( "get S3 data", data => {
+    console.log(data);
+    this.data = {
+            userId: this.user._id
+            , channelId: this.channel._id
+            , recording: {
+  createdBy: this.user._id
+                , description: ""
+                , s3ETag: data.ETag
+                , s3Location: data.Location
+                , s3Bucket: data.Bucket
+                , s3Key: data.Key
+            }
+    };
+    socketFactory.emit( "save recording", this.data );
   } );
+
+  // -----
+
+
+  this.openNav = () => {
+  angular.element( document.querySelector( '.mic-img-container' )  ).removeClass( 'animate-mic-reverse' );
+  document.getElementById("myBotMic").style.height = "100%";
+  angular.element( document.querySelector( '.mic-img-container' )  ).addClass( 'animate-mic' );
+
+  }
+
+  this.closeNav = () => {
+  angular.element( document.querySelector( '.mic-img-container' )  ).removeClass( 'animate-mic' );
+  angular.element( document.querySelector( '.mic-img-container' )  ).addClass( 'animate-mic-reverse' );
+  document.getElementById("myBotMic").style.height = "0";
+  }
+
 }
 
 const channelComponent = {

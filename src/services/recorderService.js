@@ -33,7 +33,7 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
 		isRecording = false;
 		$window.audioStream.end();
 		audioCtx
-            .close()
+						.close()
             .then( () => console.log( "audioContext closed!" ) );
 	};
 
@@ -43,6 +43,7 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
             , userId
             , channelId
 		};
+		console.log( "Hello World")
 		socketFactory.emit( "upload recording to S3", data );
 	};
 

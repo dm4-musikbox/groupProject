@@ -43,7 +43,7 @@ module.exports = {
 	}
   , uploadRecordingToS3( data, io, socket ) {
     	console.log( "uploadRecordingToS3 firing!" );
-
+			console.log( data );
     	const s3obj = new AWS.S3();
     	const mp3FileName = `${ data.userId  }-preview.mp3`;
     	const mp3FilePath =  `${ __dirname  }/../../user-audio-previews/${  mp3FileName }`;

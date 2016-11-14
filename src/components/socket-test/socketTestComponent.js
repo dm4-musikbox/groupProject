@@ -72,6 +72,7 @@ function socketTestCtrl( channelService, messageService, recordingService, socke
 		this.channelStatus = data;
 	} );
 
+
     /**************************************************/
 
 	this.$onDestroy = () => {
