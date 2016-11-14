@@ -20,8 +20,12 @@ module.exports = ( app, io ) => {
 			channelSocketCtrl.enterApp( data, io, socket );
 		} );
 
+		socket.on( "create channel", ( data ) => {
+      channelSocketCtrl.createChannel( data, io, socket );
+		} );
+
 		socket.on( "delete channel", ( data ) => {
-      channelSocketCtrl.deleteChannel( data, io );
+      channelSocketCtrl.deleteChannel( data, io, socket );
 		} );
 
 		socket.on( "enter channel", ( data ) => {

@@ -19,6 +19,53 @@ module.exports =
 		socket.emit( 'app entered' );
 	}
 
+	, createChannel( data, io, socket ) {
+		const channelToCreate = data;
+
+		new Channel( channelToCreate ).save( ( err, channel ) => {
+			if ( err ) throw err;
+
+			console.log( 'channel created ', channel );
+			let channelId = channel._id;
+
+			if ( channel.type === "public" ) {
+				for ( let i = 0; i < channel.genres.length; i++ ) {
+					Genre.findOneAndUpdate( { displayName: channel.genres[ i ] }, { $addToSet: { channels: channelId } }, { new: true }, ( err, genre ) => {
+						if ( err ) {
+							return res.status( 500 ).json( err );
+						}
+					} );
+				}
+			}
+
+			channel.invitedAsAdmin.forEach( admin => {
+					// console.log( 'invitedAsAdmin', admin );
+					User.findByIdAndUpdate( admin, { $addToSet: { invitedAsAdmin: { channel: channelId } } }, { new: true }, ( err, user ) => {
+							// console.log( user );
+							if ( err ) throw err;
+							getUpdatedUser( user );
+					} );
+			} );
+			channel.invitedAsMember.forEach( member => {
+					User.findByIdAndUpdate( member, { $addToSet: { invitedAsMember: { channel: channelId } } }, { new: true }, ( err, user ) => {
+							// console.log( user );
+							if ( err ) throw err;
+							getUpdatedUser( user );
+					} );
+			} );
+
+			User.findOneAndUpdate( { _id: channel.createdBy }, { $addToSet: { createdChannels: { channel: channelId } } }, ( err, user ) => {
+				if ( err ) throw err;
+				User.findOneAndUpdate( { _id: channel.admins[ 0 ] }, { $addToSet: { adminInChannels: { channel: channelId } } }, ( err, user ) => {
+					if ( err ) throw err;
+					getUpdatedUser( user );
+				} );
+			} );
+
+			socket.emit( 'channel created', channel );
+		} );
+	}
+
 	, enterChannel( data, io, socket ) {
 		console.log( "enterChannel firing!" );
 
@@ -153,7 +200,7 @@ module.exports =
 				getUpdatedChannel( io, channelId, channel );
 			} );
 		}
-		, deleteChannel( data, io ) {
+		, deleteChannel( data, io, socket ) {
 				let channelId = data.channelId;
 				console.log( 'deleteChannel firing' );
 				Channel.findOne( { _id: channelId }, ( err, channel ) => {
@@ -203,6 +250,7 @@ module.exports =
 								console.log( 'waited 2000 ms' );
 								Channel.findByIdAndRemove( channelId, ( err, response ) => {
 										io.to( channelId ).emit( "channel deleted", response );
+										socket.emit( "redirect channel creator upon channel deletion", response );
 								} );
 						}, 500 );
 				} );

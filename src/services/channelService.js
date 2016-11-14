@@ -7,7 +7,9 @@ function channelService( $http, ref, socketFactory ) {
 
 	this.createChannel = ( channel ) => {
 		console.log( channel );
-		return $http.post( `${ ref.url }/api/channels`, channel );
+		// return $http.post( `${ ref.url }/api/channels`, channel );
+		let data = channel;
+		socketFactory.emit( 'create channel', data );
 	};
 
 	this.getChannelById = ( channelId ) => {

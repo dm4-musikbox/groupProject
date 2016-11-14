@@ -1,7 +1,7 @@
 import leftPanelHtml from "./left-panel-tmpl.html";
 import "./styles/sass/left-panel.scss";
 
-function leftPanelCtrl( $state, authService, channelService, userService ) {
+function leftPanelCtrl( $state, authService, channelService, socketFactory, userService ) {
 	this.$onInit = () => {
 			this.channel = {
 					invitedAsAdmin: []
@@ -62,18 +62,17 @@ function leftPanelCtrl( $state, authService, channelService, userService ) {
 	this.createChannel = ( channel ) => {
 		channel.createdBy = this.user._id;
 		channel.admins = [ this.user._id ];
-		channelService
-						.createChannel( channel )
-						.then( channel =>								{
-							this.clearInputs();
-							$state.go( "channel-view", { _id: channel.data._id } );
-						}
-						);
+		channelService.createChannel( channel );
 	};
 
 	this.setIsUpdatedProp = ( channel, user, userType, setTo ) => {
 		userService.setIsUpdatedProp( channel, user, userType, setTo );
 	}
+
+	socketFactory.on( 'channel created', ( data ) => {
+			this.clearInputs();
+			$state.go( "channel-view", { _id: data._id } );
+	} )
 
 }
 
