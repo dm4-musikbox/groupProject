@@ -26,6 +26,7 @@ function mainCtrl( $rootScope, authService, socketFactory, userService  ) {
 
 	socketFactory.on( "get user", data => {
 		this.user = data;
+		userService.setCurrentUser( this.user );
 		console.log( 'updated user received: ', this.user );
 	} );
 
