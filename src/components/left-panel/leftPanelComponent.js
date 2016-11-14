@@ -74,6 +74,7 @@ function leftPanelCtrl( $state, authService, channelService, userService ) {
 	this.setIsUpdatedProp = ( channel, user, userType, setTo ) => {
 		userService.setIsUpdatedProp( channel, user, userType, setTo );
 	}
+
 }
 
 const leftPanelComponent = {

@@ -16,7 +16,6 @@ module.exports = {
 						if ( err ) {
 							return res.status( 500 ).json( err );
 						}
-						console.log( "Channel added to genre ", genre );
 					} );
 				}
 			}

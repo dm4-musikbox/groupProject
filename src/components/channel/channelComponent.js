@@ -155,7 +155,6 @@ function channelCtrl( $scope, $state, messageService, socketFactory, channelServ
   } );
 
   socketFactory.on( "channel deleted", data => {
-    console.log( "channel deleted", data );
     this.mainCtrl.updateCurrentUser();
     $state.go( "genres-view" );
   } );
