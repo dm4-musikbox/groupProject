@@ -1,7 +1,7 @@
 import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
-function channelCtrl( $scope, $state, messageService, socketFactory, channelService ) {
+function channelCtrl( $scope, $state, messageService, recorderService, socketFactory, channelService ) {
   this.$onInit = () => {
       if ( this.channel ) {
         this.enterChannel();
