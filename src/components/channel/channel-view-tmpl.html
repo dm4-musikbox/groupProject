@@ -8,13 +8,13 @@
     <div class="top-audio-player">
       <div id="play-button"
            ng-show="!$ctrl.playing"
-           ng-click="$ctrl.wavesurfer.play()"
+           ng-click="$ctrl.playSong()"
       >
            <i class="material-icons md-72">play_circle_outline</i>
      </div>
       <div id="pause-button"
            ng-show="$ctrl.playing"
-           ng-click="$ctrl.togglePlay()"
+           ng-click="$ctrl.pauseSong()"
       >
            <i class="material-icons md-72">pause_circle_outline</i>
       </div>
@@ -141,8 +141,8 @@
     </div>
     <div class="playlist" ng-repeat="recording in $ctrl.channel.channelRecordings">
         <div class="song">
-          <i class="material-icons md-24" title="Play song" ng-click="$ctrl.playSong( recording.s3Location )">play_circle_filled</i> <div class="song-title"> {{ recording.dateCreated | date: "MM/dd/yyyy @ h:mma" }} </div>
-          <i class="material-icons delete-24" title="Delete song from playlist" ng-click="$ctrl.deleteRecording( recording, $ctrl.channel._id )">highlight_off</i>
+          <i class="material-icons md-24" title="Play song" ng-click="$ctrl.sendSong( recording.s3Location )">play_circle_filled</i> <div class="song-title"> Recorded {{ recording.dateCreated | date: "MM/dd/yyyy @ h:mma" }} </div>
+          <i class="material-icons delete-24" title="Delete song from playlist" ng-click="$ctrl.deleteRecording( recording, $ctrl.channel._id, $ctrl.user._id )">highlight_off</i>
         </div>
     </div>
   </div>

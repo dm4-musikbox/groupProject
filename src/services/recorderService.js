@@ -40,6 +40,9 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
 	};
 
 	this.uploadRecordingToS3 = ( recordingData, userId, channelId ) => {
+		if( recordingData = "" ){
+			return 
+		}
 		const data = {
 			recording: recordingData
             , userId
