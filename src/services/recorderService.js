@@ -7,9 +7,10 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
         , recorder
         , currentUserId
         , currentUserName
-        , currentChannel;
+        , currentChannel
+				, client;
 
-	const client = new BinaryClient( "ws://localhost:9000" );
+	// const client = new BinaryClient( "ws://localhost:9000" );
 
 	this.setCurrentUserAndChannel = ( userId, userName, channelId ) => {
 		currentUserId = userId;
@@ -18,6 +19,7 @@ function recorderService( $rootScope, $state, $window, socketFactory ) {
 	};
 
 	this.startRecording = () => {
+		client = new BinaryClient( "ws://localhost:9000" );
 		if ( !navigator.getUserMedia ) {
 			navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia || navigator.msGetUserMedia;
