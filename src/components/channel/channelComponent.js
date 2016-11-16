@@ -185,20 +185,29 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
 	playList.src = require( "./styles/imgs/webpack.jpg" );
 	$scope.playlist = playList.src;
 
-  this.wavesurfer = WaveSurfer.create( {
-    container: "#waveform"
-    , waveColor: "#F46036"
-    , progressColor: "#000"
-    , scrollParent: true
-    , hideScrollbar: true
-    , height: 81
-    , barWidth: 2
-  } );
+  // this.wavesurfer = WaveSurfer.create( {
+  //   container: "#waveform"
+  //   , waveColor: "#F46036"
+  //   , progressColor: "#000"
+  //   , scrollParent: true
+  //   , hideScrollbar: true
+  //   , height: 81
+  //   , barWidth: 2
+  // } );
 
-// Record
+// Recording
   recorderService.setCurrentUserAndChannel( this.user._id, this.user.fullName, this.channel._id );
 
   this.startRecording = () => {
+    this.wavesurfer = WaveSurfer.create( {
+      container: "#waveform"
+      , waveColor: "#F46036"
+      , progressColor: "#000"
+      , scrollParent: true
+      , hideScrollbar: true
+      , height: 81
+      , barWidth: 2
+    } );
     recorderService.startRecording();
   }
 
@@ -207,29 +216,24 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
     recorderService.stopRecording()
   }
 
-	this.wavesurfer = WaveSurfer.create( {
-		container: "#waveform"
-  , waveColor: "#F46036"
-  , progressColor: "#000"
-  , scrollParent: true
-  , hideScrollbar: true
-  , height: 81
-  , barWidth: 2
-	} );
-
-	this.wavesurfer.on( "ready", () => {
-		  wavesurfer.play();
-	} );
+	// this.wavesurfer.on( "ready", () => {
+	// 	  wavesurfer.play();
+	// } );
 
   socketFactory.on( "get recording preview", data => {
 		this.recordingData = data;
+    
     this.wavesurfer.load( this.recordingData.url );
 
     this.uploadAndSaveRecording = () => {
       recorderService.uploadRecordingToS3( this.recordingData, this.user._id, this.channel._id );
-
     };
 	} );
+
+    this.deletePreview = () => {
+      // this.wavesurfer.destroy();
+      $state.reload();
+    }
 
   socketFactory.on( "get S3 data", data => {
     console.log(data);
@@ -247,6 +251,8 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
     };
     socketFactory.emit( "save recording", this.data );
   } );
+
+
 
   // -----
 

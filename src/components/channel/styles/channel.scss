@@ -122,17 +122,20 @@ $blue: #039be5;
       // position: relative;
         .row{
           .user-image-container{
-            width: 57px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: .3rem;
             // display: inline-block;
-            .user-image{
-              border-radius: .3rem;
-              width: auto;
-              height: auto;
-              width: 45px;
-              height: 45px;
-              margin-top: 3px;
-            }
+            // .user-image{
+            //   border-radius: .3rem;
+            //   width: auto;
+            //   height: auto;
+            //   width: 45px;
+            //   height: 45px;
+            //   margin-top: 3px;
+            // }
           }
           .name-stamp{
             // display: inline-block;
@@ -233,18 +236,33 @@ $blue: #039be5;
             }
         }
         .playlist{
-          a{
-            padding-left: 10px;
-            padding-right: 10px;
-            border-bottom: 1px solid;
-            border-color: rgba(0,0,0,0.5);
-            .material-icons.md-24{
-              margin-right: 8px;
-              color: cadetblue;
+            height: auto;
+            .song{
+              padding-left: 10px;
+              padding-right: 10px;
+              padding-top: 10px;
+              padding-bottom: 10px;
+              border-bottom: 1px solid;
+              border-color: rgba(0,0,0,0.5);
+              width: 100%;
+              display: inline-flex;
+              align-items: center;
+              justify-content: space-between;
+              .material-icons.md-24{
+                margin-right: 8px;
+                color: cadetblue;
+              }
+              .song-title{
+                color: black;
+              }
+              .material-icons.delete-24{
+                margin-left: 8px;
+                color: #6B0F1A;
+              }
             }
           }
         }
-      }
+
 
 
        .footer{
