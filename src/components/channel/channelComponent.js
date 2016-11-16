@@ -53,6 +53,8 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
 
         this.invitedAsAdmin = [];
         this.invitedAsMember = [];
+
+        recorderService.setCurrentUserAndChannel( this.user._id, this.user.fullName, this.channel._id );
     }
   };
 
@@ -185,43 +187,49 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
 	playList.src = require( "./styles/imgs/webpack.jpg" );
 	$scope.playlist = playList.src;
 
-  this.wavesurfer = WaveSurfer.create( {
-    container: "#waveform"
-    , waveColor: "#F46036"
-    , progressColor: "#000"
-    , scrollParent: true
-    , hideScrollbar: true
-    , height: 81
-    , barWidth: 2
-  } );
+
 
 // Record
-  recorderService.setCurrentUserAndChannel( this.user._id, this.user.fullName, this.channel._id );
+
 
   this.startRecording = () => {
+    this.wavesurfer = WaveSurfer.create( {
+      container: "#waveform"
+      , waveColor: "#F46036"
+      , progressColor: "#000"
+      , scrollParent: true
+      , hideScrollbar: true
+      , height: 81
+      , barWidth: 2
+    } );
     recorderService.startRecording();
   }
 
   this.stopRecording = () => {
     this.closeNav();
-    recorderService.stopRecording()
-  }
+    recorderService.stopRecording();
+  };
 
-	this.wavesurfer = WaveSurfer.create( {
-		container: "#waveform"
-  , waveColor: "#F46036"
-  , progressColor: "#000"
-  , scrollParent: true
-  , hideScrollbar: true
-  , height: 81
-  , barWidth: 2
-	} );
+  this.cancelRecording = () => {
+    this.wavesurfer.destroy();
+  };
 
-	this.wavesurfer.on( "ready", () => {
-		  wavesurfer.play();
-	} );
+	// this.wavesurfer = WaveSurfer.create( {
+	// 	container: "#waveform"
+  // , waveColor: "#F46036"
+  // , progressColor: "#000"
+  // , scrollParent: true
+  // , hideScrollbar: true
+  // , height: 81
+  // , barWidth: 2
+	// } );
+  //
+	// this.wavesurfer.on( "ready", () => {
+	// 	  wavesurfer.play();
+	// } );
 
   socketFactory.on( "get recording preview", data => {
+    console.log( 'preview data is ', data );
 		this.recordingData = data;
     this.wavesurfer.load( this.recordingData.url );
 

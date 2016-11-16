@@ -2,6 +2,7 @@ const mongoose = require( "mongoose" );
 const Channel = require( "./Channel.js" );
 const User = require( "./../user/User.js" );
 const Message = require( "./../message/Message.js" );
+const Recording = require( "./../recording/Recording.js" );
 const Genre = require( "./../genre/Genre.js" );
 
 const activeChannels = {};
