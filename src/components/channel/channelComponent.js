@@ -1,7 +1,7 @@
 import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
-function channelCtrl( $scope, $state, messageService, recorderService, socketFactory, channelService ) {
+function channelCtrl( $scope, $state, messageService, recorderService, socketFactory, channelService, recordingService ) {
   this.$onInit = () => {
       if ( this.channel ) {
         this.enterChannel();
@@ -53,6 +53,8 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
 
         this.invitedAsAdmin = [];
         this.invitedAsMember = [];
+
+        recorderService.setCurrentUserAndChannel( this.user._id, this.user.fullName, this.channel._id );
     }
   };
 
@@ -185,18 +187,7 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
 	playList.src = require( "./styles/imgs/webpack.jpg" );
 	$scope.playlist = playList.src;
 
-  // this.wavesurfer = WaveSurfer.create( {
-  //   container: "#waveform"
-  //   , waveColor: "#F46036"
-  //   , progressColor: "#000"
-  //   , scrollParent: true
-  //   , hideScrollbar: true
-  //   , height: 81
-  //   , barWidth: 2
-  // } );
-
-// Recording
-  recorderService.setCurrentUserAndChannel( this.user._id, this.user.fullName, this.channel._id );
+// Record / Play functions
 
   this.startRecording = () => {
     this.wavesurfer = WaveSurfer.create( {
@@ -213,7 +204,31 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
 
   this.stopRecording = () => {
     this.closeNav();
-    recorderService.stopRecording()
+    recorderService.stopRecording();
+  };
+
+  this.cancelRecording = () => {
+    this.wavesurfer.destroy();
+  };
+
+  this.playSong = ( song ) => {
+    if ( this.wavesurfer ){
+      this.wavesurfer.destroy();
+    }
+    this.wavesurfer = WaveSurfer.create( {
+      container: "#waveform"
+      , waveColor: "#F46036"
+      , progressColor: "#000"
+      , scrollParent: true
+      , hideScrollbar: true
+      , height: 81
+      , barWidth: 2
+    } );
+    this.wavesurfer.load( song );
+  }
+
+  this.deleteRecording = ( recording, channelId ) => {
+    recordingService.deleteRecording( recording, channelId );
   }
 
 	// this.wavesurfer.on( "ready", () => {
@@ -221,8 +236,9 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
 	// } );
 
   socketFactory.on( "get recording preview", data => {
+    console.log( 'preview data is ', data );
 		this.recordingData = data;
-    
+
     this.wavesurfer.load( this.recordingData.url );
 
     this.uploadAndSaveRecording = () => {
