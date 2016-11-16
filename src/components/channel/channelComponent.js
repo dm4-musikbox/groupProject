@@ -1,7 +1,7 @@
 import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
-function channelCtrl( $scope, $state, messageService, recorderService, socketFactory, channelService ) {
+function channelCtrl( $scope, $state, messageService, recorderService, socketFactory, channelService, recordingService ) {
   this.$onInit = () => {
       if ( this.channel ) {
         this.enterChannel();
@@ -11,6 +11,9 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
         this.isUserMemberInvite = false;
         this.isUserAdminInvite = false;
         this.isUserAnon = true;
+        this.glued = true;
+        this.playing = false;
+        this.hasSong = false;
 
         for ( let i = 0; i < this.channel.members.length; i++ ) {
             if ( this.channel.members[ i ]._id === this.user._id ) {
@@ -70,14 +73,14 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
       }
   };
 
-  this.togglePlay = () => {
-    if( !this.playing ){
-      this.playing = true;
-    }
-    else {
-      this.playing = false;
-    }
-  }
+  // this.togglePlay = () => {
+  //   if( !this.playing ){
+  //     this.playing = true;
+  //   }
+  //   else {
+  //     this.playing = false;
+  //   }
+  // }
 
   this.enterChannel = () => {
       if ( this.channel ) {
@@ -187,12 +190,22 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
 	playList.src = require( "./styles/imgs/webpack.jpg" );
 	$scope.playlist = playList.src;
 
+// Record / Play functions
+  this.playSong = () => {
+    this.wavesurfer.play();
+    this.playing = true;
+  }
 
-
-// Record
-
+  this.pauseSong= () => {
+    this.playing = false;
+    this.wavesurfer.pause();
+  }
 
   this.startRecording = () => {
+    if ( this.wavesurfer ){
+      this.wavesurfer.destroy();
+    }
+
     this.wavesurfer = WaveSurfer.create( {
       container: "#waveform"
       , waveColor: "#F46036"
@@ -214,16 +227,29 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
     this.wavesurfer.destroy();
   };
 
-	// this.wavesurfer = WaveSurfer.create( {
-	// 	container: "#waveform"
-  // , waveColor: "#F46036"
-  // , progressColor: "#000"
-  // , scrollParent: true
-  // , hideScrollbar: true
-  // , height: 81
-  // , barWidth: 2
-	// } );
-  //
+  this.sendSong = ( song ) => {
+    if ( this.wavesurfer ){
+      this.wavesurfer.destroy();
+    }
+    this.wavesurfer = WaveSurfer.create( {
+      container: "#waveform"
+      , waveColor: "#F46036"
+      , progressColor: "#000"
+      , scrollParent: true
+      , hideScrollbar: true
+      , height: 81
+      , barWidth: 2
+    } );
+    this.wavesurfer.load( song );
+  }
+
+  this.deleteRecording = ( recording, channelId, userId ) => {
+    if ( recording.createdBy._id !== userId ){
+        return alert("You can only delete your own recordings.")
+    }
+    recordingService.deleteRecording( recording, channelId );
+  }
+
 	// this.wavesurfer.on( "ready", () => {
 	// 	  wavesurfer.play();
 	// } );
@@ -231,13 +257,20 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
   socketFactory.on( "get recording preview", data => {
     console.log( 'preview data is ', data );
 		this.recordingData = data;
+
     this.wavesurfer.load( this.recordingData.url );
 
     this.uploadAndSaveRecording = () => {
       recorderService.uploadRecordingToS3( this.recordingData, this.user._id, this.channel._id );
-
+      this.wavesurfer.destroy();
+      console.log("Recording Data" + this.recordingData)
     };
 	} );
+
+    // this.deletePreview = () => {
+    //   // this.wavesurfer.destroy();
+    //   $state.reload();
+    // }
 
   socketFactory.on( "get S3 data", data => {
     console.log(data);
@@ -255,6 +288,8 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
     };
     socketFactory.emit( "save recording", this.data );
   } );
+
+
 
   // -----
 
