@@ -11,9 +11,6 @@ function leftPanelCtrl( $state, authService, channelService, socketFactory, user
 			this.invitedAsAdmin = [];
 			this.invitedAsMember = [];
 
-			const image = document.createElement( "img" );
-			image.src = require( "./styles/imgs/circle-shape-outline.svg" );
-			this.circle = image.src;
 			this.authService = authService;
 	};
 
@@ -67,12 +64,21 @@ function leftPanelCtrl( $state, authService, channelService, socketFactory, user
 
 	this.setIsUpdatedProp = ( channel, user, userType, setTo ) => {
 		userService.setIsUpdatedProp( channel, user, userType, setTo );
-	}
+	};
+
+	this.itemClicked = ( $index ) => {
+			this.selectedIndex = $index;
+	};
 
 	socketFactory.on( 'channel created', ( data ) => {
 			this.clearInputs();
 			$state.go( "channel-view", { _id: data._id } );
-	} )
+	} );
+
+	socketFactory.on( 'get status of channel', ( data ) => {
+			this.channelStatus = data;
+			console.log( 'channel status is ', data );
+	} );
 
 }
 
