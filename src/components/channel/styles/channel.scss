@@ -50,7 +50,7 @@ $blue: #039be5;
    .recording-options{
      display: flex;
      flex-direction: column;
-     margin-top: 28px;
+     margin-top: 16px;
      width: 40px;
      margin-left: 26px;
      height: 48px;
@@ -207,13 +207,29 @@ $blue: #039be5;
                   display: inline-block;
                   float: right;
                   // visibility: hidden;
-                  .material-icons.create{
-                    font-size: 15px;
-                    cursor: pointer
-                  }
-                  .material-icons.delete{
-                    font-size: 15px;
-                    cursor: pointer;
+                  .btn-floating.btn-large.edit-message{
+                    background-color: red;
+                    max-width: 1.4rem;
+                    max-height: 1.4rem;
+                    .material-icons.create{
+                      font-size: 15px;
+                      color: white;
+                      position: absolute;
+                      top: -17px;
+                      left:-17px;
+                    }
+                }
+                  .btn-floating.btn-large.delete-message{
+                    background-color: red ;
+                    max-width: 1.4rem;
+                    max-height: 1.4rem;
+                    .material-icons.delete{
+                      font-size: 15px;
+                      color: white;
+                      position: absolute;
+                      top: -17px;
+                      left: -17px;
+                    }
                   }
                 }
              }
