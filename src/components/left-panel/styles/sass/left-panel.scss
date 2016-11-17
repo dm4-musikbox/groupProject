@@ -29,7 +29,7 @@
         // font-family: "Raleway";
         letter-spacing: 9px;
         padding-bottom: 3px;
-        margin-left: 13px;
+        margin-left: 18px;
         text-align: center;
         &:hover {
             cursor: pointer;
@@ -37,7 +37,7 @@
       }
       .lp-user{
         width: auto;
-        margin: 6px 13px 3px;
+        margin: 1px 20px 23px;
         font-size: 16px;
 
         .status-circle{
@@ -45,7 +45,7 @@
           height: 10px;
           margin-right: 3px;
           display: inline-block;
-          background-color: white;
+          background-color: #ffc107;
           border-radius: 50%;
 
           img{
@@ -69,9 +69,11 @@
 
           .channels-heading {
               font-family: "Raleway";
-              margin-left: 13px;
+              margin-left: 18px;
               padding-top: 1px;
               letter-spacing: 2.5px;
+              // color: #2a0738;
+              color: silver;
           }
 
           .add-circle-outline-link {
@@ -85,24 +87,27 @@
 
       .channel-links-wrapper {
           margin-top: 0.8em;
+          color: silver;
           .channel-list-wrapper {
             margin-bottom: 1em;
             .channel-subheading-font {
                 font-size: 13px;
-                font-weight: 100;
+                font-weight: 600;
                 font-family: "Raleway";
-                margin-left: 12px;
+                margin-left: 18px;
                 letter-spacing: 1px;
+                color: silver;
             }
 
             .channel-link {
-                padding-left: 13px;
+                padding-left: 25px;
                 border-radius: 2.8px;
                 transition: all 0.3 ease-in-out;
                 font-size: 18px;
                 letter-spacing: 1px;
                 font-family: "Raleway";
                 cursor: pointer;
+                // color: silver;
             }
 
             .hover-channel-link:hover {
@@ -121,10 +126,12 @@
 
   .highlight-selected-channel {
       background-color: #ffc107;
+      color: white;
   }
 
   .isUpdated {
-      font-weight: 900;
+      font-weight: 400;
+      color: white;
   }
 
   #create-channel-modal {
