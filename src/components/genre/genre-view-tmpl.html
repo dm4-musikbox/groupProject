@@ -1,6 +1,14 @@
 <section class="genre-grid-view">
-  <div class="genre-container" >
-    <header id="genre-header">
+  <div
+      class="genre-container"
+      ng-style="{
+        'background': 'linear-gradient(rgba(42, 7, 56, .08), rgba(42, 7, 56, .08))
+        , url( {{ $ctrl.genre.img }} )'
+        , 'background-size': 'cover'
+        , 'background-position': 'center center'
+      }"
+  >
+    <header id="genre-header" >
         {{ $ctrl.genre.displayName }}
     </header>
   </div>

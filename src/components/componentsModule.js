@@ -14,6 +14,7 @@ import artistsComponent from "./artists/artistsComponent.js";
 import popularComponent from "./popular/popularComponent.js";
 import createChannelModalComponent from "./create-channel-modal/createChannelModalComponent.js";
 import leftPanelComponent from "./left-panel/leftPanelComponent.js";
+import toggleClassDir from "./left-panel/toggle-class/toggleClassDir.js";
 import fileReadDir from "./../directives/file-read/fileReadDirective.js";
 // import playListComponent from "./playlist/playListComponent.js"
 
@@ -33,4 +34,5 @@ angular.module( "components", [] )
         .component( "popularComponent", popularComponent )
         // .component( "playListComponent", playlistComponent )
         .component( "accountSettingsComponent", accountSettingsComponent )
-        .directive( "fileReadDir", fileReadDir );
+        .directive( "fileReadDir", fileReadDir )
+        .directive( "toggleClassDir", toggleClassDir );

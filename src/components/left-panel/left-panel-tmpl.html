@@ -4,12 +4,12 @@
             id="lp-title"
             ui-sref="genres-view"
         >
-            muzikbox
+            MUSIKBOX
         </div>
 
         <div class="lp-user">
             <div class="status-circle">
-                <img src="{{ $ctrl.circle }}">
+                <!-- <img class="circle-background" src="{{ $ctrl.circle }}"> -->
             </div>
             <div
                 id="lp-user-name"
@@ -19,21 +19,34 @@
             </div>
         </div>
 
-        <div class="col">
-            <span><b>Channels</b></span>
-            <a href='#create-channel-modal'
-              modal
-              ng-click="this.showModalOverlay = !this.showModalOverlay"
-            >
-                <i class="material-icons">
-                    add_circle_outline
-                </i>
-            </a>
+        <div class="col channel-links-wrapper">
+            <div class="channels-heading-wrapper">
+                <span class="channels-heading">CHANNELS</span>
+                <a
+                  class="add-circle-outline-link"
+                  href='#create-channel-modal'
+                  modal
+                  ng-click="this.showModalOverlay = !this.showModalOverlay"
+                >
+                    <i class="material-icons add-circle-outline-button">
+                        add_circle_outline
+                    </i>
+                </a>
+            </div>
 
-            <div ng-if="$ctrl.user.createdChannels.length">
-                <span style="text-decoration: underline; font-style: italic">Created</span>
-                <ul class="channel-title-font">
+            <div
+                class="channel-list-wrapper"
+                ng-if="$ctrl.user.createdChannels.length"
+            >
+                <span class="channel-subheading-font">CREATED</span>
+                <ul>
                     <li
+                        channel-link-dir
+                        class="channel-link"
+                        ng-class="{
+                            'highlight-selected-channel': $ctrl.channelStatus.channel._id === createdChannel.channel._id
+                            , 'hover-channel-link': $ctrl.channelStatus.channel._id !== createdChannel.channel._id
+                        }"
                         ng-repeat="createdChannel in $ctrl.user.createdChannels"
                         ui-sref="channel-view( { _id: createdChannel.channel._id } )"
                     >
@@ -42,11 +55,20 @@
                 </ul>
             </div>
 
-            <div ng-if="$ctrl.user.adminInChannels.length">
-                <span style="text-decoration: underline; font-style: italic">Collaborations</span>
-                <ul class="channel-title-font">
+            <div
+                class="channel-list-wrapper"
+                ng-if="$ctrl.user.adminInChannels.length"
+            >
+                <span class="channel-subheading-font">COLLABORATIONS</span>
+                <ul>
                     <li
-                        ng-class="{ isUpdated: channelAdmin.isUpdated }"
+                        channel-link-dir
+                        class="channel-link"
+                        ng-class="{
+                            isUpdated: channelAdmin.isUpdated
+                            , 'highlight-selected-channel': $ctrl.channelStatus.channel._id === channelAdmin.channel._id
+                            , 'hover-channel-link': $ctrl.channelStatus.channel._id !== channelAdmin.channel._id
+                        }"
                         ng-click="$ctrl.setIsUpdatedProp( channelAdmin.channel, $ctrl.user, 'admin', false )"
                         ng-repeat="channelAdmin in $ctrl.user.adminInChannels"
                         ui-sref="channel-view( { _id: channelAdmin.channel._id } )"
@@ -56,11 +78,20 @@
                 </ul>
             </div>
 
-            <div ng-if="$ctrl.user.memberInChannels.length">
-                <span style="text-decoration: underline; font-style: italic">Following</span>
-                <ul class="channel-title-font">
+            <div
+                class="channel-list-wrapper"
+                ng-if="$ctrl.user.memberInChannels.length"
+            >
+                <span class="channel-subheading-font">FOLLOWING</span>
+                <ul>
                     <li
-                        ng-class="{ isUpdated: channelMember.isUpdated }"
+                        toggle-class-dir="highlight-selected-channel"
+                        class="channel-link"
+                        ng-class="{
+                            isUpdated: channelMember.isUpdated
+                            , 'highlight-selected-channel': $ctrl.channelStatus.channel._id === channelMember.channel._id
+                            , 'hover-channel-link': $ctrl.channelStatus.channel._id !== channelMember.channel._id
+                        }"
                         ng-click="$ctrl.setIsUpdatedProp( channelMember.channel, $ctrl.user, 'member', false )"
                         ng-repeat="channelMember in $ctrl.user.memberInChannels"
                         ui-sref="channel-view( { _id: channelMember.channel._id } )"
@@ -70,11 +101,19 @@
                 </ul>
             </div>
 
-            <div ng-if="$ctrl.user.invitedAsAdmin.length || $ctrl.user.invitedAsMember.length">
-                <span style="text-decoration: underline; font-style: italic">Invites</span>
-                <ul class="channel-title-font">
+            <div
+                class="channel-list-wrapper"
+                ng-if="$ctrl.user.invitedAsAdmin.length || $ctrl.user.invitedAsMember.length"
+            >
+                <span class="channel-subheading-font">Invites</span>
+                <ul>
                     <li
-                        ng-class="{ isUpdated: adminInvite.isUpdated }"
+                        channel-link-dir
+                        class="channel-link"
+                        ng-class="{
+                            isUpdated: adminInvite.isUpdated'
+                            , highlight-selected-channel': $ctrl.channelStatus.channel._id === adminInvite.channel._id
+                            , 'hover-channel-link': $ctrl.channelStatus.channel._id !== adminInvite.channel._id  }"
                         ng-click="$ctrl.setIsUpdatedProp( adminInvite.channel, $ctrl.user, 'invitedAsAdmin', false )"
                         ng-repeat="adminInvite in $ctrl.user.invitedAsAdmin"
                         ui-sref="channel-view( { _id: adminInvite.channel._id } )"
@@ -82,7 +121,13 @@
                         {{ adminInvite.channel.name }}
                     </li>
                     <li
-                        ng-class="{ isUpdated: memberInvite.isUpdated }"
+                        class="channel-link"
+                        channel-link-dir
+                        ng-class="{
+                            isUpdated: memberInvite.isUpdated
+                            , 'highlight-selected-channel': $ctrl.channelStatus.channel._id === memberInvite.channel._id
+                            , 'hover-channel-link': $ctrl.channelStatus.channel._id !== memberInvite.channel._id
+                        }"
                         ng-click="$ctrl.setIsUpdatedProp( memberInvite.channel, $ctrl.user, 'invitedAsMember', false )"
                         ng-repeat="memberInvite in $ctrl.user.invitedAsMember"
                         ui-sref="channel-view( { _id: memberInvite.channel._id } )"
