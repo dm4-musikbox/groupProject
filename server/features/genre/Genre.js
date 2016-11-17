@@ -4,6 +4,7 @@ const Genre = new mongoose.Schema( {
 	name: { type: String }
 		, displayName: { type: String }
     , description: { type: String }
+    , img: { type: String }
     , channels: [ { type: mongoose.Schema.Types.ObjectId, ref: "Channel" } ]
 } );
 
