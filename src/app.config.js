@@ -16,7 +16,7 @@ function config( $httpProvider, $stateProvider, $urlRouterProvider, jwtOptionsPr
 									}
             	, theme:
 									{
-										primaryColor: "#4d394b"
+										primaryColor: "#9B24CB"
 									}
 						}
 	} );

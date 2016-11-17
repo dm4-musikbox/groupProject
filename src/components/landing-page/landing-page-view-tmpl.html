@@ -1,4 +1,39 @@
-<div>
-    <h1>MuzikBox</h1>
-    <button class="btn btn-primary" ng-click="$ctrl.authService.login()">Log In</button>
+<div class="landing-page-wrapper">
+    <nav class="landing-page-wrapper-nav-wrapper">
+      <h4 class="landing-page-wrapper-musikbox-heading">MUSIKBOX</h4>
+      <div
+          class="landing-page-wrapper-login-button"
+          ng-click="$ctrl.authService.login()"
+      >
+          LOG IN
+      </div>
+    </nav>
+    <div slider class="slider fullscreen slider-wrapper">
+      <ul class="slides">
+        <li>
+          <div class="slide-1 slide-format"> <!-- random image -->
+            <div>
+              <h3 style="font-weight: 600">Welcome to <span class="musikbox-text">Musikbox</span></h3>
+              <h5 style="font-weight: 800" class="purple-subtext light text-lighten-3">Let's make music together</h5>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="slide-2 slide-format">
+            <div class="caption left-align">
+              <h3 style="font-weight: 600" class="thicken-text"><span class="musikbox-text">Collaborate</span> With Musicians</h3>
+              <h5 style="font-weight: 800" class="purple-subtext light text-lighten-3">Create music with others around the world</h5>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="slide-3 slide-format">
+            <div class="caption right-align">
+              <h3 style="font-weight: 600"><span class="musikbox-text">Join & Create</span> Music Channels</h3>
+              <h5 style="font-weight: 800" class="purple-subtext light text-lighten-3">Share your thoughts and inspire</h5>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
 </div>

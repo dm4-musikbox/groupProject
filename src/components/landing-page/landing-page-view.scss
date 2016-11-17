@@ -1,0 +1,53 @@
+.landing-page-wrapper {
+    height: 100vh;
+    width: 100vw;
+    letter-spacing: 2px;
+
+    &-nav-wrapper {
+        background-color: #9B24CB;
+        padding: 1.2em 2em 1em 2em;
+        height: 8vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        z-index: 997;
+    }
+
+    &-musikbox-heading {
+        letter-spacing: 9px;
+        color: white;
+    }
+
+    &-login-button {
+        cursor: pointer;
+    }
+
+    .musikbox-text {
+        color: #ffc107;
+        font-weight: 600;
+    }
+
+    .slide-1 {
+        background: linear-gradient( rgba(0,0,0,.32), rgba(0,0,0,.32) ), url( 'http://www.magic4walls.com/wp-content/uploads/2014/08/girls-twins-music-street-smilling-guitar-art-hd-wallpaper.jpg');
+        background-size: cover;
+    }
+
+    .slide-2 {
+        background: linear-gradient( rgba(0,0,0,.32), rgba(0,0,0,.32) ), url( 'https://echoesblog.files.wordpress.com/2012/11/little-people-3.jpg');
+        background-size: cover;
+    }
+
+    .slide-3 {
+        background: linear-gradient( rgba(0,0,0,.32), rgba(0,0,0,.32) ), url( 'http://p1.pichost.me/i/47/1710831.jpg');
+        background-size: cover;
+    }
+
+    .slide-format {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+}

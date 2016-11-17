@@ -248,6 +248,8 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
         return alert("You can only delete your own recordings.")
     }
     recordingService.deleteRecording( recording, channelId );
+    this.wavesurfer.destroy();
+    this.playing = false;
   }
 
 	// this.wavesurfer.on( "ready", () => {

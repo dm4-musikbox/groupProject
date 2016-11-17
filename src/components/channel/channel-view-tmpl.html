@@ -4,7 +4,14 @@
 </div>
 <div ng-show="$ctrl.channel">
   <main class="channel-view">
-  <section class="top-audio-player-container">
+  <section
+      class="top-audio-player-container"
+      ng-style="{
+        'background-image': 'url( {{ $ctrl.channel.photoUrl }} )'
+        , 'background-position': '50% 50%'
+        , 'background-size': 'cover'
+      }"
+  >
     <div class="top-audio-player">
       <div id="play-button"
            ng-show="!$ctrl.playing"
