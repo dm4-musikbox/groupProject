@@ -25,8 +25,8 @@
         </div>
     </div>
     <div class="recording-options">
-      <div class="add-to-playlist-icon"><i ng-click="$ctrl.uploadAndSaveRecording()" class="material-icons ld-18" title="Add song to playlist">playlist_add</i> </div>
-      <div class="cancel-recording-icon"><i ng-click="$ctrl.cancelRecording()" class="material-icons ld-18" title="Delete recording">clear</i></div>
+      <div class="add-to-playlist-icon"><a class="btn-floating btn-large waves-effect waves-light" title="Add song to playlist" ng-click="$ctrl.uploadAndSaveRecording()"><i  class="material-icons ld-18">playlist_add</i> </a> </div>
+      <div class="cancel-recording-icon"><a class="btn-floating btn-large waves-effect waves-light" title="Delete recording" ng-click="$ctrl.cancelRecording()"> <i  class="material-icons ld-18" >clear</i> </a></div>
     </div>
   </section>
     <div class="channel-nav">
@@ -36,22 +36,28 @@
         </div>
         <div class="channel-buttons">
           <div id="side-nav-icon">
-            <i class="material-icons md-24 button-collapse" data-activates="list-nav" data-sidenav="right" data-menuwidth="298" data-closeonclick="false">queue_music</i>
+            <a class="btn-floating btn-large waves-effect waves-light playlist"
+               data-activates="list-nav"
+               data-sidenav="right"
+               data-menuwidth="298"
+               data-closeonclick="false"
+               href="#"
+            >
+            <i class="material-icons">queue_music</i>
+            </a>
               <!-- Show side-nav -->
           </div>
           <div>
-            <i class="material-icons">
                 <a
-                    class="button-collapse"
+                    class="btn-floating btn-large waves-effect waves-light settings"
                     data-activates="channelSideNav"
                     data-closeonclick="false"
-                    data-menuwidth="300"
+                    data-menuwidth="298"
                     data-sidenav="right"
                     href="#"
                 >
-                    settings
+                    <i class="material-icons">settings</i>
                 </a>
-            </i>
           </div>
         </div>
     </div>
