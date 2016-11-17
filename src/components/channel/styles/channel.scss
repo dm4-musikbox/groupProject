@@ -26,6 +26,7 @@ $blue: #039be5;
       #play-button{
         display: inline-block;
         margin-left: 25px;
+        margin-bottom: 22px;
         .material-icons.md-72{
           font-size: 72px;
           cursor: pointer;
@@ -36,6 +37,7 @@ $blue: #039be5;
       #pause-button{
         @extend #play-button;
         .material-icons.md-72{
+            color: white;
         }
       }
 
@@ -44,13 +46,14 @@ $blue: #039be5;
         display: inline-block;
         #waveform{
           height: 88px;
+          margin-bottom: 22px;
         }
       }
    }
    .recording-options{
      display: flex;
      flex-direction: column;
-     margin-top: 16px;
+     margin-top: 45px;
      width: 40px;
      margin-left: 26px;
      height: 48px;
@@ -178,6 +181,8 @@ $blue: #039be5;
           }
           .name-stamp{
             // display: inline-block;
+            display: flex;
+            align-items: center;
               .user-name{
                 // position: absolute;
                 // top: 0px;
@@ -189,49 +194,76 @@ $blue: #039be5;
                }
                .time-stamp{
                  display: inline-block;
-                 width: 200px;
+                 width: 125px;
                  margin-left: 15px;
+                //  padding-top: 5px;
                 //  position: absolute;
                 //  top: 7px;
                 //  left: 160px;
                  color: $grey;
                  font-size: 12px;
                }
+               .tools{
+                 width: 60px;
+                 display: flex;
+                 justify-content: space-around;
+                 align-self: center;
+                 padding: 0 5px;
+                 float: right;
+                 opacity: 0;
+                 color: red;
+                 // visibility: hidden;
+                 &:hover {
+                     opacity: 1;
+                 }
+                 .material-icons.create{
+                   font-size: 15px;
+                   cursor: pointer
+                 }
+                 .material-icons.delete{
+                   font-size: 15px;
+                   cursor: pointer;
+                 }
+               }
+            //   .tools{
+            //     width: 3.2em;
+            //     display: flex;
+            //     align-self: center;
+            //     justify-content: space-between;
+            //     float: right;
+            //     opacity: 0;
+            //      &:hover {
+            //          opacity: 1;
+            //      }
+            //     .btn-floating.btn-large.edit-message{
+            //       background-color: red;
+            //       max-width: 1.4rem;
+            //       max-height: 1.4rem;
+            //       .material-icons.create{
+            //         font-size: 15px;
+            //         color: white;
+            //         position: absolute;
+            //         top: -17px;
+            //         left:-17px;
+            //       }
+            //     }
+            //     .btn-floating.btn-large.delete-message{
+            //       background-color: red ;
+            //       max-width: 1.4rem;
+            //       max-height: 1.4rem;
+            //       .material-icons.delete{
+            //         font-size: 15px;
+            //         color: white;
+            //         position: absolute;
+            //         top: -17px;
+            //         left: -17px;
+            //       }
+            //     }
+            //   }
              }
              .content{
                 display: inline-block;
                 width: 93%;
-
-                .tools{
-                  width: 60px;
-                  display: inline-block;
-                  float: right;
-                  // visibility: hidden;
-                  .btn-floating.btn-large.edit-message{
-                    background-color: red;
-                    max-width: 1.4rem;
-                    max-height: 1.4rem;
-                    .material-icons.create{
-                      font-size: 15px;
-                      color: white;
-                      position: absolute;
-                      top: -17px;
-                      left:-17px;
-                    }
-                }
-                  .btn-floating.btn-large.delete-message{
-                    background-color: red ;
-                    max-width: 1.4rem;
-                    max-height: 1.4rem;
-                    .material-icons.delete{
-                      font-size: 15px;
-                      color: white;
-                      position: absolute;
-                      top: -17px;
-                      left: -17px;
-                    }
-                  }
-                }
              }
             }
           }
@@ -274,7 +306,10 @@ $blue: #039be5;
             position: relative;
             margin: auto;
             height: 200px;
-            width:100%;
+            width: 100%;
+            // background: linear-gradient( rgba(155, 36, 203, .72), rgba(155, 36, 203, .52) ), url( './imgs/webpack.jpg');
+            background: linear-gradient( rgba(255, 193, 7, .72), rgba(255, 193, 7, .52) ), url( './imgs/webpack.jpg');
+            background-size: cover;
             .title{
               text-align: center;
               position: absolute;
@@ -285,10 +320,13 @@ $blue: #039be5;
               color: white;
               border: 4px solid white;
               background-color: rgba(0, 0, 0, 0.28);
-              font-family: monospace;
+              font-family: 'Raleway';
               .pic-container{
 
               }
+            }
+            #pic {
+
             }
         }
         .playlist{
@@ -306,7 +344,7 @@ $blue: #039be5;
               justify-content: space-between;
               .material-icons.md-24{
                 margin-right: 8px;
-                color: cadetblue;
+                color: #9B24CB;
                 cursor: pointer;
               }
               .song-title{
@@ -326,19 +364,22 @@ $blue: #039be5;
        .footer{
          height: 4%;
          width: 100%;
-         position: fixed;
+         position: absolute;
+         bottom: 29px;
          padding-bottom: 1em;
          .message-input-field{
            height: 42px;
            width: 77%;
            position: absolute;
-           left: 0.9rem;
+           left: 1.9rem;
            bottom: 1rem;
            top: .6rem;
            border: 2px solid $grey;
            border-radius: 6px;
            padding-bottom: 38px;
            display: flex;
+
+
            #mic-sec{
              width: 4%;
              height: 38px;
@@ -358,7 +399,8 @@ $blue: #039be5;
              width: 100%;
              #message-input{
                height: 42px;
-               font-family: $input-font;
+              //  font-family: $input-font;
+                font-family: 'Raleway';
                overflow-y: hidden;
                resize: none;
                border: 2px solid $grey;

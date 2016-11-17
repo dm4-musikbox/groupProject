@@ -31,7 +31,10 @@
         <i class="material-icons md-72">pause_circle_outline</i> -->
         </div>
     </div>
-    <div class="recording-options">
+    <div
+        class="recording-options"
+        ng-show="$ctrl.showRecordingOptions"
+    >
       <div class="add-to-playlist-icon"><a class="btn-floating btn-large waves-effect waves-light" title="Add song to playlist" ng-click="$ctrl.uploadAndSaveRecording()"><i  class="material-icons ld-18">playlist_add</i> </a> </div>
       <div class="cancel-recording-icon"><a class="btn-floating btn-large waves-effect waves-light" title="Delete recording" ng-click="$ctrl.cancelRecording()"> <i  class="material-icons ld-18" >clear</i> </a></div>
     </div>
@@ -88,13 +91,21 @@
           <div class="user-image-container col s1" style="background-image: url( {{message.author.photo}} )">
             <!-- <img class="user-image" src="{{ message.author.photo }}"/> -->
           </div>
-          <div class="name-stamp col s6">
+          <div class="name-stamp col">
             <div class="user-name">
                {{ message.author.userName || message.author.fullName }}
             </div>
             <div class="time-stamp">
               {{ message.timestamp | date: "MM/dd/yyyy '•' h:mma" }}
             </div>
+            <div class="tools">
+              <i class="material-icons create" title="Edit message" ng-click="editButton.$show()" ng-hide"editButton.$visible">create</i>
+              <i class="material-icons delete" title="Delete message" ng-click="$ctrl.deleteMessage( message._id, $ctrl.channel._id)">clear</i>
+            </div>
+            <!-- <div class="tools">
+              <a class="btn-floating btn-large waves-effect waves-light edit-message" title="Edit message" ng-click="editButton.$show()" ng-hide"editButton.$visible"><i class="material-icons create">create</i></a>
+              <a class="btn-floating btn-large waves-effect waves-light delete-message" title="Delete message" ng-click="$ctrl.deleteMessage( message._id, $ctrl.channel._id)"><i class="material-icons delete" >clear</i></a>
+            </div> -->
           </div>
           <div class="content col s10"
                editable-textarea="message.content"
@@ -106,10 +117,6 @@
 
             {{ message.content }}
 
-            <div class="tools">
-              <a class="btn-floating btn-large waves-effect waves-light edit-message" title="Edit message" ng-click="editButton.$show()" ng-hide"editButton.$visible"><i class="material-icons create">create</i></a>
-              <a class="btn-floating btn-large waves-effect waves-light delete-message" title="Delete message" ng-click="$ctrl.deleteMessage( message._id, $ctrl.channel._id)"><i class="material-icons delete" >clear</i></a>
-            </div>
           </div>
         </div>
       </div>
@@ -146,8 +153,9 @@
 <!-- Side Nav  -->
   <div id="list-nav" class="side-nav">
     <div class="title-section">
+    <!-- <div class="title-section" style="background: linear-gradient( rgba(155, 36, 203, .32), rgba(155, 36, 203, .32) ); z-index: 997"> -->
       <div class="title"> Channel </br> Playlist </div>
-      <img src="{{ playlist }}" id="pic" style="max-height: 204px; border-bottom: 5px solid cadetblue;"/>
+      <!-- <img src="{{ playlist }}" id="pic" style="max-height: 204px; border-bottom: 5px solid #9B24CB;"/> -->
       <div class="pic-container">
 
       </div>
@@ -220,6 +228,7 @@
           <a
               class="btn"
               href
+              style="background-color: #ffc107"
               ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'admin' );
                         $ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'invitedAsAdmin' );
                         $ctrl.isUserAdmin = !$ctrl.isUserAdmin;
@@ -230,6 +239,7 @@
           <a
               class="btn"
               href
+              style="background-color: #ffc107"
               ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'invitedAsAdmin' );
                         $ctrl.isUserAdminInvite = !$ctrl.isUserAdminInvite"
           >
@@ -241,6 +251,7 @@
           <a
               class="btn"
               href
+              style="background-color: #ffc107"
               ng-click="$ctrl.addUserToChannel( $ctrl.channel._id, $ctrl.user._id, 'member' );
                         $ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'invitedAsMember' );
                         $ctrl.isUserMember = !$ctrl.isUserMember;
@@ -251,6 +262,7 @@
           <a
               class="btn"
               href
+              style="background-color: #ffc107"
               ng-click="$ctrl.removeUserFromChannel( $ctrl.channel._id, $ctrl.user._id, 'invitedAsMember' );
                         $ctrl.isUserMemberInvite = !$ctrl.isUserMemberInvite"
           >
