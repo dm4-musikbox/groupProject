@@ -14,6 +14,7 @@ function channelCtrl( $interval, $scope, $state, messageService, recorderService
         this.glued = true;
         this.playing = false;
         this.hasSong = false;
+        this.showRecordingOptions = false;
 
         for ( let i = 0; i < this.channel.members.length; i++ ) {
             if ( this.channel.members[ i ]._id === this.user._id ) {
@@ -210,7 +211,7 @@ function channelCtrl( $interval, $scope, $state, messageService, recorderService
     this.wavesurfer = WaveSurfer.create( {
       container: "#waveform"
       , waveColor: "#F46036"
-      , progressColor: "#000"
+      , progressColor: "#FFFFFF"
       , scrollParent: true
       , hideScrollbar: true
       , height: 81
@@ -222,10 +223,12 @@ function channelCtrl( $interval, $scope, $state, messageService, recorderService
   this.stopRecording = () => {
     this.closeNav();
     recorderService.stopRecording();
+    this.showRecordingOptions = true;
   };
 
   this.cancelRecording = () => {
     this.wavesurfer.destroy();
+    this.showRecordingOptions = false;
   };
 
   this.sendSong = ( song ) => {
@@ -235,7 +238,7 @@ function channelCtrl( $interval, $scope, $state, messageService, recorderService
     this.wavesurfer = WaveSurfer.create( {
       container: "#waveform"
       , waveColor: "#F46036"
-      , progressColor: "#000"
+      , progressColor: "#FFFFFF"
       , scrollParent: true
       , hideScrollbar: true
       , height: 81
@@ -290,6 +293,7 @@ function channelCtrl( $interval, $scope, $state, messageService, recorderService
             }
     };
     socketFactory.emit( "save recording", this.data );
+    this.showRecordingOptions = false;
   } );
 
 
