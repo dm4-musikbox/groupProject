@@ -88,12 +88,16 @@
           <div class="user-image-container col s1" style="background-image: url( {{message.author.photo}} )">
             <!-- <img class="user-image" src="{{ message.author.photo }}"/> -->
           </div>
-          <div class="name-stamp col s6">
+          <div class="name-stamp col">
             <div class="user-name">
                {{ message.author.userName || message.author.fullName }}
             </div>
             <div class="time-stamp">
               {{ message.timestamp | date: "MM/dd/yyyy '•' h:mma" }}
+            </div>
+            <div class="tools">
+              <i class="material-icons create" title="Edit message" ng-click="editButton.$show()" ng-hide"editButton.$visible">create</i>
+              <i class="material-icons delete" title="Delete message" ng-click="$ctrl.deleteMessage( message._id, $ctrl.channel._id)">clear</i>
             </div>
           </div>
           <div class="content col s10"
@@ -105,11 +109,6 @@
           >
 
             {{ message.content }}
-
-            <div class="tools">
-              <i class="material-icons create" title="Edit message" ng-click="editButton.$show()" ng-hide"editButton.$visible">create</i>
-              <i class="material-icons delete" title="Delete message" ng-click="$ctrl.deleteMessage( message._id, $ctrl.channel._id)">clear</i>
-            </div>
           </div>
         </div>
       </div>

@@ -178,6 +178,8 @@ $blue: #039be5;
           }
           .name-stamp{
             // display: inline-block;
+            display: flex;
+            align-items: center;
               .user-name{
                 // position: absolute;
                 // top: 0px;
@@ -189,33 +191,40 @@ $blue: #039be5;
                }
                .time-stamp{
                  display: inline-block;
-                 width: 200px;
+                 width: 125px;
                  margin-left: 15px;
+                //  padding-top: 5px;
                 //  position: absolute;
                 //  top: 7px;
                 //  left: 160px;
                  color: $grey;
                  font-size: 12px;
                }
+               .tools{
+                 width: 60px;
+                 display: flex;
+                 align-self: center;
+                 float: right;
+                 opacity: 0;
+                 // visibility: hidden;
+                 &:hover {
+                     opacity: 1;
+                 }
+                 .material-icons.create{
+                   font-size: 15px;
+                   cursor: pointer
+                 }
+                 .material-icons.delete{
+                   font-size: 15px;
+                   cursor: pointer;
+                 }
+               }
              }
              .content{
                 display: inline-block;
                 width: 93%;
 
-                .tools{
-                  width: 60px;
-                  display: inline-block;
-                  float: right;
-                  // visibility: hidden;
-                  .material-icons.create{
-                    font-size: 15px;
-                    cursor: pointer
-                  }
-                  .material-icons.delete{
-                    font-size: 15px;
-                    cursor: pointer;
-                  }
-                }
+
              }
             }
           }
@@ -323,6 +332,8 @@ $blue: #039be5;
            border-radius: 6px;
            padding-bottom: 38px;
            display: flex;
+
+
            #mic-sec{
              width: 4%;
              height: 38px;
@@ -342,7 +353,8 @@ $blue: #039be5;
              width: 100%;
              #message-input{
                height: 42px;
-               font-family: $input-font;
+              //  font-family: $input-font;
+                font-family: 'Raleway';
                overflow-y: hidden;
                resize: none;
                border: 2px solid $grey;

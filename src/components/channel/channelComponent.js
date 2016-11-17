@@ -1,7 +1,7 @@
 import channelViewHtml from "./channel-view-tmpl.html";
 import "./styles/channel.scss";
 
-function channelCtrl( $scope, $state, messageService, recorderService, socketFactory, channelService, recordingService ) {
+function channelCtrl( $interval, $scope, $state, messageService, recorderService, socketFactory, channelService, recordingService ) {
   this.$onInit = () => {
       if ( this.channel ) {
         this.enterChannel();
@@ -146,6 +146,7 @@ function channelCtrl( $scope, $state, messageService, recorderService, socketFac
 
   this.sendAndSaveMessage = ( keyEvent, message ) => {
     if( keyEvent.which === 13 ){
+      keyEvent.preventDefault();
       message.author = this.user._id
       message.type = "message";
       messageService.sendAndSaveMessage( message, this.channel._id );
