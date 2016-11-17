@@ -218,6 +218,7 @@ function channelCtrl( $interval, $scope, $state, messageService, recorderService
       , barWidth: 2
     } );
     recorderService.startRecording();
+
   }
 
   this.stopRecording = () => {
@@ -245,6 +246,8 @@ function channelCtrl( $interval, $scope, $state, messageService, recorderService
       , barWidth: 2
     } );
     this.wavesurfer.load( song );
+    this.playing = false;
+
   }
 
   this.deleteRecording = ( recording, channelId, userId ) => {
