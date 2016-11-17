@@ -109,6 +109,10 @@
           >
 
             {{ message.content }}
+            <div class="tools">
+              <a class="btn-floating btn-large waves-effect waves-light edit-message" title="Edit message" ng-click="editButton.$show()" ng-hide"editButton.$visible"><i class="material-icons create">create</i></a>
+              <a class="btn-floating btn-large waves-effect waves-light delete-message" title="Delete message" ng-click="$ctrl.deleteMessage( message._id, $ctrl.channel._id)"><i class="material-icons delete" >clear</i></a>
+            </div>
           </div>
         </div>
       </div>
