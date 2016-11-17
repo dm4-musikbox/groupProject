@@ -53,20 +53,35 @@ $blue: #039be5;
      margin-top: 28px;
      width: 40px;
      margin-left: 26px;
+     height: 48px;
+     justify-content: space-between;
      .add-to-playlist-icon{
        width: 100px;
-       .material-icons.ld-18{
-         font-size: 18px;
-         color: $blue;
-         cursor: pointer;
+       .btn-floating.btn-large{
+         max-width: 1.4rem;
+         max-height: 1.4rem;
+         background-color: aliceblue;
+         .material-icons.ld-18{
+           font-size: .7rem;
+           color: black;
+           position: absolute;
+           top: -17px;
+           left: -18px;
+         }
        }
      }
      .cancel-recording-icon{
-       .material-icons.ld-18{
-         font-size: 18px;
-         margin-left: -2px;
-         color: $blue;
-         cursor: pointer;
+       .btn-floating.btn-large{
+         max-width: 1.4rem;
+         max-height: 1.4rem;
+         background-color: aliceblue;
+         .material-icons.ld-18{
+           font-size: .7rem;
+           color: black;
+           position: absolute;
+           top: -17px;
+           left: -18px;
+         }
        }
      }
    }
@@ -80,7 +95,8 @@ $blue: #039be5;
       color: $purple;
       opacity: .7;
       .channel-info{
-        width: 600px;
+        width: 67%;
+        margin-left: 130px;
         .channel-name{
           margin: auto;
           text-align: center;
@@ -100,10 +116,31 @@ $blue: #039be5;
       }
       .channel-buttons{
         display: flex;
+        justify-content: space-around;
+        height: 100%;
+        width: 139px;
         #side-nav-icon{
-          .material-icons.md-24.button-collapse{
-            font-size: 24px;
-            cursor: pointer;
+          .btn-floating.btn-large.playlist{
+            background-color: #ffc107;
+            max-width: 2rem;
+            max-height: 2rem;
+            .material-icons{
+              font-size: 1.4rem;
+              position: absolute;
+              top: -11px;
+              left: -13px;
+            }
+          }
+        }
+        .btn-floating.btn-large.settings{
+          background-color: #ffc107;
+          max-width: 2rem;
+          max-height: 2rem;
+          .material-icons{
+            font-size: 1.4rem;
+            position: absolute;
+            top: -11px;
+            left: -13px;
           }
         }
       }
@@ -163,6 +200,7 @@ $blue: #039be5;
              }
              .content{
                 display: inline-block;
+                width: 93%;
 
                 .tools{
                   width: 60px;
@@ -275,8 +313,8 @@ $blue: #039be5;
          position: fixed;
          padding-bottom: 1em;
          .message-input-field{
-           height: 38px;
-           width: 82%;
+           height: 42px;
+           width: 77%;
            position: absolute;
            left: 0.9rem;
            bottom: 1rem;
