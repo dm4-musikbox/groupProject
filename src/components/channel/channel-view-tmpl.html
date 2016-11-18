@@ -219,7 +219,7 @@
 
   <!-- Footer for invitation accept/decline -->
   <div
-      class="footer"
+      class="footer-invite"
       ng-show="$ctrl.isUserAdminInvite || $ctrl.isUserMemberInvite"
       style="text-align"
   >
@@ -412,7 +412,7 @@
         <a
             class="modal-action modal-close waves-effect waves-green btn-flat"
             href=""
-            ng-click="$ctrl.confirmInvites()"
+            ng-click="$ctrl.confirmAndSendInvites()"
         >
             Invite
         </a>

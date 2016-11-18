@@ -23,7 +23,7 @@
 #genre-cards-container {
   margin: 20px 5%;
   max-height: calc( 100vh - 250px );
-  overflow: hidden;
+  overflow: scroll;
 }
 #subs {
   font-size: 15px;
