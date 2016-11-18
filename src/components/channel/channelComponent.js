@@ -128,6 +128,7 @@ function channelCtrl( $interval, $scope, $state, messageService, recorderService
 
   this.confirmAndSendInvites = () => {
       let invitedUsers;
+      console.log( this.invitedAsAdmin, this.invitedAsMember );
       if ( this.invitedAsAdmin.length ) {
           invitedUsers = this.invitedAsAdmin;
           invitedUsers.forEach( user => this.addUserToChannel( this.channel._id, user.originalObject._id, 'invitedAsAdmin' ) );
@@ -136,6 +137,9 @@ function channelCtrl( $interval, $scope, $state, messageService, recorderService
           invitedUsers = this.invitedAsMember;
           invitedUsers.forEach( user => this.addUserToChannel( this.channel._id, user.originalObject._id, 'invitedAsMember' ) );
       }
+
+      this.invitedAsAdmin = [];
+      this.invitedAsMember = [];
   }
 
   this.cancelInvites = () => {
@@ -182,7 +186,6 @@ function channelCtrl( $interval, $scope, $state, messageService, recorderService
   socketFactory.on( "redirect channel creator upon channel deletion", data => {
     $state.go( "genres-view" );
   } );
-
 
   const image = document.createElement( 'img' );
     image.src = require( './styles/imgs/testpic.jpg' );

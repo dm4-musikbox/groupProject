@@ -111,9 +111,10 @@
                         channel-link-dir
                         class="channel-link"
                         ng-class="{
-                            isUpdated: adminInvite.isUpdated'
-                            , highlight-selected-channel': $ctrl.channelStatus.channel._id === adminInvite.channel._id
-                            , 'hover-channel-link': $ctrl.channelStatus.channel._id !== adminInvite.channel._id  }"
+                            'isUpdated': adminInvite.isUpdated
+                            , 'highlight-selected-channel': $ctrl.channelStatus.channel._id === adminInvite.channel._id
+                            , 'hover-channel-link': $ctrl.channelStatus.channel._id !== adminInvite.channel._id
+                          }"
                         ng-click="$ctrl.setIsUpdatedProp( adminInvite.channel, $ctrl.user, 'invitedAsAdmin', false )"
                         ng-repeat="adminInvite in $ctrl.user.invitedAsAdmin"
                         ui-sref="channel-view( { _id: adminInvite.channel._id } )"

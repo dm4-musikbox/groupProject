@@ -3,7 +3,7 @@
 
 .my-grid {
   max-height: calc(100vh - 113px);
-  overflow: auto;
+  overflow: scroll;
   #grid-header {
     color: #460d5d;
     text-align: center;

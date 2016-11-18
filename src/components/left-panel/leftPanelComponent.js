@@ -35,11 +35,11 @@ function leftPanelCtrl( $state, authService, channelService, socketFactory, user
 			let invitedUserIds;
 			if ( type === "admin" ) {
 					invitedUsers = this.invitedAsAdmin;
-					invitedUserIds = this.channel.invitedAsAdmin
+					invitedUserIds = this.channel.invitedAsAdmin;
 			}
 			else if ( type === "member" ) {
 					invitedUsers = this.invitedAsMember;
-					invitedUserIds = this.channel.invitedAsMember
+					invitedUserIds = this.channel.invitedAsMember;
 			}
 			const userIndex = invitedUsers.indexOf( user );
 			const userIdIndex = invitedUserIds.indexOf( user.originalObject._id );
@@ -57,13 +57,13 @@ function leftPanelCtrl( $state, authService, channelService, socketFactory, user
 	};
 
 	this.createChannel = ( channel ) => {
-		channel.createdBy = this.user._id;
-		channel.admins = [ this.user._id ];
-		channelService.createChannel( channel );
+			channel.createdBy = this.user._id;
+			channel.admins = [ this.user._id ];
+			channelService.createChannel( channel );
 	};
 
 	this.setIsUpdatedProp = ( channel, user, userType, setTo ) => {
-		userService.setIsUpdatedProp( channel, user, userType, setTo );
+			userService.setIsUpdatedProp( channel, user, userType, setTo );
 	};
 
 	this.itemClicked = ( $index ) => {

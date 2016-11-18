@@ -110,12 +110,13 @@ module.exports =
 				if ( !Object.keys( activeChannels[ channelId ].activeUsers ).length ) {
 					delete activeChannels[ channelId ];
 					channelStatus = {};
-					getChannelStatus( io, channelId, { message: "everyone has left the room." } );
+					getChannelStatus( io, channelId, { message: "Everyone has left the room." } );
 				}
 				else {
 					getChannelStatus( io, channelId, channelStatus );
 				}
 			}
+			socket.emit( "get status of channel", { message: "You have left the room." } );
 			socket.leave( channelId );
 		}
 		, addUserToChannel( data, io, socket ) {
